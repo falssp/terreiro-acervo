@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="theme-color" content="#2a1a0e"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Terreiro"/>
+<link rel="manifest" href="manifest.json"/>
+<title>Acervo do Terreiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --terra:#2a1a0e;--ouro:#c8922a;--ouro-lt:#e8b84b;
+  --creme:#f5e9d0;--creme-lt:#fdf6e8;--cinza:#8a7a6a;
+  --borda:rgba(200,146,42,.25);--r:10px;
+  --fd:'Cinzel',serif;--fb:'Inter',sans-serif;
+}
+html{font-size:16px}
+body{font-family:var(--fb);background:var(--terra);color:var(--creme);min-height:100dvh;padding-bottom:80px}
+header{background:linear-gradient(160deg,#1a0e06,#3a2010);border-bottom:1px solid var(--borda);padding:18px 20px 14px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.4)}
+header h1{font-family:var(--fd);font-size:clamp(1rem,4vw,1.3rem);font-weight:600;color:var(--ouro-lt);letter-spacing:.06em}
+header p{font-size:11px;color:var(--cinza);margin-top:2px;letter-spacing:.08em;text-transform:uppercase}
+.tabs{display:flex;background:#1a0e06;border-bottom:1px solid var(--borda);position:sticky;top:68px;z-index:99}
+.tab{flex:1;padding:11px 4px;border:none;background:none;color:var(--cinza);font-family:var(--fb);font-size:12px;font-weight:500;cursor:pointer;border-bottom:2px solid transparent;transition:color .15s}
+.tab.active{color:var(--ouro-lt);border-bottom-color:var(--ouro)}
+.tab svg{display:block;margin:0 auto 3px}
+.container{max-width:600px;margin:0 auto;padding:20px 16px}
+.section{display:none}.section.active{display:block}
+.cfg{background:rgba(74,46,24,.4);border:1px solid var(--borda);border-radius:var(--r);padding:12px 14px;margin-bottom:20px}
+.cfg label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ouro);font-weight:600;display:block;margin-bottom:6px}
+.cfg input{width:100%;background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:6px;color:var(--creme);font-size:12px;font-family:monospace;padding:8px 10px;outline:none}
+.cfg input:focus{border-color:var(--ouro)}
+.cfg-hint{font-size:10px;color:var(--cinza);margin-top:5px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:5px}
+.field.full{grid-column:1/-1}
+.field label{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--ouro);font-weight:600}
+.field input,.field select,.field textarea{background:rgba(0,0,0,.35);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-family:var(--fb);font-size:14px;padding:10px 12px;outline:none;-webkit-appearance:none;appearance:none;width:100%;transition:border-color .15s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ouro)}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c8922a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+.field select option{background:#2a1a0e}
+.field textarea{resize:vertical;min-height:80px}
+.foto-ph{width:60px;height:60px;border-radius:8px;background:rgba(0,0,0,.3);border:1px dashed var(--borda);display:flex;align-items:center;justify-content:center;color:var(--cinza);margin-top:6px}
+.foto-thumb{width:60px;height:60px;border-radius:8px;object-fit:cover;border:1px solid var(--borda);margin-top:6px;display:block}
+.btn-row{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+.btn{padding:10px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid var(--borda);font-family:var(--fb);transition:opacity .15s}
+.btn-ghost{background:transparent;color:var(--cinza)}
+.btn-primary{background:linear-gradient(135deg,var(--ouro),#a07020);color:#1a0e06;border-color:var(--ouro);font-weight:600}
+.btn-primary:hover{opacity:.88}.btn-primary:disabled{opacity:.4;cursor:not-allowed}
+.progress{height:2px;background:rgba(200,146,42,.15);margin-bottom:20px;border-radius:1px;overflow:hidden}
+.progress-fill{height:100%;background:var(--ouro);width:0;transition:width .3s}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+.filter-bar select{background:rgba(0,0,0,.35);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:12px;padding:7px 28px 7px 10px;font-family:var(--fb);outline:none;flex:1;min-width:120px;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c8922a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.filter-bar select option{background:#2a1a0e}
+.btn-reload{background:rgba(200,146,42,.15);border:1px solid var(--borda);border-radius:8px;color:var(--ouro);padding:7px 12px;font-size:12px;cursor:pointer;font-family:var(--fb);white-space:nowrap}
+.btn-reload:hover{background:rgba(200,146,42,.25)}
+.lista{display:flex;flex-direction:column;gap:10px}
+.card{background:linear-gradient(135deg,rgba(74,46,24,.5),rgba(42,26,14,.7));border:1px solid var(--borda);border-radius:var(--r);padding:14px;display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:start}
+.card-tipo{font-size:10px;color:var(--cinza);text-transform:uppercase;letter-spacing:.08em}
+.card-nome{font-size:15px;font-weight:600;color:var(--creme-lt);line-height:1.3}
+.card-meta{font-size:12px;color:var(--cinza);line-height:1.6}
+.card-obs{font-size:11px;color:var(--cinza);margin-top:2px;font-style:italic}
+.card-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.badge{display:inline-block;font-size:10px;font-weight:600;padding:3px 9px;border-radius:99px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.b-disponivel{background:rgba(34,139,34,.25);color:#7fd67f;border:1px solid rgba(34,139,34,.4)}
+.b-em-uso{background:rgba(200,146,42,.25);color:var(--ouro-lt);border:1px solid var(--borda)}
+.b-danificado{background:rgba(180,40,40,.25);color:#f08080;border:1px solid rgba(180,40,40,.4)}
+.b-necessita-reposicao{background:rgba(180,120,0,.25);color:#e8b84b;border:1px solid rgba(180,120,0,.4)}
+.card-foto{width:52px;height:52px;border-radius:8px;object-fit:cover;border:1px solid var(--borda)}
+.card-foto-ph{width:52px;height:52px;border-radius:8px;background:rgba(0,0,0,.25);border:1px dashed var(--borda);display:flex;align-items:center;justify-content:center;color:var(--cinza)}
+/* ESTOQUE */
+.est-resumo{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.est-card{background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:var(--r);padding:14px 10px;text-align:center}
+.est-card .num{font-family:var(--fd);font-size:1.8rem;font-weight:600;line-height:1}
+.est-card .rot{font-size:10px;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;color:var(--cinza)}
+.est-card.ok .num{color:#7fd67f}.est-card.warn .num{color:#e8b84b}.est-card.crit .num{color:#f08080}
+.est-lista{display:flex;flex-direction:column;gap:8px}
+.est-item{background:linear-gradient(135deg,rgba(74,46,24,.45),rgba(42,26,14,.65));border:1px solid var(--borda);border-radius:var(--r);padding:12px 14px}
+.est-item-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.est-item-nome{font-size:14px;font-weight:600;color:var(--creme-lt)}
+.est-item-cat{font-size:10px;color:var(--cinza);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.est-barra-wrap{margin-top:10px}
+.est-barra-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--cinza);margin-bottom:4px}
+.est-barra-bg{height:8px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden}
+.est-barra-fill{height:100%;border-radius:99px;transition:width .4s}
+.fill-ok{background:linear-gradient(90deg,#228b22,#7fd67f)}
+.fill-warn{background:linear-gradient(90deg,#a07020,#e8b84b)}
+.fill-crit{background:linear-gradient(90deg,#8b0000,#f08080)}
+.est-badge-ok{background:rgba(34,139,34,.25);color:#7fd67f;border:1px solid rgba(34,139,34,.4)}
+.est-badge-warn{background:rgba(180,120,0,.25);color:#e8b84b;border:1px solid rgba(180,120,0,.4)}
+.est-badge-crit{background:rgba(180,40,40,.25);color:#f08080;border:1px solid rgba(180,40,40,.4)}
+.est-unidade{font-size:10px;color:var(--cinza);margin-top:4px}
+.est-form-box{background:rgba(0,0,0,.25);border:1px solid var(--borda);border-radius:var(--r);padding:16px;margin-bottom:20px}
+.secao-titulo{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--cinza);font-weight:600;margin:20px 0 10px;display:flex;align-items:center;gap:6px}
+.secao-titulo::after{content:'';flex:1;height:1px;background:var(--borda)}
+.ornamento{text-align:center;color:var(--ouro);opacity:.35;font-size:18px;letter-spacing:.5em;margin:24px 0 18px;pointer-events:none}
+.empty{text-align:center;padding:48px 20px;color:var(--cinza);font-size:14px}
+.empty svg{margin:0 auto 12px;opacity:.4;display:block}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a0e06;border:1px solid var(--ouro);border-radius:99px;color:var(--ouro-lt);padding:10px 22px;font-size:13px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:999;white-space:nowrap}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#toast.erro{border-color:#f08080;color:#f08080}
+#pwa-banner{display:none;position:fixed;bottom:0;left:0;right:0;background:#1a0e06;border-top:1px solid var(--borda);padding:12px 16px;z-index:200;align-items:center;gap:12px}
+#pwa-banner p{flex:1;font-size:13px;color:var(--creme)}
+.pwa-install{background:var(--ouro);color:#1a0e06;border:none;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--fb)}
+.pwa-dismiss{background:transparent;color:var(--cinza);border:1px solid var(--borda);padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;font-family:var(--fb)}
+@media(max-width:400px){.form-grid{grid-template-columns:1fr}.field.full{grid-column:1}.est-card .num{font-size:1.4rem}}
+</style>
+</head>
+<body>
+<header>
+  <h1>✦ Acervo do Terreiro ✦</h1>
+  <p>Sistema de cadastro — Umbanda</p>
+</header>
+<nav class="tabs">
+  <button class="tab active" onclick="switchTab('cadastro',this)">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Cadastrar
+  </button>
+  <button class="tab" onclick="switchTab('acervo',this)">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>Acervo
+  </button>
+  <button class="tab" onclick="switchTab('estoque',this)">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>Estoque
+  </button>
+</nav>
+<div class="progress"><div class="progress-fill" id="prog"></div></div>
+<div class="container">
+  <div class="cfg">
+    <label>🔗 URL do Apps Script</label>
+    <input type="url" id="scriptUrl" placeholder="https://script.google.com/macros/s/.../exec"/>
+    <div class="cfg-hint">Cole a URL e ela será salva automaticamente neste navegador.</div>
+  </div>
+
+  <!-- CADASTRAR -->
+  <div class="section active" id="sec-cadastro">
+    <div class="ornamento">✦ ✦ ✦</div>
+    <div class="form-grid">
+      <div class="field full"><label>Nome do item *</label><input type="text" id="nome" placeholder="Ex: Vestido de Oxum — amarelo bordado"/></div>
+      <div class="field"><label>Categoria *</label>
+        <select id="categoria" onchange="updateSubcat()">
+          <option value="">Selecione</option>
+          <option>Roupas e indumentárias</option><option>Ferramentas e objetos rituais</option>
+          <option>Ervas e plantas</option><option>Alimentos e oferendas</option>
+        </select>
+      </div>
+      <div class="field"><label>Subcategoria</label><select id="subcategoria"><option value="">—</option></select></div>
+      <div class="field"><label>Orixá / Entidade</label>
+        <select id="orixa">
+          <option value="">Selecione</option>
+          <option>Exu</option><option>Ogum</option><option>Oxossi</option><option>Xangô</option>
+          <option>Oxum</option><option>Iemanjá</option><option>Oxalá</option><option>Iansã</option>
+          <option>Obá</option><option>Nanã</option><option>Obaluaê / Omolu</option><option>Oxumaré</option>
+          <option>Preto-Velho</option><option>Caboclo</option><option>Boiadeiro</option><option>Marinheiro</option>
+          <option>Baiano</option><option>Zé Pilintra</option><option>Pomba-Gira</option>
+          <option>Criança / Erê</option><option>Geral / Sem entidade</option>
+        </select>
+      </div>
+      <div class="field"><label>Status</label>
+        <select id="status">
+          <option value="Disponível">Disponível</option><option value="Em uso">Em uso</option>
+          <option value="Danificado">Danificado</option><option value="Necessita reposição">Necessita reposição</option>
+        </select>
+      </div>
+      <div class="field"><label>Localização / Armário</label><input type="text" id="local" placeholder="Ex: Armário 2 — prateleira A"/></div>
+      <div class="field"><label>Quantidade</label><input type="number" id="qtd" value="1" min="1"/></div>
+      <div class="field full"><label>URL da foto</label>
+        <input type="url" id="foto" placeholder="https://drive.google.com/..." oninput="previewFoto(this.value)"/>
+        <div id="foto-preview"><div class="foto-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="13" r="4"/><path d="M5 7H3a2 2 0 00-2 2v10a2 2 0 002 2h18a2 2 0 002-2V9a2 2 0 00-2-2h-2l-2-3H9L7 7z"/></svg></div></div>
+      </div>
+      <div class="field full"><label>Observações</label><textarea id="obs" placeholder="Estado de conservação, histórico, instruções..."></textarea></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="limpar()">Limpar</button>
+      <button class="btn btn-primary" id="btnSalvar" onclick="salvar()">Gravar na planilha</button>
+    </div>
+  </div>
+
+  <!-- ACERVO -->
+  <div class="section" id="sec-acervo">
+    <div class="ornamento">✦ ✦ ✦</div>
+    <div class="filter-bar">
+      <select id="f-cat" onchange="renderLista()">
+        <option value="">Todas as categorias</option>
+        <option>Roupas e indumentárias</option><option>Ferramentas e objetos rituais</option>
+        <option>Ervas e plantas</option><option>Alimentos e oferendas</option>
+      </select>
+      <select id="f-orixa" onchange="renderLista()">
+        <option value="">Todos os orixás</option>
+        <option>Exu</option><option>Ogum</option><option>Oxossi</option><option>Xangô</option>
+        <option>Oxum</option><option>Iemanjá</option><option>Oxalá</option><option>Iansã</option>
+        <option>Obá</option><option>Nanã</option><option>Obaluaê / Omolu</option><option>Oxumaré</option>
+        <option>Preto-Velho</option><option>Caboclo</option><option>Boiadeiro</option><option>Marinheiro</option>
+        <option>Baiano</option><option>Zé Pilintra</option><option>Pomba-Gira</option>
+        <option>Criança / Erê</option><option>Geral / Sem entidade</option>
+      </select>
+      <select id="f-status" onchange="renderLista()">
+        <option value="">Todos os status</option>
+        <option>Disponível</option><option>Em uso</option><option>Danificado</option><option>Necessita reposição</option>
+      </select>
+      <button class="btn-reload" onclick="carregarAcervo()">⟳ Atualizar</button>
+    </div>
+    <div class="lista" id="lista">
+      <div class="empty"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/></svg>Toque em "Atualizar" para carregar o acervo.</div>
+    </div>
+  </div>
+
+  <!-- ESTOQUE -->
+  <div class="section" id="sec-estoque">
+    <div class="ornamento">✦ ✦ ✦</div>
+    <div class="est-resumo">
+      <div class="est-card ok"><div class="num" id="cnt-ok">—</div><div class="rot">✅ Em dia</div></div>
+      <div class="est-card warn"><div class="num" id="cnt-warn">—</div><div class="rot">⚠️ Repor</div></div>
+      <div class="est-card crit"><div class="num" id="cnt-crit">—</div><div class="rot">🔴 Crítico</div></div>
+    </div>
+    <div class="filter-bar">
+      <select id="ef-status" onchange="renderEstoque()">
+        <option value="">Todos</option><option value="ok">✅ Em dia</option>
+        <option value="warn">⚠️ Repor</option><option value="crit">🔴 Crítico</option>
+      </select>
+      <select id="ef-cat" onchange="renderEstoque()">
+        <option value="">Todas as categorias</option>
+        <option>Roupas e indumentárias</option><option>Ferramentas e objetos rituais</option>
+        <option>Ervas e plantas</option><option>Alimentos e oferendas</option>
+      </select>
+      <button class="btn-reload" onclick="carregarEstoque()">⟳ Atualizar</button>
+    </div>
+    <div class="est-lista" id="est-lista">
+      <div class="empty"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>Toque em "Atualizar" para carregar o estoque.</div>
+    </div>
+    <div class="secao-titulo">Cadastrar / Atualizar item</div>
+    <div class="est-form-box">
+      <div class="form-grid">
+        <div class="field full"><label>Nome do item *</label><input type="text" id="e-nome" placeholder="Ex: Vela 7 dias branca"/></div>
+        <div class="field"><label>Categoria</label>
+          <select id="e-cat">
+            <option value="">—</option>
+            <option>Roupas e indumentárias</option><option>Ferramentas e objetos rituais</option>
+            <option>Ervas e plantas</option><option>Alimentos e oferendas</option>
+          </select>
+        </div>
+        <div class="field"><label>Unidade</label>
+          <select id="e-unidade">
+            <option>unidade(s)</option><option>par(es)</option><option>maço(s)</option>
+            <option>pacote(s)</option><option>litro(s)</option><option>kg</option>
+            <option>dúzia(s)</option><option>caixa(s)</option>
+          </select>
+        </div>
+        <div class="field"><label>Qtd atual *</label><input type="number" id="e-atual" placeholder="77" min="0"/></div>
+        <div class="field"><label>Qtd mínima *</label><input type="number" id="e-minimo" placeholder="100" min="1"/></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="limparEstoque()">Limpar</button>
+        <button class="btn btn-primary" id="btnEstoque" onclick="salvarEstoque()">Gravar no estoque</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="pwa-banner">
+  <p>📲 Instalar na tela inicial?</p>
+  <button class="pwa-dismiss" onclick="document.getElementById('pwa-banner').style.display='none'">Agora não</button>
+  <button class="pwa-install" onclick="installPwa()">Instalar</button>
+</div>
+<div id="toast"></div>
+
+<script>
+const SUBCATS={
+  'Roupas e indumentárias':['Vestido','Saia','Torço / Ojá','Guia / Colar','Pulseira / Oxé','Capacete / Coroa','Calçado','Capa / Manto','Outro'],
+  'Ferramentas e objetos rituais':['Ferramenta de orixá','Ibá / Sopera','Espada / Ogó','Arco e flecha','Leque','Xaxará','Pemba / Efun','Atabaques / Instrumento','Outro'],
+  'Ervas e plantas':['Folha para banho','Folha para defumação','Erva medicinal','Raiz','Semente','Outro'],
+  'Alimentos e oferendas':['Axé / Ebó','Comida de orixá','Bebida ritual','Vela / Bujão','Incenso / Defumação','Flores','Outro']
+};
+let acervo=[],estoque=[],deferredPrompt=null;
+
+// Persiste a URL no localStorage
+window.addEventListener('DOMContentLoaded',()=>{
+  const saved=localStorage.getItem('terreiro_url');
+  if(saved) document.getElementById('scriptUrl').value=saved;
+  document.getElementById('scriptUrl').addEventListener('input',e=>{
+    localStorage.setItem('terreiro_url',e.target.value.trim());
+  });
+});
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault(); deferredPrompt=e;
+  document.getElementById('pwa-banner').style.display='flex';
+});
+function installPwa(){
+  if(!deferredPrompt)return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(()=>{deferredPrompt=null;document.getElementById('pwa-banner').style.display='none';});
+}
+if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+function getUrl(){return(document.getElementById('scriptUrl').value||'').trim();}
+function toast(msg,ok=true){const t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok?'':' erro');clearTimeout(t._t);t._t=setTimeout(()=>t.className='',3200);}
+function prog(p){document.getElementById('prog').style.width=p+'%';}
+function updateSubcat(){
+  const c=document.getElementById('categoria').value,s=document.getElementById('subcategoria');
+  s.innerHTML='<option value="">—</option>';
+  (SUBCATS[c]||[]).forEach(x=>{const o=document.createElement('option');o.textContent=x;s.appendChild(o);});
+}
+function switchTab(id,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('sec-'+id).classList.add('active');
+  if(id==='acervo'&&!acervo.length) carregarAcervo();
+  if(id==='estoque'&&!estoque.length) carregarEstoque();
+}
+function previewFoto(url){
+  const w=document.getElementById('foto-preview');
+  w.innerHTML=url&&url.startsWith('http')
+    ?`<img class="foto-thumb" src="${url}" onerror="this.style.display='none'"/>`
+    :`<div class="foto-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="13" r="4"/><path d="M5 7H3a2 2 0 00-2 2v10a2 2 0 002 2h18a2 2 0 002-2V9a2 2 0 00-2-2h-2l-2-3H9L7 7z"/></svg></div>`;
+}
+function limpar(){
+  ['nome','local','obs','foto'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('qtd').value=1;
+  ['categoria','subcategoria','orixa'].forEach(id=>document.getElementById(id).selectedIndex=0);
+  document.getElementById('status').selectedIndex=0;
+  updateSubcat();previewFoto('');
+}
+function limparEstoque(){
+  ['e-nome','e-atual','e-minimo'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('e-cat').selectedIndex=0;
+  document.getElementById('e-unidade').selectedIndex=0;
+}
+function badgeClass(s){return'b-'+(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'-');}
+function clsEst(a,m){const p=a/m;return p>=1?'ok':p>=.5?'warn':'crit';}
+
+// ── ACERVO ──────────────────────────────────────────────
+async function salvar(){
+  const url=getUrl();if(!url){toast('Configure a URL do Apps Script.',false);return;}
+  const nome=document.getElementById('nome').value.trim();
+  const cat=document.getElementById('categoria').value;
+  if(!nome){toast('Informe o nome do item.',false);return;}
+  if(!cat){toast('Selecione uma categoria.',false);return;}
+  const btn=document.getElementById('btnSalvar');btn.disabled=true;prog(40);
+  const p={acao:'inserir',nome,categoria:cat,
+    subcategoria:document.getElementById('subcategoria').value,
+    orixa:document.getElementById('orixa').value,
+    status:document.getElementById('status').value,
+    local:document.getElementById('local').value,
+    quantidade:document.getElementById('qtd').value,
+    foto:document.getElementById('foto').value,
+    observacoes:document.getElementById('obs').value,
+    dataCadastro:new Date().toLocaleDateString('pt-BR')};
+  try{
+    const r=await fetch(url,{method:'POST',body:JSON.stringify(p)});
+    const j=await r.json();prog(100);
+    if(j.ok){toast('✓ Item gravado!');acervo.unshift(p);limpar();}
+    else toast('Erro: '+(j.erro||'inesperado'),false);
+  }catch(e){toast('Falha na requisição.',false);}
+  finally{btn.disabled=false;setTimeout(()=>prog(0),900);}
+}
+async function carregarAcervo(){
+  const url=getUrl();if(!url){toast('Configure a URL do Apps Script.',false);return;}
+  document.getElementById('lista').innerHTML='<div class="empty">Carregando...</div>';
+  try{const r=await fetch(url+'?acao=listar');const j=await r.json();acervo=j.itens||[];renderLista();}
+  catch(e){document.getElementById('lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
+}
+function renderLista(){
+  const cat=document.getElementById('f-cat').value,ori=document.getElementById('f-orixa').value,sta=document.getElementById('f-status').value;
+  const f=acervo.filter(i=>(!cat||i.categoria===cat)&&(!ori||i.orixa===ori)&&(!sta||i.status===sta));
+  const el=document.getElementById('lista');
+  if(!f.length){el.innerHTML='<div class="empty">Nenhum item encontrado.</div>';return;}
+  el.innerHTML=f.map(i=>`<div class="card"><div>
+    <div class="card-tipo">${i.categoria||'—'}${i.subcategoria?' · '+i.subcategoria:''}</div>
+    <div class="card-nome">${i.nome}</div>
+    <div class="card-meta">${i.orixa?'🔱 '+i.orixa:''}${i.local?' · 📍 '+i.local:''}${i.quantidade>1?' · Qtd: '+i.quantidade:''}${i.dataCadastro?' · '+i.dataCadastro:''}</div>
+    ${i.observacoes?`<div class="card-obs">${i.observacoes.substring(0,90)}${i.observacoes.length>90?'…':''}</div>`:''}
+  </div><div class="card-right">
+    <span class="badge ${badgeClass(i.status)}">${i.status||'—'}</span>
+    ${i.foto?`<img class="card-foto" src="${i.foto}" onerror="this.style.display='none'"/>`:`<div class="card-foto-ph"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="13" r="4"/><path d="M5 7H3a2 2 0 00-2 2v10a2 2 0 002 2h18a2 2 0 002-2V9a2 2 0 00-2-2h-2l-2-3H9L7 7z"/></svg></div>`}
+  </div></div>`).join('');
+}
+
+// ── ESTOQUE ──────────────────────────────────────────────
+async function salvarEstoque(){
+  const url=getUrl();if(!url){toast('Configure a URL do Apps Script.',false);return;}
+  const nome=document.getElementById('e-nome').value.trim();
+  const atual=Number(document.getElementById('e-atual').value);
+  const minimo=Number(document.getElementById('e-minimo').value);
+  if(!nome){toast('Informe o nome do item.',false);return;}
+  if(isNaN(atual)||atual<0){toast('Informe a quantidade atual.',false);return;}
+  if(!minimo||minimo<1){toast('Informe a quantidade mínima.',false);return;}
+  const btn=document.getElementById('btnEstoque');btn.disabled=true;prog(40);
+  const p={acao:'estoque-inserir',nome,
+    categoria:document.getElementById('e-cat').value,
+    unidade:document.getElementById('e-unidade').value,
+    atual,minimo,dataCadastro:new Date().toLocaleDateString('pt-BR')};
+  try{
+    const r=await fetch(url,{method:'POST',body:JSON.stringify(p)});
+    const j=await r.json();prog(100);
+    if(j.ok){toast('✓ Estoque gravado!');await carregarEstoque();limparEstoque();}
+    else toast('Erro: '+(j.erro||'inesperado'),false);
+  }catch(e){toast('Falha na requisição.',false);}
+  finally{btn.disabled=false;setTimeout(()=>prog(0),900);}
+}
+async function carregarEstoque(){
+  const url=getUrl();if(!url){toast('Configure a URL do Apps Script.',false);return;}
+  document.getElementById('est-lista').innerHTML='<div class="empty">Carregando...</div>';
+  try{const r=await fetch(url+'?acao=estoque-listar');const j=await r.json();estoque=j.itens||[];renderEstoque();}
+  catch(e){document.getElementById('est-lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
+}
+function renderEstoque(){
+  let ok=0,warn=0,crit=0;
+  estoque.forEach(i=>{const c=clsEst(Number(i.atual),Number(i.minimo));if(c==='ok')ok++;else if(c==='warn')warn++;else crit++;});
+  document.getElementById('cnt-ok').textContent=ok;
+  document.getElementById('cnt-warn').textContent=warn;
+  document.getElementById('cnt-crit').textContent=crit;
+  const fSt=document.getElementById('ef-status').value,fCat=document.getElementById('ef-cat').value;
+  let f=estoque.filter(i=>(!fSt||clsEst(Number(i.atual),Number(i.minimo))===fSt)&&(!fCat||i.categoria===fCat));
+  f.sort((a,b)=>({crit:0,warn:1,ok:2})[clsEst(Number(a.atual),Number(a.minimo))]-({crit:0,warn:1,ok:2})[clsEst(Number(b.atual),Number(b.minimo))]);
+  const el=document.getElementById('est-lista');
+  if(!f.length){el.innerHTML='<div class="empty">Nenhum item encontrado.</div>';return;}
+  const lbl={ok:'✅ Em dia',warn:'⚠️ Repor',crit:'🔴 Crítico'};
+  el.innerHTML=f.map(i=>{
+    const a=Number(i.atual),m=Number(i.minimo),cl=clsEst(a,m);
+    const pct=Math.min(100,Math.round(a/m*100)),falta=Math.max(0,m-a);
+    return `<div class="est-item">
+      <div class="est-item-top"><div><div class="est-item-nome">${i.nome}</div><div class="est-item-cat">${i.categoria||'—'}</div></div>
+      <span class="badge est-badge-${cl}">${lbl[cl]}</span></div>
+      <div class="est-barra-wrap">
+        <div class="est-barra-labels"><span><b>${a}</b> / ${m} ${i.unidade||'unidades'}</span><span>${falta>0?'faltam '+falta:'estoque OK'}</span></div>
+        <div class="est-barra-bg"><div class="est-barra-fill fill-${cl}" style="width:${pct}%"></div></div>
+      </div>
+      <div class="est-unidade">Atualizado em: ${i.dataCadastro||'—'}</div>
+    </div>`;
+  }).join('');
+}
+</script>
+</body>
+</html>
