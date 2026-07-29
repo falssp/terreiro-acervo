@@ -2,497 +2,411 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <meta name="theme-color" content="#2a1a0e"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="Terreiro"/>
 <link rel="manifest" href="manifest.json"/>
 <title>Acervo do Terreiro</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --terra:#1a0e06;--terra2:#2a1a0e;--terra3:#3a2010;
-  --ouro:#c8922a;--ouro-lt:#e8b84b;
+  --terra:#2a1a0e;--ouro:#c8922a;--ouro-lt:#e8b84b;
   --creme:#f5e9d0;--creme-lt:#fdf6e8;--cinza:#8a7a6a;
-  --borda:rgba(200,146,42,.22);--r:12px;
+  --borda:rgba(200,146,42,.25);--r:10px;
   --fd:'Cinzel',serif;--fb:'Inter',sans-serif;
-  --safe-b:env(safe-area-inset-bottom,0px);
-  --tab-h:64px;
+  --ok:#1e6b3a;--ok-bg:#e6f4ea;
+  --repor:#7d5c00;--repor-bg:#fef9e7;
+  --alerta:#8b0000;--alerta-bg:#fdecea;
+  --urgente:#5c0000;--urgente-bg:#f5c6cb;
 }
-html{font-size:16px;height:100%}
-body{font-family:var(--fb);background:var(--terra);color:var(--creme);height:100%;overflow:hidden;position:fixed;width:100%}
-
-/* ── LAYOUT ─── */
-.app{display:flex;flex-direction:column;height:100dvh}
-.header{background:linear-gradient(160deg,var(--terra),var(--terra3));border-bottom:1px solid var(--borda);padding:14px 16px 10px;text-align:center;flex-shrink:0}
-.header h1{font-family:var(--fd);font-size:1.05rem;font-weight:600;color:var(--ouro-lt);letter-spacing:.06em;line-height:1.2}
-.header p{font-size:10px;color:var(--cinza);margin-top:1px;letter-spacing:.08em;text-transform:uppercase}
-
-.content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
-.page{display:none;min-height:100%}
-.page.active{display:block}
-.inner{padding:14px 14px calc(var(--tab-h) + var(--safe-b) + 16px)}
-
-/* ── BOTTOM NAV ─── */
-.bottom-nav{
-  position:fixed;bottom:0;left:0;right:0;
-  height:calc(var(--tab-h) + var(--safe-b));
-  background:#1a0e06;
-  border-top:1px solid var(--borda);
-  display:flex;
-  padding-bottom:var(--safe-b);
-  z-index:100;
-}
-.nav-btn{
-  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:3px;border:none;background:none;color:var(--cinza);
-  font-family:var(--fb);font-size:10px;font-weight:500;
-  cursor:pointer;padding:8px 4px;transition:color .15s;
-  -webkit-appearance:none;
-}
-.nav-btn.active{color:var(--ouro-lt)}
-.nav-btn svg{display:block}
-.nav-dot{width:4px;height:4px;border-radius:50%;background:var(--ouro);display:none;margin:0 auto}
-.nav-btn.active .nav-dot{display:block}
-
-/* ── PROGRESS ─── */
-.progress{height:2px;background:rgba(200,146,42,.1);flex-shrink:0}
+html{font-size:16px}
+body{font-family:var(--fb);background:var(--terra);color:var(--creme);min-height:100dvh;padding-bottom:90px}
+header{background:linear-gradient(160deg,#1a0e06,#3a2010);border-bottom:1px solid var(--borda);padding:14px 20px 10px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.4)}
+header h1{font-family:var(--fd);font-size:clamp(.9rem,3.5vw,1.2rem);font-weight:600;color:var(--ouro-lt);letter-spacing:.06em}
+header p{font-size:10px;color:var(--cinza);margin-top:1px;letter-spacing:.08em;text-transform:uppercase}
+.mobile-link{display:block;text-align:right;padding:6px 16px 0;font-size:11px;color:var(--cinza)}
+.mobile-link a{color:var(--ouro);text-decoration:none}
+.tabs{display:flex;background:#1a0e06;border-bottom:1px solid var(--borda);position:sticky;top:58px;z-index:99;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;padding:10px 16px;border:none;background:none;color:var(--cinza);font-family:var(--fb);font-size:12px;font-weight:500;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s}
+.tab.active{color:var(--ouro-lt);border-bottom-color:var(--ouro)}
+.progress{height:2px;background:rgba(200,146,42,.12);overflow:hidden}
 .progress-fill{height:100%;background:var(--ouro);width:0;transition:width .3s}
-
-/* ── CONFIG ─── */
-.cfg{background:rgba(74,46,24,.35);border:1px solid var(--borda);border-radius:var(--r);padding:10px 12px;margin-bottom:14px}
+.container{max-width:900px;margin:0 auto;padding:16px}
+.section{display:none}.section.active{display:block}
+.cfg{background:rgba(74,46,24,.35);border:1px solid var(--borda);border-radius:var(--r);padding:10px 14px;margin-bottom:16px}
 .cfg label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ouro);font-weight:600;display:block;margin-bottom:5px}
-.cfg input{width:100%;background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:11px;font-family:monospace;padding:8px 10px;outline:none;-webkit-appearance:none}
+.cfg input{width:100%;background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:6px;color:var(--creme);font-size:12px;font-family:monospace;padding:7px 10px;outline:none}
 .cfg input:focus{border-color:var(--ouro)}
 .cfg-hint{font-size:10px;color:var(--cinza);margin-top:4px}
-
-/* ── FORM ─── */
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.field{display:flex;flex-direction:column;gap:5px}
+.field{display:flex;flex-direction:column;gap:4px}
 .field.full{grid-column:1/-1}
 .field label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ouro);font-weight:600}
-.field input,.field select,.field textarea{
-  background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:10px;
-  color:var(--creme);font-family:var(--fb);font-size:15px;
-  padding:12px 13px;outline:none;-webkit-appearance:none;appearance:none;width:100%;
-  transition:border-color .15s;
-}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ouro);background:rgba(0,0,0,.45)}
-.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c8922a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px}
+.field input,.field select,.field textarea{background:rgba(0,0,0,.35);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-family:var(--fb);font-size:13px;padding:9px 11px;outline:none;-webkit-appearance:none;appearance:none;width:100%;transition:border-color .15s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ouro)}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c8922a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:30px}
 .field select option{background:#2a1a0e}
-.field textarea{resize:none;min-height:80px}
-input[type="date"]{color-scheme:dark}
-
-/* ── BOTÕES ─── */
-.btn-row{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
-.btn{min-height:46px;padding:10px 20px;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid var(--borda);font-family:var(--fb)}
+.field textarea{resize:vertical;min-height:70px}
+.foto-ph{width:52px;height:52px;border-radius:8px;background:rgba(0,0,0,.3);border:1px dashed var(--borda);display:flex;align-items:center;justify-content:center;color:var(--cinza);margin-top:5px}
+.foto-thumb{width:52px;height:52px;border-radius:8px;object-fit:cover;border:1px solid var(--borda);margin-top:5px;display:block}
+.btn-row{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
+.btn{padding:9px 18px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--borda);font-family:var(--fb);transition:opacity .15s}
 .btn-ghost{background:transparent;color:var(--cinza)}
 .btn-primary{background:linear-gradient(135deg,var(--ouro),#a07020);color:#1a0e06;border-color:var(--ouro);font-weight:600}
-.btn-primary:active{opacity:.8}.btn-primary:disabled{opacity:.4}
-
-/* ── CARDS ─── */
-.card-list{display:flex;flex-direction:column;gap:10px}
-.card{background:linear-gradient(135deg,rgba(74,46,24,.5),rgba(42,26,14,.7));border:1px solid var(--borda);border-radius:var(--r);padding:13px;display:grid;grid-template-columns:1fr auto;gap:5px 10px;align-items:start}
+.btn-primary:hover{opacity:.88}.btn-primary:disabled{opacity:.4;cursor:not-allowed}
+.btn-sm{padding:4px 10px;font-size:11px;border-radius:6px}
+.lista,.filhos-lista,.fin-lista{display:flex;flex-direction:column;gap:8px}
+.card{background:linear-gradient(135deg,rgba(74,46,24,.5),rgba(42,26,14,.7));border:1px solid var(--borda);border-radius:var(--r);padding:12px;display:grid;grid-template-columns:1fr auto;gap:5px 10px;align-items:start}
 .card-tipo{font-size:10px;color:var(--cinza);text-transform:uppercase;letter-spacing:.07em}
-.card-nome{font-size:15px;font-weight:600;color:var(--creme-lt);line-height:1.3;margin-top:2px}
-.card-meta{font-size:12px;color:var(--cinza);line-height:1.7;margin-top:2px}
-.card-right{display:flex;flex-direction:column;align-items:flex-end;gap:7px}
-.badge{display:inline-block;font-size:10px;font-weight:600;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.card-nome{font-size:14px;font-weight:600;color:var(--creme-lt);line-height:1.3}
+.card-meta{font-size:11px;color:var(--cinza);line-height:1.6}
+.card-obs{font-size:10px;color:var(--cinza);margin-top:2px;font-style:italic}
+.card-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;white-space:nowrap}
 .b-disponivel{background:rgba(34,139,34,.25);color:#7fd67f;border:1px solid rgba(34,139,34,.4)}
 .b-em-uso{background:rgba(200,146,42,.25);color:var(--ouro-lt);border:1px solid var(--borda)}
 .b-danificado{background:rgba(180,40,40,.25);color:#f08080;border:1px solid rgba(180,40,40,.4)}
 .b-necessita-reposicao{background:rgba(180,120,0,.25);color:#e8b84b;border:1px solid rgba(180,120,0,.4)}
-.card-foto{width:48px;height:48px;border-radius:8px;object-fit:cover;border:1px solid var(--borda)}
-.card-foto-ph{width:48px;height:48px;border-radius:8px;background:rgba(0,0,0,.25);border:1px dashed var(--borda);display:flex;align-items:center;justify-content:center;color:var(--cinza)}
-
-/* ── FILTRO ─── */
-.filter-row{display:flex;gap:7px;margin-bottom:12px;align-items:center;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
-.filter-row::-webkit-scrollbar{display:none}
-.filter-row select{background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:12px;padding:8px 26px 8px 10px;font-family:var(--fb);outline:none;flex-shrink:0;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c8922a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center}
-.filter-row select option{background:#2a1a0e}
-.btn-reload{background:rgba(200,146,42,.12);border:1px solid var(--borda);border-radius:8px;color:var(--ouro);padding:8px 13px;font-size:14px;cursor:pointer;flex-shrink:0;min-height:38px}
-
-/* ── ORNAMENTO ─── */
-.ornamento{text-align:center;color:var(--ouro);opacity:.28;font-size:15px;letter-spacing:.5em;margin:12px 0;pointer-events:none}
+.card-foto{width:44px;height:44px;border-radius:6px;object-fit:cover;border:1px solid var(--borda)}
+.card-foto-ph{width:44px;height:44px;border-radius:6px;background:rgba(0,0,0,.25);border:1px dashed var(--borda);display:flex;align-items:center;justify-content:center;color:var(--cinza)}
+.filter-bar{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.filter-bar select{background:rgba(0,0,0,.35);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:11px;padding:6px 24px 6px 9px;font-family:var(--fb);outline:none;flex:1;min-width:140px;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c8922a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center}
+.filter-bar select option{background:#2a1a0e}
+.btn-reload{background:rgba(200,146,42,.12);border:1px solid var(--borda);border-radius:8px;color:var(--ouro);padding:6px 11px;font-size:12px;cursor:pointer;font-family:var(--fb)}
+.ornamento{text-align:center;color:var(--ouro);opacity:.28;font-size:15px;letter-spacing:.5em;margin:14px 0 12px;pointer-events:none}
+.empty{text-align:center;padding:36px 20px;color:var(--cinza);font-size:13px}
 .secao-titulo{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--cinza);font-weight:600;margin:14px 0 8px;display:flex;align-items:center;gap:6px}
 .secao-titulo::after{content:'';flex:1;height:1px;background:var(--borda)}
-.empty{text-align:center;padding:48px 20px;color:var(--cinza);font-size:13px}
-
-/* ── CONSUMÍVEIS ─── */
-.resumo-niveis{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
-.nivel-card{border-radius:10px;padding:10px 4px;text-align:center;border:1px solid transparent}
-.nivel-card .num{font-family:var(--fd);font-size:1.5rem;font-weight:600;line-height:1}
-.nivel-card .rot{font-size:9px;text-transform:uppercase;letter-spacing:.04em;margin-top:3px;line-height:1.2}
+/* CONSUMÍVEIS */
+.resumo-niveis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.nivel-card{border-radius:10px;padding:12px 8px;text-align:center;border:1px solid transparent}
+.nivel-card .num{font-family:var(--fd);font-size:1.6rem;font-weight:600;line-height:1}
+.nivel-card .rot{font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
 .nivel-card.ok{background:rgba(30,107,58,.2);border-color:rgba(30,107,58,.3)}.nivel-card.ok .num{color:#7fd67f}
 .nivel-card.repor{background:rgba(125,92,0,.2);border-color:rgba(125,92,0,.3)}.nivel-card.repor .num{color:#e8b84b}
 .nivel-card.alerta{background:rgba(139,0,0,.2);border-color:rgba(139,0,0,.3)}.nivel-card.alerta .num{color:#f08080}
 .nivel-card.urgente{background:rgba(92,0,0,.3);border-color:rgba(92,0,0,.4)}.nivel-card.urgente .num{color:#ffb3b3}
-.cat-grupo{margin-bottom:14px}
+.cat-grupo{margin-bottom:16px}
 .cat-titulo{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ouro);padding:6px 0;border-bottom:1px solid var(--borda);margin-bottom:8px}
-.csm-item{background:rgba(0,0,0,.2);border-radius:10px;padding:11px 13px;margin-bottom:7px;border-left:3px solid transparent}
+.csm-item{background:rgba(0,0,0,.22);border-radius:10px;padding:10px 14px;margin-bottom:6px;border-left:3px solid transparent}
 .csm-item.ok{border-left-color:#1e6b3a}.csm-item.repor{border-left-color:#c8922a}
 .csm-item.alerta{border-left-color:#cc0000}.csm-item.urgente{border-left-color:#880000;background:rgba(139,0,0,.12)}
 .csm-item-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
-.csm-nome{font-size:14px;font-weight:600;color:var(--creme-lt);flex:1;line-height:1.3}
-.csm-badge{font-size:10px;font-weight:600;padding:3px 9px;border-radius:99px;white-space:nowrap}
-.csm-badge.ok{background:#e6f4ea;color:#1e6b3a}.csm-badge.repor{background:#fef9e7;color:#7d5c00}
-.csm-badge.alerta{background:#fdecea;color:#8b0000}.csm-badge.urgente{background:#f5c6cb;color:#5c0000}
-.csm-barra-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--cinza);margin-bottom:4px}
-.csm-barra-bg{height:6px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden;margin-bottom:6px}
+.csm-nome{font-size:13px;font-weight:600;color:var(--creme-lt);flex:1}
+.csm-badge{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;white-space:nowrap}
+.csm-badge.ok{background:var(--ok-bg);color:var(--ok)}.csm-badge.repor{background:var(--repor-bg);color:var(--repor)}
+.csm-badge.alerta{background:var(--alerta-bg);color:var(--alerta)}.csm-badge.urgente{background:var(--urgente-bg);color:var(--urgente)}
+.csm-barra-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--cinza);margin-bottom:3px}
+.csm-barra-bg{height:5px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden;margin-bottom:5px}
 .csm-barra-fill{height:100%;border-radius:99px;transition:width .4s}
 .fill-ok{background:linear-gradient(90deg,#228b22,#7fd67f)}.fill-repor{background:linear-gradient(90deg,#a07020,#e8b84b)}
 .fill-alerta{background:linear-gradient(90deg,#8b0000,#f08080)}.fill-urgente{background:linear-gradient(90deg,#5c0000,#cc2222)}
-.csm-info{display:flex;justify-content:space-between;align-items:center}
-.csm-meta{font-size:11px;color:var(--cinza)}
-.csm-acoes{display:flex;gap:5px}
-.btn-act{min-height:32px;border-radius:8px;padding:4px 11px;font-size:12px;cursor:pointer;font-family:var(--fb);border:1px solid var(--borda);background:rgba(200,146,42,.12);color:var(--ouro)}
+.csm-info{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.csm-meta{font-size:10px;color:var(--cinza)}
+.csm-acoes{display:flex;gap:4px}
+.btn-act{border-radius:6px;padding:3px 8px;font-size:10px;cursor:pointer;font-family:var(--fb);border:1px solid var(--borda);background:rgba(200,146,42,.12);color:var(--ouro)}
 .btn-act.blue{background:rgba(52,152,219,.12);border-color:rgba(52,152,219,.3);color:#7fc8f8}
-
-/* ── FILHOS ─── */
-.filho-card{background:linear-gradient(135deg,rgba(42,10,42,.5),rgba(26,6,26,.7));border:1px solid rgba(200,150,220,.2);border-radius:var(--r);padding:13px;margin-bottom:9px}
-.filho-orixa{font-size:15px;font-weight:600;color:#e8c8f0;margin-bottom:4px}
-.filho-meta{font-size:12px;color:var(--cinza);line-height:1.7}
-.filho-badge{display:inline-block;font-size:10px;font-weight:600;padding:3px 9px;border-radius:99px;margin-top:5px}
+/* FILHOS */
+.filho-card{background:linear-gradient(135deg,rgba(42,10,42,.5),rgba(26,6,26,.7));border:1px solid rgba(200,150,220,.2);border-radius:var(--r);padding:12px;margin-bottom:8px}
+.filho-orixa{font-size:15px;font-weight:600;color:#e8c8f0;margin-bottom:3px}
+.filho-meta{font-size:11px;color:var(--cinza);line-height:1.7}
+.filho-badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;margin-top:4px}
 .fs-ativo{background:#e6f4ea;color:#1e6b3a}.fs-iao{background:#f0e6ff;color:#4a0080}
 .fs-ebomi{background:#e8f0fe;color:#1a56a0}.fs-suspenso{background:#fdecea;color:#8b0000}
 .fs-abiao{background:#fff9e6;color:#7d5c00}.fs-inativo{background:#f5f5f5;color:#666}
 .fs-oga{background:#e8f4fd;color:#0a6a8a}
-
-/* ── FINANCEIRO ─── */
-.fin-resumo{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-.fin-card{background:rgba(0,0,0,.28);border:1px solid var(--borda);border-radius:var(--r);padding:12px 8px;text-align:center}
-.fin-card .num{font-family:var(--fd);font-size:1.1rem;font-weight:600;line-height:1.2}
-.fin-card .rot{font-size:9px;text-transform:uppercase;letter-spacing:.06em;margin-top:3px;color:var(--cinza)}
+/* FINANCEIRO */
+.fin-resumo{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.fin-card{background:rgba(0,0,0,.28);border:1px solid var(--borda);border-radius:var(--r);padding:14px 10px;text-align:center}
+.fin-card .num{font-family:var(--fd);font-size:1.2rem;font-weight:600;line-height:1.2}
+.fin-card .rot{font-size:9px;text-transform:uppercase;letter-spacing:.07em;margin-top:3px;color:var(--cinza)}
 .fin-card.entrada .num{color:#7fd67f}.fin-card.saida .num{color:#f08080}.fin-card.saldo .num{color:var(--ouro-lt)}
-.fin-item{background:rgba(0,0,0,.2);border-radius:10px;padding:11px 13px;margin-bottom:7px;border-left:3px solid transparent}
+.fin-item{background:rgba(0,0,0,.2);border-radius:10px;padding:10px 13px;margin-bottom:6px;border-left:3px solid transparent}
 .fin-item.entrada{border-left-color:#1e6b3a}.fin-item.saida{border-left-color:#8b0000}
-.fin-desc{font-size:14px;font-weight:500;color:var(--creme-lt)}
-.fin-valor{font-size:15px;font-weight:700}
-.fin-valor.entrada{color:#7fd67f}.fin-valor.saida{color:#f08080}
-.fin-meta{font-size:11px;color:var(--cinza);margin-top:3px}
 .fin-item-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-
-/* ── HOME ─── */
-.datas-painel{background:rgba(0,0,0,.18);border:1px solid var(--borda);border-radius:var(--r);padding:12px;margin-bottom:12px}
+.fin-desc{font-size:13px;font-weight:500;color:var(--creme-lt)}
+.fin-valor{font-size:14px;font-weight:700}
+.fin-valor.entrada{color:#7fd67f}.fin-valor.saida{color:#f08080}
+.fin-meta{font-size:10px;color:var(--cinza);margin-top:3px}
+/* HOME */
+.datas-painel{background:rgba(0,0,0,.2);border:1px solid var(--borda);border-radius:var(--r);padding:12px;margin-bottom:12px}
 .datas-titulo{font-size:11px;font-weight:600;color:var(--ouro);margin-bottom:8px}
 .data-item{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(200,146,42,.08);font-size:12px}
 .data-item:last-child{border-bottom:none}
 .data-item .data{color:var(--ouro);font-weight:600;font-size:11px}
-
-/* ── MODAL (bottom sheet) ─── */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:flex-end}
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:center;justify-content:center}
 .modal-overlay.open{display:flex}
-.modal{background:var(--terra2);border:1px solid var(--borda);border-radius:20px 20px 0 0;padding:20px 16px;padding-bottom:calc(20px + var(--safe-b));width:100%;max-height:90dvh;overflow-y:auto;position:relative}
-.modal-handle{width:36px;height:4px;background:rgba(200,146,42,.3);border-radius:99px;margin:0 auto 16px}
+.modal{background:#2a1a0e;border:1px solid var(--borda);border-radius:14px;padding:20px;width:100%;max-width:480px;position:relative;max-height:90vh;overflow-y:auto}
 .modal h3{font-family:var(--fd);font-size:14px;color:var(--ouro-lt);margin-bottom:4px;text-align:center}
-.modal-info{font-size:11px;color:var(--cinza);text-align:center;margin-bottom:14px}
-.ml-resultados{display:flex;flex-direction:column;gap:7px;margin-top:8px;max-height:200px;overflow-y:auto}
-.ml-item{background:rgba(255,255,255,.05);border:1px solid var(--borda);border-radius:10px;padding:9px 11px;display:flex;gap:9px;align-items:center;cursor:pointer;min-height:56px}
-.ml-item:active{background:rgba(200,146,42,.1)}
-.ml-thumb{width:40px;height:40px;border-radius:7px;object-fit:cover;flex-shrink:0}
+.modal-close{position:absolute;top:12px;right:14px;background:none;border:none;color:var(--cinza);font-size:20px;cursor:pointer}
+.modal-info{font-size:11px;color:var(--cinza);text-align:center;margin-bottom:12px}
+.ml-resultados{display:flex;flex-direction:column;gap:6px;margin-top:8px;max-height:200px;overflow-y:auto}
+.ml-item{background:rgba(255,255,255,.05);border:1px solid var(--borda);border-radius:8px;padding:8px 10px;display:flex;gap:8px;align-items:center;cursor:pointer}
+.ml-item:hover{background:rgba(200,146,42,.1)}
+.ml-thumb{width:38px;height:38px;border-radius:6px;object-fit:cover;flex-shrink:0}
 .ml-info{flex:1;min-width:0}
-.ml-titulo{font-size:11px;color:var(--creme);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.ml-preco{font-size:13px;font-weight:600;color:var(--ouro-lt);margin-top:2px}
-.ml-unit{font-size:10px;color:var(--cinza)}
-
-/* ── TOAST ─── */
-#toast{position:fixed;bottom:calc(var(--tab-h) + var(--safe-b) + 12px);left:50%;transform:translateX(-50%) translateY(20px);background:var(--terra);border:1px solid var(--ouro);border-radius:99px;color:var(--ouro-lt);padding:10px 22px;font-size:13px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:300;white-space:nowrap;max-width:90vw;text-align:center}
+.ml-titulo{font-size:11px;color:var(--creme);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ml-preco{font-size:12px;font-weight:600;color:var(--ouro-lt)}.ml-unit{font-size:10px;color:var(--cinza)}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a0e06;border:1px solid var(--ouro);border-radius:99px;color:var(--ouro-lt);padding:9px 20px;font-size:12px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:999;white-space:nowrap}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 #toast.erro{border-color:#f08080;color:#f08080}
-
-/* ── PWA BANNER ─── */
-#pwa-banner{display:none;position:fixed;bottom:calc(var(--tab-h) + var(--safe-b));left:0;right:0;background:var(--terra);border-top:1px solid var(--borda);padding:12px 16px;z-index:150;align-items:center;gap:10px}
-#pwa-banner p{flex:1;font-size:13px;color:var(--creme)}
-.pwa-install{background:var(--ouro);color:#1a0e06;border:none;padding:9px 16px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--fb);min-height:40px}
-.pwa-dismiss{background:transparent;color:var(--cinza);border:1px solid var(--borda);padding:9px 14px;border-radius:10px;font-size:13px;cursor:pointer;font-family:var(--fb);min-height:40px}
-
-/* form input nos modais */
-.modal .field input,.modal .field select{font-size:14px;padding:11px 12px}
+#pwa-banner{display:none;position:fixed;bottom:0;left:0;right:0;background:#1a0e06;border-top:1px solid var(--borda);padding:10px 16px;z-index:200;align-items:center;gap:10px}
+#pwa-banner p{flex:1;font-size:12px;color:var(--creme)}
+.pwa-install{background:var(--ouro);color:#1a0e06;border:none;padding:7px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--fb)}
+.pwa-dismiss{background:transparent;color:var(--cinza);border:1px solid var(--borda);padding:7px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-family:var(--fb)}
 </style>
 </head>
 <body>
-<div class="app">
-  <div class="header">
-    <h1>✦ Acervo do Terreiro ✦</h1>
-    <p>Gestão — Umbanda</p>
+<header>
+  <h1>✦ Acervo do Terreiro ✦</h1>
+  <p>Sistema de gestão — Umbanda</p>
+</header>
+<div class="mobile-link">📱 <a href="mobile.html">Versão celular</a></div>
+<nav class="tabs">
+  <button class="tab active" onclick="switchTab('home',this)">🏠 Início</button>
+  <button class="tab" onclick="switchTab('cadastro',this)">＋ Cadastrar</button>
+  <button class="tab" onclick="switchTab('acervo',this)">📦 Acervo</button>
+  <button class="tab" onclick="switchTab('consumiveis',this)">🕯️ Consumíveis</button>
+  <button class="tab" onclick="switchTab('filhos',this)">👥 Filhos de Santo</button>
+  <button class="tab" onclick="switchTab('financeiro',this)">💰 Financeiro</button>
+</nav>
+<div class="progress"><div class="progress-fill" id="prog"></div></div>
+
+<div class="container">
+  <div class="cfg">
+    <label>🔗 URL do Apps Script</label>
+    <input type="url" id="scriptUrl" placeholder="https://script.google.com/macros/s/.../exec"/>
+    <div class="cfg-hint">Salva automaticamente neste navegador.</div>
   </div>
-  <div class="progress"><div class="progress-fill" id="prog"></div></div>
 
-  <div class="content">
-
-    <!-- HOME -->
-    <div class="page active" id="page-home">
-      <div class="inner">
-        <div class="cfg">
-          <label>🔗 URL do Apps Script</label>
-          <input type="url" id="scriptUrl" placeholder="https://script.google.com/macros/s/.../exec" inputmode="url"/>
-          <div class="cfg-hint">Salva automaticamente neste navegador.</div>
-        </div>
-        <div id="datas-home"></div>
-        <div id="fin-home" class="fin-resumo" style="display:none">
-          <div class="fin-card entrada"><div class="num" id="h-ent">—</div><div class="rot">↑ Entradas mês</div></div>
-          <div class="fin-card saida"><div class="num" id="h-sai">—</div><div class="rot">↓ Saídas mês</div></div>
-          <div class="fin-card saldo"><div class="num" id="h-sal">—</div><div class="rot">= Saldo total</div></div>
-        </div>
-        <div class="btn-row" style="justify-content:center;gap:8px">
-          <button class="btn btn-ghost" style="font-size:13px;min-height:40px" onclick="carregarHome()">⟳ Atualizar</button>
-          <a href="faq.html" style="text-decoration:none"><button class="btn btn-ghost" style="font-size:13px;min-height:40px">❓ FAQ</button></a>
-        </div>
-      </div>
+  <!-- HOME -->
+  <div class="section active" id="sec-home">
+    <div class="ornamento">✦ ✦ ✦</div>
+    <div id="datas-home"></div>
+    <div id="fin-home-resumo"></div>
+    <div class="btn-row" style="justify-content:center">
+      <button class="btn btn-ghost btn-sm" onclick="carregarHome()">⟳ Atualizar</button>
+      <a href="faq.html" style="text-decoration:none"><button class="btn btn-ghost btn-sm">❓ FAQ</button></a>
     </div>
+  </div>
 
-    <!-- CADASTRAR -->
-    <div class="page" id="page-cadastro">
-      <div class="inner">
-        <div class="ornamento">✦ ✦ ✦</div>
-        <div class="form-grid">
-          <div class="field full"><label>Nome do item *</label><input type="text" id="nome" placeholder="Ex: Vestido de Oxum" autocomplete="off"/></div>
-          <div class="field"><label>Categoria *</label>
-            <select id="categoria" onchange="updateSubcat()">
-              <option value="">Selecione</option>
-              <option>Roupas e indumentárias</option><option>Ferramentas e objetos rituais</option>
-              <option>Ervas e plantas</option><option>Alimentos e oferendas</option>
-            </select>
-          </div>
-          <div class="field"><label>Subcategoria</label><select id="subcategoria"><option value="">—</option></select></div>
-          <div class="field"><label>Orixá / Entidade</label>
-            <select id="orixa">
-              <option value="">—</option>
-              <option>Exu</option><option>Ogum</option><option>Oxossi</option><option>Xangô</option>
-              <option>Oxum</option><option>Iemanjá</option><option>Oxalá</option><option>Iansã</option>
-              <option>Obá</option><option>Nanã</option><option>Obaluaê / Omolu</option><option>Oxumaré</option>
-              <option>Preto-Velho</option><option>Caboclo</option><option>Geral / Sem entidade</option>
-            </select>
-          </div>
-          <div class="field"><label>Status</label>
-            <select id="status">
-              <option value="Disponível">Disponível</option><option value="Em uso">Em uso</option>
-              <option value="Danificado">Danificado</option><option value="Necessita reposição">Necessita reposição</option>
-            </select>
-          </div>
-          <div class="field full"><label>Localização</label><input type="text" id="local" placeholder="Armário 2 — prateleira A" autocomplete="off"/></div>
-          <div class="field"><label>Quantidade</label><input type="number" id="qtd" value="1" min="1" inputmode="numeric"/></div>
-          <div class="field full"><label>URL da foto</label><input type="url" id="foto" placeholder="https://..." inputmode="url" autocomplete="off"/></div>
-          <div class="field full"><label>Observações</label><textarea id="obs" placeholder="Estado, histórico..."></textarea></div>
-        </div>
-        <div class="btn-row">
-          <button class="btn btn-ghost" onclick="limpar()">Limpar</button>
-          <button class="btn btn-primary" id="btnSalvar" onclick="salvar()">Gravar</button>
-        </div>
+  <!-- CADASTRAR -->
+  <div class="section" id="sec-cadastro">
+    <div class="ornamento">✦ ✦ ✦</div>
+    <div class="form-grid">
+      <div class="field full"><label>Nome do item *</label><input type="text" id="nome" placeholder="Ex: Vestido de Oxum"/></div>
+      <div class="field"><label>Categoria *</label>
+        <select id="categoria" onchange="updateSubcat()">
+          <option value="">Selecione</option>
+          <option>Roupas e indumentárias</option><option>Ferramentas e objetos rituais</option>
+          <option>Ervas e plantas</option><option>Alimentos e oferendas</option>
+        </select>
       </div>
-    </div>
-
-    <!-- ACERVO -->
-    <div class="page" id="page-acervo">
-      <div class="inner">
-        <div class="filter-row">
-          <select id="f-cat" onchange="renderLista()">
-            <option value="">Todas categorias</option>
-            <option>Roupas e indumentárias</option><option>Ferramentas e objetos rituais</option>
-            <option>Ervas e plantas</option><option>Alimentos e oferendas</option>
-          </select>
-          <select id="f-status" onchange="renderLista()">
-            <option value="">Todos status</option>
-            <option>Disponível</option><option>Em uso</option><option>Danificado</option><option>Necessita reposição</option>
-          </select>
-          <button class="btn-reload" onclick="carregarAcervo()">⟳</button>
-        </div>
-        <div class="card-list" id="lista"><div class="empty">Toque em ⟳ para carregar.</div></div>
+      <div class="field"><label>Subcategoria</label><select id="subcategoria"><option value="">—</option></select></div>
+      <div class="field"><label>Orixá / Entidade</label>
+        <select id="orixa">
+          <option value="">—</option>
+          <option>Exu</option><option>Ogum</option><option>Oxossi</option><option>Xangô</option>
+          <option>Oxum</option><option>Iemanjá</option><option>Oxalá</option><option>Iansã</option>
+          <option>Obá</option><option>Nanã</option><option>Obaluaê / Omolu</option><option>Oxumaré</option>
+          <option>Preto-Velho</option><option>Caboclo</option><option>Geral / Sem entidade</option>
+        </select>
       </div>
-    </div>
-
-    <!-- CONSUMÍVEIS -->
-    <div class="page" id="page-consumiveis">
-      <div class="inner">
-        <div class="resumo-niveis">
-          <div class="nivel-card ok"><div class="num" id="cnt-ok">—</div><div class="rot">✅ OK</div></div>
-          <div class="nivel-card repor"><div class="num" id="cnt-repor">—</div><div class="rot">⚠️ Repor</div></div>
-          <div class="nivel-card alerta"><div class="num" id="cnt-alerta">—</div><div class="rot">🔴 Alerta</div></div>
-          <div class="nivel-card urgente"><div class="num" id="cnt-urgente">—</div><div class="rot">🚨 Urgente</div></div>
-        </div>
-        <div class="filter-row">
-          <select id="cf-nivel" onchange="renderConsumiveis()">
-            <option value="">Todos níveis</option>
-            <option value="urgente">🚨 Urgente</option><option value="alerta">🔴 Alerta</option>
-            <option value="repor">⚠️ Repor</option><option value="ok">✅ OK</option>
-          </select>
-          <select id="cf-cat" onchange="renderConsumiveis()">
-            <option value="">Todas categorias</option>
-            <option>Velas</option><option>Bebidas</option><option>Fumo</option>
-            <option>Ervas e Defumação</option><option>Alimentos</option><option>Flores e Naturais</option>
-          </select>
-          <button class="btn-reload" onclick="carregarConsumiveis()">⟳</button>
-        </div>
-        <div id="csm-lista"><div class="empty">Toque em ⟳ para carregar.</div></div>
+      <div class="field"><label>Status</label>
+        <select id="status">
+          <option value="Disponível">Disponível</option><option value="Em uso">Em uso</option>
+          <option value="Danificado">Danificado</option><option value="Necessita reposição">Necessita reposição</option>
+        </select>
       </div>
+      <div class="field"><label>Localização</label><input type="text" id="local" placeholder="Armário 2 — prateleira A"/></div>
+      <div class="field"><label>Quantidade</label><input type="number" id="qtd" value="1" min="1"/></div>
+      <div class="field full"><label>URL da foto</label>
+        <input type="url" id="foto" placeholder="https://..." oninput="previewFoto(this.value)"/>
+        <div id="foto-preview"><div class="foto-ph"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="13" r="4"/><path d="M5 7H3a2 2 0 00-2 2v10a2 2 0 002 2h18a2 2 0 002-2V9a2 2 0 00-2-2h-2l-2-3H9L7 7z"/></svg></div></div>
+      </div>
+      <div class="field full"><label>Observações</label><textarea id="obs" placeholder="Estado, histórico..."></textarea></div>
     </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="limpar()">Limpar</button>
+      <button class="btn btn-primary" id="btnSalvar" onclick="salvar()">Gravar na planilha</button>
+    </div>
+  </div>
 
-    <!-- FILHOS -->
-    <div class="page" id="page-filhos">
-      <div class="inner">
-        <div class="filter-row">
-          <select id="ff-orixa" onchange="renderFilhos()">
-            <option value="">Todos orixás</option>
+  <!-- ACERVO -->
+  <div class="section" id="sec-acervo">
+    <div class="ornamento">✦ ✦ ✦</div>
+    <div class="filter-bar">
+      <select id="f-cat" onchange="renderLista()"><option value="">Todas as categorias</option>
+        <option>Roupas e indumentárias</option><option>Ferramentas e objetos rituais</option>
+        <option>Ervas e plantas</option><option>Alimentos e oferendas</option>
+      </select>
+      <select id="f-orixa" onchange="renderLista()"><option value="">Todos os orixás</option>
+        <option>Exu</option><option>Ogum</option><option>Oxossi</option><option>Xangô</option>
+        <option>Oxum</option><option>Iemanjá</option><option>Oxalá</option><option>Iansã</option>
+        <option>Obá</option><option>Nanã</option><option>Obaluaê / Omolu</option><option>Oxumaré</option>
+        <option>Preto-Velho</option><option>Caboclo</option><option>Geral / Sem entidade</option>
+      </select>
+      <select id="f-status" onchange="renderLista()"><option value="">Todos os status</option>
+        <option>Disponível</option><option>Em uso</option><option>Danificado</option><option>Necessita reposição</option>
+      </select>
+      <button class="btn-reload" onclick="carregarAcervo()">⟳</button>
+    </div>
+    <div class="lista" id="lista"><div class="empty">Clique em ⟳ para carregar.</div></div>
+  </div>
+
+  <!-- CONSUMÍVEIS -->
+  <div class="section" id="sec-consumiveis">
+    <div class="ornamento">✦ ✦ ✦</div>
+    <div class="resumo-niveis">
+      <div class="nivel-card ok"><div class="num" id="cnt-ok">—</div><div class="rot">✅ OK</div></div>
+      <div class="nivel-card repor"><div class="num" id="cnt-repor">—</div><div class="rot">⚠️ Repor</div></div>
+      <div class="nivel-card alerta"><div class="num" id="cnt-alerta">—</div><div class="rot">🔴 Alerta</div></div>
+      <div class="nivel-card urgente"><div class="num" id="cnt-urgente">—</div><div class="rot">🚨 Urgente</div></div>
+    </div>
+    <div class="filter-bar">
+      <select id="cf-nivel" onchange="renderConsumiveis()"><option value="">Todos os níveis</option>
+        <option value="urgente">🚨 Urgente</option><option value="alerta">🔴 Alerta</option>
+        <option value="repor">⚠️ Repor</option><option value="ok">✅ OK</option>
+      </select>
+      <select id="cf-cat" onchange="renderConsumiveis()"><option value="">Todas as categorias</option>
+        <option>Velas</option><option>Bebidas</option><option>Fumo</option>
+        <option>Ervas e Defumação</option><option>Alimentos</option><option>Flores e Naturais</option>
+      </select>
+      <button class="btn-reload" onclick="carregarConsumiveis()">⟳</button>
+    </div>
+    <div id="csm-lista"><div class="empty">Clique em ⟳ para carregar.</div></div>
+  </div>
+
+  <!-- FILHOS DE SANTO -->
+  <div class="section" id="sec-filhos">
+    <div class="ornamento">✦ ✦ ✦</div>
+    <div class="filter-bar">
+      <select id="ff-orixa" onchange="renderFilhos()"><option value="">Todos os orixás</option>
+        <option>Exu</option><option>Ogum</option><option>Oxossi</option><option>Xangô</option>
+        <option>Oxum</option><option>Iemanjá</option><option>Oxalá</option><option>Iansã</option>
+        <option>Obá</option><option>Nanã</option><option>Obaluaê / Omolu</option><option>Oxumaré</option>
+      </select>
+      <select id="ff-status" onchange="renderFilhos()"><option value="">Todos os status</option>
+        <option>Ativo</option><option>Abiã</option><option>Iaô</option><option>Ebomi</option>
+        <option>Ogã / Ekedi</option><option>Suspenso</option><option>Inativo</option>
+      </select>
+      <button class="btn-reload" onclick="carregarFilhos()">⟳</button>
+    </div>
+    <div class="filhos-lista" id="filhos-lista"><div class="empty">Clique em ⟳ para carregar.</div></div>
+    <div class="secao-titulo">Cadastrar filho de santo</div>
+    <div style="background:rgba(42,10,42,.3);border:1px solid rgba(200,150,220,.2);border-radius:var(--r);padding:14px">
+      <div class="form-grid">
+        <div class="field full"><label>Nome social *</label><input type="text" id="f-nomesocial"/></div>
+        <div class="field full"><label>Nome de candomblé</label><input type="text" id="f-nomesanto"/></div>
+        <div class="field"><label>Orixá de cabeça</label>
+          <select id="f-orixa2"><option value="">—</option>
             <option>Exu</option><option>Ogum</option><option>Oxossi</option><option>Xangô</option>
             <option>Oxum</option><option>Iemanjá</option><option>Oxalá</option><option>Iansã</option>
             <option>Obá</option><option>Nanã</option><option>Obaluaê / Omolu</option><option>Oxumaré</option>
           </select>
-          <select id="ff-status" onchange="renderFilhos()">
-            <option value="">Todos status</option>
-            <option>Ativo</option><option>Abiã</option><option>Iaô</option><option>Ebomi</option>
-            <option>Ogã / Ekedi</option><option>Suspenso</option><option>Inativo</option>
+        </div>
+        <div class="field"><label>Adjuntó</label>
+          <select id="f-adjunto"><option value="">—</option>
+            <option>Exu</option><option>Ogum</option><option>Oxossi</option><option>Xangô</option>
+            <option>Oxum</option><option>Iemanjá</option><option>Oxalá</option><option>Iansã</option>
           </select>
-          <button class="btn-reload" onclick="carregarFilhos()">⟳</button>
         </div>
-        <div id="filhos-lista"><div class="empty">Toque em ⟳ para carregar.</div></div>
-
-        <div class="secao-titulo">Cadastrar filho</div>
-        <div style="background:rgba(42,10,42,.3);border:1px solid rgba(200,150,220,.2);border-radius:var(--r);padding:14px">
-          <div class="form-grid">
-            <div class="field full"><label>Nome social *</label><input type="text" id="f-nomesocial" autocomplete="off"/></div>
-            <div class="field full"><label>Nome de candomblé</label><input type="text" id="f-nomesanto" autocomplete="off"/></div>
-            <div class="field"><label>Orixá de cabeça</label>
-              <select id="f-orixa2">
-                <option value="">—</option>
-                <option>Exu</option><option>Ogum</option><option>Oxossi</option><option>Xangô</option>
-                <option>Oxum</option><option>Iemanjá</option><option>Oxalá</option><option>Iansã</option>
-                <option>Obá</option><option>Nanã</option><option>Obaluaê / Omolu</option><option>Oxumaré</option>
-              </select>
-            </div>
-            <div class="field"><label>Adjuntó</label>
-              <select id="f-adjunto">
-                <option value="">—</option>
-                <option>Exu</option><option>Ogum</option><option>Oxossi</option><option>Xangô</option>
-                <option>Oxum</option><option>Iemanjá</option><option>Oxalá</option><option>Iansã</option>
-              </select>
-            </div>
-            <div class="field"><label>Nação</label>
-              <select id="f-nacao">
-                <option value="">—</option>
-                <option>Ketu</option><option>Angola</option><option>Jeje</option><option>Efon</option>
-                <option>Ijexá</option><option>Nagô</option><option>Umbanda</option><option>Outra</option>
-              </select>
-            </div>
-            <div class="field"><label>Status</label>
-              <select id="f-status2">
-                <option value="Ativo">Ativo</option><option value="Abiã">Abiã</option>
-                <option value="Iaô">Iaô</option><option value="Ebomi">Ebomi</option>
-                <option value="Ogã / Ekedi">Ogã / Ekedi</option><option value="Suspenso">Suspenso</option>
-                <option value="Inativo">Inativo</option>
-              </select>
-            </div>
-            <div class="field"><label>Aniversário</label><input type="date" id="f-aniversario"/></div>
-            <div class="field"><label>Feitura</label><input type="date" id="f-feitura"/></div>
-            <div class="field full"><label>Próxima obrigação</label><input type="date" id="f-proxobrigacao"/></div>
-            <div class="field full"><label>Obrigações realizadas</label><input type="text" id="f-obrigacoes" placeholder="Ex: Feitura 2020, 1 ano 2021" autocomplete="off"/></div>
-            <div class="field full"><label>Observações</label><textarea id="f-obs" placeholder="Notas livres..."></textarea></div>
-          </div>
-          <div class="btn-row">
-            <button class="btn btn-ghost" onclick="limparFilho()">Limpar</button>
-            <button class="btn btn-primary" id="btnFilho" onclick="salvarFilho()">Gravar</button>
-          </div>
+        <div class="field"><label>Nação</label>
+          <select id="f-nacao"><option value="">—</option>
+            <option>Ketu</option><option>Angola</option><option>Jeje</option><option>Efon</option>
+            <option>Ijexá</option><option>Nagô</option><option>Umbanda</option><option>Outra</option>
+          </select>
         </div>
+        <div class="field"><label>Status</label>
+          <select id="f-status2">
+            <option value="Ativo">Ativo</option><option value="Abiã">Abiã</option>
+            <option value="Iaô">Iaô</option><option value="Ebomi">Ebomi</option>
+            <option value="Ogã / Ekedi">Ogã / Ekedi</option><option value="Suspenso">Suspenso</option>
+            <option value="Inativo">Inativo</option>
+          </select>
+        </div>
+        <div class="field"><label>Aniversário</label><input type="date" id="f-aniversario" style="color-scheme:dark"/></div>
+        <div class="field"><label>Feitura</label><input type="date" id="f-feitura" style="color-scheme:dark"/></div>
+        <div class="field full"><label>Próxima obrigação</label><input type="date" id="f-proxobrigacao" style="color-scheme:dark"/></div>
+        <div class="field full"><label>Obrigações realizadas</label><input type="text" id="f-obrigacoes" placeholder="Ex: Feitura 2020, 1 ano 2021"/></div>
+        <div class="field full"><label>Observações</label><textarea id="f-obs" placeholder="Notas livres..."></textarea></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="limparFilho()">Limpar</button>
+        <button class="btn btn-primary" id="btnFilho" onclick="salvarFilho()">Gravar</button>
       </div>
     </div>
+  </div>
 
-    <!-- FINANCEIRO -->
-    <div class="page" id="page-financeiro">
-      <div class="inner">
-        <div class="fin-resumo">
-          <div class="fin-card entrada"><div class="num" id="fin-ent">—</div><div class="rot">↑ Mês</div></div>
-          <div class="fin-card saida"><div class="num" id="fin-sai">—</div><div class="rot">↓ Mês</div></div>
-          <div class="fin-card saldo"><div class="num" id="fin-sal">—</div><div class="rot">= Saldo</div></div>
+  <!-- FINANCEIRO -->
+  <div class="section" id="sec-financeiro">
+    <div class="ornamento">✦ ✦ ✦</div>
+    <div class="fin-resumo">
+      <div class="fin-card entrada"><div class="num" id="fin-ent">—</div><div class="rot">↑ Entradas mês</div></div>
+      <div class="fin-card saida"><div class="num" id="fin-sai">—</div><div class="rot">↓ Saídas mês</div></div>
+      <div class="fin-card saldo"><div class="num" id="fin-sal">—</div><div class="rot">= Saldo total</div></div>
+    </div>
+    <div class="filter-bar">
+      <select id="fn-tipo" onchange="renderFin()"><option value="">Entrada e saída</option>
+        <option value="Entrada">Entradas</option><option value="Saída">Saídas</option>
+      </select>
+      <button class="btn-reload" onclick="carregarFin()">⟳</button>
+    </div>
+    <div class="fin-lista" id="fin-lista"><div class="empty">Clique em ⟳ para carregar.</div></div>
+    <div class="secao-titulo">Lançar</div>
+    <div style="background:rgba(10,42,10,.3);border:1px solid rgba(150,220,150,.15);border-radius:var(--r);padding:14px">
+      <div class="form-grid">
+        <div class="field"><label>Tipo *</label>
+          <select id="fn-tipo2"><option value="Entrada">↑ Entrada</option><option value="Saída">↓ Saída</option></select>
         </div>
-        <div class="filter-row">
-          <select id="fn-tipo" onchange="renderFin()">
-            <option value="">Entrada e saída</option>
-            <option value="Entrada">Entradas</option><option value="Saída">Saídas</option>
+        <div class="field"><label>Data *</label><input type="date" id="fn-data" style="color-scheme:dark"/></div>
+        <div class="field full"><label>Categoria</label>
+          <select id="fn-cat2">
+            <option value="Dízimo / Doação">Dízimo / Doação</option><option value="Evento / Gira">Evento / Gira</option>
+            <option value="Consumíveis">Consumíveis</option><option value="Manutenção">Manutenção</option>
+            <option value="Indumentária / Acervo">Indumentária / Acervo</option>
+            <option value="Ritual / Oferenda">Ritual / Oferenda</option><option value="Outros">Outros</option>
           </select>
-          <button class="btn-reload" onclick="carregarFin()">⟳</button>
         </div>
-        <div id="fin-lista"><div class="empty">Toque em ⟳ para carregar.</div></div>
-
-        <div class="secao-titulo">Lançar</div>
-        <div style="background:rgba(10,42,10,.3);border:1px solid rgba(150,220,150,.15);border-radius:var(--r);padding:14px">
-          <div class="form-grid">
-            <div class="field"><label>Tipo *</label>
-              <select id="fn-tipo2"><option value="Entrada">↑ Entrada</option><option value="Saída">↓ Saída</option></select>
-            </div>
-            <div class="field"><label>Data *</label><input type="date" id="fn-data"/></div>
-            <div class="field full"><label>Categoria</label>
-              <select id="fn-cat2">
-                <option value="Dízimo / Doação">Dízimo / Doação</option>
-                <option value="Evento / Gira">Evento / Gira</option>
-                <option value="Consumíveis">Consumíveis</option>
-                <option value="Manutenção">Manutenção</option>
-                <option value="Indumentária / Acervo">Indumentária / Acervo</option>
-                <option value="Ritual / Oferenda">Ritual / Oferenda</option>
-                <option value="Outros">Outros</option>
-              </select>
-            </div>
-            <div class="field full"><label>Descrição *</label><input type="text" id="fn-desc" placeholder="Ex: Compra de velas" autocomplete="off"/></div>
-            <div class="field"><label>Valor (R$) *</label><input type="number" id="fn-valor" step="0.01" min="0" inputmode="decimal" placeholder="0,00"/></div>
-            <div class="field"><label>Responsável</label><input type="text" id="fn-resp" autocomplete="off"/></div>
-          </div>
-          <div class="btn-row">
-            <button class="btn btn-ghost" onclick="limparFin()">Limpar</button>
-            <button class="btn btn-primary" id="btnFin" onclick="salvarFin()">Lançar</button>
-          </div>
-        </div>
+        <div class="field full"><label>Descrição *</label><input type="text" id="fn-desc" placeholder="Ex: Compra de velas — gira de julho"/></div>
+        <div class="field"><label>Valor (R$) *</label><input type="number" id="fn-valor" step="0.01" min="0" placeholder="0,00"/></div>
+        <div class="field"><label>Responsável</label><input type="text" id="fn-resp"/></div>
+        <div class="field full"><label>Observações</label><textarea id="fn-obs" placeholder="Notas..." style="min-height:50px"></textarea></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="limparFin()">Limpar</button>
+        <button class="btn btn-primary" id="btnFin" onclick="salvarFin()">Lançar</button>
       </div>
     </div>
-
-  </div><!-- /content -->
-
-  <!-- BOTTOM NAV -->
-  <nav class="bottom-nav">
-    <button class="nav-btn active" onclick="navTo('home',this)">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-      Início<div class="nav-dot"></div>
-    </button>
-    <button class="nav-btn" onclick="navTo('cadastro',this)">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      Cadastrar<div class="nav-dot"></div>
-    </button>
-    <button class="nav-btn" onclick="navTo('consumiveis',this)">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><polyline points="2 17 12 22 22 17"/></svg>
-      Consumíveis<div class="nav-dot"></div>
-    </button>
-    <button class="nav-btn" onclick="navTo('filhos',this)">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-      Filhos<div class="nav-dot"></div>
-    </button>
-    <button class="nav-btn" onclick="navTo('financeiro',this)">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-      Financeiro<div class="nav-dot"></div>
-    </button>
-  </nav>
+  </div>
 </div>
 
 <!-- Modal consumível -->
 <div class="modal-overlay" id="modal-overlay" onclick="fecharModal(event)">
   <div class="modal">
-    <div class="modal-handle"></div>
+    <button class="modal-close" onclick="fecharModal()">×</button>
     <h3 id="modal-titulo"></h3>
     <div class="modal-info" id="modal-info"></div>
     <div class="form-grid">
-      <div class="field"><label>Qtd atual</label><input type="number" id="m-atual" min="0" inputmode="numeric"/></div>
-      <div class="field"><label>Qtd mínima</label><input type="number" id="m-minimo" min="0" inputmode="numeric"/></div>
-      <div class="field"><label>Fornecedor</label><input type="text" id="m-fornecedor" autocomplete="off"/></div>
-      <div class="field"><label>Preço unit. (R$)</label><input type="number" id="m-precounit" step="0.01" inputmode="decimal"/></div>
-      <div class="field"><label>Qtd/pacote</label><input type="number" id="m-qtdpac" min="1" inputmode="numeric"/></div>
-      <div class="field"><label>Preço pacote (R$)</label><input type="number" id="m-precopac" step="0.01" inputmode="decimal"/></div>
-      <div class="field full"><label>Link de compra</label><input type="url" id="m-link" inputmode="url" autocomplete="off"/></div>
+      <div class="field"><label>Qtd atual</label><input type="number" id="m-atual" min="0"/></div>
+      <div class="field"><label>Qtd mínima</label><input type="number" id="m-minimo" min="0"/></div>
+      <div class="field"><label>Fornecedor</label><input type="text" id="m-fornecedor"/></div>
+      <div class="field"><label>Preço unit. (R$)</label><input type="number" id="m-precounit" step="0.01"/></div>
+      <div class="field"><label>Qtd/pacote</label><input type="number" id="m-qtdpac" min="1"/></div>
+      <div class="field"><label>Preço pacote (R$)</label><input type="number" id="m-precopac" step="0.01"/></div>
+      <div class="field full"><label>Link de compra</label><input type="url" id="m-link"/></div>
     </div>
     <div class="secao-titulo" style="margin-top:12px">Buscar no Mercado Livre</div>
     <div style="display:flex;gap:6px;margin-bottom:6px">
-      <input type="search" id="ml-query" style="flex:1;background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:10px;color:var(--creme);font-size:14px;padding:10px 12px;outline:none;-webkit-appearance:none" placeholder="Ex: vela 7 dias branca"/>
-      <button class="btn btn-ghost" style="min-height:44px;padding:0 14px;font-size:16px" onclick="buscarML()">🔍</button>
+      <input type="text" id="ml-query" style="flex:1;background:rgba(0,0,0,.35);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:13px;padding:8px 10px;outline:none" placeholder="Ex: vela 7 dias branca"/>
+      <button class="btn btn-ghost btn-sm" onclick="buscarML()">🔍</button>
     </div>
     <div id="ml-resultados"></div>
-    <div class="btn-row" style="margin-top:14px">
+    <div class="btn-row" style="margin-top:12px">
       <button class="btn btn-ghost" onclick="fecharModal()">Cancelar</button>
       <button class="btn btn-primary" id="btnModal" onclick="salvarModal()">Gravar</button>
     </div>
@@ -500,9 +414,8 @@ input[type="date"]{color-scheme:dark}
 </div>
 
 <div id="pwa-banner">
-  <p>📲 Instalar na tela inicial?</p>
-  <button class="pwa-dismiss" onclick="document.getElementById('pwa-banner').style.display='none'">Não</button>
-  <button class="pwa-install" onclick="installPwa()">Instalar</button>
+  <p>💻 Versão desktop do Acervo do Terreiro</p>
+  <button class="pwa-dismiss" onclick="document.getElementById('pwa-banner').style.display='none'">OK</button>
 </div>
 <div id="toast"></div>
 
@@ -514,24 +427,20 @@ const SUBCATS={
   'Alimentos e oferendas':['Axé / Ebó','Comida de orixá','Bebida ritual','Vela / Bujão','Incenso / Defumação','Flores','Outro']
 };
 const CAT_ICONES={'Velas':'🕯️','Bebidas':'🍶','Fumo':'🚬','Ervas e Defumação':'🌿','Alimentos':'🌽','Flores e Naturais':'🌸'};
-let acervo=[],consumiveis=[],filhos=[],lancamentos=[],modalItem=null,deferredPrompt=null;
+let acervo=[],consumiveis=[],filhos=[],lancamentos=[],modalItem=null;
 
-// ── INIT ────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded',()=>{
   const s=localStorage.getItem('terreiro_url');
   if(s)document.getElementById('scriptUrl').value=s;
   document.getElementById('scriptUrl').addEventListener('input',e=>localStorage.setItem('terreiro_url',e.target.value.trim()));
   const hoje=new Date().toISOString().split('T')[0];
-  ['fn-data'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=hoje;});
+  document.getElementById('fn-data').value=hoje;
   carregarHome();
 });
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('pwa-banner').style.display='flex';});
-function installPwa(){if(!deferredPrompt)return;deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;document.getElementById('pwa-banner').style.display='none';});}
 if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 
-// ── HELPERS ─────────────────────────────────────────────
 function getUrl(){return(document.getElementById('scriptUrl').value||'').trim();}
-function toast(msg,ok=true){const t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok?'':' erro');clearTimeout(t._t);t._t=setTimeout(()=>t.className='',3000);}
+function toast(msg,ok=true){const t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok?'':' erro');clearTimeout(t._t);t._t=setTimeout(()=>t.className='',3200);}
 function prog(p){document.getElementById('prog').style.width=p+'%';}
 function fmtBRL(v){return'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function nivelClass(n){return(n||'').includes('OK')?'ok':(n||'').includes('Repor')?'repor':(n||'').includes('Alerta')?'alerta':'urgente';}
@@ -543,23 +452,24 @@ function updateSubcat(){
   s.innerHTML='<option value="">—</option>';
   (SUBCATS[c]||[]).forEach(x=>{const o=document.createElement('option');o.textContent=x;s.appendChild(o);});
 }
-
-// ── NAVEGAÇÃO ────────────────────────────────────────────
-function navTo(id,el){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  el.classList.add('active');
-  // scroll to top
-  document.querySelector('.content').scrollTo(0,0);
-  // lazy load
+function switchTab(id,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');document.getElementById('sec-'+id).classList.add('active');
   if(id==='acervo'&&!acervo.length)carregarAcervo();
   if(id==='consumiveis'&&!consumiveis.length)carregarConsumiveis();
   if(id==='filhos'&&!filhos.length)carregarFilhos();
   if(id==='financeiro')carregarFin();
 }
+function previewFoto(url){
+  const w=document.getElementById('foto-preview');
+  w.innerHTML=url&&url.startsWith('http')?`<img class="foto-thumb" src="${url}" onerror="this.style.display='none'"/>`:
+  `<div class="foto-ph"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="13" r="4"/><path d="M5 7H3a2 2 0 00-2 2v10a2 2 0 002 2h18a2 2 0 002-2V9a2 2 0 00-2-2h-2l-2-3H9L7 7z"/></svg></div>`;
+}
+function limpar(){['nome','local','obs','foto'].forEach(id=>document.getElementById(id).value='');document.getElementById('qtd').value=1;['categoria','subcategoria','orixa'].forEach(id=>document.getElementById(id).selectedIndex=0);document.getElementById('status').selectedIndex=0;updateSubcat();previewFoto('');}
+function limparFilho(){['f-nomesanto','f-nomesocial','f-aniversario','f-feitura','f-proxobrigacao','f-obrigacoes','f-obs'].forEach(id=>document.getElementById(id).value='');['f-orixa2','f-adjunto','f-nacao'].forEach(id=>document.getElementById(id).selectedIndex=0);document.getElementById('f-status2').selectedIndex=0;}
+function limparFin(){['fn-desc','fn-resp','fn-obs','fn-valor'].forEach(id=>document.getElementById(id).value='');document.getElementById('fn-tipo2').selectedIndex=0;document.getElementById('fn-cat2').selectedIndex=0;document.getElementById('fn-data').value=new Date().toISOString().split('T')[0];}
 
-// ── HOME ────────────────────────────────────────────────
 async function carregarHome(){
   const url=getUrl();if(!url)return;
   try{
@@ -568,40 +478,23 @@ async function carregarHome(){
       fetch(url+'?acao=datas-mes').then(r=>r.json()).catch(()=>({ok:false}))
     ]);
     if(rd.ok){
-      document.getElementById('h-ent').textContent=fmtBRL(rd.entradasMes);
-      document.getElementById('h-sai').textContent=fmtBRL(rd.saidasMes);
-      document.getElementById('h-sal').textContent=fmtBRL(rd.saldo);
-      document.getElementById('fin-home').style.display='grid';
+      document.getElementById('fin-home-resumo').innerHTML=`
+        <div class="fin-resumo">
+          <div class="fin-card entrada"><div class="num">${fmtBRL(rd.entradasMes)}</div><div class="rot">↑ Entradas mês</div></div>
+          <div class="fin-card saida"><div class="num">${fmtBRL(rd.saidasMes)}</div><div class="rot">↓ Saídas mês</div></div>
+          <div class="fin-card saldo"><div class="num">${fmtBRL(rd.saldo)}</div><div class="rot">= Saldo total</div></div>
+        </div>`;
     }
     if(dd.ok){
       let html='';
-      if(dd.obrigacoes?.length){
-        html+=`<div class="datas-painel"><div class="datas-titulo">⚠️ Obrigações este mês</div>`;
-        dd.obrigacoes.forEach(o=>html+=`<div class="data-item"><span>${o.nome}</span><span class="data">${o.data}</span></div>`);
-        html+='</div>';
-      }
-      if(dd.aniversariantes?.length){
-        html+=`<div class="datas-painel"><div class="datas-titulo">🎂 Aniversariantes do mês</div>`;
-        dd.aniversariantes.forEach(a=>html+=`<div class="data-item"><span>${a.nome}${a.orixa?' ('+a.orixa+')':''}</span><span class="data">${a.data}</span></div>`);
-        html+='</div>';
-      }
-      if(dd.festas?.length){
-        html+=`<div class="datas-painel"><div class="datas-titulo">🥁 Festas do mês</div>`;
-        dd.festas.forEach(f=>html+=`<div class="data-item"><span>${f.entidade}</span><span class="data">${f.data}</span></div>`);
-        html+='</div>';
-      }
+      if(dd.obrigacoes?.length){html+=`<div class="datas-painel"><div class="datas-titulo">⚠️ Obrigações este mês</div>`;dd.obrigacoes.forEach(o=>html+=`<div class="data-item"><span>${o.nome}</span><span class="data">${o.data}</span></div>`);html+='</div>';}
+      if(dd.aniversariantes?.length){html+=`<div class="datas-painel"><div class="datas-titulo">🎂 Aniversariantes do mês</div>`;dd.aniversariantes.forEach(a=>html+=`<div class="data-item"><span>${a.nome}</span><span class="data">${a.data}</span></div>`);html+='</div>';}
+      if(dd.festas?.length){html+=`<div class="datas-painel"><div class="datas-titulo">🥁 Festas do mês</div>`;dd.festas.forEach(f=>html+=`<div class="data-item"><span>${f.entidade} ${f.saudacao?'— '+f.saudacao:''}</span><span class="data">${f.data}</span></div>`);html+='</div>';}
       document.getElementById('datas-home').innerHTML=html;
     }
   }catch(e){}
 }
 
-// ── ACERVO ──────────────────────────────────────────────
-function limpar(){
-  ['nome','local','obs','foto'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('qtd').value=1;
-  ['categoria','subcategoria','orixa'].forEach(id=>document.getElementById(id).selectedIndex=0);
-  document.getElementById('status').selectedIndex=0;updateSubcat();
-}
 async function salvar(){
   const url=getUrl();if(!url){toast('Configure a URL.',false);return;}
   const nome=document.getElementById('nome').value.trim(),cat=document.getElementById('categoria').value;
@@ -623,21 +516,21 @@ async function carregarAcervo(){
   catch(e){document.getElementById('lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
 }
 function renderLista(){
-  const cat=document.getElementById('f-cat').value,sta=document.getElementById('f-status').value;
-  const f=acervo.filter(i=>(!cat||i.categoria===cat)&&(!sta||i.status===sta));
+  const cat=document.getElementById('f-cat').value,ori=document.getElementById('f-orixa').value,sta=document.getElementById('f-status').value;
+  const f=acervo.filter(i=>(!cat||i.categoria===cat)&&(!ori||i.orixa===ori)&&(!sta||i.status===sta));
   const el=document.getElementById('lista');
-  if(!f.length){el.innerHTML='<div class="empty">Nenhum item.</div>';return;}
+  if(!f.length){el.innerHTML='<div class="empty">Nenhum item encontrado.</div>';return;}
   el.innerHTML=f.map(i=>`<div class="card"><div>
     <div class="card-tipo">${i.categoria||'—'}${i.subcategoria?' · '+i.subcategoria:''}</div>
     <div class="card-nome">${i.nome}</div>
-    <div class="card-meta">${i.orixa?'🔱 '+i.orixa:''}${i.local?' · 📍 '+i.local:''}${i.dataCadastro?' · '+i.dataCadastro:''}</div>
+    <div class="card-meta">${i.orixa?'🔱 '+i.orixa:''}${i.local?' · 📍 '+i.local:''}${i.quantidade>1?' · Qtd: '+i.quantidade:''}${i.dataCadastro?' · '+i.dataCadastro:''}</div>
+    ${i.observacoes?`<div class="card-obs">${i.observacoes.substring(0,100)}${i.observacoes.length>100?'…':''}</div>`:''}
   </div><div class="card-right">
     <span class="badge ${badgeClass(i.status)}">${i.status||'—'}</span>
-    ${i.foto?`<img class="card-foto" src="${i.foto}" onerror="this.style.display='none'"/>`:`<div class="card-foto-ph"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="13" r="4"/><path d="M5 7H3a2 2 0 00-2 2v10a2 2 0 002 2h18a2 2 0 002-2V9a2 2 0 00-2-2h-2l-2-3H9L7 7z"/></svg></div>`}
+    ${i.foto?`<img class="card-foto" src="${i.foto}" onerror="this.style.display='none'"/>`:`<div class="card-foto-ph"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="13" r="4"/><path d="M5 7H3a2 2 0 00-2 2v10a2 2 0 002 2h18a2 2 0 002-2V9a2 2 0 00-2-2h-2l-2-3H9L7 7z"/></svg></div>`}
   </div></div>`).join('');
 }
 
-// ── CONSUMÍVEIS ─────────────────────────────────────────
 async function carregarConsumiveis(){
   const url=getUrl();if(!url){toast('Configure a URL.',false);return;}
   document.getElementById('csm-lista').innerHTML='<div class="empty">Carregando...</div>';
@@ -662,10 +555,10 @@ function renderConsumiveis(){
       const cl=nivelClass(i.nivel),pct=pctNum(i.pct),falta=Math.max(0,(Number(i.minimo)||0)-(Number(i.atual)||0));
       return`<div class="csm-item ${cl}">
         <div class="csm-item-top"><span class="csm-nome">${i.nome}</span><span class="csm-badge ${cl}">${i.nivel||'—'}</span></div>
-        <div class="csm-barra-labels"><span><b>${i.atual||0}</b>/${i.minimo||0} ${i.unidade||''}</span><span>${falta>0?'faltam '+falta:pct+'%'}</span></div>
+        <div class="csm-barra-labels"><span><b>${i.atual||0}</b> / ${i.minimo||0} ${i.unidade||''}</span><span>${falta>0?'faltam '+falta:pct+'%'}</span></div>
         <div class="csm-barra-bg"><div class="csm-barra-fill fill-${cl}" style="width:${Math.min(pct,100)}%"></div></div>
         <div class="csm-info"><div class="csm-meta">${i.fornecedor?'📍 '+i.fornecedor:''}${i.precoUnit?' · R$'+Number(i.precoUnit).toFixed(2)+'/'+i.unidade:''}</div>
-        <div class="csm-acoes">${i.link?`<a href="${i.link}" target="_blank" class="btn-act blue">🛒</a>`:''}<button class="btn-act" onclick='abrirModal(${JSON.stringify(i).replace(/'/g,"&#39;")})'>✏️</button></div></div>
+        <div class="csm-acoes">${i.link?`<a href="${i.link}" target="_blank" class="btn-act blue">🛒</a>`:''}<button class="btn-act" onclick='abrirModal(${JSON.stringify(i).replace(/'/g,"&#39;")})'>✏️ Atualizar</button></div></div>
       </div>`;}).join('')}</div>`).join('');
 }
 function abrirModal(item){
@@ -695,9 +588,9 @@ async function salvarModal(){
 async function buscarML(){
   const url=getUrl();if(!url)return;
   const q=document.getElementById('ml-query').value.trim();if(!q)return;
-  document.getElementById('ml-resultados').innerHTML='<div style="font-size:12px;color:var(--cinza);text-align:center;padding:8px">Buscando...</div>';
+  document.getElementById('ml-resultados').innerHTML='<div style="font-size:11px;color:var(--cinza);padding:8px">Buscando...</div>';
   try{const r=await fetch(`${url}?acao=ml-buscar&q=${encodeURIComponent(q)}`);const j=await r.json();
-    if(!j.ok||!j.resultados?.length){document.getElementById('ml-resultados').innerHTML='<div style="font-size:12px;color:var(--cinza);text-align:center;padding:8px">Sem resultado.</div>';return;}
+    if(!j.ok||!j.resultados?.length){document.getElementById('ml-resultados').innerHTML='<div style="font-size:11px;color:var(--cinza);padding:8px">Sem resultado.</div>';return;}
     document.getElementById('ml-resultados').innerHTML=`<div class="ml-resultados">${j.resultados.map(r=>`
       <div class="ml-item" onclick='selecionarML(${JSON.stringify(r).replace(/'/g,"&#39;")})'>
         <img class="ml-thumb" src="${r.thumbnail}" onerror="this.style.display='none'"/>
@@ -714,12 +607,6 @@ function selecionarML(r){
   toast('✓ Preço preenchido!');
 }
 
-// ── FILHOS ──────────────────────────────────────────────
-function limparFilho(){
-  ['f-nomesanto','f-nomesocial','f-aniversario','f-feitura','f-proxobrigacao','f-obrigacoes','f-obs'].forEach(id=>document.getElementById(id).value='');
-  ['f-orixa2','f-adjunto','f-nacao'].forEach(id=>document.getElementById(id).selectedIndex=0);
-  document.getElementById('f-status2').selectedIndex=0;
-}
 async function carregarFilhos(){
   const url=getUrl();if(!url){toast('Configure a URL.',false);return;}
   document.getElementById('filhos-lista').innerHTML='<div class="empty">Carregando...</div>';
@@ -730,7 +617,7 @@ function renderFilhos(){
   const fO=document.getElementById('ff-orixa').value,fS=document.getElementById('ff-status').value;
   const f=filhos.filter(i=>(!fO||i.orixa===fO)&&(!fS||i.statusTerreiro===fS));
   const el=document.getElementById('filhos-lista');
-  if(!f.length){el.innerHTML='<div class="empty">Nenhum filho cadastrado ainda.</div>';return;}
+  if(!f.length){el.innerHTML='<div class="empty">Nenhum filho cadastrado.</div>';return;}
   el.innerHTML=f.map(i=>`<div class="filho-card">
     <div class="filho-orixa">✦ Filho de ${i.orixa||'—'}</div>
     <div class="filho-meta">
@@ -760,12 +647,6 @@ async function salvarFilho(){
   }catch(e){toast('Falha.',false);}finally{btn.disabled=false;setTimeout(()=>prog(0),900);}
 }
 
-// ── FINANCEIRO ──────────────────────────────────────────
-function limparFin(){
-  ['fn-desc','fn-resp','fn-valor'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('fn-tipo2').selectedIndex=0;document.getElementById('fn-cat2').selectedIndex=0;
-  document.getElementById('fn-data').value=new Date().toISOString().split('T')[0];
-}
 async function carregarFin(){
   const url=getUrl();if(!url){toast('Configure a URL.',false);return;}
   document.getElementById('fin-lista').innerHTML='<div class="empty">Carregando...</div>';
@@ -775,8 +656,8 @@ async function carregarFin(){
       document.getElementById('fin-ent').textContent=fmtBRL(j.entradasMes);
       document.getElementById('fin-sai').textContent=fmtBRL(j.saidasMes);
       document.getElementById('fin-sal').textContent=fmtBRL(j.saldo);
-      lancamentos=[];renderFin();
     }
+    renderFin();
   }catch(e){document.getElementById('fin-lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
 }
 function renderFin(){
@@ -798,7 +679,8 @@ async function salvarFin(){
   try{const r=await fetch(url,{method:'POST',body:JSON.stringify({acao:'financeiro-inserir',
     tipo:document.getElementById('fn-tipo2').value,data:document.getElementById('fn-data').value,
     categoria:document.getElementById('fn-cat2').value,descricao:desc,valor,
-    responsavel:document.getElementById('fn-resp').value})});
+    responsavel:document.getElementById('fn-resp').value,
+    observacoes:document.getElementById('fn-obs').value})});
     const j=await r.json();prog(100);
     if(j.ok){toast('✓ Lançado!');limparFin();await carregarFin();}
     else toast('Erro: '+(j.erro||'?'),false);
