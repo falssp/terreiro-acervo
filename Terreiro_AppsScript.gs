@@ -112,7 +112,7 @@ function _configurarAcervo(ss) {
     { v:'Necessita reposição', bg:'#fdecea', f:'#8b0000' },
   ].map(({v,bg,f}) =>
     SpreadsheetApp.newConditionalFormatRule()
-      .whenTextEqualTo(v).setBackground(bg).setFontColor(f).setFontWeight('bold')
+      .whenTextEqualTo(v).setBackground(bg).setFontColor(f)
       .setRanges([aba.getRange('F2:F1000')]).build()));
 
   // Filtro
@@ -179,7 +179,7 @@ function _configurarEstoque(ss) {
     { v:'🔴 Crítico',bg:'#fdecea', f:'#8b0000' },
   ].map(({v,bg,f}) =>
     SpreadsheetApp.newConditionalFormatRule()
-      .whenTextEqualTo(v).setBackground(bg).setFontColor(f).setFontWeight('bold')
+      .whenTextEqualTo(v).setBackground(bg).setFontColor(f)
       .setRanges([aba.getRange('H2:H1000')]).build()));
 
   // Filtro
