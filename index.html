@@ -78,7 +78,10 @@ header p{font-size:11px;color:var(--cinza);margin-top:2px;letter-spacing:.08em;t
 .est-card .num{font-family:var(--fd);font-size:1.8rem;font-weight:600;line-height:1}
 .est-card .rot{font-size:10px;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;color:var(--cinza)}
 .est-card.ok .num{color:#7fd67f}.est-card.warn .num{color:#e8b84b}.est-card.crit .num{color:#f08080}
-.est-lista{display:flex;flex-direction:column;gap:8px}
+.est-lista{display:flex;flex-direction:column;gap:8px;max-height:60vh;overflow-y:auto;padding-right:4px;scrollbar-width:thin;scrollbar-color:var(--ouro) transparent}
+.est-lista::-webkit-scrollbar{width:4px}
+.est-lista::-webkit-scrollbar-track{background:transparent}
+.est-lista::-webkit-scrollbar-thumb{background:var(--ouro);border-radius:99px}
 .est-item{background:linear-gradient(135deg,rgba(74,46,24,.45),rgba(42,26,14,.65));border:1px solid var(--borda);border-radius:var(--r);padding:12px 14px}
 .est-item-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
 .est-item-nome{font-size:14px;font-weight:600;color:var(--creme-lt)}
