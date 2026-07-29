@@ -30,6 +30,7 @@ function setup() {
   _configurarAcervo(ss);
   _configurarConsumiveis(ss);
   _excluirPaginasPadrao(ss);
+  _autoResizeConsumiveis(ss);
   SpreadsheetApp.getUi().alert(
     '✅ Acervo do Terreiro v5 configurado!\n\n' +
     '• Aba Acervo: cadastro geral de itens\n' +
@@ -58,10 +59,11 @@ function _configurarAcervo(ss) {
   const mc = aba.getMaxColumns(); if(mc>N) aba.deleteColumns(N+1,mc-N);
   const mr = aba.getMaxRows(); if(mr>1000) aba.deleteRows(1001,mr-1000);
   if(mr>1) aba.setRowHeightsForced(2,aba.getMaxRows()-1,26);
+  // Centralização do cabeçalho todo
+  aba.getRange(1,1,1,N).setHorizontalAlignment('center');
   aba.getRange(2,1,aba.getMaxRows()-1,N).setBackground('#fffdf8').setFontColor('#2a1a0e').setFontSize(10).setVerticalAlignment('middle').setHorizontalAlignment('left');
-  aba.getRange(2,1,aba.getMaxRows()-1,1).setHorizontalAlignment('center');
-  aba.getRange(2,8,aba.getMaxRows()-1,1).setHorizontalAlignment('center');
-  aba.getRange(2,11,aba.getMaxRows()-1,1).setHorizontalAlignment('center');
+  // Centraliza: ID(1) Qtd(8) Data(11)
+  [1,8,11].forEach(c => aba.getRange(2,c,aba.getMaxRows()-1,1).setHorizontalAlignment('center'));
   aba.setFrozenRows(1); aba.setFrozenColumns(0);
   aba.getRange('C2:C1000').setDataValidation(SpreadsheetApp.newDataValidation().requireValueInList(['Roupas e indumentárias','Ferramentas e objetos rituais','Ervas e plantas','Alimentos e oferendas'],true).setAllowInvalid(false).build());
   aba.getRange('F2:F1000').setDataValidation(SpreadsheetApp.newDataValidation().requireValueInList(['Disponível','Em uso','Danificado','Necessita reposição'],true).setAllowInvalid(false).build());
@@ -90,8 +92,11 @@ function _configurarConsumiveis(ss) {
     .setHorizontalAlignment('center').setVerticalAlignment('middle').setWrap(true);
   aba.setRowHeight(1, 40);
 
-  // Larguras pensadas para não ter scroll
-  [70,120,190,90,80,85,80,120,170,100,80,110,190,110].forEach((w,i) => aba.setColumnWidth(i+1,w));
+  // Cabeçalho com wrap para quebrar linha (ex: "Preço Unit. (R$)")
+  aba.getRange(1,1,1,N).setWrap(true);
+  aba.setRowHeight(1, 44);
+  // Autoajuste por conteúdo após inserir dados
+  // (será chamado no final do setup via _autoResizeConsumiveis)
 
   const mc = aba.getMaxColumns(); if(mc>N) aba.deleteColumns(N+1,mc-N);
   const mr = aba.getMaxRows(); if(mr>500) aba.deleteRows(501,mr-500);
@@ -191,6 +196,44 @@ function _configurarConsumiveis(ss) {
   try{aba.getFilter().remove();}catch(e){}
   aba.getRange(1,1,Math.max(2,aba.getLastRow()),N).createFilter();
   try{aba.getRange(1,1,1,N).protect().setDescription('Cabeçalho').setWarningOnly(true);}catch(e){}
+}
+
+// ── AUTOAJUSTE CONSUMÍVEIS ───────────────────────────────
+function _autoResizeConsumiveis(ss) {
+  const aba = ss.getSheetByName(ABA_CONSUMIVEIS);
+  if (!aba) return;
+  const N = 14;
+
+  // Cabeçalhos sem wrap, 1 linha
+  aba.getRange(1,1,1,N).setWrap(false).setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
+
+  const cabecalhos = [
+    'ID','Categoria','Item','Unidade','Qtd Atual','Qtd Mínima',
+    '% Estoque','Nível','Fornecedor','Preço Unit.','Qtd/Pac',
+    'Preço Pacote','Link Compra','Atualizado em'
+  ];
+  aba.getRange(1,1,1,N).setValues([cabecalhos]);
+
+  // Larguras fixas calibradas para ~1500px de área útil
+  // ID | Categoria | Item | Unidade | QtdA | QtdM | % | Nível | Fornecedor | PreçoU | QtdPac | PreçoPac | Link | Data
+  const larguras = [70, 110, 210, 80, 75, 80, 75, 120, 155, 85, 65, 95, 155, 105];
+  // Total = 70+110+210+80+75+80+75+120+155+85+65+95+155+105 = 1480px
+  larguras.forEach((w,i) => aba.setColumnWidth(i+1, w));
+
+  // Altura cabeçalho e dados
+  aba.setRowHeight(1, 34);
+
+  // Centralização do cabeçalho todo
+  aba.getRange(1,1,1,N).setHorizontalAlignment('center');
+
+  // Centraliza colunas que fazem sentido nos dados
+  // ID(1) Unidade(4) QtdAtual(5) QtdMin(6) %(7) Nível(8) PreçoU(10) QtdPac(11) PreçoPac(12) Data(14)
+  [1,4,5,6,7,8,10,11,12,14].forEach(c =>
+    aba.getRange(2, c, 498, 1).setHorizontalAlignment('center'));
+
+  // Texto à esquerda: Categoria(2) Item(3) Fornecedor(9) Link(13)
+  [2,3,9,13].forEach(c =>
+    aba.getRange(2, c, 498, 1).setHorizontalAlignment('left'));
 }
 
 // ── REMOVE ABAS PADRÃO ───────────────────────────────────
