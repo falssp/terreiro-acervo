@@ -9,96 +9,108 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#0f0f0f;--card:#1a1a1a;--card2:#222;
-  --ouro:#c9a84c;--ouro-lt:#f0d060;
-  --creme:#ffffff;--cinza:#999;--borda:rgba(201,168,76,.22);--r:12px;
+  --ouro:#c9a84c;--ouro-lt:#f0d060;--creme:#fff;--cinza:#999;
+  --borda:rgba(201,168,76,.22);--r:12px;
   --fd:'Cinzel',serif;--fb:'Inter',sans-serif;
+  --ok:#1e6b3a;--ok-bg:#e6f4ea;--err:#8b0000;--err-bg:#fdecea;
 }
 html{font-size:16px}
 body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:100dvh;padding:0 0 60px}
 
-/* ── LOGIN ── */
-#login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:20px}
-.login-wrap{width:100%;max-width:320px;text-align:center}
-.login-wrap h1{font-family:var(--fd);font-size:1.1rem;color:var(--ouro-lt);margin-bottom:4px}
-.login-wrap p{font-size:11px;color:var(--cinza);margin-bottom:24px}
-.login-box{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:24px}
-.login-box label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ouro);display:block;margin-bottom:5px;text-align:left}
-.login-box input{width:100%;background:rgba(0,0,0,.4);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:15px;padding:11px 13px;outline:none;-webkit-appearance:none;margin-bottom:6px}
-.login-box input:focus{border-color:var(--ouro)}
-.login-error{font-size:12px;color:#f08080;margin-bottom:10px;min-height:18px}
-.btn-login{width:100%;padding:12px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:linear-gradient(135deg,var(--ouro),#a07820);color:#0f0f0f;font-family:var(--fb);margin-top:4px}
-.btn-login:hover{opacity:.88}
-.login-sub{font-size:11px;color:var(--cinza);margin-top:16px}
-.login-sub a{color:var(--ouro);text-decoration:none}
+/* ── TELAS ── */
+.tela{display:none}
+.tela.ativa{display:block}
+#tela-primeiro{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:20px}
+#tela-login{display:none;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:20px}
+#tela-login.ativa{display:flex}
+#tela-admin{display:none}
+#tela-admin.ativa{display:block}
 
-/* ── ADMIN ── */
-#admin-screen{display:none}
-.admin-top{background:linear-gradient(135deg,#050505,#111);border-bottom:1px solid var(--borda);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:10}
-.admin-top h1{font-family:var(--fd);font-size:.95rem;color:var(--ouro-lt)}
-.admin-top-right{display:flex;align-items:center;gap:12px;font-size:11px}
-.admin-top-right a{color:var(--cinza);text-decoration:none}.admin-top-right a:hover{color:var(--ouro)}
-.admin-top-right span{color:var(--cinza)}
-.bem-vindo{font-size:11px;color:var(--cinza)}
+/* ── FORMS DE ACESSO ── */
+.acesso-wrap{width:100%;max-width:340px;text-align:center}
+.acesso-wrap h1{font-family:var(--fd);font-size:1.05rem;color:var(--ouro-lt);margin-bottom:4px}
+.acesso-wrap p{font-size:11px;color:var(--cinza);margin-bottom:22px}
+.acesso-box{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:24px}
+.field-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ouro);display:block;margin-bottom:5px;text-align:left}
+.field-inp{width:100%;background:rgba(0,0,0,.4);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:15px;padding:11px 13px;outline:none;-webkit-appearance:none;margin-bottom:10px}
+.field-inp:focus{border-color:var(--ouro)}
+.field-inp:last-of-type{margin-bottom:0}
+.acesso-err{font-size:12px;color:#f08080;min-height:18px;margin:8px 0 4px}
+.btn-acesso{width:100%;padding:12px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:linear-gradient(135deg,var(--ouro),#a07820);color:#0f0f0f;font-family:var(--fb);margin-top:10px}
+.btn-acesso:hover{opacity:.88}
+.btn-acesso:disabled{opacity:.5;cursor:not-allowed}
+.acesso-sub{font-size:11px;color:var(--cinza);margin-top:14px}
+.acesso-sub a{color:var(--ouro);text-decoration:none}
 
-.admin-body{max-width:680px;margin:0 auto;padding:20px 16px}
+/* ── TOPO ADMIN ── */
+.admin-top{background:linear-gradient(135deg,#050505,#111);border-bottom:1px solid var(--borda);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:0;z-index:10}
+.admin-top h1{font-family:var(--fd);font-size:.9rem;color:var(--ouro-lt)}
+.admin-sub{font-size:10px;color:var(--cinza);margin-top:2px}
+.top-nav{display:flex;align-items:center;gap:12px;font-size:11px}
+.top-nav a{color:var(--cinza);text-decoration:none}.top-nav a:hover{color:var(--ouro)}
+.top-nav span{color:var(--cinza);cursor:pointer}.top-nav span:hover{color:#f08080}
 
-/* Saldo */
-.fin-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
-.fin-item{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:12px 8px;text-align:center}
-.fin-item .num{font-family:var(--fd);font-size:1rem;font-weight:600;line-height:1.2}
-.fin-item .rot{font-size:9px;color:var(--cinza);text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
-.fin-item.ent .num{color:#7fd67f}
-.fin-item.sai .num{color:#f08080}
-.fin-item.sal .num{color:var(--ouro-lt)}
-.sem-perm{font-size:11px;color:var(--cinza);font-style:italic;text-align:center;padding:12px}
+.admin-body{max-width:660px;margin:0 auto;padding:18px 16px}
 
-/* Seções */
-.sec-title{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ouro);font-weight:600;margin:20px 0 10px;display:flex;align-items:center;gap:8px}
+/* ── FINANCEIRO ── */
+.fin-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
+.fc{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:12px 8px;text-align:center}
+.fc .num{font-family:var(--fd);font-size:.95rem;font-weight:600;line-height:1.2}
+.fc .rot{font-size:9px;color:var(--cinza);text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+.fc.ent .num{color:#7fd67f}.fc.sai .num{color:#f08080}.fc.sal .num{color:var(--ouro-lt)}
+
+/* ── SEÇÕES ── */
+.sec-title{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ouro);font-weight:600;margin:18px 0 10px;display:flex;align-items:center;gap:8px}
 .sec-title::after{content:'';flex:1;height:1px;background:var(--borda)}
-
 .btn-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.btn-adm{display:flex;flex-direction:column;align-items:flex-start;gap:3px;background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:13px 15px;cursor:pointer;font-family:var(--fb);color:var(--creme);text-align:left;transition:border-color .15s}
+.btn-adm{display:flex;flex-direction:column;align-items:flex-start;gap:3px;background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:13px 14px;cursor:pointer;font-family:var(--fb);color:var(--creme);text-align:left;transition:border-color .15s}
 .btn-adm:hover{border-color:var(--ouro);background:var(--card2)}
-.btn-adm .ic{font-size:18px;margin-bottom:2px}
+.btn-adm .ic{font-size:17px;margin-bottom:2px}
 .btn-adm .lb{font-size:13px;font-weight:600}
 .btn-adm .dc{font-size:10px;color:var(--cinza);line-height:1.4}
 
-/* Prazo */
+/* ── PRAZO ── */
 .prazo-box{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:12px;color:var(--cinza)}
 .prazo-box input{background:rgba(0,0,0,.4);border:1px solid var(--borda);border-radius:6px;color:var(--creme);font-size:12px;padding:4px 8px;width:65px;outline:none;text-align:center}
 
-/* Resultado */
-.resultado{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:16px;margin-top:12px;display:none;font-size:12px;line-height:1.8;color:var(--creme);font-family:monospace;white-space:pre-wrap;max-height:320px;overflow-y:auto}
+/* ── RESULTADO ── */
+.resultado{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:14px;margin-top:12px;display:none;font-size:12px;line-height:1.8;color:var(--creme);font-family:monospace;white-space:pre-wrap;max-height:300px;overflow-y:auto}
 
-/* Mailing */
+/* ── MAILING ── */
 .msg-box{background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:8px;padding:10px 12px;margin-bottom:10px}
 .msg-box label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ouro);display:block;margin-bottom:5px}
-.msg-box textarea{width:100%;background:transparent;border:none;color:var(--creme);font-size:12px;font-family:var(--fb);resize:vertical;outline:none;line-height:1.6;min-height:80px}
-.mailing-lista{display:flex;flex-direction:column;gap:7px;margin-top:10px;max-height:280px;overflow-y:auto}
-.m-item{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:10px 13px;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.m-info .nome{font-size:13px;font-weight:500}
-.m-info .sub{font-size:10px;color:var(--cinza)}
-.btn-wpp{background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);border-radius:8px;color:#25d366;padding:6px 12px;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--fb);text-decoration:none;white-space:nowrap}
-.btn-wpp:hover{background:rgba(37,211,102,.25)}
-.btn-wpp.disabled{opacity:.4;pointer-events:none}
+.msg-box textarea{width:100%;background:transparent;border:none;color:var(--creme);font-size:12px;font-family:var(--fb);resize:vertical;outline:none;line-height:1.6;min-height:75px}
 
-/* Admins */
+/* ── ADMINS ── */
 .admin-lista{display:flex;flex-direction:column;gap:7px;margin-top:10px}
-.adm-item{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:11px 14px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-.adm-info .nome{font-size:13px;font-weight:600}
-.adm-info .nivel{font-size:10px;color:var(--cinza)}
-.adm-info .perms{font-size:10px;color:var(--ouro);margin-top:3px;line-height:1.5}
-.adm-status{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px}
-.adm-status.ativo{background:#e6f4ea;color:#1e6b3a}
-.adm-status.inativo{background:#f5f5f5;color:#666}
+.adm-item{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:12px 14px}
+.adm-item-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
+.adm-nome{font-size:13px;font-weight:600}
+.adm-email{font-size:10px;color:var(--cinza)}
+.adm-nivel{font-size:10px;color:var(--cinza);margin-top:2px}
+.adm-perms{font-size:10px;color:var(--ouro);margin-top:4px;line-height:1.5}
+.adm-acoes{display:flex;gap:6px;align-items:center}
+.badge-bloq{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--err-bg);color:var(--err)}
+.btn-liberar{font-size:11px;font-weight:600;padding:4px 10px;border-radius:8px;background:rgba(201,168,76,.15);border:1px solid var(--borda);color:var(--ouro);cursor:pointer;font-family:var(--fb)}
+.btn-liberar:hover{background:rgba(201,168,76,.3)}
 
-/* Trocar senha */
-.senha-form{display:none;background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:10px;padding:14px;margin-top:10px}
-.senha-form input{width:100%;background:rgba(0,0,0,.4);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:14px;padding:10px 12px;outline:none;margin-bottom:8px;-webkit-appearance:none}
-.senha-form input:focus{border-color:var(--ouro)}
+/* ── NOVO ADMIN FORM ── */
+.novo-admin-form{display:none;background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:var(--r);padding:16px;margin-top:10px}
+.novo-admin-form .field-inp{margin-bottom:8px}
+.perms-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:8px 0 12px}
+.perm-cb{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--cinza);cursor:pointer}
+.perm-cb input{accent-color:var(--ouro);width:14px;height:14px}
+.perm-cb span{text-transform:capitalize}
 
-/* FAQ */
-.faq-item{margin-bottom:8px;background:var(--card);border:1px solid var(--borda);border-radius:10px;overflow:hidden}
+/* ── TROCAR SENHA ── */
+.senha-form{display:none;background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:var(--r);padding:14px;margin-top:10px}
+.senha-form .field-inp{margin-bottom:8px}
+.btn-row{display:flex;gap:8px;justify-content:flex-end}
+.btn-sm{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--borda);font-family:var(--fb);background:transparent;color:var(--cinza)}
+.btn-sm.primary{background:linear-gradient(135deg,var(--ouro),#a07820);color:#0f0f0f;border-color:var(--ouro)}
+
+/* ── FAQ ── */
+.faq-item{margin-bottom:7px;background:var(--card);border:1px solid var(--borda);border-radius:10px;overflow:hidden}
 .faq-q{padding:11px 14px;font-size:12px;font-weight:600;color:var(--ouro-lt);cursor:pointer;display:flex;justify-content:space-between;gap:8px;user-select:none}
 .faq-q:hover{background:var(--card2)}
 .faq-q .arrow{color:var(--ouro);font-size:10px;transition:transform .2s;flex-shrink:0}
@@ -111,90 +123,95 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 #toast.erro{border-color:#f08080;color:#f08080}
 
-@media(max-width:420px){.btn-grid{grid-template-columns:1fr}.fin-bar{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.btn-grid{grid-template-columns:1fr}.fin-bar{grid-template-columns:1fr 1fr}.perms-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
-<div id="login-screen">
-  <div class="login-wrap">
+<!-- ── TELA 1: PRIMEIRO ACESSO (cria o Pai de Santo) ── -->
+<div id="tela-primeiro">
+  <div class="acesso-wrap">
     <h1>✦ Ile Ase Vodun Ogum Ayres ✦</h1>
-    <p>Área da liderança</p>
-    <div class="login-box">
-      <label>Usuário</label>
-      <input type="text" id="usuario" placeholder="seu usuário" autocomplete="username" autocapitalize="none"/>
-      <label>Senha</label>
-      <input type="password" id="senha" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')entrar()"/>
-      <div class="login-error" id="login-error"></div>
-      <button class="btn-login" onclick="entrar()">Entrar</button>
+    <p>Primeiro acesso — configure o administrador principal</p>
+    <div class="acesso-box">
+      <label class="field-lbl">Seu nome</label>
+      <input class="field-inp" type="text" id="p-nome" placeholder="Ex: Maria das Dores" autocomplete="name"/>
+      <label class="field-lbl" style="margin-top:6px">E-mail</label>
+      <input class="field-inp" type="email" id="p-email" placeholder="seu@email.com" autocomplete="email" inputmode="email"/>
+      <label class="field-lbl" style="margin-top:6px">Senha (mín. 6 caracteres)</label>
+      <input class="field-inp" type="password" id="p-senha" placeholder="••••••••" autocomplete="new-password"/>
+      <label class="field-lbl" style="margin-top:6px">Confirmar senha</label>
+      <input class="field-inp" type="password" id="p-conf" placeholder="••••••••" autocomplete="new-password" onkeydown="if(event.key==='Enter')criarPrimeiro()"/>
+      <div class="acesso-err" id="p-err"></div>
+      <button class="btn-acesso" onclick="criarPrimeiro()">Criar conta do Pai de Santo</button>
     </div>
-    <div class="login-sub">
-      <a href="index.html">← Voltar ao site</a>
-    </div>
+    <div class="acesso-sub"><a href="index.html">← Voltar ao site</a></div>
   </div>
 </div>
 
-<!-- ADMIN -->
-<div id="admin-screen">
+<!-- ── TELA 2: LOGIN ── -->
+<div id="tela-login">
+  <div class="acesso-wrap">
+    <h1>✦ Ile Ase Vodun Ogum Ayres ✦</h1>
+    <p>Área da liderança</p>
+    <div class="acesso-box">
+      <label class="field-lbl">E-mail</label>
+      <input class="field-inp" type="email" id="l-email" placeholder="seu@email.com" autocomplete="email" inputmode="email"/>
+      <label class="field-lbl" style="margin-top:6px">Senha</label>
+      <input class="field-inp" type="password" id="l-senha" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')entrar()"/>
+      <div class="acesso-err" id="l-err"></div>
+      <button class="btn-acesso" id="btn-entrar" onclick="entrar()">Entrar</button>
+    </div>
+    <div class="acesso-sub"><a href="index.html">← Voltar ao site</a></div>
+  </div>
+</div>
+
+<!-- ── TELA 3: PAINEL ADMIN ── -->
+<div id="tela-admin">
   <div class="admin-top">
     <div>
       <h1>🏛️ Painel da Liderança</h1>
-      <div class="bem-vindo" id="bem-vindo"></div>
+      <div class="admin-sub" id="admin-sub"></div>
     </div>
-    <div class="admin-top-right">
+    <div class="top-nav">
       <a href="index.html">🖥️</a>
       <a href="mobile.html">📱</a>
       <a href="faq.html">❓</a>
-      <span onclick="sair()" style="cursor:pointer">Sair</span>
+      <span onclick="sair()">Sair</span>
     </div>
   </div>
 
   <div class="admin-body">
 
-    <!-- FINANCEIRO -->
-    <div id="sec-financeiro">
+    <!-- Financeiro topo -->
+    <div id="sec-fin-bar" style="display:none">
       <div class="fin-bar">
-        <div class="fin-item ent"><div class="num" id="f-ent">—</div><div class="rot">↑ Entradas mês</div></div>
-        <div class="fin-item sai"><div class="num" id="f-sai">—</div><div class="rot">↓ Saídas mês</div></div>
-        <div class="fin-item sal"><div class="num" id="f-sal">—</div><div class="rot">= Saldo total</div></div>
+        <div class="fc ent"><div class="num" id="f-ent">—</div><div class="rot">↑ Entradas mês</div></div>
+        <div class="fc sai"><div class="num" id="f-sai">—</div><div class="rot">↓ Saídas mês</div></div>
+        <div class="fc sal"><div class="num" id="f-sal">—</div><div class="rot">= Saldo total</div></div>
       </div>
     </div>
 
-    <!-- ESTOQUE -->
+    <!-- Estoque -->
     <div id="sec-estoque" style="display:none">
       <div class="sec-title">🕯️ Estoque</div>
       <div class="btn-grid">
-        <button class="btn-adm" onclick="listaCompras()">
-          <span class="ic">🛒</span><span class="lb">Lista de compras</span>
-          <span class="dc">Itens a repor com fornecedor e preço</span>
-        </button>
-        <button class="btn-adm" onclick="statusEstoque()">
-          <span class="ic">📊</span><span class="lb">Status do estoque</span>
-          <span class="dc">Visão por categoria e nível</span>
-        </button>
+        <button class="btn-adm" onclick="listaCompras()"><span class="ic">🛒</span><span class="lb">Lista de compras</span><span class="dc">Itens a repor com fornecedor e preço</span></button>
+        <button class="btn-adm" onclick="statusEstoque()"><span class="ic">📊</span><span class="lb">Status do estoque</span><span class="dc">Visão por categoria e nível</span></button>
       </div>
     </div>
 
-    <!-- DATAS -->
+    <!-- Datas -->
     <div id="sec-datas" style="display:none">
       <div class="sec-title">📅 Datas e Obrigações</div>
-      <div class="prazo-box">
-        Obrigações dos próximos <input type="number" id="prazo-dias" value="180" min="30" max="730"/> dias
-      </div>
+      <div class="prazo-box">Obrigações dos próximos <input type="number" id="prazo" value="180" min="30" max="730"/> dias</div>
       <div class="btn-grid">
-        <button class="btn-adm" onclick="datasMes()">
-          <span class="ic">🥁</span><span class="lb">Datas do mês</span>
-          <span class="dc">Aniversários, festas e obrigações</span>
-        </button>
-        <button class="btn-adm" onclick="obrigacoes()">
-          <span class="ic">⚠️</span><span class="lb">Obrigações</span>
-          <span class="dc">Próximas no prazo definido</span>
-        </button>
+        <button class="btn-adm" onclick="datasMes()"><span class="ic">🥁</span><span class="lb">Datas do mês</span><span class="dc">Aniversários, festas e obrigações</span></button>
+        <button class="btn-adm" onclick="obrigacoes()"><span class="ic">⚠️</span><span class="lb">Obrigações</span><span class="dc">Próximas no prazo definido</span></button>
       </div>
     </div>
 
-    <!-- MAILING -->
+    <!-- Mailing -->
     <div id="sec-mailing" style="display:none">
       <div class="sec-title">✉️ Convites</div>
       <div class="msg-box">
@@ -204,77 +221,88 @@ Gostaríamos de convidar você para nossa próxima gira no Ile Ase Vodun Ogum Ay
 Em breve enviaremos mais detalhes.
 Salve! ✨</textarea>
       </div>
-      <button class="btn-adm" style="width:100%;margin-bottom:10px" onclick="copiarMensagem()">
-        <span class="ic">📋</span><span class="lb">Copiar mensagem</span>
-        <span class="dc">Cole no WhatsApp de cada membro</span>
+      <button class="btn-adm" style="width:100%;margin-bottom:10px" onclick="copiarMsg()">
+        <span class="ic">📋</span><span class="lb">Copiar mensagem</span><span class="dc">Cole no WhatsApp de cada membro individualmente</span>
       </button>
       <div id="mailing-lista"></div>
     </div>
 
-    <!-- ADMINS -->
-    <div id="sec-configuracoes" style="display:none">
-      <div class="sec-title">👤 Gerenciar Admins</div>
-      <div class="btn-grid" style="margin-bottom:10px">
-        <button class="btn-adm" onclick="listarAdmins()">
-          <span class="ic">👥</span><span class="lb">Ver admins</span>
-          <span class="dc">Lista de usuários com acesso</span>
-        </button>
-        <button class="btn-adm" onclick="mostrarTrocarSenha()">
-          <span class="ic">🔑</span><span class="lb">Trocar minha senha</span>
-          <span class="dc">Altere a sua senha de acesso</span>
-        </button>
-      </div>
-      <div class="senha-form" id="senha-form">
-        <div style="font-size:11px;color:var(--cinza);margin-bottom:10px">Para adicionar novos admins ou alterar permissões, use o menu <strong style="color:var(--ouro)">🏛️ Terreiro → Gerenciar admins</strong> na planilha.</div>
-        <input type="password" id="senha-atual" placeholder="Senha atual" autocomplete="current-password"/>
-        <input type="password" id="senha-nova" placeholder="Nova senha (mín. 6 caracteres)" autocomplete="new-password"/>
-        <input type="password" id="senha-conf" placeholder="Confirmar nova senha" autocomplete="new-password"/>
-        <div class="btn-row" style="display:flex;gap:8px;justify-content:flex-end;margin-top:4px">
-          <button class="btn-adm" onclick="document.getElementById('senha-form').style.display='none'" style="padding:8px 14px"><span class="lb" style="font-size:12px">Cancelar</span></button>
-          <button class="btn-adm" onclick="trocarSenha()" style="border-color:var(--ouro);padding:8px 14px"><span class="lb" style="font-size:12px">Salvar</span></button>
-        </div>
-      </div>
-      <div id="admins-lista"></div>
-    </div>
-
-    <!-- RESULTADO -->
-    <div class="resultado" id="resultado"></div>
-
-    <!-- FINANCEIRO DETALHADO -->
+    <!-- Financeiro detalhado -->
     <div id="sec-fin-detalhe" style="display:none">
-      <div class="sec-title">💰 Financeiro detalhado</div>
+      <div class="sec-title">💰 Financeiro</div>
       <button class="btn-adm" style="width:100%" onclick="resumoFin()">
-        <span class="ic">📈</span><span class="lb">Ver resumo completo</span>
-        <span class="dc">Entradas, saídas e breakdown por categoria</span>
+        <span class="ic">📈</span><span class="lb">Resumo completo</span><span class="dc">Entradas, saídas e breakdown por categoria</span>
       </button>
     </div>
 
-    <!-- FAQ ADMIN -->
-    <div class="sec-title" style="margin-top:24px">🔧 Suporte técnico</div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="faqT(this)">"Ação desconhecida" ao gravar <span class="arrow">▼</span></div>
-      <div class="faq-a">O Apps Script precisa ser republicado: <code>Implantar → Gerenciar implantações → ✏️ → Nova versão → Implantar</code>. A URL não muda.</div>
+    <!-- Admins -->
+    <div id="sec-cfg" style="display:none">
+      <div class="sec-title">👤 Admins</div>
+      <div class="btn-grid" style="margin-bottom:10px">
+        <button class="btn-adm" onclick="listarAdmins()"><span class="ic">👥</span><span class="lb">Ver admins</span><span class="dc">Usuários com acesso e seus status</span></button>
+        <button class="btn-adm" onclick="toggleNovoAdmin()"><span class="ic">➕</span><span class="lb">Novo admin</span><span class="dc">Criar acesso para membro da liderança</span></button>
+      </div>
+
+      <!-- Formulário novo admin -->
+      <div class="novo-admin-form" id="novo-admin-form">
+        <label class="field-lbl">Nome</label>
+        <input class="field-inp" type="text" id="na-nome" placeholder="Nome completo" autocomplete="off"/>
+        <label class="field-lbl">E-mail</label>
+        <input class="field-inp" type="email" id="na-email" placeholder="email@exemplo.com" inputmode="email"/>
+        <label class="field-lbl">Senha provisória</label>
+        <input class="field-inp" type="text" id="na-senha" placeholder="Mín. 6 caracteres"/>
+        <label class="field-lbl">Nível</label>
+        <input class="field-inp" type="text" id="na-nivel" placeholder="Ex: Diretoria, Ogã, Ekedi"/>
+        <label class="field-lbl">Permissões</label>
+        <div class="perms-grid" id="perms-grid">
+          <label class="perm-cb"><input type="checkbox" value="estoque"/><span>Estoque</span></label>
+          <label class="perm-cb"><input type="checkbox" value="datas"/><span>Datas</span></label>
+          <label class="perm-cb"><input type="checkbox" value="obrigacoes"/><span>Obrigações</span></label>
+          <label class="perm-cb"><input type="checkbox" value="financeiro"/><span>Financeiro</span></label>
+          <label class="perm-cb"><input type="checkbox" value="mailing"/><span>Mailing</span></label>
+          <label class="perm-cb"><input type="checkbox" value="filhos"/><span>Filhos de Santo</span></label>
+          <label class="perm-cb"><input type="checkbox" value="configuracoes"/><span>Configurações</span></label>
+        </div>
+        <div id="na-err" style="font-size:12px;color:#f08080;margin-bottom:8px;min-height:16px"></div>
+        <div class="btn-row">
+          <button class="btn-sm" onclick="toggleNovoAdmin()">Cancelar</button>
+          <button class="btn-sm primary" onclick="criarAdmin()">Criar admin</button>
+        </div>
+      </div>
+
+      <!-- Trocar senha -->
+      <div style="margin-top:10px">
+        <button class="btn-adm" style="width:100%" onclick="toggleSenha()">
+          <span class="ic">🔑</span><span class="lb">Trocar minha senha</span><span class="dc">Altere sua senha de acesso</span>
+        </button>
+      </div>
+      <div class="senha-form" id="senha-form">
+        <label class="field-lbl">Senha atual</label>
+        <input class="field-inp" type="password" id="s-atual" autocomplete="current-password"/>
+        <label class="field-lbl">Nova senha</label>
+        <input class="field-inp" type="password" id="s-nova" autocomplete="new-password"/>
+        <label class="field-lbl">Confirmar nova senha</label>
+        <input class="field-inp" type="password" id="s-conf" autocomplete="new-password"/>
+        <div id="s-err" style="font-size:12px;color:#f08080;margin-bottom:8px;min-height:16px"></div>
+        <div class="btn-row">
+          <button class="btn-sm" onclick="toggleSenha()">Cancelar</button>
+          <button class="btn-sm primary" onclick="trocarSenha()">Salvar</button>
+        </div>
+      </div>
+
+      <div id="admins-lista"></div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="faqT(this)">Dados não carregam ao abrir <span class="arrow">▼</span></div>
-      <div class="faq-a">Verifique: (1) Web App publicado como "Qualquer pessoa"? (2) Abas existem na planilha? (3) Abra a URL do script direto no navegador — deve aparecer <code>ok:true</code>.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="faqT(this)">Como adicionar novo admin <span class="arrow">▼</span></div>
-      <div class="faq-a">Na planilha: menu <code>🏛️ Terreiro → Gerenciar admins → OK</code>. Preencha usuário, nome, senha provisória, nível e permissões. O admin troca a senha no primeiro acesso por este painel.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="faqT(this)">Permissões disponíveis <span class="arrow">▼</span></div>
-      <div class="faq-a"><code>estoque</code> — lista de compras e status<br><code>datas</code> — datas do mês e aniversários<br><code>obrigacoes</code> — controle de obrigações<br><code>financeiro</code> — resumo e lançamentos<br><code>mailing</code> — envio de convites<br><code>filhos</code> — cadastro de filhos de santo<br><code>configuracoes</code> — gerenciar admins</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="faqT(this)">Critério de qualidade para busca no ML <span class="arrow">▼</span></div>
-      <div class="faq-a">A busca retorna os primeiros resultados do Mercado Livre. Defina internamente o padrão de cada item (ex: marca preferida para velas) e use o campo "Fornecedor" para registrar. O link é referência de preço — a decisão final é sempre de quem compra.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="faqT(this)">Como atualizar o app (nova versão) <span class="arrow">▼</span></div>
-      <div class="faq-a">Substitua o(s) arquivo(s) HTML no GitHub. O Pages atualiza em minutos. No celular, force limpando cache: Chrome → 3 pontos → Atualizar.</div>
-    </div>
+
+    <!-- Resultado -->
+    <div class="resultado" id="resultado"></div>
+
+    <!-- Suporte -->
+    <div class="sec-title" style="margin-top:22px">🔧 Suporte técnico</div>
+    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">"Ação desconhecida" ao gravar <span class="arrow">▼</span></div><div class="faq-a">Reimplante o Apps Script: <code>Implantar → Gerenciar implantações → ✏️ → Nova versão → Implantar</code>.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Dados não carregam ao abrir <span class="arrow">▼</span></div><div class="faq-a">Verifique: (1) Web App publicado como "Qualquer pessoa"? (2) Abas existem na planilha? (3) Abra a URL do script no navegador — deve aparecer <code>{"ok":true}</code>.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Permissões disponíveis <span class="arrow">▼</span></div><div class="faq-a"><code>estoque</code> · <code>datas</code> · <code>obrigacoes</code> · <code>financeiro</code> · <code>mailing</code> · <code>filhos</code> · <code>configuracoes</code></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Critério de qualidade — busca no Mercado Livre <span class="arrow">▼</span></div><div class="faq-a">A busca retorna os primeiros resultados do ML. Defina o padrão de cada item internamente e use o campo "Fornecedor" para registrar a marca preferida. O link é referência de preço — a decisão final é sempre de quem compra.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Como atualizar o app (nova versão) <span class="arrow">▼</span></div><div class="faq-a">Substitua os arquivos HTML no GitHub. O Pages atualiza em minutos. No celular, limpe o cache: Chrome → 3 pontos → Atualizar.</div></div>
 
   </div>
 </div>
@@ -283,100 +311,149 @@ Salve! ✨</textarea>
 
 <script>
 const URL = 'https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAfyjHqC_mvDwvKDCFieibGTvp7u7Fyls9OcmCc2aDvlvsVwAW706SlWw/exec';
-let TOKEN = null, PERMS = [], NOME_ADMIN = '';
+let TOKEN = null, PERMS = [], NOME_ADMIN = '', EMAIL_ADMIN = '';
 
-// ── AUTH ─────────────────────────────────────────────────
-async function entrar() {
-  const usuario = document.getElementById('usuario').value.trim();
-  const senha   = document.getElementById('senha').value;
-  const err     = document.getElementById('login-error');
-  if (!usuario || !senha) { err.textContent = 'Preencha usuário e senha.'; return; }
-  err.textContent = 'Verificando...';
-  try {
-    const r = await fetch(URL, {method:'POST', body:JSON.stringify({acao:'login', usuario, senha})});
-    const j = await r.json();
-    if (j.ok) {
-      TOKEN = j.token; PERMS = j.permissoes; NOME_ADMIN = j.nome;
-      sessionStorage.setItem('t_token', TOKEN);
-      sessionStorage.setItem('t_perms', JSON.stringify(PERMS));
-      sessionStorage.setItem('t_nome',  NOME_ADMIN);
-      err.textContent = '';
-      mostrarAdmin();
-    } else {
-      err.textContent = j.erro || 'Erro no login.';
-      document.getElementById('senha').value = '';
-      document.getElementById('senha').focus();
-    }
-  } catch(e) { err.textContent = 'Erro de conexão. Tente novamente.'; }
-}
-
-async function sair() {
-  if (TOKEN) {
-    fetch(URL, {method:'POST', body:JSON.stringify({acao:'logout', token:TOKEN})}).catch(()=>{});
-  }
-  TOKEN = null; PERMS = []; NOME_ADMIN = '';
-  sessionStorage.clear();
-  document.getElementById('admin-screen').style.display = 'none';
-  document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('usuario').value = '';
-  document.getElementById('senha').value = '';
-  document.getElementById('login-error').textContent = '';
-}
-
-window.addEventListener('DOMContentLoaded', () => {
+// ── INICIALIZAÇÃO ─────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', async () => {
+  // Sessão salva?
   const t = sessionStorage.getItem('t_token');
   if (t) {
     TOKEN = t;
     PERMS = JSON.parse(sessionStorage.getItem('t_perms') || '[]');
-    NOME_ADMIN = sessionStorage.getItem('t_nome') || '';
+    NOME_ADMIN  = sessionStorage.getItem('t_nome')  || '';
+    EMAIL_ADMIN = sessionStorage.getItem('t_email') || '';
     mostrarAdmin();
-  } else {
-    document.getElementById('usuario').focus();
+    return;
+  }
+
+  // Verifica se aba Admins está vazia (primeiro acesso)
+  try {
+    const r = await fetch(URL + '?acao=admins-vazio');
+    const j = await r.json();
+    if (j.ok && j.vazio) {
+      document.getElementById('tela-primeiro').style.display = 'flex';
+    } else {
+      document.getElementById('tela-login').classList.add('ativa');
+      document.getElementById('l-email').focus();
+    }
+  } catch(e) {
+    // Fallback: mostra login
+    document.getElementById('tela-login').classList.add('ativa');
+    document.getElementById('l-email').focus();
   }
 });
+
+// ── PRIMEIRO ACESSO ───────────────────────────────────────
+async function criarPrimeiro() {
+  const nome  = document.getElementById('p-nome').value.trim();
+  const email = document.getElementById('p-email').value.trim();
+  const senha = document.getElementById('p-senha').value;
+  const conf  = document.getElementById('p-conf').value;
+  const err   = document.getElementById('p-err');
+
+  if (!nome)              { err.textContent = 'Informe seu nome.'; return; }
+  if (!email.includes('@')){ err.textContent = 'E-mail inválido.'; return; }
+  if (senha.length < 6)  { err.textContent = 'A senha precisa ter pelo menos 6 caracteres.'; return; }
+  if (senha !== conf)    { err.textContent = 'As senhas não coincidem.'; return; }
+
+  err.textContent = 'Criando...';
+  try {
+    const r = await fetch(URL, { method: 'POST', body: JSON.stringify({ acao: 'primeiro-admin', email, senha, nome }) });
+    const j = await r.json();
+    if (j.ok) {
+      _salvarSessao(j);
+      document.getElementById('tela-primeiro').style.display = 'none';
+      mostrarAdmin();
+    } else {
+      err.textContent = j.erro || 'Erro ao criar conta.';
+    }
+  } catch(e) { err.textContent = 'Erro de conexão.'; }
+}
+
+// ── LOGIN ─────────────────────────────────────────────────
+async function entrar() {
+  const email = document.getElementById('l-email').value.trim();
+  const senha = document.getElementById('l-senha').value;
+  const err   = document.getElementById('l-err');
+  const btn   = document.getElementById('btn-entrar');
+
+  if (!email || !senha) { err.textContent = 'Preencha e-mail e senha.'; return; }
+  err.textContent = 'Verificando...';
+  btn.disabled = true;
+
+  try {
+    const r = await fetch(URL, { method: 'POST', body: JSON.stringify({ acao: 'login', email, senha }) });
+    const j = await r.json();
+    if (j.ok) {
+      _salvarSessao(j);
+      document.getElementById('tela-login').classList.remove('ativa');
+      mostrarAdmin();
+    } else {
+      err.textContent = j.erro || 'Erro no login.';
+      document.getElementById('l-senha').value = '';
+      document.getElementById('l-senha').focus();
+    }
+  } catch(e) { err.textContent = 'Erro de conexão. Tente novamente.'; }
+  finally { btn.disabled = false; }
+}
+
+async function sair() {
+  if (TOKEN) fetch(URL, { method: 'POST', body: JSON.stringify({ acao: 'logout', token: TOKEN }) }).catch(() => {});
+  TOKEN = null; PERMS = []; NOME_ADMIN = ''; EMAIL_ADMIN = '';
+  sessionStorage.clear();
+  document.getElementById('tela-admin').classList.remove('ativa');
+  document.getElementById('l-senha').value = '';
+  document.getElementById('l-err').textContent = '';
+  document.getElementById('tela-login').classList.add('ativa');
+  document.getElementById('l-email').focus();
+}
+
+function _salvarSessao(j) {
+  TOKEN = j.token; PERMS = j.permissoes; NOME_ADMIN = j.nome; EMAIL_ADMIN = j.email || '';
+  sessionStorage.setItem('t_token', TOKEN);
+  sessionStorage.setItem('t_perms', JSON.stringify(PERMS));
+  sessionStorage.setItem('t_nome',  NOME_ADMIN);
+  sessionStorage.setItem('t_email', EMAIL_ADMIN);
+}
 
 function tem(p) { return PERMS.includes(p); }
 
 function mostrarAdmin() {
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('admin-screen').style.display = 'block';
-  document.getElementById('bem-vindo').textContent = 'Olá, ' + NOME_ADMIN;
+  document.getElementById('tela-admin').classList.add('ativa');
+  document.getElementById('admin-sub').textContent = NOME_ADMIN;
 
-  // Mostra seções conforme permissões
-  if (tem('financeiro'))     { document.getElementById('sec-financeiro').style.display='block'; document.getElementById('sec-fin-detalhe').style.display='block'; carregarFinBar(); }
-  if (tem('estoque'))        document.getElementById('sec-estoque').style.display='block';
-  if (tem('datas')||tem('obrigacoes')) document.getElementById('sec-datas').style.display='block';
-  if (tem('mailing'))        { document.getElementById('sec-mailing').style.display='block'; carregarMailing(); }
-  if (tem('configuracoes'))  document.getElementById('sec-configuracoes').style.display='block';
+  if (tem('financeiro'))  { document.getElementById('sec-fin-bar').style.display = 'block'; document.getElementById('sec-fin-detalhe').style.display = 'block'; carregarFinBar(); }
+  if (tem('estoque'))     document.getElementById('sec-estoque').style.display = 'block';
+  if (tem('datas') || tem('obrigacoes')) document.getElementById('sec-datas').style.display = 'block';
+  if (tem('mailing'))     { document.getElementById('sec-mailing').style.display = 'block'; carregarMailing(); }
+  if (tem('configuracoes')) document.getElementById('sec-cfg').style.display = 'block';
 }
 
 // ── HELPERS ──────────────────────────────────────────────
-function toast(msg,ok=true){const t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok?'':' erro');clearTimeout(t._t);t._t=setTimeout(()=>t.className='',3000);}
-function mostrar(txt){const el=document.getElementById('resultado');el.style.display='block';el.textContent=txt;el.scrollIntoView({behavior:'smooth',block:'nearest'});}
-function fmtBRL(v){return'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2});}
-function faqT(el){el.classList.toggle('open');el.nextElementSibling.classList.toggle('open');}
-
+function toast(msg, ok=true) { const t=document.getElementById('toast'); t.textContent=msg; t.className='show'+(ok?'':' erro'); clearTimeout(t._t); t._t=setTimeout(()=>t.className='',3000); }
+function mostrar(txt) { const el=document.getElementById('resultado'); el.style.display='block'; el.textContent=txt; el.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+function fmtBRL(v) { return 'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2}); }
+function faqT(el) { el.classList.toggle('open'); el.nextElementSibling.classList.toggle('open'); }
 async function req(acao, extra={}) {
-  const r = await fetch(URL + '?acao=' + acao + '&token=' + (TOKEN||'') + Object.entries(extra).map(([k,v])=>'&'+k+'='+encodeURIComponent(v)).join(''));
-  return r.json();
+  const params = '?acao='+acao+'&token='+(TOKEN||'')+Object.entries(extra).map(([k,v])=>'&'+k+'='+encodeURIComponent(v)).join('');
+  return fetch(URL+params).then(r=>r.json());
+}
+async function post(body) {
+  return fetch(URL, {method:'POST', body:JSON.stringify({...body, token:TOKEN})}).then(r=>r.json());
 }
 
-// ── FINANCEIRO ───────────────────────────────────────────
+// ── FINANCEIRO ────────────────────────────────────────────
 async function carregarFinBar() {
-  if (!tem('financeiro')) return;
   try {
     const j = await req('financeiro-resumo');
     if (j.ok) {
       document.getElementById('f-ent').textContent = fmtBRL(j.entradasMes);
       document.getElementById('f-sai').textContent = fmtBRL(j.saidasMes);
       document.getElementById('f-sal').textContent = fmtBRL(j.saldo);
-    } else if (j.code === 403) {
-      document.getElementById('sec-financeiro').innerHTML = '<div class="sem-perm">Sem permissão para financeiro.</div>';
     }
   } catch(e) {}
 }
 async function resumoFin() {
-  if (!tem('financeiro')) { toast('Sem permissão.', false); return; }
   toast('Carregando...');
   try {
     const j = await req('financeiro-resumo');
@@ -392,16 +469,16 @@ async function resumoFin() {
   } catch(e) { toast('Erro.',false); }
 }
 
-// ── ESTOQUE ──────────────────────────────────────────────
+// ── ESTOQUE ───────────────────────────────────────────────
 async function listaCompras() {
-  if (!tem('estoque')) { toast('Sem permissão.',false); return; }
   toast('Gerando...');
   try {
     const j = await req('consumiveis-listar');
     if (!j.ok) { toast('Erro.',false); return; }
-    const nok = j.itens.filter(i=>!String(i.nivel).includes('OK')&&!String(i.nivel).includes('mínimo'));
+    const ord = {'🚨 Urgente / Zero':0,'🔴 Alerta':1,'⚠️ Repor':2};
+    const nok = j.itens.filter(i=>!String(i.nivel).includes('OK')&&!String(i.nivel).includes('mínimo'))
+      .sort((a,b)=>(ord[a.nivel]??3)-(ord[b.nivel]??3));
     if (!nok.length) { mostrar('✅ Nenhum item precisa ser reposto!'); toast('Tudo em dia!'); return; }
-    nok.sort((a,b)=>({'🚨 Urgente / Zero':0,'🔴 Alerta':1,'⚠️ Repor':2}[a.nivel]??3)-({'🚨 Urgente / Zero':0,'🔴 Alerta':1,'⚠️ Repor':2}[b.nivel]??3));
     let txt='🛒 LISTA DE COMPRAS\n'+'─'.repeat(28)+'\n', nAt='';
     nok.forEach(i=>{
       if(i.nivel!==nAt){txt+=`\n${i.nivel}:\n`;nAt=i.nivel;}
@@ -415,135 +492,140 @@ async function listaCompras() {
   } catch(e) { toast('Erro.',false); }
 }
 async function statusEstoque() {
-  if (!tem('estoque')) { toast('Sem permissão.',false); return; }
   toast('Verificando...');
   try {
     const j = await req('consumiveis-listar');
     if (!j.ok) { toast('Erro.',false); return; }
-    const cats = {};
-    j.itens.forEach(i=>{
-      if(!cats[i.categoria])cats[i.categoria]={ok:0,repor:0,alerta:0,urgente:0};
-      const k=String(i.nivel).includes('OK')?'ok':String(i.nivel).includes('Repor')?'repor':String(i.nivel).includes('Alerta')?'alerta':'urgente';
-      cats[i.categoria][k]++;
-    });
+    const cats={};
+    j.itens.forEach(i=>{if(!cats[i.categoria])cats[i.categoria]={ok:0,repor:0,alerta:0,urgente:0};const k=String(i.nivel).includes('OK')?'ok':String(i.nivel).includes('Repor')?'repor':String(i.nivel).includes('Alerta')?'alerta':'urgente';cats[i.categoria][k]++;});
     let txt='📊 STATUS DO ESTOQUE\n'+'─'.repeat(28)+'\n';
-    Object.entries(cats).forEach(([cat,c])=>{
-      txt+=`\n${cat}:\n`;
-      if(c.urgente)txt+=`  🚨 Urgente: ${c.urgente}\n`;
-      if(c.alerta) txt+=`  🔴 Alerta:  ${c.alerta}\n`;
-      if(c.repor)  txt+=`  ⚠️  Repor:   ${c.repor}\n`;
-      if(c.ok)     txt+=`  ✅ OK:       ${c.ok}\n`;
-    });
+    Object.entries(cats).forEach(([cat,c])=>{txt+=`\n${cat}:\n`;if(c.urgente)txt+=`  🚨 Urgente: ${c.urgente}\n`;if(c.alerta)txt+=`  🔴 Alerta:  ${c.alerta}\n`;if(c.repor)txt+=`  ⚠️  Repor:   ${c.repor}\n`;if(c.ok)txt+=`  ✅ OK:       ${c.ok}\n`;});
     mostrar(txt); toast('✓ Verificado!');
   } catch(e) { toast('Erro.',false); }
 }
 
-// ── DATAS ────────────────────────────────────────────────
+// ── DATAS ─────────────────────────────────────────────────
 async function datasMes() {
   toast('Carregando...');
   try {
     const j = await req('datas-mes');
     if (!j.ok) { toast('Erro.',false); return; }
-    const nomeMes = new Date().toLocaleString('pt-BR',{month:'long',year:'numeric'});
-    let txt = `📅 ${nomeMes.toUpperCase()}\n`+'─'.repeat(28)+'\n';
-    if(j.obrigacoes?.length){txt+='\n⚠️ OBRIGAÇÕES:\n';j.obrigacoes.forEach(o=>txt+=`  • ${o.data} — ${o.nome}\n`);}
-    else txt+='\n⚠️ Sem obrigações este mês.\n';
-    if(j.aniversariantes?.length){txt+='\n🎂 ANIVERSARIANTES:\n';j.aniversariantes.forEach(a=>txt+=`  • ${a.data} — ${a.nome}\n`);}
-    else txt+='\n🎂 Sem aniversariantes este mês.\n';
+    const nomeMes=new Date().toLocaleString('pt-BR',{month:'long',year:'numeric'});
+    let txt=`📅 ${nomeMes.toUpperCase()}\n`+'─'.repeat(28)+'\n';
+    if(j.obrigacoes?.length){txt+='\n⚠️ OBRIGAÇÕES:\n';j.obrigacoes.forEach(o=>txt+=`  • ${o.data} — ${o.nome}\n`);}else txt+='\n⚠️ Sem obrigações este mês.\n';
+    if(j.aniversariantes?.length){txt+='\n🎂 ANIVERSARIANTES:\n';j.aniversariantes.forEach(a=>txt+=`  • ${a.data} — ${a.nome}\n`);}else txt+='\n🎂 Sem aniversariantes este mês.\n';
     if(j.festas?.length){txt+='\n🥁 FESTAS:\n';j.festas.forEach(f=>txt+=`  • ${f.data} — ${f.entidade}${f.saudacao?' · '+f.saudacao:''}\n`);}
     mostrar(txt); toast('✓ Carregado!');
   } catch(e) { toast('Erro.',false); }
 }
 async function obrigacoes() {
-  const dias = parseInt(document.getElementById('prazo-dias').value)||180;
+  const dias=parseInt(document.getElementById('prazo').value)||180;
   toast('Verificando...');
   try {
-    const j = await req('filhos-listar');
-    if (!j.ok) { toast('Erro.',false); return; }
-    const hoje=new Date(), limite=new Date(hoje); limite.setDate(limite.getDate()+dias);
-    const prox = j.itens.filter(i=>{
+    const j=await req('filhos-listar');
+    if(!j.ok){toast('Erro.',false);return;}
+    const hoje=new Date(),lim=new Date(hoje);lim.setDate(lim.getDate()+dias);
+    const prox=j.itens.filter(i=>{
       if(!i.proximaObrigacao||i.proximaObrigacao==='—')return false;
-      try{const p=i.proximaObrigacao.split('/');const d=new Date(parseInt(p[2]||new Date().getFullYear()),parseInt(p[1])-1,parseInt(p[0]));return d>=hoje&&d<=limite;}
-      catch(e){return false;}
+      try{const p=i.proximaObrigacao.split('/');const d=new Date(parseInt(p[2]||new Date().getFullYear()),parseInt(p[1])-1,parseInt(p[0]));return d>=hoje&&d<=lim;}catch(e){return false;}
     });
-    let txt=`⚠️ OBRIGAÇÕES — PRÓXIMOS ${dias} DIAS\n`+'─'.repeat(28)+'\n';
-    if(!prox.length){txt+='\nNenhuma obrigação neste período.';}
+    let txt=`⚠️ OBRIGAÇÕES — ${dias} DIAS\n`+'─'.repeat(28)+'\n';
+    if(!prox.length)txt+='\nNenhuma obrigação neste período.';
     else prox.forEach(i=>txt+=`  • ${i.proximaObrigacao} — Filho de ${i.orixa||'—'} (${i.statusTerreiro||'Ativo'})\n`);
-    mostrar(txt); toast(prox.length?`✓ ${prox.length} encontrada(s).`:'Nenhuma obrigação.');
+    mostrar(txt); toast(prox.length?`✓ ${prox.length} encontrada(s).`:'Nenhuma.');
   } catch(e) { toast('Erro.',false); }
 }
 
-// ── MAILING ──────────────────────────────────────────────
+// ── MAILING ───────────────────────────────────────────────
 async function carregarMailing() {
-  if (!tem('mailing')) { document.getElementById('sec-mailing').style.display='none'; return; }
   try {
-    const j = await req('filhos-listar');
-    if (!j.ok) { document.getElementById('mailing-lista').innerHTML='<div style="font-size:12px;color:#f08080">Erro ao carregar.</div>'; return; }
-    const ativos = j.itens.filter(i=>i.statusTerreiro!=='Inativo'&&i.statusTerreiro!=='Suspenso');
-    if (!ativos.length) { document.getElementById('mailing-lista').innerHTML='<div style="font-size:12px;color:var(--cinza);text-align:center;padding:12px">Nenhum membro ativo cadastrado ainda.</div>'; return; }
+    const j=await req('filhos-listar');
+    if(!j.ok){document.getElementById('mailing-lista').innerHTML='<div style="font-size:12px;color:#f08080">Erro ao carregar.</div>';return;}
+    const ativos=j.itens.filter(i=>i.statusTerreiro!=='Inativo'&&i.statusTerreiro!=='Suspenso');
+    if(!ativos.length){document.getElementById('mailing-lista').innerHTML='<div style="font-size:12px;color:var(--cinza);text-align:center;padding:10px">Nenhum membro ativo cadastrado ainda.</div>';return;}
     document.getElementById('mailing-lista').innerHTML=`
       <div style="font-size:11px;color:var(--cinza);margin-bottom:8px">
-        ${ativos.length} membro(s) ativo(s). Contatos na 
-        <a href="https://docs.google.com/spreadsheets/d/1zzP0TgsT85omd2MyIGLU-B2ONRMwI6aQkgQO4DroIFc/edit" 
-           target="_blank" style="color:var(--ouro)">planilha → aba Filhos de Santo → coluna Contato</a>.
+        ${ativos.length} membro(s) ativo(s). Contatos na
+        <a href="https://docs.google.com/spreadsheets/d/1zzP0TgsT85omd2MyIGLU-B2ONRMwI6aQkgQO4DroIFc/edit" target="_blank" style="color:var(--ouro)">planilha → Filhos de Santo → coluna Contato</a>.
       </div>
-      <div class="mailing-lista">${ativos.map(i=>`
-        <div class="m-item">
-          <div class="m-info">
-            <div class="nome">✦ Filho de ${i.orixa||'—'}</div>
-            <div class="sub">${i.statusTerreiro||'Ativo'}${i.nacao?' · '+i.nacao:''}</div>
-          </div>
-          <span class="btn-wpp disabled" title="Abra a planilha para pegar o número">📱 WhatsApp</span>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        ${ativos.map(i=>`<div style="background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:10px 13px;display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <div><div style="font-size:13px;font-weight:500">✦ Filho de ${i.orixa||'—'}</div><div style="font-size:10px;color:var(--cinza)">${i.statusTerreiro||'Ativo'}${i.nacao?' · '+i.nacao:''}</div></div>
+          <span style="font-size:10px;color:var(--cinza)">Ver planilha</span>
         </div>`).join('')}
       </div>`;
   } catch(e) {}
 }
-function copiarMensagem(){
+function copiarMsg(){
   const msg=document.getElementById('msg-convite').value;
-  navigator.clipboard.writeText(msg).then(()=>toast('✓ Mensagem copiada!')).catch(()=>{
-    const ta=document.createElement('textarea');ta.value=msg;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('✓ Mensagem copiada!');
-  });
+  navigator.clipboard.writeText(msg).then(()=>toast('✓ Mensagem copiada!')).catch(()=>{const ta=document.createElement('textarea');ta.value=msg;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('✓ Mensagem copiada!');});
 }
 
-// ── ADMINS ───────────────────────────────────────────────
+// ── ADMINS ────────────────────────────────────────────────
 async function listarAdmins() {
-  if (!tem('configuracoes')) { toast('Sem permissão.',false); return; }
   toast('Carregando...');
   try {
-    const j = await req('admins-listar');
-    if (!j.ok) { toast(j.erro||'Erro.',false); return; }
-    document.getElementById('admins-lista').innerHTML = `
-      <div class="admin-lista">${j.admins.map(a=>`
+    const j=await req('admins-listar');
+    if(!j.ok){toast(j.erro||'Erro.',false);return;}
+    document.getElementById('admins-lista').innerHTML=`
+      <div class="admin-lista" style="margin-top:10px">${j.admins.map(a=>`
         <div class="adm-item">
-          <div class="adm-info">
-            <div class="nome">${a.nome} <span style="font-size:10px;color:var(--cinza)">(${a.usuario})</span></div>
-            <div class="nivel">${a.nivel} · Último acesso: ${a.ultimoAcesso||'—'}</div>
-            <div class="perms">${a.permissoes.join(' · ')||'Sem permissões'}</div>
+          <div class="adm-item-top">
+            <div>
+              <div class="adm-nome">${a.nome}</div>
+              <div class="adm-email">${a.email}</div>
+              <div class="adm-nivel">${a.nivel} · Último acesso: ${a.ultimoAcesso||'—'}</div>
+            </div>
+            <div class="adm-acoes">
+              ${a.bloqueado?`<span class="badge-bloq">Bloqueado</span><button class="btn-liberar" onclick="desbloquear('${a.email}')">Liberar</button>`:''}
+            </div>
           </div>
-          <span class="adm-status ${a.ativo==='Sim'?'ativo':'inativo'}">${a.ativo==='Sim'?'Ativo':'Inativo'}</span>
+          <div class="adm-perms">${a.permissoes.join(' · ')||'Sem permissões'}</div>
         </div>`).join('')}
       </div>`;
     toast('✓ Carregado!');
   } catch(e) { toast('Erro.',false); }
 }
-function mostrarTrocarSenha() {
-  const f=document.getElementById('senha-form');
-  f.style.display=f.style.display==='none'?'block':'none';
+async function desbloquear(email) {
+  toast('Desbloqueando...');
+  try {
+    const j=await post({acao:'admin-desbloquear',email});
+    if(j.ok){toast('✓ Desbloqueado!');listarAdmins();}else toast(j.erro||'Erro.',false);
+  } catch(e) { toast('Erro.',false); }
 }
-async function trocarSenha() {
-  const atual=document.getElementById('senha-atual').value;
-  const nova =document.getElementById('senha-nova').value;
-  const conf =document.getElementById('senha-conf').value;
-  if(!atual||!nova||!conf){toast('Preencha todos os campos.',false);return;}
-  if(nova!==conf){toast('As senhas novas não coincidem.',false);return;}
-  if(nova.length<6){toast('A nova senha precisa ter pelo menos 6 caracteres.',false);return;}
-  toast('Salvando...');
+function toggleNovoAdmin(){const f=document.getElementById('novo-admin-form');f.style.display=f.style.display==='block'?'none':'block';}
+function toggleSenha(){const f=document.getElementById('senha-form');f.style.display=f.style.display==='block'?'none':'block';}
+async function criarAdmin(){
+  const nome  =document.getElementById('na-nome').value.trim();
+  const email =document.getElementById('na-email').value.trim();
+  const senha =document.getElementById('na-senha').value.trim();
+  const nivel =document.getElementById('na-nivel').value.trim();
+  const perms =[...document.querySelectorAll('#perms-grid input:checked')].map(cb=>cb.value);
+  const err   =document.getElementById('na-err');
+  if(!nome){err.textContent='Informe o nome.';return;}
+  if(!email.includes('@')){err.textContent='E-mail inválido.';return;}
+  if(senha.length<6){err.textContent='Senha muito curta (mín. 6 caracteres).';return;}
+  err.textContent='Criando...';
   try{
-    const r=await fetch(URL,{method:'POST',body:JSON.stringify({acao:'trocar-senha',token:TOKEN,senhaAtual:atual,senhaNova:nova})});
-    const j=await r.json();
-    if(j.ok){toast('✓ Senha alterada!');document.getElementById('senha-form').style.display='none';['senha-atual','senha-nova','senha-conf'].forEach(id=>document.getElementById(id).value='');}
-    else toast(j.erro||'Erro.',false);
-  }catch(e){toast('Erro.',false);}
+    const j=await post({acao:'admin-criar',nome,email,senha,nivel,permissoes:perms});
+    if(j.ok){toast('✓ Admin criado!');toggleNovoAdmin();err.textContent='';document.querySelectorAll('#perms-grid input').forEach(cb=>cb.checked=false);['na-nome','na-email','na-senha','na-nivel'].forEach(id=>document.getElementById(id).value='');listarAdmins();}
+    else err.textContent=j.erro||'Erro.';
+  }catch(e){err.textContent='Erro de conexão.';}
+}
+async function trocarSenha(){
+  const atual=document.getElementById('s-atual').value;
+  const nova =document.getElementById('s-nova').value;
+  const conf =document.getElementById('s-conf').value;
+  const err  =document.getElementById('s-err');
+  if(!atual||!nova||!conf){err.textContent='Preencha todos os campos.';return;}
+  if(nova!==conf){err.textContent='As senhas novas não coincidem.';return;}
+  if(nova.length<6){err.textContent='Mín. 6 caracteres.';return;}
+  err.textContent='Salvando...';
+  try{
+    const j=await post({acao:'trocar-senha',senhaAtual:atual,senhaNova:nova});
+    if(j.ok){toast('✓ Senha alterada!');toggleSenha();err.textContent='';['s-atual','s-nova','s-conf'].forEach(id=>document.getElementById(id).value='');}
+    else err.textContent=j.erro||'Erro.';
+  }catch(e){err.textContent='Erro de conexão.';}
 }
 </script>
 </body>
