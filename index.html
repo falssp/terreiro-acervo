@@ -428,11 +428,14 @@ window.addEventListener('DOMContentLoaded',()=>{
   // Carrega tudo automaticamente ao abrir
   const hoje=new Date().toISOString().split('T')[0];
   const fnData=document.getElementById('fn-data');if(fnData)fnData.value=hoje;
-  carregarHome();
-  carregarConsumiveis();
-  carregarAcervo();
-  carregarFilhos();
-  carregarFin();
+  // Carrega em paralelo — mais rápido, especialmente no celular
+  Promise.all([
+    carregarHome(),
+    carregarConsumiveis(),
+    carregarAcervo(),
+    carregarFilhos(),
+    carregarFin()
+  ]).catch(()=>{});
 });
 if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 
@@ -460,7 +463,9 @@ function updateSubcat(){
   (SUBCATS[c]||[]).forEach(x=>{const o=document.createElement('option');o.textContent=x;s.appendChild(o);});
 }
 function irPara(id){
-  const el=document.querySelector('.tab[onclick*="''+id+''"]');
+  const tabs=document.querySelectorAll('.tab');
+  const mapa={home:0,cadastro:1,acervo:2,consumiveis:3,filhos:4,financeiro:5};
+  const el=tabs[mapa[id]];
   if(el)switchTab(id,el);
 }
 function switchTab(id,el){
@@ -491,7 +496,7 @@ async function carregarHome(){
     if(rd.ok){
       document.getElementById('fin-home-resumo').innerHTML=`
         <div class="fin-resumo">
-          <div class="fin-card entrada" onclick="irPara('financeiro')" style="cursor:pointer" title="Ver financeiro"><div class="num">${fmtBRL(rd.entradasMes)}</div><div class="rot">↑ Entradas mês</div></div>
+          <div class="fin-card entrada" onclick=\"irPara('financeiro')\" style=\"cursor:pointer\" title=\"Ver financeiro\"><div class=\"num\">${fmtBRL(rd.entradasMes)}</div><div class=\"rot\">↑ Entradas mês</div></div>
           <div class="fin-card saida" onclick="irPara('financeiro')" style="cursor:pointer" title="Ver financeiro"><div class="num">${fmtBRL(rd.saidasMes)}</div><div class="rot">↓ Saídas mês</div></div>
           <div class="fin-card saldo" onclick="irPara('financeiro')" style="cursor:pointer" title="Ver financeiro"><div class="num">${fmtBRL(rd.saldo)}</div><div class="rot">= Saldo total</div></div>
         </div>`;

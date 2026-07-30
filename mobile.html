@@ -513,11 +513,14 @@ let acervo=[],consumiveis=[],filhos=[],lancamentos=[],modalItem=null,deferredPro
 window.addEventListener('DOMContentLoaded',()=>{
   const hoje=new Date().toISOString().split('T')[0];
   const el=document.getElementById('fn-data');if(el)el.value=hoje;
-  carregarHome();
-  carregarConsumiveis();
-  carregarAcervo();
-  carregarFilhos();
-  carregarFin();
+  // Carrega em paralelo — mais rápido, especialmente no celular
+  Promise.all([
+    carregarHome(),
+    carregarConsumiveis(),
+    carregarAcervo(),
+    carregarFilhos(),
+    carregarFin()
+  ]).catch(()=>{});
 });
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('pwa-banner').style.display='flex';});
 function installPwa(){if(!deferredPrompt)return;deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;document.getElementById('pwa-banner').style.display='none';});}
