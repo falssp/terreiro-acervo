@@ -1,10 +1,10 @@
 # ✦ Ile Ase Vodun Ogum Ayres
 
-Sistema de gestão para terreiro de Umbanda — acervo, consumíveis, filhos de santo, entidades/orixás e financeiro.
+Sistema de gestão para terreiro de Umbanda — consumíveis, acervo, filhos de santo, entidades/orixás e financeiro.
 
-🌐 **Desktop:** [falssp.github.io/terreiro-acervo](https://falssp.github.io/terreiro-acervo)
-📱 **Celular:** [falssp.github.io/terreiro-acervo/mobile.html](https://falssp.github.io/terreiro-acervo/mobile.html)
-❓ **Ajuda:** [falssp.github.io/terreiro-acervo/faq.html](https://falssp.github.io/terreiro-acervo/faq.html)
+🌐 **Desktop:** [falssp.github.io/terreiro-gestao](https://falssp.github.io/terreiro-gestao)
+📱 **Celular:** [falssp.github.io/terreiro-gestao/mobile.html](https://falssp.github.io/terreiro-gestao/mobile.html)
+❓ **Ajuda:** [falssp.github.io/terreiro-gestao/faq.html](https://falssp.github.io/terreiro-gestao/faq.html)
 
 ---
 
