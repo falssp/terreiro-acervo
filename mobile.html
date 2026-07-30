@@ -210,6 +210,11 @@ input[type="date"]{color-scheme:dark}
 
 /* form input nos modais */
 .modal .field input,.modal .field select{font-size:14px;padding:11px 12px}
+
+.skeleton{background:linear-gradient(90deg,rgba(201,168,76,.08) 25%,rgba(201,168,76,.15) 50%,rgba(201,168,76,.08) 75%);background-size:200% 100%;animation:skel 1.4s infinite;border-radius:6px}
+@keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.skel-num{height:1.4rem;width:80px;margin:0 auto 4px}
+.skel-rot{height:10px;width:60px;margin:0 auto}
 </style>
 </head>
 <body>
@@ -228,9 +233,9 @@ input[type="date"]{color-scheme:dark}
         </div>
         <div id="datas-home"></div>
         <div id="fin-home" class="fin-resumo" style="display:none">
-          <div class="fin-card entrada" onclick="irParaMobile('financeiro',()=>filtrarFinMobile('Entrada'))" style="cursor:pointer"><div class="num" id="h-ent">—</div><div class="rot">↑ Entradas mês</div></div>
-          <div class="fin-card saida" onclick="irParaMobile('financeiro',()=>filtrarFinMobile('Saída'))" style="cursor:pointer"><div class="num" id="h-sai">—</div><div class="rot">↓ Saídas mês</div></div>
-          <div class="fin-card saldo" onclick="irParaMobile('financeiro',()=>filtrarFinMobile(''))" style="cursor:pointer"><div class="num" id="h-sal">—</div><div class="rot">= Saldo total</div></div>
+          <div class="fin-card entrada" onclick="irParaMobile('financeiro',()=>filtrarFinMobile('Entrada'))" style="cursor:pointer"><div class="num skeleton skel-num" id="h-ent"></div><div class="rot skeleton skel-rot"></div></div>
+          <div class="fin-card saida" onclick="irParaMobile('financeiro',()=>filtrarFinMobile('Saída'))" style="cursor:pointer"><div class="num skeleton skel-num" id="h-sai"></div><div class="rot skeleton skel-rot"></div></div>
+          <div class="fin-card saldo" onclick="irParaMobile('financeiro',()=>filtrarFinMobile(''))" style="cursor:pointer"><div class="num skeleton skel-num" id="h-sal"></div><div class="rot skeleton skel-rot"></div></div>
         </div>
         
       </div>
@@ -253,10 +258,10 @@ input[type="date"]{color-scheme:dark}
           <div class="field"><label>Orixá / Entidade</label>
             <select id="orixa">
               <option value="">—</option>
-              <option>Exu</option><option>Ogum</option><option>Oxossi</option><option>Xangô</option>
-              <option>Oxum</option><option>Iemanjá</option><option>Oxalá</option><option>Iansã</option>
-              <option>Obá</option><option>Nanã</option><option>Obaluaê / Omolu</option><option>Oxumaré</option>
-              <option>Preto-Velho</option><option>Caboclo</option><option>Geral / Sem entidade</option>
+              <option>Preto-Velho</option><option>Exu</option><option>Xangô</option><option>Ogum</option>
+              <option>Oxalá</option><option>Iemanjá</option><option>Oxossi</option><option>Iansã</option>
+              <option>Obá</option><option>Nanã</option><option>Obaluaê / Omolu</option><option>Oxum</option>
+              <option>Oxumaré</option><option>Caboclo</option><option>Geral / Sem entidade</option>
             </select>
           </div>
           <div class="field"><label>Status</label>
@@ -288,7 +293,7 @@ input[type="date"]{color-scheme:dark}
           </select>
           <select id="f-status" onchange="renderLista()">
             <option value="">Todos status</option>
-            <option>Disponível</option><option>Em uso</option><option>Danificado</option><option>Necessita reposição</option>
+            <option>Em uso</option><option>Disponível</option><option>Danificado</option><option>Necessita reposição</option>
           </select>
           
         </div>
@@ -300,20 +305,20 @@ input[type="date"]{color-scheme:dark}
     <div class="page" id="page-consumiveis">
       <div class="inner">
         <div class="resumo-niveis">
-          <div class="nivel-card ok" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('ok'))" style="cursor:pointer"><div class="num" id="cnt-ok">—</div><div class="rot">✅ OK</div></div>
-          <div class="nivel-card repor" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('repor'))" style="cursor:pointer"><div class="num" id="cnt-repor">—</div><div class="rot">⚠️ Repor</div></div>
-          <div class="nivel-card alerta" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('alerta'))" style="cursor:pointer"><div class="num" id="cnt-alerta">—</div><div class="rot">🔴 Alerta</div></div>
-          <div class="nivel-card urgente" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('urgente'))" style="cursor:pointer"><div class="num" id="cnt-urgente">—</div><div class="rot">🚨 Urgente</div></div>
+          <div class="nivel-card ok" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('ok'))" style="cursor:pointer"><div class="num skeleton skel-num" id="cnt-ok"></div><div class="rot">✅ OK</div></div>
+          <div class="nivel-card repor" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('repor'))" style="cursor:pointer"><div class="num skeleton skel-num" id="cnt-repor"></div><div class="rot">⚠️ Repor</div></div>
+          <div class="nivel-card alerta" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('alerta'))" style="cursor:pointer"><div class="num skeleton skel-num" id="cnt-alerta"></div><div class="rot">🔴 Alerta</div></div>
+          <div class="nivel-card urgente" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('urgente'))" style="cursor:pointer"><div class="num skeleton skel-num" id="cnt-urgente"></div><div class="rot">🚨 Urgente</div></div>
         </div>
         <div class="filter-row">
           <select id="cf-nivel" onchange="renderConsumiveis()">
             <option value="">Todos níveis</option>
-            <option value="urgente">🚨 Urgente</option><option value="alerta">🔴 Alerta</option>
+            <option value="alerta">🔴 Alerta</option><option value="urgente">🚨 Urgente</option>
             <option value="repor">⚠️ Repor</option><option value="ok">✅ OK</option>
           </select>
           <select id="cf-cat" onchange="renderConsumiveis()">
             <option value="">Todas categorias</option>
-            <option>Velas</option><option>Bebidas</option><option>Fumo</option>
+            <option>Fumo</option><option>Bebidas</option><option>Velas</option>
             <option>Ervas e Defumação</option><option>Alimentos</option><option>Flores e Naturais</option>
           </select>
           
@@ -328,14 +333,14 @@ input[type="date"]{color-scheme:dark}
         <div class="filter-row">
           <select id="ff-orixa" onchange="renderFilhos()">
             <option value="">Todos orixás</option>
-            <option>Exu</option><option>Ogum</option><option>Oxossi</option><option>Xangô</option>
-            <option>Oxum</option><option>Iemanjá</option><option>Oxalá</option><option>Iansã</option>
+            <option>Exu</option><option>Oxalá</option><option>Oxossi</option><option>Oxum</option>
+            <option>Xangô</option><option>Iemanjá</option><option>Ogum</option><option>Iansã</option>
             <option>Obá</option><option>Nanã</option><option>Obaluaê / Omolu</option><option>Oxumaré</option>
           </select>
           <select id="ff-status" onchange="renderFilhos()">
             <option value="">Todos status</option>
             <option>Ativo</option><option>Abiã</option><option>Iaô</option><option>Ebomi</option>
-            <option>Ogã / Ekedi</option><option>Suspenso</option><option>Inativo</option>
+            <option>Suspenso</option><option>Ogã / Ekedi</option><option>Inativo</option>
           </select>
           
         </div>
@@ -349,22 +354,22 @@ input[type="date"]{color-scheme:dark}
             <div class="field"><label>Orixá de cabeça</label>
               <select id="f-orixa2">
                 <option value="">—</option>
-                <option>Exu</option><option>Ogum</option><option>Oxossi</option><option>Xangô</option>
-                <option>Oxum</option><option>Iemanjá</option><option>Oxalá</option><option>Iansã</option>
+                <option>Exu</option><option>Oxalá</option><option>Oxossi</option><option>Oxum</option>
+                <option>Xangô</option><option>Iemanjá</option><option>Ogum</option><option>Iansã</option>
                 <option>Obá</option><option>Nanã</option><option>Obaluaê / Omolu</option><option>Oxumaré</option>
               </select>
             </div>
             <div class="field"><label>Adjuntó</label>
               <select id="f-adjunto">
                 <option value="">—</option>
-                <option>Exu</option><option>Ogum</option><option>Oxossi</option><option>Xangô</option>
+                <option>Exu</option><option>Xangô</option><option>Oxossi</option><option>Ogum</option>
                 <option>Oxum</option><option>Iemanjá</option><option>Oxalá</option><option>Iansã</option>
               </select>
             </div>
             <div class="field"><label>Nação</label>
               <select id="f-nacao">
                 <option value="">—</option>
-                <option>Ketu</option><option>Angola</option><option>Jeje</option><option>Efon</option>
+                <option>Jeje</option><option>Angola</option><option>Ketu</option><option>Efon</option>
                 <option>Ijexá</option><option>Nagô</option><option>Umbanda</option><option>Outra</option>
               </select>
             </div>
@@ -372,7 +377,7 @@ input[type="date"]{color-scheme:dark}
               <select id="f-status2">
                 <option value="Ativo">Ativo</option><option value="Abiã">Abiã</option>
                 <option value="Iaô">Iaô</option><option value="Ebomi">Ebomi</option>
-                <option value="Ogã / Ekedi">Ogã / Ekedi</option><option value="Suspenso">Suspenso</option>
+                <option value="Suspenso">Suspenso</option><option value="Ogã / Ekedi">Ogã / Ekedi</option>
                 <option value="Inativo">Inativo</option>
               </select>
             </div>
@@ -530,6 +535,15 @@ if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch((
 function getUrl(){return'https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAfyjHqC_mvDwvKDCFieibGTvp7u7Fyls9OcmCc2aDvlvsVwAW706SlWw/exec';}
 function toast(msg,ok=true){const t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok?'':' erro');clearTimeout(t._t);t._t=setTimeout(()=>t.className='',3000);}
 function prog(p){document.getElementById('prog').style.width=p+'%';}
+function _fillNum(id, val){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.classList.remove('skeleton','skel-num');
+  el.textContent=val;
+  // remove skeleton do rot irmão se existir
+  const rot=el.nextElementSibling;
+  if(rot&&rot.classList.contains('skeleton'))rot.classList.remove('skeleton','skel-rot');
+}
 function fmtBRL(v){return'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function filtrarFinMobile(tipo){
   document.getElementById('fn-tipo').value=tipo;
@@ -582,9 +596,9 @@ async function carregarHome(){
       fetch(url+'?acao=datas-mes').then(r=>r.json()).catch(()=>({ok:false}))
     ]);
     if(rd.ok){
-      document.getElementById('h-ent').textContent=fmtBRL(rd.entradasMes);
-      document.getElementById('h-sai').textContent=fmtBRL(rd.saidasMes);
-      document.getElementById('h-sal').textContent=fmtBRL(rd.saldo);
+      _fillNum('h-ent',fmtBRL(rd.entradasMes));
+      _fillNum('h-sai',fmtBRL(rd.saidasMes));
+      _fillNum('h-sal',fmtBRL(rd.saldo));
       document.getElementById('fin-home').style.display='grid';
     }
     if(dd.ok){
@@ -661,8 +675,8 @@ async function carregarConsumiveis(){
 function renderConsumiveis(){
   let ok=0,repor=0,alerta=0,urgente=0;
   consumiveis.forEach(i=>{const cl=nivelClass(i.nivel);if(cl==='ok')ok++;else if(cl==='repor')repor++;else if(cl==='alerta')alerta++;else urgente++;});
-  document.getElementById('cnt-ok').textContent=ok;document.getElementById('cnt-repor').textContent=repor;
-  document.getElementById('cnt-alerta').textContent=alerta;document.getElementById('cnt-urgente').textContent=urgente;
+  _fillNum('cnt-ok',ok);_fillNum('cnt-repor',repor);
+  _fillNum('cnt-alerta',alerta);_fillNum('cnt-urgente',urgente);
   const fN=document.getElementById('cf-nivel').value,fC=document.getElementById('cf-cat').value;
   let f=consumiveis.filter(i=>(!fC||i.categoria===fC)&&(!fN||nivelClass(i.nivel)===fN));
   const ord={urgente:0,alerta:1,repor:2,ok:3};
@@ -786,9 +800,9 @@ async function carregarFin(){
   try{
     const r=await fetch(url+'?acao=financeiro-resumo');const j=await r.json();
     if(j.ok){
-      document.getElementById('fin-ent').textContent=fmtBRL(j.entradasMes);
-      document.getElementById('fin-sai').textContent=fmtBRL(j.saidasMes);
-      document.getElementById('fin-sal').textContent=fmtBRL(j.saldo);
+      _fillNum('fin-ent',fmtBRL(j.entradasMes));
+      _fillNum('fin-sai',fmtBRL(j.saidasMes));
+      _fillNum('fin-sal',fmtBRL(j.saldo));
       lancamentos=[];renderFin();
     }
   }catch(e){document.getElementById('fin-lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
