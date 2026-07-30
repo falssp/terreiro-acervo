@@ -26,7 +26,7 @@ body{font-family:var(--fb);background:var(--terra);color:var(--creme);min-height
 header{background:linear-gradient(160deg,#050505,#111111);border-bottom:1px solid var(--borda);padding:14px 20px 10px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.4)}
 header h1{font-family:var(--fd);font-size:clamp(.9rem,3.5vw,1.2rem);font-weight:600;color:#f5e6c8;letter-spacing:.08em}
 header p{font-size:10px;color:var(--cinza);margin-top:1px;letter-spacing:.08em;text-transform:uppercase}
-.mobile-link{display:block;text-align:right;padding:6px 16px 0;font-size:11px;color:var(--cinza)}
+
 .mobile-link a{color:var(--ouro);text-decoration:none}
 .tabs{display:flex;background:#080808;border-bottom:1px solid var(--borda);position:sticky;top:58px;z-index:99;overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
@@ -165,7 +165,6 @@ header p{font-size:10px;color:var(--cinza);margin-top:1px;letter-spacing:.08em;t
   <h1>✦ Ile Ase Vodun Ogum Ayres ✦</h1>
   <p>Ile Ase Vodun Ogum Ayres</p>
 </header>
-<div class="mobile-link">📱 <a href="mobile.html">Versão celular</a> &nbsp;·&nbsp; <a href="faq.html">❓ Ajuda</a></div>
 <nav class="tabs">
   <button class="tab active" onclick="switchTab('home',this)">🏠 Início</button>
   <button class="tab" onclick="switchTab('cadastro',this)">＋ Cadastrar</button>
@@ -173,6 +172,9 @@ header p{font-size:10px;color:var(--cinza);margin-top:1px;letter-spacing:.08em;t
   <button class="tab" onclick="switchTab('consumiveis',this)">🕯️ Consumíveis</button>
   <button class="tab" onclick="switchTab('filhos',this)">👥 Filhos de Santo</button>
   <button class="tab" onclick="switchTab('financeiro',this)">💰 Financeiro</button>
+  <div style="flex:1"></div>
+  <a href="mobile.html" style="padding:10px 12px;font-size:11px;color:var(--cinza);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent" onmouseover="this.style.color='var(--ouro-lt)'" onmouseout="this.style.color='var(--cinza)'">📱 Versão celular</a>
+  <a href="faq.html" style="padding:10px 12px;font-size:11px;color:var(--cinza);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent" onmouseover="this.style.color='var(--ouro-lt)'" onmouseout="this.style.color='var(--cinza)'">❓ Ajuda</a>
 </nav>
 <div class="progress"><div class="progress-fill" id="prog"></div></div>
 
@@ -181,7 +183,10 @@ header p{font-size:10px;color:var(--cinza);margin-top:1px;letter-spacing:.08em;t
 
   <!-- HOME -->
   <div class="section active" id="sec-home">
-    <div class="ornamento">✦ ✦ ✦</div>
+    <div style="display:flex;justify-content:center;gap:10px;margin:14px 0 12px">
+      <a href="mobile.html" style="display:inline-flex;align-items:center;gap:5px;background:rgba(201,168,76,.1);border:1px solid var(--borda);border-radius:99px;padding:5px 14px;font-size:11px;color:var(--ouro);text-decoration:none" onmouseover="this.style.background='rgba(201,168,76,.2)'" onmouseout="this.style.background='rgba(201,168,76,.1)'">📱 Versão celular</a>
+      <a href="faq.html" style="display:inline-flex;align-items:center;gap:5px;background:rgba(201,168,76,.1);border:1px solid var(--borda);border-radius:99px;padding:5px 14px;font-size:11px;color:var(--ouro);text-decoration:none" onmouseover="this.style.background='rgba(201,168,76,.2)'" onmouseout="this.style.background='rgba(201,168,76,.1)'">❓ Ajuda</a>
+    </div>
     <div id="datas-home"></div>
     <div id="fin-home-resumo"></div>
     
