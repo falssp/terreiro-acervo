@@ -9,69 +9,97 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#0f0f0f;--card:#1a1a1a;--ouro:#c9a84c;--ouro-lt:#f0d060;
-  --creme:#ffffff;--cinza:#999;--borda:rgba(201,168,76,.25);--r:12px;
+  --creme:#ffffff;--cinza:#999;--borda:rgba(201,168,76,.22);--r:12px;
   --fd:'Cinzel',serif;--fb:'Inter',sans-serif;
 }
 html{font-size:16px}
-body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:40px 16px}
+body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:100dvh;padding:32px 16px 60px;display:flex;flex-direction:column;align-items:center}
 
 /* LOGIN */
-#login-screen{width:100%;max-width:360px;text-align:center}
-#login-screen h1{font-family:var(--fd);font-size:1.3rem;color:var(--ouro-lt);margin-bottom:6px}
-#login-screen p{font-size:12px;color:var(--cinza);margin-bottom:28px}
-.login-box{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:28px 24px}
+#login-screen{width:100%;max-width:340px;text-align:center;padding-top:60px}
+#login-screen h1{font-family:var(--fd);font-size:1.2rem;color:var(--ouro-lt);margin-bottom:4px}
+#login-screen p{font-size:12px;color:var(--cinza);margin-bottom:24px}
+.login-box{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:24px}
 .login-box label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ouro);font-weight:600;display:block;margin-bottom:6px;text-align:left}
-.login-box input{width:100%;background:rgba(0,0,0,.4);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:15px;padding:11px 13px;outline:none;-webkit-appearance:none;margin-bottom:16px}
+.login-box input[type=password]{width:100%;background:rgba(0,0,0,.4);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:16px;padding:11px 13px;outline:none;-webkit-appearance:none;margin-bottom:14px}
 .login-box input:focus{border-color:var(--ouro)}
-.login-error{font-size:12px;color:#f08080;margin-bottom:12px;display:none}
+.login-error{font-size:12px;color:#f08080;margin-bottom:10px;display:none}
 .btn-login{width:100%;padding:12px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:linear-gradient(135deg,var(--ouro),#a07820);color:#0f0f0f;font-family:var(--fb)}
-.btn-login:hover{opacity:.88}
 
 /* ADMIN */
-#admin-screen{display:none;width:100%;max-width:600px}
-.admin-header{text-align:center;margin-bottom:28px}
-.admin-header h1{font-family:var(--fd);font-size:1.2rem;color:var(--ouro-lt);margin-bottom:4px}
-.admin-header p{font-size:11px;color:var(--cinza)}
-.admin-header a{font-size:11px;color:var(--cinza);text-decoration:none;margin-left:12px}
-.admin-header a:hover{color:var(--ouro)}
+#admin-screen{display:none;width:100%;max-width:640px}
+.admin-header{text-align:center;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--borda)}
+.admin-header h1{font-family:var(--fd);font-size:1.1rem;color:var(--ouro-lt);margin-bottom:6px}
+.admin-nav{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.admin-nav a{font-size:11px;color:var(--cinza);text-decoration:none}
+.admin-nav a:hover{color:var(--ouro)}
+.admin-nav span{font-size:11px;color:#f08080;cursor:pointer}
+.admin-nav span:hover{color:#ff9090}
 
-.section-title{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ouro);font-weight:600;margin:20px 0 10px;display:flex;align-items:center;gap:8px}
-.section-title::after{content:'';flex:1;height:1px;background:var(--borda)}
+.sec-title{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ouro);font-weight:600;margin:20px 0 10px;display:flex;align-items:center;gap:8px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--borda)}
 
+/* STATUS FINANCEIRO */
+.fin-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.fin-item{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:12px 8px;text-align:center}
+.fin-item .num{font-family:var(--fd);font-size:1.1rem;font-weight:600;line-height:1.2}
+.fin-item .rot{font-size:9px;color:var(--cinza);text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+.fin-item.ent .num{color:#7fd67f}
+.fin-item.sai .num{color:#f08080}
+.fin-item.sal .num{color:var(--ouro-lt)}
+
+/* BOTÕES DE AÇÃO */
 .btn-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn-admin{display:flex;flex-direction:column;align-items:flex-start;gap:4px;background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:14px 16px;cursor:pointer;font-family:var(--fb);color:var(--creme);transition:border-color .15s;text-align:left}
-.btn-admin:hover{border-color:var(--ouro)}
-.btn-admin .icon{font-size:20px}
-.btn-admin .label{font-size:13px;font-weight:600;color:var(--creme-lt)}
-.btn-admin .desc{font-size:10px;color:var(--cinza)}
-.btn-admin.danger{border-color:rgba(180,40,40,.3)}
-.btn-admin.danger:hover{border-color:#f08080}
+.btn-admin{display:flex;flex-direction:column;align-items:flex-start;gap:3px;background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:14px 16px;cursor:pointer;font-family:var(--fb);color:var(--creme);text-align:left;transition:border-color .15s}
+.btn-admin:hover{border-color:var(--ouro);background:#222}
+.btn-admin .ic{font-size:18px;margin-bottom:2px}
+.btn-admin .lb{font-size:13px;font-weight:600}
+.btn-admin .dc{font-size:10px;color:var(--cinza);line-height:1.4}
+
+/* PRAZO */
+.prazo-box{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.prazo-box label{font-size:11px;color:var(--cinza)}
+.prazo-box input{background:rgba(0,0,0,.4);border:1px solid var(--borda);border-radius:6px;color:var(--creme);font-size:13px;padding:5px 8px;width:70px;outline:none;text-align:center}
+.prazo-box input:focus{border-color:var(--ouro)}
+.prazo-box span{font-size:11px;color:var(--cinza)}
 
 /* RESULTADO */
-.resultado{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:16px;margin-top:16px;display:none;white-space:pre-wrap;font-size:12px;line-height:1.7;color:var(--creme);font-family:monospace;max-height:400px;overflow-y:auto}
+.resultado{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:16px;margin-top:14px;display:none;font-size:12px;line-height:1.8;color:var(--creme);font-family:monospace;white-space:pre-wrap;max-height:360px;overflow-y:auto}
 
-/* STATUS */
-.status-bar{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:12px 16px;margin-bottom:16px;display:none}
-.status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
-.status-item .num{font-family:var(--fd);font-size:1.4rem;font-weight:600;color:var(--ouro-lt)}
-.status-item .rot{font-size:10px;color:var(--cinza);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+/* MAILING */
+.mailing-lista{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.mailing-item{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.mailing-item .nome{font-size:13px;font-weight:500;color:var(--creme-lt)}
+.mailing-item .orixa{font-size:10px;color:var(--cinza)}
+.btn-wpp{background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);border-radius:8px;color:#25d366;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--fb);text-decoration:none;display:inline-block;white-space:nowrap}
+.btn-wpp:hover{background:rgba(37,211,102,.25)}
 
-#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#111;border:1px solid var(--ouro);border-radius:99px;color:var(--ouro-lt);padding:9px 20px;font-size:12px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:999;white-space:nowrap}
+.msg-template{background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:8px;padding:10px 12px;margin-bottom:12px}
+.msg-template label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ouro);display:block;margin-bottom:6px}
+.msg-template textarea{width:100%;background:transparent;border:none;color:var(--creme);font-size:12px;font-family:var(--fb);resize:vertical;outline:none;line-height:1.6;min-height:80px}
+
+/* FAQ ADMIN */
+.faq-item{margin-bottom:10px;background:var(--card);border:1px solid var(--borda);border-radius:10px;overflow:hidden}
+.faq-q{padding:12px 14px;font-size:13px;font-weight:600;color:var(--ouro-lt);cursor:pointer;display:flex;justify-content:space-between;gap:10px;user-select:none}
+.faq-q:hover{background:#222}
+.faq-q .arrow{color:var(--ouro);font-size:11px;transition:transform .2s;flex-shrink:0}
+.faq-q.open .arrow{transform:rotate(180deg)}
+.faq-a{display:none;padding:0 14px 12px;font-size:12px;color:#ccc;line-height:1.7}
+.faq-a.open{display:block}
+
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:#111;border:1px solid var(--ouro);border-radius:99px;color:var(--ouro-lt);padding:8px 18px;font-size:12px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:999;white-space:nowrap}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 #toast.erro{border-color:#f08080;color:#f08080}
 
-.logout{font-size:11px;color:var(--cinza);cursor:pointer;text-decoration:underline}
-.logout:hover{color:var(--ouro)}
-
-@media(max-width:400px){.btn-grid{grid-template-columns:1fr}}
+@media(max-width:400px){.btn-grid{grid-template-columns:1fr}.fin-bar{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 
-<!-- TELA DE LOGIN -->
+<!-- LOGIN -->
 <div id="login-screen">
   <h1>✦ Ile Ase Vodun Ogum Ayres ✦</h1>
-  <p>Área restrita — administração</p>
+  <p>Área restrita — liderança do terreiro</p>
   <div class="login-box">
     <label>Senha de acesso</label>
     <input type="password" id="senha" placeholder="••••••••" onkeydown="if(event.key==='Enter')entrar()"/>
@@ -80,259 +108,332 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
   </div>
 </div>
 
-<!-- TELA ADMIN -->
+<!-- ADMIN -->
 <div id="admin-screen">
   <div class="admin-header">
-    <h1>🏛️ Painel de Administração</h1>
-    <p>Ile Ase Vodun Ogum Ayres &nbsp;·&nbsp;
+    <h1>🏛️ Painel da Liderança</h1>
+    <div class="admin-nav">
       <a href="index.html">🖥️ Desktop</a>
       <a href="mobile.html">📱 Celular</a>
-      <span class="logout" onclick="sair()">Sair</span>
-    </p>
-  </div>
-
-  <!-- Status financeiro -->
-  <div class="status-bar" id="status-bar">
-    <div class="status-grid">
-      <div class="status-item"><div class="num" id="s-ent">—</div><div class="rot">↑ Entradas mês</div></div>
-      <div class="status-item"><div class="num" id="s-sai">—</div><div class="rot">↓ Saídas mês</div></div>
-      <div class="status-item"><div class="num" id="s-sal">—</div><div class="rot">= Saldo total</div></div>
+      <a href="faq.html">❓ Ajuda</a>
+      <span onclick="sair()">Sair</span>
     </div>
   </div>
 
-  <!-- Estoque -->
-  <div class="section-title">🕯️ Consumíveis e Estoque</div>
+  <!-- FINANCEIRO -->
+  <div class="fin-bar">
+    <div class="fin-item ent"><div class="num" id="f-ent">—</div><div class="rot">↑ Entradas mês</div></div>
+    <div class="fin-item sai"><div class="num" id="f-sai">—</div><div class="rot">↓ Saídas mês</div></div>
+    <div class="fin-item sal"><div class="num" id="f-sal">—</div><div class="rot">= Saldo total</div></div>
+  </div>
+
+  <!-- ESTOQUE -->
+  <div class="sec-title">🕯️ Estoque</div>
   <div class="btn-grid">
-    <button class="btn-admin" onclick="recalcularEstoque()">
-      <span class="icon">🔄</span>
-      <span class="label">Recalcular níveis</span>
-      <span class="desc">Atualiza % e status de todos os itens</span>
-    </button>
     <button class="btn-admin" onclick="listaCompras()">
-      <span class="icon">🛒</span>
-      <span class="label">Lista de compras</span>
-      <span class="desc">Itens que precisam ser repostos</span>
+      <span class="ic">🛒</span><span class="lb">Lista de compras</span>
+      <span class="dc">Todos os itens que precisam ser repostos, com fornecedor e preço</span>
+    </button>
+    <button class="btn-admin" onclick="statusEstoque()">
+      <span class="ic">📊</span><span class="lb">Status do estoque</span>
+      <span class="dc">Visão geral dos níveis por categoria</span>
     </button>
   </div>
 
-  <!-- Datas -->
-  <div class="section-title">📅 Datas e Obrigações</div>
+  <!-- OBRIGAÇÕES -->
+  <div class="sec-title">⚠️ Obrigações</div>
+  <div class="prazo-box">
+    <label>Mostrar obrigações dos próximos</label>
+    <input type="number" id="prazo-dias" value="180" min="30" max="730"/>
+    <span>dias</span>
+  </div>
   <div class="btn-grid">
-    <button class="btn-admin" onclick="datasMes()">
-      <span class="icon">📅</span>
-      <span class="label">Datas do mês</span>
-      <span class="desc">Aniversários, festas e obrigações</span>
-    </button>
     <button class="btn-admin" onclick="obrigacoes()">
-      <span class="icon">⚠️</span>
-      <span class="label">Obrigações próximas</span>
-      <span class="desc">Próximos 90 dias</span>
+      <span class="ic">📅</span><span class="lb">Ver obrigações</span>
+      <span class="dc">Filhos com obrigações no prazo definido</span>
+    </button>
+    <button class="btn-admin" onclick="datasMes()">
+      <span class="ic">🥁</span><span class="lb">Datas do mês</span>
+      <span class="dc">Aniversários, festas de orixás e obrigações do mês</span>
     </button>
   </div>
 
-  <!-- Financeiro -->
-  <div class="section-title">💰 Financeiro</div>
+  <!-- MAILING -->
+  <div class="sec-title">✉️ Convites</div>
+  <div class="msg-template">
+    <label>Mensagem de convite (edite à vontade)</label>
+    <textarea id="msg-convite">Axé! 🙏
+Gostaríamos de convidar você para nossa próxima gira no Ile Ase Vodun Ogum Ayres.
+Em breve enviaremos mais detalhes.
+Salve! ✨</textarea>
+  </div>
+  <div id="mailing-lista"><div style="font-size:12px;color:var(--cinza);text-align:center;padding:12px">Carregando membros...</div></div>
+
+  <!-- FINANCEIRO DETALHADO -->
+  <div class="sec-title">💰 Financeiro</div>
   <div class="btn-grid">
     <button class="btn-admin" onclick="resumoFin()">
-      <span class="icon">📊</span>
-      <span class="label">Resumo financeiro</span>
-      <span class="desc">Saldo, entradas e saídas</span>
+      <span class="ic">📈</span><span class="lb">Resumo detalhado</span>
+      <span class="dc">Entradas, saídas e breakdown por categoria</span>
     </button>
-    <button class="btn-admin" onclick="carregarTudo()">
-      <span class="icon">⟳</span>
-      <span class="label">Forçar atualização</span>
-      <span class="desc">Recarrega todos os dados do app</span>
+    <button class="btn-admin" onclick="recarregarTudo()">
+      <span class="ic">⟳</span><span class="lb">Recarregar dados</span>
+      <span class="dc">Força atualização de todos os dados</span>
     </button>
   </div>
 
-  <!-- Resultado -->
-  <div class="resultado" id="resultado"></div>
+  <!-- PROBLEMAS COMUNS -->
+  <div class="sec-title">🔧 Problemas comuns</div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="faqToggle(this)">Aparece "Ação desconhecida" ao gravar <span class="arrow">▼</span></div>
+    <div class="faq-a">O código do Apps Script precisa ser republicado. No editor: <strong>Implantar → Gerenciar implantações → lápis ✏️ → Nova versão → Implantar</strong>. A URL permanece a mesma.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="faqToggle(this)">Os dados não carregam ao abrir o app <span class="arrow">▼</span></div>
+    <div class="faq-a">Verifique: (1) o Web App está publicado com acesso "Qualquer pessoa"? (2) o <code>setup()</code> foi executado e as abas existem na planilha? (3) Abra a URL do Apps Script diretamente no navegador — deve aparecer <code>{"ok":true,"msg":"Web App ativo."}</code></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="faqToggle(this)">Como atualizar o app quando houver versão nova <span class="arrow">▼</span></div>
+    <div class="faq-a">Substitua o arquivo <code>index.html</code> e/ou <code>mobile.html</code> no repositório do GitHub. O GitHub Pages atualiza em alguns minutos. No celular pode levar até 24h — force limpando o cache: no Chrome, 3 pontos → "Atualizar".</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="faqToggle(this)">Como trocar a senha de acesso a esta página <span class="arrow">▼</span></div>
+    <div class="faq-a">Edite o arquivo <code>admin.html</code> e localize a linha: <code>const SENHA = '...'</code>. Troque pelo valor desejado e suba o arquivo atualizado no GitHub.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="faqToggle(this)">Como adicionar um item de consumível que não está na lista <span class="arrow">▼</span></div>
+    <div class="faq-a">Na aba Consumíveis do app (desktop ou celular), role até o final — há um formulário "Cadastrar novo item". Preencha nome, categoria, unidade, quantidade atual e mínima.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="faqToggle(this)">Critério de qualidade para busca de preços no Mercado Livre <span class="arrow">▼</span></div>
+    <div class="faq-a">A busca retorna os primeiros resultados do ML — nem sempre são os de melhor qualidade. Recomendamos definir internamente o padrão de cada item (ex: "vela 7 dias — preferência por marcas X ou Y") e usar o link apenas como referência de preço. O fornecedor preferido pode ser cadastrado manualmente no campo "Fornecedor" de cada item.</div>
+  </div>
+
+  <div id="resultado" class="resultado"></div>
 </div>
 
 <div id="toast"></div>
 
 <script>
-// ── SENHA ────────────────────────────────────────────────
-// Para trocar a senha: altere o valor abaixo
 const SENHA = 'ogum2024';
 const URL   = 'https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAfyjHqC_mvDwvKDCFieibGTvp7u7Fyls9OcmCc2aDvlvsVwAW706SlWw/exec';
 
+// ── AUTENTICAÇÃO ─────────────────────────────────────────
 function entrar() {
-  const s = document.getElementById('senha').value;
-  if (s === SENHA) {
-    sessionStorage.setItem('terreiro_admin', '1');
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('admin-screen').style.display = 'block';
-    resumoFin();
+  if (document.getElementById('senha').value === SENHA) {
+    sessionStorage.setItem('terreiro_admin','1');
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('admin-screen').style.display='block';
+    iniciarAdmin();
   } else {
-    document.getElementById('login-error').style.display = 'block';
-    document.getElementById('senha').value = '';
+    document.getElementById('login-error').style.display='block';
+    document.getElementById('senha').value='';
     document.getElementById('senha').focus();
   }
 }
-
 function sair() {
   sessionStorage.removeItem('terreiro_admin');
-  document.getElementById('admin-screen').style.display = 'none';
-  document.getElementById('login-screen').style.display = 'block';
-  document.getElementById('senha').value = '';
+  location.reload();
 }
-
-// Mantém sessão se recarregar
-window.addEventListener('DOMContentLoaded', () => {
-  if (sessionStorage.getItem('terreiro_admin') === '1') {
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('admin-screen').style.display = 'block';
-    resumoFin();
+window.addEventListener('DOMContentLoaded',()=>{
+  if(sessionStorage.getItem('terreiro_admin')==='1'){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('admin-screen').style.display='block';
+    iniciarAdmin();
+  } else {
+    document.getElementById('senha').focus();
   }
-  document.getElementById('senha').focus();
 });
+function iniciarAdmin(){
+  carregarFinResumo();
+  carregarMailing();
+}
 
 // ── HELPERS ──────────────────────────────────────────────
-function toast(msg, ok=true) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.className = 'show' + (ok ? '' : ' erro');
-  clearTimeout(t._t); t._t = setTimeout(() => t.className = '', 3000);
-}
+function toast(msg,ok=true){const t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok?'':' erro');clearTimeout(t._t);t._t=setTimeout(()=>t.className='',3000);}
+function mostrar(txt){const el=document.getElementById('resultado');el.style.display='block';el.textContent=txt;el.scrollIntoView({behavior:'smooth',block:'nearest'});}
+function fmtBRL(v){return'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2});}
+function faqToggle(el){el.classList.toggle('open');el.nextElementSibling.classList.toggle('open');}
 
-function mostrar(texto) {
-  const el = document.getElementById('resultado');
-  el.style.display = 'block';
-  el.textContent = texto;
-}
-
-function fmtBRL(v) {
-  return 'R$ ' + Number(v||0).toLocaleString('pt-BR', {minimumFractionDigits:2});
-}
-
-// ── AÇÕES ────────────────────────────────────────────────
-async function resumoFin() {
-  try {
-    const r = await fetch(URL + '?acao=financeiro-resumo');
-    const j = await r.json();
-    if (j.ok) {
-      document.getElementById('s-ent').textContent = fmtBRL(j.entradasMes);
-      document.getElementById('s-sai').textContent = fmtBRL(j.saidasMes);
-      document.getElementById('s-sal').textContent = fmtBRL(j.saldo);
-      document.getElementById('status-bar').style.display = 'block';
-      // Breakdown por categoria
-      if (j.porCategoria && Object.keys(j.porCategoria).length) {
-        let txt = '📊 SAÍDAS POR CATEGORIA\n' + '─'.repeat(30) + '\n';
-        Object.entries(j.porCategoria)
-          .sort((a,b) => b[1]-a[1])
-          .forEach(([cat,val]) => txt += `  ${cat}: ${fmtBRL(val)}\n`);
-        txt += '\n' + '─'.repeat(30);
-        txt += `\n  Total entradas: ${fmtBRL(j.totalEntradas)}`;
-        txt += `\n  Total saídas:   ${fmtBRL(j.totalSaidas)}`;
-        txt += `\n  Saldo geral:    ${fmtBRL(j.saldo)}`;
-        mostrar(txt);
-      }
+// ── FINANCEIRO ───────────────────────────────────────────
+async function carregarFinResumo(){
+  try{
+    const j=await fetch(URL+'?acao=financeiro-resumo').then(r=>r.json());
+    if(j.ok){
+      document.getElementById('f-ent').textContent=fmtBRL(j.entradasMes);
+      document.getElementById('f-sai').textContent=fmtBRL(j.saidasMes);
+      document.getElementById('f-sal').textContent=fmtBRL(j.saldo);
     }
-  } catch(e) { toast('Erro ao carregar financeiro.', false); }
+  }catch(e){}
 }
-
-async function recalcularEstoque() {
-  toast('Recalculando...');
-  try {
-    const r = await fetch(URL + '?acao=consumiveis-listar');
-    const j = await r.json();
-    if (!j.ok) { toast('Erro.', false); return; }
-    const urgente = j.itens.filter(i => String(i.nivel).includes('Urgente'));
-    const alerta  = j.itens.filter(i => String(i.nivel).includes('Alerta'));
-    const repor   = j.itens.filter(i => String(i.nivel).includes('Repor'));
-    const ok      = j.itens.filter(i => String(i.nivel).includes('OK'));
-    let txt = '🔄 STATUS DO ESTOQUE\n' + '─'.repeat(30) + '\n';
-    txt += `  ✅ OK:             ${ok.length} itens\n`;
-    txt += `  ⚠️ Repor:         ${repor.length} itens\n`;
-    txt += `  🔴 Alerta:        ${alerta.length} itens\n`;
-    txt += `  🚨 Urgente/Zero:  ${urgente.length} itens\n`;
-    mostrar(txt);
-    toast('✓ Estoque verificado!');
-  } catch(e) { toast('Erro.', false); }
-}
-
-async function listaCompras() {
-  toast('Gerando lista...');
-  try {
-    const r = await fetch(URL + '?acao=consumiveis-listar');
-    const j = await r.json();
-    if (!j.ok) { toast('Erro.', false); return; }
-    const nok = j.itens.filter(i => !String(i.nivel).includes('OK') && !String(i.nivel).includes('mínimo'));
-    if (!nok.length) { mostrar('✅ Nenhum item precisa ser reposto!'); toast('Tudo em dia!'); return; }
-    nok.sort((a,b) => {
-      const ord = {'🚨 Urgente / Zero':0,'🔴 Alerta':1,'⚠️ Repor':2};
-      return (ord[a.nivel]??3) - (ord[b.nivel]??3);
-    });
-    let txt = '🛒 LISTA DE COMPRAS\n' + '─'.repeat(30) + '\n';
-    let cat = '';
-    nok.forEach(i => {
-      if (i.nivel !== cat) { txt += `\n${i.nivel}:\n`; cat = i.nivel; }
-      const falta = Math.max(0, (Number(i.minimo)||0) - (Number(i.atual)||0));
-      txt += `  • ${i.nome} — faltam ${falta} ${i.unidade||''}`;
-      if (i.fornecedor) txt += ` (${i.fornecedor})`;
-      if (i.precoUnit)  txt += ` · R$${Number(i.precoUnit).toFixed(2)}/un`;
-      txt += '\n';
-    });
-    mostrar(txt);
-    toast('✓ Lista gerada!');
-  } catch(e) { toast('Erro.', false); }
-}
-
-async function datasMes() {
+async function resumoFin(){
   toast('Carregando...');
-  try {
-    const r = await fetch(URL + '?acao=datas-mes');
-    const j = await r.json();
-    if (!j.ok) { toast('Erro.', false); return; }
-    const hoje = new Date();
-    const nomeMes = hoje.toLocaleString('pt-BR', {month:'long', year:'numeric'});
-    let txt = `📅 ${nomeMes.toUpperCase()}\n` + '─'.repeat(30) + '\n';
-    if (j.obrigacoes?.length) {
-      txt += '\n⚠️ OBRIGAÇÕES:\n';
-      j.obrigacoes.forEach(o => txt += `  • ${o.data} — ${o.nome}\n`);
+  try{
+    const j=await fetch(URL+'?acao=financeiro-resumo').then(r=>r.json());
+    if(!j.ok){toast('Erro.',false);return;}
+    let txt='💰 RESUMO FINANCEIRO\n'+'─'.repeat(30)+'\n';
+    txt+=`  Entradas do mês: ${fmtBRL(j.entradasMes)}\n`;
+    txt+=`  Saídas do mês:   ${fmtBRL(j.saidasMes)}\n`;
+    txt+=`  Saldo do mês:    ${fmtBRL(j.saldoMes)}\n\n`;
+    txt+=`  Total entradas: ${fmtBRL(j.totalEntradas)}\n`;
+    txt+=`  Total saídas:   ${fmtBRL(j.totalSaidas)}\n`;
+    txt+=`  Saldo geral:    ${fmtBRL(j.saldo)}\n`;
+    if(j.porCategoria&&Object.keys(j.porCategoria).length){
+      txt+='\n📂 SAÍDAS POR CATEGORIA\n'+'─'.repeat(30)+'\n';
+      Object.entries(j.porCategoria).sort((a,b)=>b[1]-a[1]).forEach(([cat,val])=>{
+        txt+=`  ${cat}: ${fmtBRL(val)}\n`;
+      });
     }
-    if (j.aniversariantes?.length) {
-      txt += '\n🎂 ANIVERSARIANTES:\n';
-      j.aniversariantes.forEach(a => txt += `  • ${a.data} — ${a.nome}\n`);
-    }
-    if (j.festas?.length) {
-      txt += '\n🥁 FESTAS:\n';
-      j.festas.forEach(f => txt += `  • ${f.data} — ${f.entidade}${f.saudacao?' ('+f.saudacao+')':''}\n`);
-    }
-    if (!j.obrigacoes?.length && !j.aniversariantes?.length && !j.festas?.length) {
-      txt += '\nNenhuma data especial este mês.';
-    }
-    mostrar(txt);
-    toast('✓ Carregado!');
-  } catch(e) { toast('Erro.', false); }
+    mostrar(txt);toast('✓ Carregado!');
+  }catch(e){toast('Erro.',false);}
 }
 
-async function obrigacoes() {
+// ── ESTOQUE ──────────────────────────────────────────────
+async function listaCompras(){
+  toast('Gerando lista...');
+  try{
+    const j=await fetch(URL+'?acao=consumiveis-listar').then(r=>r.json());
+    if(!j.ok){toast('Erro.',false);return;}
+    const nok=j.itens.filter(i=>!String(i.nivel).includes('OK')&&!String(i.nivel).includes('mínimo'));
+    if(!nok.length){mostrar('✅ Nenhum item precisa ser reposto!');toast('Tudo em dia!');return;}
+    nok.sort((a,b)=>({
+      '🚨 Urgente / Zero':0,'🔴 Alerta':1,'⚠️ Repor':2
+    }[a.nivel]??3)-({
+      '🚨 Urgente / Zero':0,'🔴 Alerta':1,'⚠️ Repor':2
+    }[b.nivel]??3));
+    let txt='🛒 LISTA DE COMPRAS\n'+'─'.repeat(30)+'\n';
+    let nivelAtual='';
+    nok.forEach(i=>{
+      if(i.nivel!==nivelAtual){txt+=`\n${i.nivel}:\n`;nivelAtual=i.nivel;}
+      const falta=Math.max(0,(Number(i.minimo)||0)-(Number(i.atual)||0));
+      txt+=`  • ${i.nome} — faltam ${falta} ${i.unidade||''}`;
+      if(i.fornecedor) txt+=` | Fornecedor: ${i.fornecedor}`;
+      if(i.precoUnit)  txt+=` | ~R$${Number(i.precoUnit).toFixed(2)}/un`;
+      if(i.link)       txt+=` | ${i.link}`;
+      txt+='\n';
+    });
+    mostrar(txt);toast('✓ Lista gerada!');
+  }catch(e){toast('Erro.',false);}
+}
+async function statusEstoque(){
   toast('Verificando...');
-  try {
-    const r = await fetch(URL + '?acao=filhos-listar');
-    const j = await r.json();
-    if (!j.ok) { toast('Erro.', false); return; }
-    // filhos-listar não retorna nome — só orixá. Busca todos e filtra próximos 90 dias
-    const hoje = new Date(), limite = new Date(hoje);
-    limite.setDate(limite.getDate() + 90);
-    // Precisamos chamar endpoint específico
-    const r2 = await fetch(URL + '?acao=datas-mes');
-    const j2 = await r2.json();
-    let txt = '⚠️ OBRIGAÇÕES — PRÓXIMOS 90 DIAS\n' + '─'.repeat(30) + '\n';
-    if (j2.obrigacoes?.length) {
-      j2.obrigacoes.forEach(o => txt += `  • ${o.data} — ${o.nome}\n`);
-    } else {
-      txt += '\nNenhuma obrigação nos próximos 90 dias.';
-    }
-    mostrar(txt);
-    toast('✓ Verificado!');
-  } catch(e) { toast('Erro.', false); }
+  try{
+    const j=await fetch(URL+'?acao=consumiveis-listar').then(r=>r.json());
+    if(!j.ok){toast('Erro.',false);return;}
+    const cats={};
+    j.itens.forEach(i=>{
+      if(!cats[i.categoria])cats[i.categoria]={ok:0,repor:0,alerta:0,urgente:0};
+      const k=String(i.nivel).includes('OK')?'ok':String(i.nivel).includes('Repor')?'repor':String(i.nivel).includes('Alerta')?'alerta':'urgente';
+      cats[i.categoria][k]++;
+    });
+    let txt='📊 STATUS DO ESTOQUE\n'+'─'.repeat(30)+'\n';
+    Object.entries(cats).forEach(([cat,c])=>{
+      txt+=`\n${cat}:\n`;
+      if(c.urgente)txt+=`  🚨 Urgente: ${c.urgente}\n`;
+      if(c.alerta) txt+=`  🔴 Alerta:  ${c.alerta}\n`;
+      if(c.repor)  txt+=`  ⚠️  Repor:   ${c.repor}\n`;
+      if(c.ok)     txt+=`  ✅ OK:       ${c.ok}\n`;
+    });
+    mostrar(txt);toast('✓ Verificado!');
+  }catch(e){toast('Erro.',false);}
 }
 
-async function carregarTudo() {
-  toast('Atualizando todos os dados...');
-  await Promise.allSettled([resumoFin(), recalcularEstoque()]);
+// ── DATAS ────────────────────────────────────────────────
+async function datasMes(){
+  toast('Carregando...');
+  try{
+    const j=await fetch(URL+'?acao=datas-mes').then(r=>r.json());
+    if(!j.ok){toast('Erro.',false);return;}
+    const nomeMes=new Date().toLocaleString('pt-BR',{month:'long',year:'numeric'});
+    let txt=`📅 ${nomeMes.toUpperCase()}\n`+'─'.repeat(30)+'\n';
+    if(j.obrigacoes?.length){txt+='\n⚠️ OBRIGAÇÕES:\n';j.obrigacoes.forEach(o=>txt+=`  • ${o.data} — ${o.nome}\n`);}
+    else txt+='\n⚠️ Sem obrigações este mês.\n';
+    if(j.aniversariantes?.length){txt+='\n🎂 ANIVERSARIANTES:\n';j.aniversariantes.forEach(a=>txt+=`  • ${a.data} — ${a.nome}\n`);}
+    else txt+='\n🎂 Sem aniversariantes este mês.\n';
+    if(j.festas?.length){txt+='\n🥁 FESTAS:\n';j.festas.forEach(f=>txt+=`  • ${f.data} — ${f.entidade}${f.saudacao?' · '+f.saudacao:''}\n`);}
+    mostrar(txt);toast('✓ Carregado!');
+  }catch(e){toast('Erro.',false);}
+}
+async function obrigacoes(){
+  toast('Verificando...');
+  const dias=parseInt(document.getElementById('prazo-dias').value)||180;
+  try{
+    // Busca datas do mês — para obrigações mais longas precisaríamos de endpoint dedicado
+    // Usamos filhos-listar que retorna proximaObrigacao
+    const j=await fetch(URL+'?acao=filhos-listar').then(r=>r.json());
+    if(!j.ok){toast('Erro.',false);return;}
+    const hoje=new Date(),limite=new Date(hoje);limite.setDate(limite.getDate()+dias);
+    const prox=j.itens.filter(i=>{
+      if(!i.proximaObrigacao||i.proximaObrigacao==='—')return false;
+      try{
+        const partes=i.proximaObrigacao.split('/');
+        if(partes.length<2)return false;
+        const d=new Date(parseInt(partes[2]||new Date().getFullYear()),parseInt(partes[1])-1,parseInt(partes[0]));
+        return d>=hoje&&d<=limite;
+      }catch(e){return false;}
+    });
+    let txt=`⚠️ OBRIGAÇÕES — PRÓXIMOS ${dias} DIAS\n`+'─'.repeat(30)+'\n';
+    if(!prox.length){txt+='\nNenhuma obrigação neste período.';mostrar(txt);toast('Nenhuma.');return;}
+    prox.forEach(i=>{
+      txt+=`  • ${i.proximaObrigacao} — Filho de ${i.orixa||'—'} (${i.statusTerreiro||'Ativo'})\n`;
+    });
+    mostrar(txt);toast(`✓ ${prox.length} obrigação(ões) encontrada(s).`);
+  }catch(e){toast('Erro.',false);}
+}
+
+// ── MAILING ──────────────────────────────────────────────
+async function carregarMailing(){
+  try{
+    // Busca filhos — para mailing precisamos de dados completos
+    // filhos-listar retorna só orixá/status para o público
+    // Admin precisa de endpoint próprio — por ora usamos o que temos
+    // e mostramos os campos disponíveis
+    const j=await fetch(URL+'?acao=filhos-listar').then(r=>r.json());
+    if(!j.ok){document.getElementById('mailing-lista').innerHTML='<div style="font-size:12px;color:#f08080;padding:8px">Erro ao carregar membros.</div>';return;}
+    if(!j.itens.length){document.getElementById('mailing-lista').innerHTML='<div style="font-size:12px;color:var(--cinza);text-align:center;padding:12px">Nenhum filho cadastrado ainda.</div>';return;}
+
+    const ativos=j.itens.filter(i=>i.statusTerreiro!=='Inativo'&&i.statusTerreiro!=='Suspenso');
+    const html=ativos.map(i=>`
+      <div class="mailing-item">
+        <div>
+          <div class="nome">✦ Filho de ${i.orixa||'—'}</div>
+          <div class="orixa">${i.statusTerreiro||'Ativo'}${i.nacao?' · '+i.nacao:''}</div>
+        </div>
+        <span style="font-size:11px;color:var(--cinza)">Contato na planilha</span>
+      </div>`).join('');
+
+    document.getElementById('mailing-lista').innerHTML=`
+      <div style="font-size:11px;color:var(--cinza);margin-bottom:8px">
+        ${ativos.length} membro(s) ativo(s). Para enviar convites com WhatsApp, 
+        consulte os contatos diretamente na planilha 
+        <a href="https://docs.google.com/spreadsheets/d/1zzP0TgsT85omd2MyIGLU-B2ONRMwI6aQkgQO4DroIFc/edit#gid=0" 
+           target="_blank" style="color:var(--ouro)">→ Abrir planilha</a>
+        e use os números da coluna "Contato" com a mensagem abaixo.
+      </div>
+      <div class="mailing-lista">${html}</div>
+      <div style="margin-top:12px">
+        <button class="btn-admin" style="width:100%" onclick="copiarMensagem()">
+          <span class="ic">📋</span><span class="lb">Copiar mensagem de convite</span>
+          <span class="dc">Cole no WhatsApp para cada membro</span>
+        </button>
+      </div>`;
+  }catch(e){
+    document.getElementById('mailing-lista').innerHTML='<div style="font-size:12px;color:#f08080;padding:8px">Erro ao carregar.</div>';
+  }
+}
+function copiarMensagem(){
+  const msg=document.getElementById('msg-convite').value;
+  navigator.clipboard.writeText(msg).then(()=>toast('✓ Mensagem copiada!')).catch(()=>{
+    // Fallback
+    const ta=document.createElement('textarea');ta.value=msg;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    toast('✓ Mensagem copiada!');
+  });
+}
+
+async function recarregarTudo(){
+  toast('Recarregando...');
+  await carregarFinResumo();
+  await carregarMailing();
   toast('✓ Dados atualizados!');
 }
 </script>

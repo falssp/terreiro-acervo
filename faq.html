@@ -1,105 +1,97 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>FAQ — Acervo do Terreiro</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Ajuda — Ile Ase Vodun Ogum Ayres</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',Arial,sans-serif;background:#1a0e06;color:#f5e9d0;line-height:1.6;min-height:100vh}
-.header{background:linear-gradient(135deg,#2a1a0e,#4a2e18);padding:28px 20px;text-align:center;border-bottom:1px solid rgba(200,146,42,.25)}
-.header h1{font-size:1.4rem;color:#e8b84b;margin-bottom:4px}
-.header p{font-size:12px;color:#8a7a6a}
-.back{display:inline-block;margin:16px 20px 0;color:#c8922a;font-size:13px;text-decoration:none}
-.container{max-width:600px;margin:0 auto;padding:20px 16px 60px}
-.section{margin-bottom:28px}
-.section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#c8922a;padding-bottom:6px;border-bottom:1px solid rgba(200,146,42,.25);margin-bottom:14px}
-.faq-item{margin-bottom:14px;background:rgba(74,46,24,.3);border:1px solid rgba(200,146,42,.2);border-radius:10px;overflow:hidden}
-.faq-q{padding:12px 14px;font-size:13px;font-weight:600;color:#f0d090;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.faq-q:hover{background:rgba(200,146,42,.08)}
-.faq-q .arrow{color:#c8922a;transition:transform .2s;flex-shrink:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#0f0f0f;color:#fff;line-height:1.6;min-height:100vh}
+.header{background:linear-gradient(135deg,#050505,#111);padding:28px 20px;text-align:center;border-bottom:1px solid rgba(201,168,76,.2)}
+.header h1{font-family:'Cinzel',serif;font-size:1.3rem;color:#f0d060;margin-bottom:4px}
+.header p{font-size:12px;color:#999}
+.back{display:flex;gap:12px;justify-content:center;padding:14px 20px;border-bottom:1px solid rgba(201,168,76,.1)}
+.back a{font-size:12px;color:#c9a84c;text-decoration:none}
+.back a:hover{color:#f0d060}
+.container{max-width:580px;margin:0 auto;padding:24px 16px 60px}
+.section{margin-bottom:32px}
+.section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#c9a84c;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2);margin-bottom:16px}
+.faq-item{margin-bottom:12px;background:#1a1a1a;border:1px solid rgba(201,168,76,.15);border-radius:10px;overflow:hidden}
+.faq-q{padding:14px 16px;font-size:13px;font-weight:600;color:#f0d060;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;user-select:none}
+.faq-q:hover{background:rgba(201,168,76,.06)}
+.faq-q .arrow{color:#c9a84c;transition:transform .2s;flex-shrink:0;font-size:11px}
 .faq-q.open .arrow{transform:rotate(180deg)}
-.faq-a{display:none;padding:0 14px 12px;font-size:13px;color:#c8b898;line-height:1.7}
+.faq-a{display:none;padding:0 16px 14px;font-size:13px;color:#ccc;line-height:1.7}
 .faq-a.open{display:block}
-.faq-a code{background:rgba(0,0,0,.4);padding:2px 6px;border-radius:4px;font-size:12px;color:#e8b84b}
-.badge{display:inline-block;font-size:11px;font-weight:600;padding:1px 7px;border-radius:99px;vertical-align:middle}
-.ok{background:#e6f4ea;color:#1e6b3a}.repor{background:#fef9e7;color:#7d5c00}
-.alerta{background:#fdecea;color:#8b0000}.urgente{background:#f5c6cb;color:#5c0000}
+.faq-a p{margin-bottom:8px}
+.faq-a p:last-child{margin-bottom:0}
+.badge{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px;vertical-align:middle;margin:1px}
+.ok{background:#e6f4ea;color:#1e6b3a}
+.repor{background:#fef9e7;color:#7d5c00}
+.alerta{background:#fdecea;color:#8b0000}
+.urgente{background:#f5c6cb;color:#5c0000}
+.install-links{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.install-btn{display:block;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:10px 14px;color:#f0d060;text-decoration:none;font-size:13px;font-weight:500}
+.install-btn:hover{background:rgba(201,168,76,.2)}
 </style>
 </head>
 <body>
 <div class="header">
-  <h1>❓ Perguntas Frequentes</h1>
-  <p>Acervo do Terreiro — Guia de uso</p>
+  <h1>✦ Ile Ase Vodun Ogum Ayres ✦</h1>
+  <p>Ajuda — perguntas frequentes</p>
 </div>
-<a class="back" href="index.html">← Voltar ao app</a>
+<div class="back">
+  <a href="index.html">🖥️ Versão desktop</a>
+  <a href="mobile.html">📱 Versão celular</a>
+</div>
 <div class="container">
 
   <div class="section">
-    <div class="section-title">Primeiros passos</div>
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">O que preciso fazer para começar a usar? <span class="arrow">▼</span></div>
-    <div class="faq-a">1. Abra a planilha do terreiro no Google Sheets.<br>2. Vá em <code>Extensões → Apps Script</code>, cole o código e salve.<br>3. Execute a função <code>setup()</code>.<br>4. Publique como Web App e copie a URL.<br>5. Cole a URL no campo azul no topo do app.<br><br>Pronto — tudo vai funcionar automaticamente.</div></div>
+    <div class="section-title">Instalação</div>
 
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Onde fica a URL do Apps Script? <span class="arrow">▼</span></div>
-    <div class="faq-a">No editor Apps Script: <code>Implantar → Gerenciar implantações</code>. A URL termina em <code>/exec</code>. Copie e cole no campo "URL do Apps Script" no topo do app.</div></div>
-
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Como instalo o app no celular? <span class="arrow">▼</span></div>
-    <div class="faq-a"><b>Android (Chrome):</b> um banner aparece na parte de baixo da tela — toque em "Instalar". Se não aparecer: 3 pontos → "Adicionar à tela inicial".<br><br><b>iPhone (Safari):</b> toque no botão de compartilhar 📤 → "Adicionar à Tela de Início". Atenção: no iPhone funciona apenas no Safari, não no Chrome.</div></div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Como instalo o app no celular? <span class="arrow">▼</span></div>
+      <div class="faq-a">
+        <p>O app pode ser instalado diretamente pelo navegador — sem precisar da App Store ou Play Store.</p>
+        <div class="install-links">
+          <a class="install-btn" href="mobile.html">📱 Abrir versão celular</a>
+        </div>
+        <p style="margin-top:10px"><strong>Android (Chrome):</strong> após abrir o link, um banner aparece na parte de baixo da tela com a opção de instalar. Se não aparecer: toque nos 3 pontos no canto superior → "Adicionar à tela inicial".</p>
+        <p><strong>iPhone (Safari):</strong> abra o link no Safari → toque no botão de compartilhar 📤 → "Adicionar à Tela de Início" → "Adicionar". Atenção: no iPhone funciona apenas no Safari, não no Chrome.</p>
+        <p>Após instalado, o ícone aparece na tela inicial como qualquer outro app.</p>
+      </div>
+    </div>
   </div>
 
   <div class="section">
-    <div class="section-title">Consumíveis e Estoque</div>
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">O que significam os níveis de estoque? <span class="arrow">▼</span></div>
-    <div class="faq-a">Os níveis são calculados como % do mínimo definido para cada item:<br><br>
-    <span class="badge ok">✅ OK</span> — ≥ 75% do mínimo — sem urgência<br><br>
-    <span class="badge repor">⚠️ Repor</span> — 25 a 74% — compre na próxima oportunidade<br><br>
-    <span class="badge alerta">🔴 Alerta</span> — 5 a 24% — precisa repor antes da próxima gira<br><br>
-    <span class="badge urgente">🚨 Urgente</span> — menos de 5% ou zerado — compre agora</div></div>
+    <div class="section-title">Consumíveis</div>
 
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Como atualizo a quantidade de um item? <span class="arrow">▼</span></div>
-    <div class="faq-a">Na aba <b>Consumíveis</b>, toque no botão ✏️ ao lado do item. Preencha a quantidade atual e toque em "Gravar". O nível é recalculado automaticamente.<br><br>Também pode atualizar diretamente na planilha, na coluna "Qtd Atual", e depois usar o menu <code>🏛️ Terreiro → Recalcular níveis</code>.</div></div>
-
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Como funciona a busca de preços no Mercado Livre? <span class="arrow">▼</span></div>
-    <div class="faq-a">Ao abrir o painel de atualização (botão ✏️), há um campo de busca. Digite o produto e toque em 🔍. Os primeiros resultados aparecem com preço e foto — clique em um para preencher o preço e o link automaticamente. Se for um pacote com várias unidades, o preço unitário é calculado automaticamente.</div></div>
-
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Como gero uma lista de compras? <span class="arrow">▼</span></div>
-    <div class="faq-a">Na planilha, use o menu <code>🏛️ Terreiro → Gerar lista de compras</code>. Uma janela vai aparecer com todos os itens que precisam ser repostos, organizados por urgência.</div></div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">O que significam os níveis de estoque? <span class="arrow">▼</span></div>
+      <div class="faq-a">
+        <p>Cada item tem uma quantidade mínima definida. O nível mostra o quanto temos em relação a esse mínimo:</p>
+        <p><span class="badge ok">✅ OK</span> — 75% ou mais do mínimo. Sem urgência.</p>
+        <p><span class="badge repor">⚠️ Repor</span> — entre 25% e 74%. Comprar na próxima oportunidade.</p>
+        <p><span class="badge alerta">🔴 Alerta</span> — entre 5% e 24%. Precisa repor antes da próxima gira.</p>
+        <p><span class="badge urgente">🚨 Urgente</span> — menos de 5% ou zerado. Comprar com prioridade.</p>
+      </div>
+    </div>
   </div>
 
   <div class="section">
-    <div class="section-title">Filhos de Santo</div>
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Que dados são armazenados sobre os filhos de santo? <span class="arrow">▼</span></div>
-    <div class="faq-a">Apenas dados necessários para a gestão do terreiro: nome de candomblé, nome social, orixá de cabeça, adjuntó, nação, data de aniversário, data de feitura, próxima obrigação e status. <b>Não armazenamos</b> CPF, endereço completo, dados de saúde ou qualquer dado sensível protegido pela LGPD.</div></div>
+    <div class="section-title">Privacidade</div>
 
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Como funciona o controle de obrigações? <span class="arrow">▼</span></div>
-    <div class="faq-a">Cada filho tem um campo "Próxima Obrigação" com a data prevista. O sistema alerta quando a data estiver nos próximos 90 dias — tanto na tela Início quanto pelo menu da planilha (<code>🏛️ Terreiro → Ver obrigações próximas</code>).</div></div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Que informações são guardadas sobre os filhos de santo? <span class="arrow">▼</span></div>
+      <div class="faq-a">
+        <p>Guardamos apenas o mínimo necessário para a gestão do terreiro: nome, data de aniversário, data de feitura, nação e obrigações pendentes.</p>
+        <p>Informações de caráter iniciático — como orixá de cabeça e adjuntó — ficam registradas apenas na planilha interna, acessível somente à liderança do terreiro. Esses dados não aparecem no app.</p>
+        <p>Não armazenamos CPF, endereço, dados de saúde nem nenhuma outra informação sensível.</p>
+      </div>
+    </div>
   </div>
 
-  <div class="section">
-    <div class="section-title">Financeiro</div>
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Como registro uma entrada ou saída? <span class="arrow">▼</span></div>
-    <div class="faq-a">Na aba <b>Financeiro</b>, role até o formulário. Selecione o tipo (Entrada ou Saída), a categoria, o valor e a descrição. Toque em "Lançar". O saldo é atualizado automaticamente.</div></div>
-
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">O saldo mostrado é o total histórico ou só do mês? <span class="arrow">▼</span></div>
-    <div class="faq-a">A tela inicial e o painel financeiro mostram <b>entradas e saídas do mês atual</b> e o <b>saldo total</b> (histórico completo). Assim você vê tanto o movimento recente quanto a saúde financeira geral.</div></div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Datas e alertas</div>
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Como vejo os aniversariantes e festas do mês? <span class="arrow">▼</span></div>
-    <div class="faq-a">A tela <b>Início</b> mostra automaticamente as datas do mês atual quando carregada. Também é possível acessar pelo menu da planilha: <code>🏛️ Terreiro → Ver datas do mês atual</code>.</div></div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Problemas comuns</div>
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Aparece "Ação desconhecida" ao gravar. O que fazer? <span class="arrow">▼</span></div>
-    <div class="faq-a">O código do Apps Script precisa ser republicado. No editor: <code>Implantar → Gerenciar implantações → lápis ✏️ → Nova versão → Implantar</code>. A URL permanece a mesma.</div></div>
-
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">O app não carrega os dados. O que verificar? <span class="arrow">▼</span></div>
-    <div class="faq-a">1. A URL no campo azul está correta e termina em <code>/exec</code>?<br>2. O Web App foi publicado com acesso "Qualquer pessoa"?<br>3. O <code>setup()</code> foi executado e as abas existem na planilha?<br><br>Se tudo estiver certo e ainda não funcionar, tente abrir a URL diretamente no navegador — deve aparecer: <code>{"ok":true,"msg":"Web App ativo."}</code></div></div>
-
-    <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Como atualizo o app quando houver uma versão nova? <span class="arrow">▼</span></div>
-    <div class="faq-a">Basta substituir o arquivo <code>index.html</code> no repositório do GitHub. O GitHub Pages atualiza automaticamente em alguns minutos. O cache do celular pode levar até 24h para atualizar — se necessário, no Chrome: 3 pontos → "Atualizar".</div></div>
-  </div>
 </div>
 <script>
 function toggle(el){

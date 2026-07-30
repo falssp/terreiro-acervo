@@ -112,7 +112,7 @@ input[type="date"]{color-scheme:dark}
 .filter-row::-webkit-scrollbar{display:none}
 .filter-row select{background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:12px;padding:8px 26px 8px 10px;font-family:var(--fb);outline:none;flex-shrink:0;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c8922a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center}
 .filter-row select option{background:#111111}
-.btn-reload{background:rgba(200,146,42,.12);border:1px solid var(--borda);border-radius:8px;color:var(--ouro);padding:8px 13px;font-size:14px;cursor:pointer;flex-shrink:0;min-height:38px}
+
 
 /* ── ORNAMENTO ─── */
 .ornamento{text-align:center;color:var(--ouro);opacity:.28;font-size:15px;letter-spacing:.5em;margin:12px 0;pointer-events:none}
@@ -232,10 +232,7 @@ input[type="date"]{color-scheme:dark}
           <div class="fin-card saida"><div class="num" id="h-sai">—</div><div class="rot">↓ Saídas mês</div></div>
           <div class="fin-card saldo"><div class="num" id="h-sal">—</div><div class="rot">= Saldo total</div></div>
         </div>
-        <div class="btn-row" style="justify-content:center;gap:8px">
-          <button class="btn btn-ghost" style="font-size:13px;min-height:40px" onclick="carregarHome()">⟳ Atualizar</button>
-          <a href="faq.html" style="text-decoration:none"><button class="btn btn-ghost" style="font-size:13px;min-height:40px">❓ FAQ</button></a>
-        </div>
+        
       </div>
     </div>
 
@@ -293,9 +290,9 @@ input[type="date"]{color-scheme:dark}
             <option value="">Todos status</option>
             <option>Disponível</option><option>Em uso</option><option>Danificado</option><option>Necessita reposição</option>
           </select>
-          <button class="btn-reload" onclick="carregarAcervo()">⟳</button>
+          
         </div>
-        <div class="card-list" id="lista"><div class="empty">Toque em ⟳ para carregar.</div></div>
+        <div class="card-list" id="lista"><div class="empty">Carregando...</div></div>
       </div>
     </div>
 
@@ -319,9 +316,9 @@ input[type="date"]{color-scheme:dark}
             <option>Velas</option><option>Bebidas</option><option>Fumo</option>
             <option>Ervas e Defumação</option><option>Alimentos</option><option>Flores e Naturais</option>
           </select>
-          <button class="btn-reload" onclick="carregarConsumiveis()">⟳</button>
+          
         </div>
-        <div id="csm-lista"><div class="empty">Toque em ⟳ para carregar.</div></div>
+        <div id="csm-lista"><div class="empty">Carregando...</div></div>
       </div>
     </div>
 
@@ -340,9 +337,9 @@ input[type="date"]{color-scheme:dark}
             <option>Ativo</option><option>Abiã</option><option>Iaô</option><option>Ebomi</option>
             <option>Ogã / Ekedi</option><option>Suspenso</option><option>Inativo</option>
           </select>
-          <button class="btn-reload" onclick="carregarFilhos()">⟳</button>
+          
         </div>
-        <div id="filhos-lista"><div class="empty">Toque em ⟳ para carregar.</div></div>
+        <div id="filhos-lista"><div class="empty">Carregando...</div></div>
 
         <div class="secao-titulo">Cadastrar filho</div>
         <div style="background:rgba(42,10,42,.3);border:1px solid rgba(200,150,220,.2);border-radius:var(--r);padding:14px">
@@ -406,9 +403,9 @@ input[type="date"]{color-scheme:dark}
             <option value="">Entrada e saída</option>
             <option value="Entrada">Entradas</option><option value="Saída">Saídas</option>
           </select>
-          <button class="btn-reload" onclick="carregarFin()">⟳</button>
+          
         </div>
-        <div id="fin-lista"><div class="empty">Toque em ⟳ para carregar.</div></div>
+        <div id="fin-lista"><div class="empty">Carregando...</div></div>
 
         <div class="secao-titulo">Lançar</div>
         <div style="background:rgba(10,42,10,.3);border:1px solid rgba(150,220,150,.15);border-radius:var(--r);padding:14px">
@@ -514,8 +511,13 @@ let acervo=[],consumiveis=[],filhos=[],lancamentos=[],modalItem=null,deferredPro
 
 // ── INIT ────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded',()=>{
-  
+  const hoje=new Date().toISOString().split('T')[0];
+  const el=document.getElementById('fn-data');if(el)el.value=hoje;
   carregarHome();
+  carregarConsumiveis();
+  carregarAcervo();
+  carregarFilhos();
+  carregarFin();
 });
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('pwa-banner').style.display='flex';});
 function installPwa(){if(!deferredPrompt)return;deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;document.getElementById('pwa-banner').style.display='none';});}
