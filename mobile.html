@@ -228,9 +228,9 @@ input[type="date"]{color-scheme:dark}
         </div>
         <div id="datas-home"></div>
         <div id="fin-home" class="fin-resumo" style="display:none">
-          <div class="fin-card entrada" onclick="navTo('financeiro',document.querySelectorAll('.nav-btn')[4]);setTimeout(()=>filtrarFinMobile('Entrada'),300)" style="cursor:pointer"><div class="num" id="h-ent">—</div><div class="rot">↑ Entradas mês</div></div>
-          <div class="fin-card saida" onclick="navTo('financeiro',document.querySelectorAll('.nav-btn')[4]);setTimeout(()=>filtrarFinMobile('Saída'),300)" style="cursor:pointer"><div class="num" id="h-sai">—</div><div class="rot">↓ Saídas mês</div></div>
-          <div class="fin-card saldo" onclick="navTo('financeiro',document.querySelectorAll('.nav-btn')[4]);setTimeout(()=>filtrarFinMobile(''),300)" style="cursor:pointer"><div class="num" id="h-sal">—</div><div class="rot">= Saldo total</div></div>
+          <div class="fin-card entrada" onclick="irParaMobile('financeiro',()=>filtrarFinMobile('Entrada'))" style="cursor:pointer"><div class="num" id="h-ent">—</div><div class="rot">↑ Entradas mês</div></div>
+          <div class="fin-card saida" onclick="irParaMobile('financeiro',()=>filtrarFinMobile('Saída'))" style="cursor:pointer"><div class="num" id="h-sai">—</div><div class="rot">↓ Saídas mês</div></div>
+          <div class="fin-card saldo" onclick="irParaMobile('financeiro',()=>filtrarFinMobile(''))" style="cursor:pointer"><div class="num" id="h-sal">—</div><div class="rot">= Saldo total</div></div>
         </div>
         
       </div>
@@ -300,10 +300,10 @@ input[type="date"]{color-scheme:dark}
     <div class="page" id="page-consumiveis">
       <div class="inner">
         <div class="resumo-niveis">
-          <div class="nivel-card ok" onclick="filtrarNivelMobile('ok')" style="cursor:pointer"><div class="num" id="cnt-ok">—</div><div class="rot">✅ OK</div></div>
-          <div class="nivel-card repor" onclick="filtrarNivelMobile('repor')" style="cursor:pointer"><div class="num" id="cnt-repor">—</div><div class="rot">⚠️ Repor</div></div>
-          <div class="nivel-card alerta" onclick="filtrarNivelMobile('alerta')" style="cursor:pointer"><div class="num" id="cnt-alerta">—</div><div class="rot">🔴 Alerta</div></div>
-          <div class="nivel-card urgente" onclick="filtrarNivelMobile('urgente')" style="cursor:pointer"><div class="num" id="cnt-urgente">—</div><div class="rot">🚨 Urgente</div></div>
+          <div class="nivel-card ok" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('ok'))" style="cursor:pointer"><div class="num" id="cnt-ok">—</div><div class="rot">✅ OK</div></div>
+          <div class="nivel-card repor" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('repor'))" style="cursor:pointer"><div class="num" id="cnt-repor">—</div><div class="rot">⚠️ Repor</div></div>
+          <div class="nivel-card alerta" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('alerta'))" style="cursor:pointer"><div class="num" id="cnt-alerta">—</div><div class="rot">🔴 Alerta</div></div>
+          <div class="nivel-card urgente" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('urgente'))" style="cursor:pointer"><div class="num" id="cnt-urgente">—</div><div class="rot">🚨 Urgente</div></div>
         </div>
         <div class="filter-row">
           <select id="cf-nivel" onchange="renderConsumiveis()">
@@ -394,9 +394,9 @@ input[type="date"]{color-scheme:dark}
     <div class="page" id="page-financeiro">
       <div class="inner">
         <div class="fin-resumo">
-          <div class="fin-card entrada" onclick="filtrarFinMobile('Entrada')" style="cursor:pointer"><div class="num" id="fin-ent">—</div><div class="rot">↑ Mês</div></div>
-          <div class="fin-card saida" onclick="filtrarFinMobile('Saída')" style="cursor:pointer"><div class="num" id="fin-sai">—</div><div class="rot">↓ Mês</div></div>
-          <div class="fin-card saldo" onclick="filtrarFinMobile('')" style="cursor:pointer"><div class="num" id="fin-sal">—</div><div class="rot">= Saldo</div></div>
+          <div class="fin-card entrada" onclick="filtrarFinMobile('Entrada');document.getElementById('fin-lista').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer"><div class="num" id="fin-ent">—</div><div class="rot">↑ Mês</div></div>
+          <div class="fin-card saida" onclick="filtrarFinMobile('Saída');document.getElementById('fin-lista').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer"><div class="num" id="fin-sai">—</div><div class="rot">↓ Mês</div></div>
+          <div class="fin-card saldo" onclick="filtrarFinMobile('');document.getElementById('fin-lista').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer"><div class="num" id="fin-sal">—</div><div class="rot">= Saldo</div></div>
         </div>
         <div class="filter-row">
           <select id="fn-tipo" onchange="renderFin()">
@@ -549,6 +549,13 @@ function updateSubcat(){
 }
 
 // ── NAVEGAÇÃO ────────────────────────────────────────────
+function irParaMobile(id,cb){
+  const btns=document.querySelectorAll('.nav-btn');
+  const mapa={home:0,cadastro:1,consumiveis:2,filhos:3,financeiro:4};
+  const el=btns[mapa[id]];
+  if(el)navTo(id,el);
+  if(cb)setTimeout(cb,300);
+}
 function navTo(id,el){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));

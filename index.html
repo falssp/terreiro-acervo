@@ -341,9 +341,9 @@ header p{font-size:10px;color:var(--cinza);margin-top:1px;letter-spacing:.08em;t
   <div class="section" id="sec-financeiro">
     <div class="ornamento">✦ ✦ ✦</div>
     <div class="fin-resumo">
-      <div class="fin-card entrada" onclick="filtrarFin('Entrada')" style="cursor:pointer" title="Ver entradas"><div class="num" id="fin-ent">—</div><div class="rot">↑ Entradas mês</div></div>
-      <div class="fin-card saida" onclick="filtrarFin('Saída')" style="cursor:pointer" title="Ver saídas"><div class="num" id="fin-sai">—</div><div class="rot">↓ Saídas mês</div></div>
-      <div class="fin-card saldo" onclick="filtrarFin('')" style="cursor:pointer" title="Ver todos"><div class="num" id="fin-sal">—</div><div class="rot">= Saldo total</div></div>
+      <div class="fin-card entrada" onclick="filtrarFin('Entrada');document.getElementById('fin-lista').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" title="Ver entradas"><div class="num" id="fin-ent">—</div><div class="rot">↑ Entradas mês</div></div>
+      <div class="fin-card saida" onclick="filtrarFin('Saída');document.getElementById('fin-lista').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" title="Ver saídas"><div class="num" id="fin-sai">—</div><div class="rot">↓ Saídas mês</div></div>
+      <div class="fin-card saldo" onclick="filtrarFin('');document.getElementById('fin-lista').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer" title="Ver todos"><div class="num" id="fin-sal">—</div><div class="rot">= Saldo total</div></div>
     </div>
     <div class="filter-bar">
       <select id="fn-tipo" onchange="renderFin()"><option value="">Entrada e saída</option>
@@ -459,6 +459,10 @@ function updateSubcat(){
   s.innerHTML='<option value="">—</option>';
   (SUBCATS[c]||[]).forEach(x=>{const o=document.createElement('option');o.textContent=x;s.appendChild(o);});
 }
+function irPara(id){
+  const el=document.querySelector('.tab[onclick*="''+id+''"]');
+  if(el)switchTab(id,el);
+}
 function switchTab(id,el){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
@@ -487,9 +491,9 @@ async function carregarHome(){
     if(rd.ok){
       document.getElementById('fin-home-resumo').innerHTML=`
         <div class="fin-resumo">
-          <div class="fin-card entrada" onclick="switchTab('financeiro',document.querySelectorAll('.tab')[5])" style="cursor:pointer" title="Ver financeiro"><div class="num">${fmtBRL(rd.entradasMes)}</div><div class="rot">↑ Entradas mês</div></div>
-          <div class="fin-card saida" onclick="switchTab('financeiro',document.querySelectorAll('.tab')[5])" style="cursor:pointer" title="Ver financeiro"><div class="num">${fmtBRL(rd.saidasMes)}</div><div class="rot">↓ Saídas mês</div></div>
-          <div class="fin-card saldo" onclick="switchTab('financeiro',document.querySelectorAll('.tab')[5])" style="cursor:pointer" title="Ver financeiro"><div class="num">${fmtBRL(rd.saldo)}</div><div class="rot">= Saldo total</div></div>
+          <div class="fin-card entrada" onclick="irPara('financeiro')" style="cursor:pointer" title="Ver financeiro"><div class="num">${fmtBRL(rd.entradasMes)}</div><div class="rot">↑ Entradas mês</div></div>
+          <div class="fin-card saida" onclick="irPara('financeiro')" style="cursor:pointer" title="Ver financeiro"><div class="num">${fmtBRL(rd.saidasMes)}</div><div class="rot">↓ Saídas mês</div></div>
+          <div class="fin-card saldo" onclick="irPara('financeiro')" style="cursor:pointer" title="Ver financeiro"><div class="num">${fmtBRL(rd.saldo)}</div><div class="rot">= Saldo total</div></div>
         </div>`;
     }
     if(dd.ok){
