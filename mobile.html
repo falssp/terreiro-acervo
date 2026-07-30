@@ -122,7 +122,7 @@ input[type="date"]{color-scheme:dark}
 
 /* ── CONSUMÍVEIS ─── */
 .resumo-niveis{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
-.nivel-card{border-radius:10px;padding:10px 4px;text-align:center;border:1px solid transparent}
+.nivel-card{border-radius:10px;padding:10px 4px;text-align:center;border:1px solid transparent;transition:opacity .15s;active:opacity:.7}
 .nivel-card .num{font-family:var(--fd);font-size:1.5rem;font-weight:600;line-height:1}
 .nivel-card .rot{font-size:9px;text-transform:uppercase;letter-spacing:.04em;margin-top:3px;line-height:1.2}
 .nivel-card.ok{background:rgba(30,107,58,.2);border-color:rgba(30,107,58,.3)}.nivel-card.ok .num{color:#7fd67f}
@@ -300,10 +300,10 @@ input[type="date"]{color-scheme:dark}
     <div class="page" id="page-consumiveis">
       <div class="inner">
         <div class="resumo-niveis">
-          <div class="nivel-card ok"><div class="num" id="cnt-ok">—</div><div class="rot">✅ OK</div></div>
-          <div class="nivel-card repor"><div class="num" id="cnt-repor">—</div><div class="rot">⚠️ Repor</div></div>
-          <div class="nivel-card alerta"><div class="num" id="cnt-alerta">—</div><div class="rot">🔴 Alerta</div></div>
-          <div class="nivel-card urgente"><div class="num" id="cnt-urgente">—</div><div class="rot">🚨 Urgente</div></div>
+          <div class="nivel-card ok" onclick="filtrarNivelMobile('ok')" style="cursor:pointer"><div class="num" id="cnt-ok">—</div><div class="rot">✅ OK</div></div>
+          <div class="nivel-card repor" onclick="filtrarNivelMobile('repor')" style="cursor:pointer"><div class="num" id="cnt-repor">—</div><div class="rot">⚠️ Repor</div></div>
+          <div class="nivel-card alerta" onclick="filtrarNivelMobile('alerta')" style="cursor:pointer"><div class="num" id="cnt-alerta">—</div><div class="rot">🔴 Alerta</div></div>
+          <div class="nivel-card urgente" onclick="filtrarNivelMobile('urgente')" style="cursor:pointer"><div class="num" id="cnt-urgente">—</div><div class="rot">🚨 Urgente</div></div>
         </div>
         <div class="filter-row">
           <select id="cf-nivel" onchange="renderConsumiveis()">
@@ -528,6 +528,11 @@ function getUrl(){return'https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAf
 function toast(msg,ok=true){const t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok?'':' erro');clearTimeout(t._t);t._t=setTimeout(()=>t.className='',3000);}
 function prog(p){document.getElementById('prog').style.width=p+'%';}
 function fmtBRL(v){return'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function filtrarNivelMobile(nivel){
+  document.getElementById('cf-nivel').value=nivel;
+  renderConsumiveis();
+  navTo('consumiveis',document.querySelectorAll('.nav-btn')[2]);
+}
 function nivelClass(n){return(n||'').includes('OK')?'ok':(n||'').includes('Repor')?'repor':(n||'').includes('Alerta')?'alerta':'urgente';}
 function pctNum(p){return parseInt((p||'0').replace('%',''))||0;}
 function badgeClass(s){return'b-'+(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'-');}

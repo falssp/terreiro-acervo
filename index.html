@@ -85,7 +85,7 @@ header p{font-size:10px;color:var(--cinza);margin-top:1px;letter-spacing:.08em;t
 .nivel-card{border-radius:10px;padding:12px 8px;text-align:center;border:1px solid transparent}
 .nivel-card .num{font-family:var(--fd);font-size:1.6rem;font-weight:600;line-height:1}
 .nivel-card .rot{font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
-.nivel-card.ok{background:rgba(30,107,58,.2);border-color:rgba(30,107,58,.3)}.nivel-card.ok .num{color:#7fd67f}
+.nivel-card{transition:transform .1s,opacity .15s}.nivel-card:hover{opacity:.85;transform:translateY(-1px)}.nivel-card.ok{background:rgba(30,107,58,.2);border-color:rgba(30,107,58,.3)}.nivel-card.ok .num{color:#7fd67f}
 .nivel-card.repor{background:rgba(125,92,0,.2);border-color:rgba(125,92,0,.3)}.nivel-card.repor .num{color:#e8b84b}
 .nivel-card.alerta{background:rgba(139,0,0,.2);border-color:rgba(139,0,0,.3)}.nivel-card.alerta .num{color:#f08080}
 .nivel-card.urgente{background:rgba(92,0,0,.3);border-color:rgba(92,0,0,.4)}.nivel-card.urgente .num{color:#ffb3b3}
@@ -123,7 +123,7 @@ header p{font-size:10px;color:var(--cinza);margin-top:1px;letter-spacing:.08em;t
 .fin-card{background:rgba(0,0,0,.28);border:1px solid var(--borda);border-radius:var(--r);padding:14px 10px;text-align:center}
 .fin-card .num{font-family:var(--fd);font-size:1.2rem;font-weight:600;line-height:1.2}
 .fin-card .rot{font-size:9px;text-transform:uppercase;letter-spacing:.07em;margin-top:3px;color:var(--cinza)}
-.fin-card.entrada .num{color:#7fd67f}.fin-card.saida .num{color:#f08080}.fin-card.saldo .num{color:var(--ouro-lt)}
+.fin-card{transition:transform .1s,opacity .15s}.fin-card:hover{opacity:.85;transform:translateY(-1px)}.fin-card.entrada .num{color:#7fd67f}.fin-card.saida .num{color:#f08080}.fin-card.saldo .num{color:var(--ouro-lt)}
 .fin-item{background:rgba(0,0,0,.2);border-radius:10px;padding:10px 13px;margin-bottom:6px;border-left:3px solid transparent}
 .fin-item.entrada{border-left-color:#1e6b3a}.fin-item.saida{border-left-color:#8b0000}
 .fin-item-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
@@ -183,10 +183,7 @@ header p{font-size:10px;color:var(--cinza);margin-top:1px;letter-spacing:.08em;t
 
   <!-- HOME -->
   <div class="section active" id="sec-home">
-    <div style="display:flex;justify-content:center;gap:10px;margin:14px 0 12px">
-      <a href="mobile.html" style="display:inline-flex;align-items:center;gap:5px;background:rgba(201,168,76,.1);border:1px solid var(--borda);border-radius:99px;padding:5px 14px;font-size:11px;color:var(--ouro);text-decoration:none" onmouseover="this.style.background='rgba(201,168,76,.2)'" onmouseout="this.style.background='rgba(201,168,76,.1)'">📱 Versão celular</a>
-      <a href="faq.html" style="display:inline-flex;align-items:center;gap:5px;background:rgba(201,168,76,.1);border:1px solid var(--borda);border-radius:99px;padding:5px 14px;font-size:11px;color:var(--ouro);text-decoration:none" onmouseover="this.style.background='rgba(201,168,76,.2)'" onmouseout="this.style.background='rgba(201,168,76,.1)'">❓ Ajuda</a>
-    </div>
+    <div class="ornamento">✦ ✦ ✦</div>
     <div id="datas-home"></div>
     <div id="fin-home-resumo"></div>
     
@@ -260,10 +257,10 @@ header p{font-size:10px;color:var(--cinza);margin-top:1px;letter-spacing:.08em;t
   <div class="section" id="sec-consumiveis">
     <div class="ornamento">✦ ✦ ✦</div>
     <div class="resumo-niveis">
-      <div class="nivel-card ok"><div class="num" id="cnt-ok">—</div><div class="rot">✅ OK</div></div>
-      <div class="nivel-card repor"><div class="num" id="cnt-repor">—</div><div class="rot">⚠️ Repor</div></div>
-      <div class="nivel-card alerta"><div class="num" id="cnt-alerta">—</div><div class="rot">🔴 Alerta</div></div>
-      <div class="nivel-card urgente"><div class="num" id="cnt-urgente">—</div><div class="rot">🚨 Urgente</div></div>
+      <div class="nivel-card ok" onclick="filtrarNivel('ok')" style="cursor:pointer" title="Ver itens OK"><div class="num" id="cnt-ok">—</div><div class="rot">✅ OK</div></div>
+      <div class="nivel-card repor" onclick="filtrarNivel('repor')" style="cursor:pointer" title="Ver itens a repor"><div class="num" id="cnt-repor">—</div><div class="rot">⚠️ Repor</div></div>
+      <div class="nivel-card alerta" onclick="filtrarNivel('alerta')" style="cursor:pointer" title="Ver itens em alerta"><div class="num" id="cnt-alerta">—</div><div class="rot">🔴 Alerta</div></div>
+      <div class="nivel-card urgente" onclick="filtrarNivel('urgente')" style="cursor:pointer" title="Ver itens urgentes"><div class="num" id="cnt-urgente">—</div><div class="rot">🚨 Urgente</div></div>
     </div>
     <div class="filter-bar">
       <select id="cf-nivel" onchange="renderConsumiveis()"><option value="">Todos os níveis</option>
@@ -443,6 +440,11 @@ function getUrl(){return'https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAf
 function toast(msg,ok=true){const t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok?'':' erro');clearTimeout(t._t);t._t=setTimeout(()=>t.className='',3200);}
 function prog(p){document.getElementById('prog').style.width=p+'%';}
 function fmtBRL(v){return'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function filtrarNivel(nivel){
+  document.getElementById('cf-nivel').value=nivel;
+  renderConsumiveis();
+  switchTab('consumiveis',document.querySelectorAll('.tab')[3]);
+}
 function nivelClass(n){return(n||'').includes('OK')?'ok':(n||'').includes('Repor')?'repor':(n||'').includes('Alerta')?'alerta':'urgente';}
 function pctNum(p){return parseInt((p||'0').replace('%',''))||0;}
 function badgeClass(s){return'b-'+(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'-');}
@@ -480,9 +482,9 @@ async function carregarHome(){
     if(rd.ok){
       document.getElementById('fin-home-resumo').innerHTML=`
         <div class="fin-resumo">
-          <div class="fin-card entrada"><div class="num">${fmtBRL(rd.entradasMes)}</div><div class="rot">↑ Entradas mês</div></div>
-          <div class="fin-card saida"><div class="num">${fmtBRL(rd.saidasMes)}</div><div class="rot">↓ Saídas mês</div></div>
-          <div class="fin-card saldo"><div class="num">${fmtBRL(rd.saldo)}</div><div class="rot">= Saldo total</div></div>
+          <div class="fin-card entrada" onclick="switchTab('financeiro',document.querySelectorAll('.tab')[5])" style="cursor:pointer" title="Ver financeiro"><div class="num">${fmtBRL(rd.entradasMes)}</div><div class="rot">↑ Entradas mês</div></div>
+          <div class="fin-card saida" onclick="switchTab('financeiro',document.querySelectorAll('.tab')[5])" style="cursor:pointer" title="Ver financeiro"><div class="num">${fmtBRL(rd.saidasMes)}</div><div class="rot">↓ Saídas mês</div></div>
+          <div class="fin-card saldo" onclick="switchTab('financeiro',document.querySelectorAll('.tab')[5])" style="cursor:pointer" title="Ver financeiro"><div class="num">${fmtBRL(rd.saldo)}</div><div class="rot">= Saldo total</div></div>
         </div>`;
     }
     if(dd.ok){
