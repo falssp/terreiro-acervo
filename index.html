@@ -341,9 +341,9 @@ header p{font-size:10px;color:var(--cinza);margin-top:1px;letter-spacing:.08em;t
   <div class="section" id="sec-financeiro">
     <div class="ornamento">✦ ✦ ✦</div>
     <div class="fin-resumo">
-      <div class="fin-card entrada"><div class="num" id="fin-ent">—</div><div class="rot">↑ Entradas mês</div></div>
-      <div class="fin-card saida"><div class="num" id="fin-sai">—</div><div class="rot">↓ Saídas mês</div></div>
-      <div class="fin-card saldo"><div class="num" id="fin-sal">—</div><div class="rot">= Saldo total</div></div>
+      <div class="fin-card entrada" onclick="filtrarFin('Entrada')" style="cursor:pointer" title="Ver entradas"><div class="num" id="fin-ent">—</div><div class="rot">↑ Entradas mês</div></div>
+      <div class="fin-card saida" onclick="filtrarFin('Saída')" style="cursor:pointer" title="Ver saídas"><div class="num" id="fin-sai">—</div><div class="rot">↓ Saídas mês</div></div>
+      <div class="fin-card saldo" onclick="filtrarFin('')" style="cursor:pointer" title="Ver todos"><div class="num" id="fin-sal">—</div><div class="rot">= Saldo total</div></div>
     </div>
     <div class="filter-bar">
       <select id="fn-tipo" onchange="renderFin()"><option value="">Entrada e saída</option>
@@ -440,6 +440,11 @@ function getUrl(){return'https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAf
 function toast(msg,ok=true){const t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok?'':' erro');clearTimeout(t._t);t._t=setTimeout(()=>t.className='',3200);}
 function prog(p){document.getElementById('prog').style.width=p+'%';}
 function fmtBRL(v){return'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function filtrarFin(tipo){
+  document.getElementById('fn-tipo').value=tipo;
+  renderFin();
+  document.getElementById('fin-lista').scrollIntoView({behavior:'smooth',block:'start'});
+}
 function filtrarNivel(nivel){
   document.getElementById('cf-nivel').value=nivel;
   renderConsumiveis();

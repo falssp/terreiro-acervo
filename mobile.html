@@ -228,9 +228,9 @@ input[type="date"]{color-scheme:dark}
         </div>
         <div id="datas-home"></div>
         <div id="fin-home" class="fin-resumo" style="display:none">
-          <div class="fin-card entrada"><div class="num" id="h-ent">—</div><div class="rot">↑ Entradas mês</div></div>
-          <div class="fin-card saida"><div class="num" id="h-sai">—</div><div class="rot">↓ Saídas mês</div></div>
-          <div class="fin-card saldo"><div class="num" id="h-sal">—</div><div class="rot">= Saldo total</div></div>
+          <div class="fin-card entrada" onclick="navTo('financeiro',document.querySelectorAll('.nav-btn')[4]);setTimeout(()=>filtrarFinMobile('Entrada'),300)" style="cursor:pointer"><div class="num" id="h-ent">—</div><div class="rot">↑ Entradas mês</div></div>
+          <div class="fin-card saida" onclick="navTo('financeiro',document.querySelectorAll('.nav-btn')[4]);setTimeout(()=>filtrarFinMobile('Saída'),300)" style="cursor:pointer"><div class="num" id="h-sai">—</div><div class="rot">↓ Saídas mês</div></div>
+          <div class="fin-card saldo" onclick="navTo('financeiro',document.querySelectorAll('.nav-btn')[4]);setTimeout(()=>filtrarFinMobile(''),300)" style="cursor:pointer"><div class="num" id="h-sal">—</div><div class="rot">= Saldo total</div></div>
         </div>
         
       </div>
@@ -394,9 +394,9 @@ input[type="date"]{color-scheme:dark}
     <div class="page" id="page-financeiro">
       <div class="inner">
         <div class="fin-resumo">
-          <div class="fin-card entrada"><div class="num" id="fin-ent">—</div><div class="rot">↑ Mês</div></div>
-          <div class="fin-card saida"><div class="num" id="fin-sai">—</div><div class="rot">↓ Mês</div></div>
-          <div class="fin-card saldo"><div class="num" id="fin-sal">—</div><div class="rot">= Saldo</div></div>
+          <div class="fin-card entrada" onclick="filtrarFinMobile('Entrada')" style="cursor:pointer"><div class="num" id="fin-ent">—</div><div class="rot">↑ Mês</div></div>
+          <div class="fin-card saida" onclick="filtrarFinMobile('Saída')" style="cursor:pointer"><div class="num" id="fin-sai">—</div><div class="rot">↓ Mês</div></div>
+          <div class="fin-card saldo" onclick="filtrarFinMobile('')" style="cursor:pointer"><div class="num" id="fin-sal">—</div><div class="rot">= Saldo</div></div>
         </div>
         <div class="filter-row">
           <select id="fn-tipo" onchange="renderFin()">
@@ -528,6 +528,11 @@ function getUrl(){return'https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAf
 function toast(msg,ok=true){const t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok?'':' erro');clearTimeout(t._t);t._t=setTimeout(()=>t.className='',3000);}
 function prog(p){document.getElementById('prog').style.width=p+'%';}
 function fmtBRL(v){return'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function filtrarFinMobile(tipo){
+  document.getElementById('fn-tipo').value=tipo;
+  renderFin();
+  document.getElementById('fin-lista').scrollIntoView({behavior:'smooth',block:'start'});
+}
 function filtrarNivelMobile(nivel){
   document.getElementById('cf-nivel').value=nivel;
   renderConsumiveis();
