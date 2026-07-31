@@ -27,7 +27,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 #tela-admin.ativa{display:block}
 
 /* ── FORMS DE ACESSO ── */
-.acesso-wrap{width:100%;max-width:340px;text-align:center}
+.acesso-wrap{width:100%;text-align:center}
 .acesso-wrap h1{font-family:var(--fd);font-size:1.05rem;color:var(--ouro-lt);margin-bottom:4px}
 .acesso-wrap p{font-size:11px;color:var(--cinza);margin-bottom:22px}
 .acesso-box{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:24px}
@@ -50,10 +50,10 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 .top-nav a{color:var(--cinza);text-decoration:none}.top-nav a:hover{color:var(--ouro)}
 .top-nav span{color:var(--cinza);cursor:pointer}.top-nav span:hover{color:#f08080}
 
-.admin-body{max-width:660px;margin:0 auto;padding:18px 16px}
+.admin-body{margin:0 auto;padding:18px 16px}
 
 /* ── FINANCEIRO ── */
-.fin-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
+.fin-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;width:100%}
 .fc{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:12px 8px;text-align:center}
 .fc .num{font-family:var(--fd);font-size:.95rem;font-weight:600;line-height:1.2}
 .fc .rot{font-size:9px;color:var(--cinza);text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
@@ -62,7 +62,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 /* ── SEÇÕES ── */
 .sec-title{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ouro);font-weight:600;margin:18px 0 10px;display:flex;align-items:center;gap:8px}
 .sec-title::after{content:'';flex:1;height:1px;background:var(--borda)}
-.btn-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
 .btn-adm{display:flex;flex-direction:column;align-items:flex-start;gap:3px;background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:13px 14px;cursor:pointer;font-family:var(--fb);color:var(--creme);text-align:left;transition:border-color .15s}
 .btn-adm:hover{border-color:var(--ouro);background:var(--card2)}
 .btn-adm .ic{font-size:17px;margin-bottom:2px}
@@ -97,7 +97,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 /* ── NOVO ADMIN FORM ── */
 .novo-admin-form{display:none;background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:var(--r);padding:16px;margin-top:10px}
 .novo-admin-form .field-inp{margin-bottom:8px}
-.perms-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:8px 0 12px}
+.perms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px;margin:8px 0 12px}
 .perm-cb{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--cinza);cursor:pointer}
 .perm-cb input{accent-color:var(--ouro);width:14px;height:14px}
 .perm-cb span{text-transform:capitalize}
@@ -123,105 +123,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 #toast.erro{border-color:#f08080;color:#f08080}
 
-@media(max-width:420px){.btn-grid{grid-template-columns:1fr}.fin-bar{grid-template-columns:1fr 1fr}.perms-grid{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
-
-<!-- ── TELA 1: PRIMEIRO ACESSO (cria o Pai de Santo) ── -->
-<div id="tela-primeiro">
-  <div class="acesso-wrap">
-    <h1>✦ Ile Ase Vodun Ogum Ayres ✦</h1>
-    <p>Primeiro acesso — configure o administrador principal</p>
-    <div class="acesso-box">
-      <label class="field-lbl">Seu nome</label>
-      <input class="field-inp" type="text" id="p-nome" placeholder="Ex: Maria das Dores" autocomplete="name"/>
-      <label class="field-lbl" style="margin-top:6px">E-mail</label>
-      <input class="field-inp" type="email" id="p-email" placeholder="seu@email.com" autocomplete="email" inputmode="email"/>
-      <label class="field-lbl" style="margin-top:6px">Senha (mín. 6 caracteres)</label>
-      <input class="field-inp" type="password" id="p-senha" placeholder="••••••••" autocomplete="new-password"/>
-      <label class="field-lbl" style="margin-top:6px">Confirmar senha</label>
-      <input class="field-inp" type="password" id="p-conf" placeholder="••••••••" autocomplete="new-password" onkeydown="if(event.key==='Enter')criarPrimeiro()"/>
-      <div class="acesso-err" id="p-err"></div>
-      <button class="btn-acesso" onclick="criarPrimeiro()">Criar conta do Pai de Santo</button>
-    </div>
-    <div class="acesso-sub"><a href="index.html">← Voltar ao site</a></div>
-  </div>
-</div>
-
-<!-- ── TELA 2: LOGIN ── -->
-<div id="tela-login">
-  <div class="acesso-wrap">
-    <h1>✦ Ile Ase Vodun Ogum Ayres ✦</h1>
-    <p>Área da liderança</p>
-    <div class="acesso-box">
-      <label class="field-lbl">E-mail</label>
-      <input class="field-inp" type="email" id="l-email" placeholder="seu@email.com" autocomplete="email" inputmode="email"/>
-      <label class="field-lbl" style="margin-top:6px">Senha</label>
-      <input class="field-inp" type="password" id="l-senha" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')entrar()"/>
-      <div class="acesso-err" id="l-err"></div>
-      <button class="btn-acesso" id="btn-entrar" onclick="entrar()">Entrar</button>
-    </div>
-    <div class="acesso-sub"><a href="index.html">← Voltar ao site</a></div>
-  </div>
-</div>
-
-<!-- ── TELA 3: PAINEL ADMIN ── -->
-<div id="tela-admin">
-  <div class="admin-top">
-    <div>
-      <h1>🏛️ Painel da Liderança</h1>
-      <div class="admin-sub" id="admin-sub"></div>
-    </div>
-    <div class="top-nav">
-      <a href="index.html">🖥️</a>
-      <a href="mobile.html">📱</a>
-      <a href="faq.html">❓</a>
-      <span onclick="sair()">Sair</span>
-    </div>
-  </div>
-
-  <div class="admin-body">
-
-    <!-- Financeiro topo -->
-    <div id="sec-fin-bar" style="display:none">
-      <div class="fin-bar">
-        <div class="fc ent"><div class="num" id="f-ent">—</div><div class="rot">↑ Entradas mês</div></div>
-        <div class="fc sai"><div class="num" id="f-sai">—</div><div class="rot">↓ Saídas mês</div></div>
-        <div class="fc sal"><div class="num" id="f-sal">—</div><div class="rot">= Saldo total</div></div>
-      </div>
-    </div>
-
-    <!-- Estoque -->
-    <div id="sec-estoque" style="display:none">
-      <div class="sec-title">🕯️ Estoque</div>
-      <div class="btn-grid">
-        <button class="btn-adm" onclick="listaCompras()"><span class="ic">🛒</span><span class="lb">Lista de compras</span><span class="dc">Itens a repor com fornecedor e preço</span></button>
-        <button class="btn-adm" onclick="statusEstoque()"><span class="ic">📊</span><span class="lb">Status do estoque</span><span class="dc">Visão por categoria e nível</span></button>
-      </div>
-    </div>
-
-    <!-- Datas -->
-    <div id="sec-datas" style="display:none">
-      <div class="sec-title">📅 Datas e Obrigações</div>
-      <div class="prazo-box">Obrigações dos próximos <input type="number" id="prazo" value="180" min="30" max="730"/> dias</div>
-      <div class="btn-grid">
-        <button class="btn-adm" onclick="datasMes()"><span class="ic">🥁</span><span class="lb">Datas do mês</span><span class="dc">Aniversários, festas e obrigações</span></button>
-        <button class="btn-adm" onclick="obrigacoes()"><span class="ic">⚠️</span><span class="lb">Obrigações</span><span class="dc">Próximas no prazo definido</span></button>
-      </div>
-    </div>
-
-    <!-- Mailing -->
-    <div id="sec-mailing" style="display:none">
-      <div class="sec-title">✉️ Convites</div>
-      <div class="msg-box">
-        <label>Mensagem de convite</label>
-        <textarea id="msg-convite">Axé! 🙏
-Gostaríamos de convidar você para nossa próxima gira no Ile Ase Vodun Ogum Ayres.
-Em breve enviaremos mais detalhes.
-Salve! ✨</textarea>
-      </div>
-      <button class="btn-adm" style="width:100%;margin-bottom:10px" onclick="copiarMsg()">
+@media(margin-bottom:10px" onclick="copiarMsg()">
         <span class="ic">📋</span><span class="lb">Copiar mensagem</span><span class="dc">Cole no WhatsApp de cada membro individualmente</span>
       </button>
       <div id="mailing-lista"></div>
