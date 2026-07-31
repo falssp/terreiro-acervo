@@ -53,12 +53,12 @@ nav::-webkit-scrollbar{display:none}
 .home-item .data{color:var(--cinza);font-size:11px}
 /* CADASTRO - CARDS */
 .cad-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;width:100%}
-.cad-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:28px 16px;cursor:pointer;transition:border-color .2s,transform .15s,background .2s;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:130px}
+.cad-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:40px 20px;cursor:pointer;transition:border-color .2s,transform .15s,background .2s;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:200px}
 .cad-card:hover{border-color:var(--ouro);transform:translateY(-2px);background:rgba(201,168,76,.06)}
 .cad-card:active{transform:translateY(0)}
-.cad-ic{font-size:32px;margin-bottom:10px;line-height:1}
-.cad-lb{font-size:13px;font-weight:600;color:var(--ouro-lt);margin-bottom:5px}
-.cad-dc{font-size:11px;color:var(--cinza);line-height:1.5}
+.cad-ic{font-size:48px;margin-bottom:14px;line-height:1}
+.cad-lb{font-size:15px;font-weight:600;color:var(--ouro-lt);margin-bottom:8px}
+.cad-dc{font-size:12px;color:var(--cinza);line-height:1.5}
 /* FORMS */
 .form-wrap{display:none;width:100%}
 .form-wrap.ativo{display:block}
@@ -203,7 +203,7 @@ nav::-webkit-scrollbar{display:none}
 <!-- CADASTRO -->
 <div class="section" id="sec-cadastro">
   <!-- Cards de seleção -->
-  <div class="cad-grid" id="cad-cards">
+  <div class="cad-grid" id="cad-cards" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
     <div class="cad-card" onclick="abrirForm('acervo')">
       <div class="cad-ic">&#128230;</div>
       <div class="cad-lb">Novo item do acervo</div>
@@ -293,11 +293,11 @@ nav::-webkit-scrollbar{display:none}
     <div class="form-box">
       <div class="form-grid">
         <div class="field full"><label>Item (nome exato ou ID)</label><input type="text" id="cu-nome" placeholder="Ex: Vela 7 dias branca" autocomplete="off"/></div>
-        <div class="field"><label>Quantidade atual</label><input type="number" id="cu-atual" min="0" value="0"/></div>
-        <div class="field"><label>Quantidade minima</label><input type="number" id="cu-min" min="0" value="0"/></div>
+        <div class="field"><label>Quantidade atual</label><input type="number" id="cu-atual" min="0" placeholder="Qtd atual"/></div>
+        <div class="field"><label>Quantidade minima</label><input type="number" id="cu-min" min="0" placeholder="Qtd minima"/></div>
         <div class="field"><label>Fornecedor</label><input type="text" id="cu-forn" placeholder="Ex: Casa dos Orixas" autocomplete="off"/></div>
-        <div class="field"><label>Preco do pacote (R$)</label><input type="number" id="cu-preco" step="0.01" min="0" value="0"/></div>
-        <div class="field"><label>Qtd por pacote</label><input type="number" id="cu-qtdpac" min="1" value="1"/></div>
+        <div class="field"><label>Preco do pacote (R$)</label><input type="number" id="cu-preco" step="0.01" min="0" placeholder="0,00"/></div>
+        <div class="field"><label>Qtd por pacote</label><input type="number" id="cu-qtdpac" min="1" placeholder="1"/></div>
         <div class="field full"><label>Link de compra</label><input type="url" id="cu-link" placeholder="https://..."/></div>
       </div>
       <div class="btn-row">
@@ -654,13 +654,26 @@ async function salvarConsumivel(){
   if(!nome){toast('Informe o nome do item.',false);return;}
   var btn=document.getElementById('btnCsm');btn.disabled=true;btn.textContent='Atualizando...';
   try{
-    var r=await fetch(GS,{method:'POST',body:JSON.stringify({acao:'consumivel-atualizar',nome:nome,atual:document.getElementById('cu-atual').value,minimo:document.getElementById('cu-min').value,fornecedor:document.getElementById('cu-forn').value,precoPacote:document.getElementById('cu-preco').value,qtdPacote:document.getElementById('cu-qtdpac').value,link:document.getElementById('cu-link').value})});
+    var d={acao:'consumivel-atualizar',nome:nome};
+    var atual=document.getElementById('cu-atual').value;
+    var minimo=document.getElementById('cu-min').value;
+    var forn=document.getElementById('cu-forn').value;
+    var preco=document.getElementById('cu-preco').value;
+    var qtdpac=document.getElementById('cu-qtdpac').value;
+    var link=document.getElementById('cu-link').value;
+    if(atual!=='')d.atual=atual;
+    if(minimo!=='')d.minimo=minimo;
+    if(forn)d.fornecedor=forn;
+    if(preco&&Number(preco)>0)d.precoPacote=preco;
+    if(qtdpac&&Number(qtdpac)>1)d.qtdPacote=qtdpac;
+    if(link)d.link=link;
+    var r=await fetch(GS,{method:'POST',body:JSON.stringify(d)});
     var j=await r.json();
     if(j.ok){toast('Atualizado! Nivel: '+j.nivel);limparConsumivel();consumiveis=[];carregarConsumiveis();}else toast(j.erro||'Erro.',false);
   }catch(e){toast('Erro de conexao.',false);}
   btn.disabled=false;btn.textContent='Atualizar';
 }
-function limparConsumivel(){['cu-nome','cu-atual','cu-min','cu-forn','cu-preco','cu-qtdpac','cu-link'].forEach(function(id){document.getElementById(id).value='';});}
+function limparConsumivel(){['cu-nome','cu-forn','cu-link'].forEach(function(id){document.getElementById(id).value='';});['cu-atual','cu-min','cu-preco','cu-qtdpac'].forEach(function(id){document.getElementById(id).value='';});}
 
 async function salvarFilho(){
   var btn=document.getElementById('btnFilho');btn.disabled=true;btn.textContent='Gravando...';
