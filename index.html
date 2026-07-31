@@ -142,12 +142,12 @@ nav::-webkit-scrollbar{display:none}
   .nav-links{display:none}
 }
 
-.cad-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:20px 16px;cursor:pointer;transition:border-color .15s,transform .1s;text-align:center}
-.cad-card:hover{border-color:var(--ouro);transform:translateY(-2px)}
+.cad-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:32px 20px;cursor:pointer;transition:border-color .2s,transform .15s,background .2s;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:140px}
+.cad-card:hover{border-color:var(--ouro);transform:translateY(-3px);background:rgba(201,168,76,.06)}
 .cad-card:active{transform:translateY(0)}
-.cad-ic{font-size:28px;margin-bottom:8px}
-.cad-lb{font-size:13px;font-weight:600;color:var(--ouro-lt);margin-bottom:4px}
-.cad-dc{font-size:11px;color:var(--cinza);line-height:1.4}
+.cad-ic{font-size:36px;margin-bottom:12px;line-height:1}
+.cad-lb{font-size:14px;font-weight:600;color:var(--ouro-lt);margin-bottom:6px}
+.cad-dc{font-size:11px;color:var(--cinza);line-height:1.5}
 </style>
 </head>
 <body>
@@ -181,7 +181,7 @@ nav::-webkit-scrollbar{display:none}
       <div class="rot"<div class="section" id="sec-cadastro">
 
   <!-- CARDS DE SELEÇÃO -->
-  <div id="cad-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:28px">
+  <div id="cad-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:32px">
     <div class="cad-card" onclick="abrirForm('acervo')">
       <div class="cad-ic">📦</div>
       <div class="cad-lb">Novo item do acervo</div>
