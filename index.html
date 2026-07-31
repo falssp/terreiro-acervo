@@ -52,8 +52,8 @@ nav::-webkit-scrollbar{display:none}
 .home-item:last-child{border:none}
 .home-item .data{color:var(--cinza);font-size:11px}
 /* CADASTRO - CARDS */
-.cad-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;width:100%}
-.cad-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:40px 20px;cursor:pointer;transition:border-color .2s,transform .15s,background .2s;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:200px}
+.cad-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;width:100%;margin-bottom:0}
+.cad-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:40px 20px;cursor:pointer;transition:border-color .2s,transform .15s,background .2s;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%}
 .cad-card:hover{border-color:var(--ouro);transform:translateY(-2px);background:rgba(201,168,76,.06)}
 .cad-card:active{transform:translateY(0)}
 .cad-ic{font-size:48px;margin-bottom:14px;line-height:1}
@@ -203,10 +203,10 @@ nav::-webkit-scrollbar{display:none}
 <!-- CADASTRO -->
 <div class="section" id="sec-cadastro">
   <!-- Cards de seleção -->
-  <div class="cad-grid" id="cad-cards" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
+  <div class="cad-grid" id="cad-cards">
     <div class="cad-card" onclick="abrirForm('acervo')">
       <div class="cad-ic">&#128230;</div>
-      <div class="cad-lb">Novo item do acervo</div>
+      <div class="cad-lb">Novo Item do Acervo</div>
       <div class="cad-dc">Roupas, ferramentas e objetos rituais</div>
     </div>
     <div class="cad-card" onclick="abrirForm('consumivel')">
@@ -221,7 +221,7 @@ nav::-webkit-scrollbar{display:none}
     </div>
     <div class="cad-card" onclick="abrirForm('filho')">
       <div class="cad-ic">&#128101;</div>
-      <div class="cad-lb">Novo filho de santo</div>
+      <div class="cad-lb">Novo Filho de Santo</div>
       <div class="cad-dc">Cadastrar membro do terreiro</div>
     </div>
   </div>
@@ -229,28 +229,28 @@ nav::-webkit-scrollbar{display:none}
   <!-- Form: Acervo -->
   <div class="form-wrap" id="fw-acervo">
     <button class="btn-voltar" onclick="fecharForm()">&#8592; Voltar</button>
-    <div class="secao-titulo">&#128230; Novo item do acervo</div>
+    <div class="secao-titulo">&#128230; Novo Item do Acervo</div>
     <div class="form-box">
       <div class="form-grid">
-        <div class="field full"><label>Nome do item *</label><input type="text" id="c-nome" placeholder="Ex: Oja de Oxum" autocomplete="off"/></div>
+        <div class="field full"><label>Nome do Item *</label><input type="text" id="c-nome" placeholder="Ex: Ojá de Oxum" autocomplete="off"/></div>
         <div class="field"><label>Categoria *</label>
           <select id="c-cat" onchange="atualizarSubcat()">
             <option value="">Selecione</option>
-            <option>Alimentos e oferendas</option>
-            <option>Ervas e plantas</option>
-            <option>Ferramentas e objetos rituais</option>
-            <option>Roupas e indumentarias</option>
+            <option>Alimentos e Oferendas</option>
+            <option>Ervas e Plantas</option>
+            <option>Ferramentas e Objetos Rituais</option>
+            <option>Roupas e Indumentárias</option>
           </select>
         </div>
         <div class="field"><label>Subcategoria</label><select id="c-subcat"><option value="">--</option></select></div>
-        <div class="field"><label>Orixa de cabeca</label>
+        <div class="field"><label>Orixá de Cabeça</label>
           <select id="c-orixa" onchange="toggleOutro('c-orixa','c-orixa-outro')">
             <option value="">--</option>
-            <option>Iansa</option><option>Iemanja</option><option>Logun Ede</option>
-            <option>Nana</option><option>Oba</option><option>Obaluae / Omolu</option>
-            <option>Ogum</option><option>Oxaguia / Oxalufa</option><option>Oxala</option>
-            <option>Oxossi</option><option>Oxum</option><option>Oxumare</option>
-            <option>Xango</option><option value="Outro">Outro (especificar)</option>
+            <option>Iansã</option><option>Iemanjá</option><option>Logun Edé</option>
+            <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
+            <option>Ogum</option><option>Oxaguiã / Oxalufã</option><option>Oxala</option>
+            <option>Oxossi</option><option>Oxum</option><option>Oxumaré</option>
+            <option>Xangô</option><option value="Outro">Outro (especificar)</option>
           </select>
           <input type="text" id="c-orixa-outro" placeholder="Especifique..." style="display:none;margin-top:6px" autocomplete="off"/>
         </div>
@@ -259,22 +259,22 @@ nav::-webkit-scrollbar{display:none}
             <option value="">--</option>
             <option>Baiano / Baiana</option><option>Boiadeiro / Boiadeira</option>
             <option>Caboclo / Cabocla</option><option>Cigano / Cigana</option>
-            <option>Crianca / Ere</option><option>Exu</option>
+            <option>Criança / Erê</option><option>Exu</option>
             <option>Marinheiro / Marinheira</option><option>Ogum Beira-Mar</option>
             <option>Pomba-Gira</option><option>Preto-Velho / Preta-Velha</option>
-            <option>Ze Pilintra</option><option value="Outro">Outro (especificar)</option>
+            <option>Zé Pilintra</option><option value="Outro">Outro (especificar)</option>
           </select>
           <input type="text" id="c-entidade-outro" placeholder="Especifique..." style="display:none;margin-top:6px" autocomplete="off"/>
         </div>
         <div class="field"><label>Status</label>
           <select id="c-status">
             <option value="Danificado">Danificado</option>
-            <option value="Disponivel" selected>Disponivel</option>
-            <option value="Em uso">Em uso</option>
-            <option value="Necessita reposicao">Necessita reposicao</option>
+            <option value="Disponível" selected>Disponível</option>
+            <option value="Em Uso">Em Uso</option>
+            <option value="Necessita Reposição">Necessita Reposição</option>
           </select>
         </div>
-        <div class="field"><label>Localizacao / Armario</label><input type="text" id="c-local" placeholder="Ex: Armario 2, prateleira A" autocomplete="off"/></div>
+        <div class="field"><label>Localização / Armário</label><input type="text" id="c-local" placeholder="Ex: Armário 2, prateleira A" autocomplete="off"/></div>
         <div class="field"><label>Quantidade</label><input type="number" id="c-qtd" min="1" value="1"/></div>
         <div class="field full"><label>Foto (URL)</label><input type="url" id="c-foto" placeholder="https://..." oninput="previewFoto(this.value)"/><div id="foto-preview"></div></div>
         <div class="field full"><label>Observacoes</label><textarea id="c-obs" placeholder="Notas livres..."></textarea></div>
@@ -289,16 +289,17 @@ nav::-webkit-scrollbar{display:none}
   <!-- Form: Consumivel -->
   <div class="form-wrap" id="fw-consumivel">
     <button class="btn-voltar" onclick="fecharForm()">&#8592; Voltar</button>
-    <div class="secao-titulo">&#128305; Atualizar consumivel</div>
+    <div class="secao-titulo">&#128305; Atualizar Consumível</div>
     <div class="form-box">
       <div class="form-grid">
-        <div class="field full"><label>Item (nome exato ou ID)</label><input type="text" id="cu-nome" placeholder="Ex: Vela 7 dias branca" autocomplete="off"/></div>
-        <div class="field"><label>Quantidade atual</label><input type="number" id="cu-atual" min="0" placeholder="Qtd atual"/></div>
-        <div class="field"><label>Quantidade minima</label><input type="number" id="cu-min" min="0" placeholder="Qtd minima"/></div>
-        <div class="field"><label>Fornecedor</label><input type="text" id="cu-forn" placeholder="Ex: Casa dos Orixas" autocomplete="off"/></div>
-        <div class="field"><label>Preco do pacote (R$)</label><input type="number" id="cu-preco" step="0.01" min="0" placeholder="0,00"/></div>
-        <div class="field"><label>Qtd por pacote</label><input type="number" id="cu-qtdpac" min="1" placeholder="1"/></div>
-        <div class="field full"><label>Link de compra</label><input type="url" id="cu-link" placeholder="https://..."/></div>
+        <div class="field full"><label>Item (nome exato ou ID)</label><input type="text" id="cu-nome" placeholder="Ex: Vela 7 dias branca" list="csm-list" autocomplete="off"/>
+        <datalist id="csm-list"></datalist></div>
+        <div class="field"><label>Quantidade Atual</label><input type="number" id="cu-atual" min="0" placeholder="Qtd atual"/></div>
+        <div class="field"><label>Quantidade Mínima</label><input type="number" id="cu-min" min="0" placeholder="Qtd minima"/></div>
+        <div class="field"><label>Fornecedor</label><input type="text" id="cu-forn" placeholder="Ex: Casa dos Orixás" autocomplete="off"/></div>
+        <div class="field"><label>Preço do Pacote (R$)</label><input type="number" id="cu-preco" step="0.01" min="0" placeholder="0,00"/></div>
+        <div class="field"><label>Qtd por Pacote</label><input type="number" id="cu-qtdpac" min="1" placeholder="1"/></div>
+        <div class="field full"><label>Link de Compra</label><input type="url" id="cu-link" placeholder="https://..."/></div>
       </div>
       <div class="btn-row">
         <button class="btn btn-ghost" onclick="limparConsumivel()">Limpar</button>
@@ -323,54 +324,54 @@ nav::-webkit-scrollbar{display:none}
   <!-- Form: Filho -->
   <div class="form-wrap" id="fw-filho">
     <button class="btn-voltar" onclick="fecharForm()">&#8592; Voltar</button>
-    <div class="secao-titulo">&#128101; Novo filho de santo</div>
+    <div class="secao-titulo">&#128101; Novo Filho de Santo</div>
     <div class="form-box">
       <div class="form-grid">
-        <div class="field"><label>Nome de candomble / santo</label><input type="text" id="f-nome" autocomplete="off"/></div>
-        <div class="field"><label>Nome social</label><input type="text" id="f-social" autocomplete="off"/></div>
+        <div class="field"><label>Nome de Candomblé / Santo</label><input type="text" id="f-nome" autocomplete="off"/></div>
+        <div class="field"><label>Nome Social</label><input type="text" id="f-social" autocomplete="off"/></div>
         <div class="field"><label>Contato (WhatsApp)</label><input type="tel" id="f-contato" placeholder="(11) 99999-9999"/></div>
-        <div class="field"><label>Orixa de cabeca</label>
+        <div class="field"><label>Orixá de Cabeça</label>
           <select id="f-orixa" onchange="toggleOutro('f-orixa','f-orixa-outro')">
             <option value="">--</option>
-            <option>Iansa</option><option>Iemanja</option><option>Logun Ede</option>
-            <option>Nana</option><option>Oba</option><option>Obaluae / Omolu</option>
-            <option>Ogum</option><option>Oxaguia / Oxalufa</option><option>Oxala</option>
-            <option>Oxossi</option><option>Oxum</option><option>Oxumare</option>
-            <option>Xango</option><option value="Outro">Outro (especificar)</option>
+            <option>Iansã</option><option>Iemanjá</option><option>Logun Edé</option>
+            <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
+            <option>Ogum</option><option>Oxaguiã / Oxalufã</option><option>Oxala</option>
+            <option>Oxossi</option><option>Oxum</option><option>Oxumaré</option>
+            <option>Xangô</option><option value="Outro">Outro (especificar)</option>
           </select>
           <input type="text" id="f-orixa-outro" placeholder="Especifique..." style="display:none;margin-top:6px" autocomplete="off"/>
         </div>
-        <div class="field"><label>Adjunto</label>
+        <div class="field"><label>Adjuntó</label>
           <select id="f-adjunto" onchange="toggleOutro('f-adjunto','f-adjunto-outro')">
             <option value="">--</option>
-            <option>Iansa</option><option>Iemanja</option><option>Logun Ede</option>
-            <option>Nana</option><option>Oba</option><option>Obaluae / Omolu</option>
-            <option>Ogum</option><option>Oxaguia / Oxalufa</option><option>Oxala</option>
-            <option>Oxossi</option><option>Oxum</option><option>Oxumare</option>
-            <option>Xango</option><option value="Outro">Outro (especificar)</option>
+            <option>Iansã</option><option>Iemanjá</option><option>Logun Edé</option>
+            <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
+            <option>Ogum</option><option>Oxaguiã / Oxalufã</option><option>Oxala</option>
+            <option>Oxossi</option><option>Oxum</option><option>Oxumaré</option>
+            <option>Xangô</option><option value="Outro">Outro (especificar)</option>
           </select>
           <input type="text" id="f-adjunto-outro" placeholder="Especifique..." style="display:none;margin-top:6px" autocomplete="off"/>
         </div>
-        <div class="field"><label>Nacao</label>
+        <div class="field"><label>Nação</label>
           <select id="f-nacao">
             <option value="">--</option>
-            <option>Angola</option><option>Efon</option><option>Ijexa</option>
-            <option>Jeje</option><option>Ketu</option><option>Nago</option>
-            <option>Omoloko</option><option>Outra</option><option>Umbanda</option>
+            <option>Angola</option><option>Efon</option><option>Ijexá</option>
+            <option>Jeje</option><option>Ketu</option><option>Nagô</option>
+            <option>Omolokô</option><option>Outra</option><option>Umbanda</option>
           </select>
         </div>
         <div class="field"><label>Status no terreiro</label>
           <select id="f-status">
-            <option value="Abiao">Abiao</option><option value="Ativo" selected>Ativo</option>
-            <option value="Ebomi">Ebomi</option><option value="Iao">Iao</option>
-            <option value="Inativo">Inativo</option><option value="Oga / Ekedi">Oga / Ekedi</option>
+            <option value="Abiã">Abiã</option><option value="Ativo" selected>Ativo</option>
+            <option value="Ebomi">Ebomi</option><option value="Iaô">Iaô</option>
+            <option value="Inativo">Inativo</option><option value="Ogã / Ekedi">Ogã / Ekedi</option>
             <option value="Suspenso">Suspenso</option>
           </select>
         </div>
-        <div class="field"><label>Data de aniversario</label><input type="date" id="f-aniv"/></div>
-        <div class="field"><label>Data de feitura</label><input type="date" id="f-feitura"/></div>
-        <div class="field"><label>Proxima obrigacao</label><input type="date" id="f-obrig"/></div>
-        <div class="field full"><label>Obrigacoes realizadas</label><input type="text" id="f-obrigrealiz" placeholder="Ex: Feitura 2020, 1 ano 2021" autocomplete="off"/></div>
+        <div class="field"><label>Data de Aniversário</label><input type="date" id="f-aniv"/></div>
+        <div class="field"><label>Data de Feitura</label><input type="date" id="f-feitura"/></div>
+        <div class="field"><label>Próxima Obrigação</label><input type="date" id="f-obrig"/></div>
+        <div class="field full"><label>Obrigações realizadas</label><input type="text" id="f-obrigrealiz" placeholder="Ex: Feitura 2020, 1 ano 2021" autocomplete="off"/></div>
         <div class="field full"><label>Observacoes</label><textarea id="f-obs" placeholder="Notas livres..."></textarea></div>
       </div>
       <div class="btn-row">
@@ -386,14 +387,14 @@ nav::-webkit-scrollbar{display:none}
   <div class="filter-bar">
     <input type="search" id="a-busca" placeholder="Buscar item..." oninput="renderAcervo()"/>
     <select id="a-cat" onchange="renderAcervo()">
-      <option value="">Todas as categorias</option>
-      <option>Alimentos e oferendas</option><option>Ervas e plantas</option>
-      <option>Ferramentas e objetos rituais</option><option>Roupas e indumentarias</option>
+      <option value="">Todas as Categorias</option>
+      <option>Alimentos e Oferendas</option><option>Ervas e Plantas</option>
+      <option>Ferramentas e Objetos Rituais</option><option>Roupas e Indumentárias</option>
     </select>
     <select id="a-status" onchange="renderAcervo()">
-      <option value="">Todos os status</option>
-      <option>Danificado</option><option>Disponivel</option>
-      <option>Em uso</option><option>Necessita reposicao</option>
+      <option value="">Todos os Status</option>
+      <option>Danificado</option><option>Disponível</option>
+      <option>Em Uso</option><option>Necessita Reposição</option>
     </select>
   </div>
   <div class="results-count" id="a-count"></div>
@@ -403,14 +404,14 @@ nav::-webkit-scrollbar{display:none}
 <!-- CONSUMIVEIS -->
 <div class="section" id="sec-consumiveis">
   <div class="filter-bar">
-    <input type="search" id="cf-busca" placeholder="Buscar consumivel..." oninput="renderConsumiveis()"/>
+    <input type="search" id="cf-busca" placeholder="Buscar consumível..." oninput="renderConsumiveis()"/>
     <select id="cf-cat" onchange="renderConsumiveis()">
-      <option value="">Todas as categorias</option>
+      <option value="">Todas as Categorias</option>
       <option>Alimentos</option><option>Bebidas</option><option>Ervas e Defumacao</option>
       <option>Flores e Naturais</option><option>Fumo</option><option>Velas</option>
     </select>
     <select id="cf-nivel" onchange="renderConsumiveis()">
-      <option value="">Todos os niveis</option>
+      <option value="">Todos os Níveis</option>
       <option value="alerta">Alerta</option>
       <option value="ok">OK</option>
       <option value="repor">Repor</option>
@@ -426,16 +427,16 @@ nav::-webkit-scrollbar{display:none}
   <div class="filter-bar">
     <input type="search" id="fs-busca" placeholder="Buscar..." oninput="renderFilhos()"/>
     <select id="fs-orixa" onchange="renderFilhos()">
-      <option value="">Todos os orixas</option>
-      <option>Iansa</option><option>Iemanja</option><option>Logun Ede</option>
-      <option>Nana</option><option>Oba</option><option>Obaluae / Omolu</option>
-      <option>Ogum</option><option>Oxaguia / Oxalufa</option><option>Oxala</option>
-      <option>Oxossi</option><option>Oxum</option><option>Oxumare</option><option>Xango</option>
+      <option value="">Todos os Orixás</option>
+      <option>Iansã</option><option>Iemanjá</option><option>Logun Edé</option>
+      <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
+      <option>Ogum</option><option>Oxaguiã / Oxalufã</option><option>Oxala</option>
+      <option>Oxossi</option><option>Oxum</option><option>Oxumaré</option><option>Xangô</option>
     </select>
     <select id="fs-status" onchange="renderFilhos()">
-      <option value="">Todos os status</option>
-      <option>Abiao</option><option>Ativo</option><option>Ebomi</option>
-      <option>Iao</option><option>Inativo</option><option>Oga / Ekedi</option><option>Suspenso</option>
+      <option value="">Todos os Status</option>
+      <option>Abiã</option><option>Ativo</option><option>Ebomi</option>
+      <option>Iaô</option><option>Inativo</option><option>Ogã / Ekedi</option><option>Suspenso</option>
     </select>
   </div>
   <div class="results-count" id="fs-count"></div>
@@ -453,9 +454,9 @@ nav::-webkit-scrollbar{display:none}
 
 <script>
 const GS='https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAfyjHqC_mvDwvKDCFieibGTvp7u7Fyls9OcmCc2aDvlvsVwAW706SlWw/exec';
-const SUBCATS={'Alimentos e oferendas':['Alimentos rituais','Axe/Ebo','Bebida ritual','Comida de orixa','Flores','Incenso/Defumacao','Vela/Bujao'],'Ervas e plantas':['Folha para banho','Folha para defumacao','Raiz','Semente'],'Ferramentas e objetos rituais':['Arco e flecha','Atabaques/Instrumento','Espada/Ogo','Ferramenta de orixa','Iba/Sopera','Leque','Pemba/Efun','Xaxara'],'Roupas e indumentarias':['Calcado','Capa/Manto','Capacete/Coroa','Guia/Colar','Oja/Torco','Pulseira/Oxe','Saia','Vestido']};
+const SUBCATS={'Alimentos e Oferendas':['Alimentos rituais','Axé / Ebó','Bebida ritual','Comida de orixa','Flores','Incenso / Defumação','Vela / Bujão'],'Ervas e Plantas':['Folha para Banho','Folha para Defumação','Raiz','Semente'],'Ferramentas e Objetos Rituais':['Arco e Flecha','Atabaques / Instrumento','Espada / Ogó','Ferramenta de Orixá','Ibá / Sopera','Leque','Pemba / Efun','Xaxara'],'Roupas e Indumentárias':['Calçado','Capa / Manto','Capacete / Coroa','Guia / Colar','Ojá / Torço','Pulseira / Oxê','Saia','Vestido']};
 const CAT_IC={Velas:'🕯️',Bebidas:'🍶',Fumo:'🚬','Ervas e Defumacao':'🌿',Alimentos:'🌽','Flores e Naturais':'🌸'};
-const SBADGE={Abiao:'abiao',Ativo:'ativo',Ebomi:'ebomi',Iao:'iao',Inativo:'inativo','Oga / Ekedi':'oga',Suspenso:'suspenso'};
+const SBADGE={Abiã:'abiao',Ativo:'ativo',Ebomi:'ebomi',Iaô:'iao',Inativo:'inativo','Ogã / Ekedi':'oga',Suspenso:'suspenso'};
 let acervo=[],consumiveis=[],filhos=[];
 
 window.addEventListener('DOMContentLoaded',function(){
@@ -580,6 +581,8 @@ async function carregarConsumiveis(){
   try{
     var r=await fetch(GS+'?acao=consumiveis-listar'),j=await r.json();
     if(j.ok){
+      var dl=document.getElementById('csm-list');
+      if(dl){dl.innerHTML='';(j.itens||[]).forEach(function(i){var o=document.createElement('option');o.value=i.nome;dl.appendChild(o);});}
       consumiveis=(j.itens||[]).sort(function(a,b){return(a.nome||'').localeCompare((b.nome||''),'pt-BR');});
       renderConsumiveis();
       var counts={ok:0,repor:0,alerta:0,urgente:0};
@@ -604,7 +607,7 @@ function renderConsumiveis(){
 function abrirModalCsm(id){
   var i=consumiveis.find(function(x){return x.id===id;});if(!i)return;
   document.getElementById('modal-nome').textContent=i.nome||'--';
-  document.getElementById('modal-corpo').innerHTML=[['Categoria',i.categoria||'--'],['Nivel',i.nivel||'--'],['Estoque',(i.atual||0)+' / '+(i.minimo||0)+' '+(i.unidade||'')],['Fornecedor',i.fornecedor||'--'],['Preco unit.',i.precoUnit?fmtBRL(i.precoUnit):'--'],['Qtd por pacote',i.qtdPacote||'--'],['Atualizado em',fmtData(i.atualizado)]].map(function(p){return'<div class="modal-row"><span class="modal-rot">'+p[0]+'</span><span>'+p[1]+'</span></div>';}).join('')+(i.link?'<div style="margin-top:10px;text-align:center"><a href="'+i.link+'" target="_blank" style="color:var(--ouro);font-size:12px">Ver link de compra</a></div>':'');
+  document.getElementById('modal-corpo').innerHTML=[['Categoria',i.categoria||'--'],['Nivel',i.nivel||'--'],['Estoque',(i.atual||0)+' / '+(i.minimo||0)+' '+(i.unidade||'')],['Fornecedor',i.fornecedor||'--'],['Preco unit.',i.precoUnit?fmtBRL(i.precoUnit):'--'],['Qtd por Pacote',i.qtdPacote||'--'],['Atualizado em',fmtData(i.atualizado)]].map(function(p){return'<div class="modal-row"><span class="modal-rot">'+p[0]+'</span><span>'+p[1]+'</span></div>';}).join('')+(i.link?'<div style="margin-top:10px;text-align:center"><a href="'+i.link+'" target="_blank" style="color:var(--ouro);font-size:12px">Ver link de compra</a></div>':'');
   document.getElementById('modal-bg').classList.add('aberto');
 }
 
@@ -624,7 +627,7 @@ function renderFilhos(){
   if(!f.length){document.getElementById('filho-lista').innerHTML='<div class="empty">Nenhum registro encontrado.</div>';return;}
   document.getElementById('filho-lista').innerHTML=f.map(function(i){
     var sc=SBADGE[i.statusTerreiro]||'ativo';
-    return'<div class="filho-card"><div class="filho-titulo">Filho de '+(i.orixa||'--')+'</div><div class="filho-nacao">'+(i.nacao||'')+'</div>'+(i.statusTerreiro?'<span class="sbadge '+sc+'">'+i.statusTerreiro+'</span>':'')+(i.feitura&&i.feitura!=='--'?'<div class="filho-row" style="margin-top:8px"><span class="filho-rot">Feitura</span><span>'+i.feitura+'</span></div>':'')+(i.proximaObrigacao&&i.proximaObrigacao!=='--'?'<div class="filho-row"><span class="filho-rot">Proxima obrigacao</span><span>'+i.proximaObrigacao+'</span></div>':'')+'</div>';
+    return'<div class="filho-card"><div class="filho-titulo">Filho de '+(i.orixa||'--')+'</div><div class="filho-nacao">'+(i.nacao||'')+'</div>'+(i.statusTerreiro?'<span class="sbadge '+sc+'">'+i.statusTerreiro+'</span>':'')+(i.feitura&&i.feitura!=='--'?'<div class="filho-row" style="margin-top:8px"><span class="filho-rot">Feitura</span><span>'+i.feitura+'</span></div>':'')+(i.proximaObrigacao&&i.proximaObrigacao!=='--'?'<div class="filho-row"><span class="filho-rot">Próxima Obrigação</span><span>'+i.proximaObrigacao+'</span></div>':'')+'</div>';
   }).join('');
 }
 

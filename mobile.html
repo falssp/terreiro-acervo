@@ -211,7 +211,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
   <div id="cad-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;padding-top:14px">
     <div class="cad-card" onclick="abrirForm('acervo')">
       <div class="cad-ic">📦</div>
-      <div class="cad-lb">Novo item do acervo</div>
+      <div class="cad-lb">Novo Item do Acervo</div>
       <div class="cad-dc">Roupas, ferramentas, objetos</div>
     </div>
     <div class="cad-card" onclick="abrirForm('consumivel')">
@@ -226,14 +226,14 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
     </div>
     <div class="cad-card" onclick="abrirForm('filho')">
       <div class="cad-ic">👥</div>
-      <div class="cad-lb">Novo filho de santo</div>
+      <div class="cad-lb">Novo Filho de Santo</div>
       <div class="cad-dc">Cadastrar membro</div>
     </div>
   </div>
 
   <div id="form-acervo" style="display:none;padding-top:14px">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><button onclick="fecharForm()" style="background:none;border:none;color:var(--cinza);cursor:pointer;font-size:22px;padding:4px">←</button><span style="font-size:12px;color:var(--cinza)">Voltar</span></div>
-<div class="secao-titulo">📦 Novo item do acervo</div>
+<div class="secao-titulo">📦 Novo Item do Acervo</div>
     <div class="form-box">
       <div class="field"><label>Nome do item *</label>
         <input type="text" id="c-nome" placeholder="Ex: Ojá de Oxum" autocomplete="off"/>
@@ -241,9 +241,9 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
       <div class="field"><label>Categoria *</label>
         <select id="c-cat" onchange="atualizarSubcat()">
           <option value="">Selecione</option>
-          <option>Alimentos e oferendas</option>
-          <option>Ervas e plantas</option>
-          <option>Ferramentas e objetos rituais</option>
+          <option>Alimentos e Oferendas</option>
+          <option>Ervas e Plantas</option>
+          <option>Ferramentas e Objetos Rituais</option>
           <option>Roupas e indumentárias</option>
         </select>
       </div>
@@ -293,9 +293,10 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
 <div class="secao-titulo">🕯️ Atualizar consumível</div>
     <div class="form-box">
       <div class="field"><label>Item (nome exato)</label>
-        <input type="text" id="cu-nome" placeholder="Ex: Vela 7 dias branca" autocomplete="off"/>
+        <input type="text" id="cu-nome" placeholder="Ex: Vela 7 dias branca" list="csm-list" autocomplete="off"/>
+        <datalist id="csm-list"></datalist>
       </div>
-      <div class="field"><label>Quantidade atual</label>
+      <div class="field"><label>Quantidade Atual</label>
         <input type="number" id="cu-atual" min="0" placeholder="Qtd atual"/>
       </div>
       <div class="field"><label>Quantidade mínima</label>
@@ -307,10 +308,10 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
       <div class="field"><label>Preço do pacote (R$)</label>
         <input type="number" id="cu-preco" step="0.01" min="0" placeholder="0,00"/>
       </div>
-      <div class="field"><label>Qtd por pacote</label>
+      <div class="field"><label>Qtd por Pacote</label>
         <input type="number" id="cu-qtdpac" min="1" placeholder="1"/>
       </div>
-      <div class="field"><label>Link de compra</label>
+      <div class="field"><label>Link de Compra</label>
         <input type="url" id="cu-link" placeholder="https://..."/>
       </div>
       <div class="btn-row">
@@ -332,7 +333,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
   </div>
   <div id="form-filho" style="display:none;padding-top:14px">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><button onclick="fecharForm()" style="background:none;border:none;color:var(--cinza);cursor:pointer;font-size:22px;padding:4px">←</button><span style="font-size:12px;color:var(--cinza)">Voltar</span></div>
-<div class="secao-titulo">👥 Novo filho de santo</div>
+<div class="secao-titulo">👥 Novo Filho de Santo</div>
     <div class="form-box">
       <div class="field"><label>Nome de candomblé / santo</label>
         <input type="text" id="f-nome" autocomplete="off"/>
@@ -405,7 +406,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
         </select>
       </div>
       <div class="field"><label>Data de aniversário</label><input type="date" id="f-aniv"/></div>
-      <div class="field"><label>Data de feitura</label><input type="date" id="f-feitura"/></div>
+      <div class="field"><label>Data de Feitura</label><input type="date" id="f-feitura"/></div>
       <div class="field"><label>Próxima obrigação</label><input type="date" id="f-obrig"/></div>
       <div class="field"><label>Obrigações realizadas</label>
         <input type="text" id="f-obrigrealiz" placeholder="Ex: Feitura 2020, 1 ano 2021" autocomplete="off"/>
@@ -428,7 +429,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
       <div class="filter-bar">
         <input type="search" id="cf-busca" placeholder="🔍 Buscar consumível..." oninput="renderConsumiveis()"/>
         <select id="cf-cat" onchange="renderConsumiveis()">
-          <option value="">Todas as categorias</option>
+          <option value="">Todas as Categorias</option>
           <option>Alimentos</option><option>Bebidas</option>
           <option>Ervas e Defumação</option><option>Flores e Naturais</option>
           <option>Fumo</option><option>Velas</option>
@@ -468,7 +469,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
       <option>Xangô</option>
     </select>
         <select id="fs-status" onchange="renderFilhos()">
-          <option value="">Todos os status</option>
+          <option value="">Todos os Status</option>
           <option>Abiã</option><option>Ativo</option><option>Ebomi</option>
           <option>Iaô</option><option>Inativo</option><option>Ogã / Ekedi</option><option>Suspenso</option>
         </select>
@@ -484,12 +485,12 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
       <div class="filter-bar">
         <input type="search" id="a-busca" placeholder="🔍 Buscar item..." oninput="renderAcervo()"/>
         <select id="a-cat" onchange="renderAcervo()">
-          <option value="">Todas as categorias</option>
-          <option>Alimentos e oferendas</option><option>Ervas e plantas</option>
-          <option>Ferramentas e objetos rituais</option><option>Roupas e indumentárias</option>
+          <option value="">Todas as Categorias</option>
+          <option>Alimentos e Oferendas</option><option>Ervas e Plantas</option>
+          <option>Ferramentas e Objetos Rituais</option><option>Roupas e indumentárias</option>
         </select>
         <select id="a-status" onchange="renderAcervo()">
-          <option value="">Todos os status</option>
+          <option value="">Todos os Status</option>
           <option>Danificado</option><option>Disponível</option>
           <option>Em uso</option><option>Necessita reposição</option>
         </select>
@@ -527,9 +528,9 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
 const URL_GS = 'https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAfyjHqC_mvDwvKDCFieibGTvp7u7Fyls9OcmCc2aDvlvsVwAW706SlWw/exec';
 
 const SUBCATS = {
-  'Alimentos e oferendas':['Alimentos rituais','Axé / Ebó','Bebida ritual','Comida de orixá','Flores','Incenso / Defumação','Vela / Bujão'],
-  'Ervas e plantas':['Folha para banho','Folha para defumação','Raiz','Semente'],
-  'Ferramentas e objetos rituais':['Arco e flecha','Atabaques / Instrumento','Espada / Ogó','Ferramenta de orixá','Ibá / Sopera','Leque','Pemba / Efun','Xaxará'],
+  'Alimentos e Oferendas':['Alimentos rituais','Axé / Ebó','Bebida ritual','Comida de orixá','Flores','Incenso / Defumação','Vela / Bujão'],
+  'Ervas e Plantas':['Folha para Banho','Folha para defumação','Raiz','Semente'],
+  'Ferramentas e Objetos Rituais':['Arco e flecha','Atabaques / Instrumento','Espada / Ogó','Ferramenta de orixá','Ibá / Sopera','Leque','Pemba / Efun','Xaxará'],
   'Roupas e indumentárias':['Calçado','Capa / Manto','Capacete / Coroa','Guia / Colar','Ojá / Torço','Pulseira / Oxé','Saia','Vestido']
 };
 const CAT_IC = {Velas:'🕯️',Bebidas:'🍶',Fumo:'🚬','Ervas e Defumação':'🌿',Alimentos:'🌽','Flores e Naturais':'🌸'};
@@ -673,7 +674,7 @@ function abrirModalCsm(id){
     ['Estoque',`${i.atual||0} / ${i.minimo||0} ${i.unidade||''}`],
     ['Fornecedor',i.fornecedor||'—'],
     ['Preço unitário',i.precoUnit?'R$\u00a0'+Number(i.precoUnit).toLocaleString('pt-BR',{minimumFractionDigits:2}):'—'],
-    ['Qtd por pacote',i.qtdPacote||'—'],
+    ['Qtd por Pacote',i.qtdPacote||'—'],
     ['Atualizado em',fmtData(i.atualizado)],
   ].map(([r,v])=>`<div class="modal-row"><span class="modal-rot">${r}</span><span>${v}</span></div>`).join('')+
   (i.link?`<div style="margin-top:10px;text-align:center"><a href="${i.link}" target="_blank" style="color:var(--ouro);font-size:12px">🔗 Ver link de compra</a></div>`:'');
