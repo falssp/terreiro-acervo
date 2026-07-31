@@ -564,7 +564,7 @@ async function carregarConsumiveis(){
   try{
     const r=await fetch(URL_GS+'?acao=consumiveis-listar');const j=await r.json();
     if(j.ok){
-      consumiveis=j.itens||[];renderConsumiveis();
+      consumiveis=(j.itens||[]).sort((a,b)=>(a.nome||"").localeCompare((b.nome||""),"pt-BR"));renderConsumiveis();
       const counts={ok:0,repor:0,alerta:0,urgente:0};
       consumiveis.forEach(i=>{const s=NIVEL_SLUG[i.nivel]||'ok';if(counts[s]!==undefined)counts[s]++;});
       _fillNum('cnt-ok',counts.ok);_fillNum('cnt-repor',counts.repor);

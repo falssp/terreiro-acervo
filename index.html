@@ -473,7 +473,7 @@ async function carregarConsumiveis(){
   try{
     const r=await fetch(URL_GS+'?acao=consumiveis-listar');const j=await r.json();
     if(j.ok){
-      consumiveis=j.itens||[];renderConsumiveis();
+      consumiveis=(j.itens||[]).sort((a,b)=>(a.nome||"").localeCompare((b.nome||""),"pt-BR"));renderConsumiveis();
       const counts={ok:0,repor:0,alerta:0,urgente:0};
       consumiveis.forEach(i=>{const s=nivelSlug(i.nivel);if(counts[s]!==undefined)counts[s]++;});
       _fillNum('cnt-ok',counts.ok);_fillNum('cnt-repor',counts.repor);_fillNum('cnt-alerta',counts.alerta);_fillNum('cnt-urgente',counts.urgente);
@@ -485,7 +485,8 @@ function renderConsumiveis(){
   const busca=(document.getElementById('cf-busca').value||'').toLowerCase();
   const cat=document.getElementById('cf-cat').value;
   const nivel=document.getElementById('cf-nivel').value;
-  const f=consumiveis.filter(i=>(!busca||(i.nome||'').toLowerCase().includes(busca))&&(!cat||i.categoria===cat)&&(!nivel||nivelSlug(i.nivel)===nivel));
+  const sorted=[...consumiveis].sort((a,b)=>(a.nome||"").localeCompare((b.nome||""),"pt-BR"));
+  const f=sorted.filter(i=>(!busca||(i.nome||'').toLowerCase().includes(busca))&&(!cat||i.categoria===cat)&&(!nivel||nivelSlug(i.nivel)===nivel));
   document.getElementById('cf-count').textContent=f.length+' item(s)';
   if(!f.length){document.getElementById('csm-lista').innerHTML='<div class="empty">Nenhum item encontrado.</div>';return;}
   document.getElementById('csm-lista').innerHTML=f.map(function(i){
