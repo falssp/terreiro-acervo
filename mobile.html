@@ -156,11 +156,11 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 #toast.erro{border-color:#f08080;color:#f08080}
 
-.cad-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:16px 12px;cursor:pointer;transition:border-color .15s;text-align:center;-webkit-tap-highlight-color:transparent}
-.cad-card:active{border-color:var(--ouro);opacity:.85}
-.cad-ic{font-size:26px;margin-bottom:6px}
-.cad-lb{font-size:12px;font-weight:600;color:var(--ouro-lt);margin-bottom:3px}
-.cad-dc{font-size:10px;color:var(--cinza);line-height:1.4}
+.cad-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:28px 14px;cursor:pointer;transition:border-color .15s,background .2s;text-align:center;-webkit-tap-highlight-color:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:150px}
+.cad-card:active{border-color:var(--ouro);opacity:.85;background:rgba(201,168,76,.06)}
+.cad-ic{font-size:36px;margin-bottom:10px}
+.cad-lb{font-size:13px;font-weight:600;color:var(--ouro-lt);margin-bottom:6px}
+.cad-dc{font-size:11px;color:var(--cinza);line-height:1.4}
 </style>
 </head>
 <body>
@@ -296,10 +296,10 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
         <input type="text" id="cu-nome" placeholder="Ex: Vela 7 dias branca" autocomplete="off"/>
       </div>
       <div class="field"><label>Quantidade atual</label>
-        <input type="number" id="cu-atual" min="0" placeholder="0"/>
+        <input type="number" id="cu-atual" min="0" placeholder="Qtd atual"/>
       </div>
       <div class="field"><label>Quantidade mínima</label>
-        <input type="number" id="cu-min" min="0" placeholder="0"/>
+        <input type="number" id="cu-min" min="0" placeholder="Qtd minima"/>
       </div>
       <div class="field"><label>Fornecedor</label>
         <input type="text" id="cu-forn" placeholder="Ex: Casa dos Orixás" autocomplete="off"/>
