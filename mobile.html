@@ -305,24 +305,46 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
         <input type="tel" id="f-contato" placeholder="(11) 99999-9999"/>
       </div>
       <div class="field"><label>Orixá de cabeça</label>
-        <select id="f-orixa">
-          <option value="">—</option>
-          <option>Exu</option><option>Iansã</option><option>Iemanjá</option>
-          <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
-          <option>Ogum</option><option>Oxalá</option><option>Oxossi</option>
-          <option>Oxum</option><option>Oxumaré</option><option>Preto-Velho</option>
-          <option>Xangô</option><option>Outro</option>
+        <select id="f-orixa" onchange="toggleOutro('f-orixa','f-orixa-outro')">
+
+          <option value="">--</option>
+          <option>Iansã</option>
+          <option>Iemanjá</option>
+          <option>Logun Edé</option>
+          <option>Nanã</option>
+          <option>Obá</option>
+          <option>Obaluaê / Omolu</option>
+          <option>Ogum</option>
+          <option>Oxaguiã / Oxalufã</option>
+          <option>Oxalá</option>
+          <option>Oxossi</option>
+          <option>Oxum</option>
+          <option>Oxumaré</option>
+          <option>Xangô</option>
+          <option value="__outro__">Outro (especificar)</option>
         </select>
+        <input type="text" id="f-orixa-outro" placeholder="Digite o orixá..." style="margin-top:6px;background:rgba(0,0,0,.35);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:13px;padding:9px 11px;outline:none;font-family:var(--fb);width:100%;display:none"/>
       </div>
       <div class="field"><label>Adjuntó</label>
-        <select id="f-adjunto">
-          <option value="">—</option>
-          <option>Exu</option><option>Iansã</option><option>Iemanjá</option>
-          <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
-          <option>Ogum</option><option>Oxalá</option><option>Oxossi</option>
-          <option>Oxum</option><option>Oxumaré</option><option>Preto-Velho</option>
-          <option>Xangô</option><option>Outro</option>
+        <select id="f-adjunto" onchange="toggleOutro('f-adjunto','f-adjunto-outro')">
+
+          <option value="">--</option>
+          <option>Iansã</option>
+          <option>Iemanjá</option>
+          <option>Logun Edé</option>
+          <option>Nanã</option>
+          <option>Obá</option>
+          <option>Obaluaê / Omolu</option>
+          <option>Ogum</option>
+          <option>Oxaguiã / Oxalufã</option>
+          <option>Oxalá</option>
+          <option>Oxossi</option>
+          <option>Oxum</option>
+          <option>Oxumaré</option>
+          <option>Xangô</option>
+          <option value="__outro__">Outro (especificar)</option>
         </select>
+        <input type="text" id="f-adjunto-outro" placeholder="Digite o orixá..." style="margin-top:6px;background:rgba(0,0,0,.35);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:13px;padding:9px 11px;outline:none;font-family:var(--fb);width:100%;display:none"/>
       </div>
       <div class="field"><label>Nação</label>
         <select id="f-nacao">
@@ -389,13 +411,21 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
       <div class="filter-bar">
         <input type="search" id="fs-busca" placeholder="🔍 Buscar..." oninput="renderFilhos()"/>
         <select id="fs-orixa" onchange="renderFilhos()">
-          <option value="">Todos os orixás</option>
-          <option>Exu</option><option>Iansã</option><option>Iemanjá</option>
-          <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
-          <option>Ogum</option><option>Oxalá</option><option>Oxossi</option>
-          <option>Oxum</option><option>Oxumaré</option><option>Preto-Velho</option>
-          <option>Xangô</option><option>Outro</option>
-        </select>
+      <option value="">Todos os orixás</option>
+      <option>Iansã</option>
+      <option>Iemanjá</option>
+      <option>Logun Edé</option>
+      <option>Nanã</option>
+      <option>Obaluaê / Omolu</option>
+      <option>Obá</option>
+      <option>Ogum</option>
+      <option>Oxaguiã / Oxalufã</option>
+      <option>Oxalá</option>
+      <option>Oxossi</option>
+      <option>Oxum</option>
+      <option>Oxumaré</option>
+      <option>Xangô</option>
+    </select>
         <select id="fs-status" onchange="renderFilhos()">
           <option value="">Todos os status</option>
           <option>Abiã</option><option>Ativo</option><option>Ebomi</option>
@@ -639,7 +669,7 @@ async function salvarAcervo(){
   if(!nome||!cat){toast('Preencha nome e categoria.',false);return;}
   const btn=document.getElementById('btnAcervo');btn.disabled=true;btn.textContent='Gravando...';
   try{
-    const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'inserir',nome,categoria:cat,subcategoria:document.getElementById('c-subcat').value,orixa:document.getElementById('c-orixa').value,entidade:document.getElementById('c-entidade').value,status:document.getElementById('c-status').value,local:document.getElementById('c-local').value,quantidade:document.getElementById('c-qtd').value,foto:document.getElementById('c-foto').value,observacoes:document.getElementById('c-obs').value})});
+    const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'inserir',nome,categoria:cat,subcategoria:document.getElementById('c-subcat').value,orixa:getValorComOutro('c-orixa','c-orixa-outro'),entidade:getValorComOutro('c-entidade','c-entidade-outro'),status:document.getElementById('c-status').value,local:document.getElementById('c-local').value,quantidade:document.getElementById('c-qtd').value,foto:document.getElementById('c-foto').value,observacoes:document.getElementById('c-obs').value})});
     const j=await r.json();
     if(j.ok){toast('✓ Item gravado!');limparAcervo();acervo=[];carregarAcervo();}
     else toast(j.erro||'Erro.',false);
@@ -663,7 +693,7 @@ function limparConsumivel(){['cu-nome','cu-atual','cu-min','cu-forn','cu-preco',
 async function salvarFilho(){
   const btn=document.getElementById('btnFilho');btn.disabled=true;btn.textContent='Gravando...';
   try{
-    const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'filho-inserir',nomeSanto:document.getElementById('f-nome').value,nomeSocial:document.getElementById('f-social').value,contato:document.getElementById('f-contato').value,orixa:document.getElementById('f-orixa').value,adjunto:document.getElementById('f-adjunto').value,nacao:document.getElementById('f-nacao').value,statusTerreiro:document.getElementById('f-status').value,aniversario:document.getElementById('f-aniv').value,feitura:document.getElementById('f-feitura').value,proximaObrigacao:document.getElementById('f-obrig').value,obrigacoesRealizadas:document.getElementById('f-obrigrealiz').value,observacoes:document.getElementById('f-obs').value})});
+    const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'filho-inserir',nomeSanto:document.getElementById('f-nome').value,nomeSocial:document.getElementById('f-social').value,contato:document.getElementById('f-contato').value,orixa:getValorComOutro('f-orixa','f-orixa-outro'),adjunto:getValorComOutro('f-adjunto','f-adjunto-outro'),nacao:document.getElementById('f-nacao').value,statusTerreiro:document.getElementById('f-status').value,aniversario:document.getElementById('f-aniv').value,feitura:document.getElementById('f-feitura').value,proximaObrigacao:document.getElementById('f-obrig').value,obrigacoesRealizadas:document.getElementById('f-obrigrealiz').value,observacoes:document.getElementById('f-obs').value})});
     const j=await r.json();
     if(j.ok){toast('✓ Gravado!');limparFilho();filhos=[];carregarFilhos();}
     else toast(j.erro||'Erro.',false);
@@ -693,6 +723,23 @@ function usarML(titulo,preco,link){
   navTo('cadastro',document.querySelectorAll('.nav-btn')[1]);
   toast('✓ Dados preenchidos!');
 }
+
+function toggleOutro(selId, inputId) {
+  const sel = document.getElementById(selId);
+  const inp = document.getElementById(inputId);
+  if (!inp) return;
+  inp.style.display = sel.value === '__outro__' ? 'block' : 'none';
+  if (sel.value !== '__outro__') inp.value = '';
+}
+function getValorComOutro(selId, inputId) {
+  const sel = document.getElementById(selId);
+  if (sel.value === '__outro__') {
+    const inp = document.getElementById(inputId);
+    return inp ? inp.value.trim() : '';
+  }
+  return sel.value;
+}
+
 </script>
 </body>
 </html>
