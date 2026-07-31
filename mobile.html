@@ -371,12 +371,12 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
           <option>Fumo</option><option>Velas</option>
         </select>
         <select id="cf-nivel" onchange="renderConsumiveis()">
-          <option value="">Todos os níveis</option>
-          <option value="urgente">🚨 Urgente</option>
-          <option value="alerta">🔴 Alerta</option>
-          <option value="repor">⚠️ Repor</option>
-          <option value="ok">✅ OK</option>
-        </select>
+      <option value="">Todos os níveis</option>
+      <option value="alerta">🔴 Alerta</option>
+      <option value="ok">✅ OK</option>
+      <option value="repor">⚠️ Repor</option>
+      <option value="urgente">🚨 Urgente</option>
+    </select>
       </div>
       <div class="results-count" id="cf-count"></div>
       <div id="csm-lista"><div class="empty">Carregando...</div></div>
@@ -639,7 +639,7 @@ async function salvarAcervo(){
   if(!nome||!cat){toast('Preencha nome e categoria.',false);return;}
   const btn=document.getElementById('btnAcervo');btn.disabled=true;btn.textContent='Gravando...';
   try{
-    const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'inserir',nome,categoria:cat,subcategoria:document.getElementById('c-subcat').value,orixa:document.getElementById('c-orixa').value,status:document.getElementById('c-status').value,local:document.getElementById('c-local').value,quantidade:document.getElementById('c-qtd').value,foto:document.getElementById('c-foto').value,observacoes:document.getElementById('c-obs').value})});
+    const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'inserir',nome,categoria:cat,subcategoria:document.getElementById('c-subcat').value,orixa:document.getElementById('c-orixa').value,entidade:document.getElementById('c-entidade').value,status:document.getElementById('c-status').value,local:document.getElementById('c-local').value,quantidade:document.getElementById('c-qtd').value,foto:document.getElementById('c-foto').value,observacoes:document.getElementById('c-obs').value})});
     const j=await r.json();
     if(j.ok){toast('✓ Item gravado!');limparAcervo();acervo=[];carregarAcervo();}
     else toast(j.erro||'Erro.',false);

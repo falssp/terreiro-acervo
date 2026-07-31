@@ -199,16 +199,35 @@ nav::-webkit-scrollbar{display:none}
         </select>
       </div>
       <div class="field"><label>Subcategoria</label><select id="c-subcat"><option value="">--</option></select></div>
-      <div class="field"><label>Orixa / Entidade</label>
+      <div class="field"><label>Orixá de cabeça</label>
         <select id="c-orixa">
           <option value="">--</option>
-          <option>Boiadeiro</option><option>Caboclo</option><option>Crianca / Ere</option>
-          <option>Exu</option><option>Geral / Sem entidade</option><option>Iansan</option>
-          <option>Iemanja</option><option>Marinheiro</option><option>Nana</option>
-          <option>Oba</option><option>Obaluae / Omolu</option><option>Ogum</option>
-          <option>Oxala</option><option>Oxossi</option><option>Oxum</option>
-          <option>Oxumare</option><option>Pomba-Gira</option><option>Preto-Velho</option>
-          <option>Xango</option><option>Ze Pilintra</option>
+          <option>Iansã</option>
+          <option>Iemanjá</option>
+          <option>Nanã</option>
+          <option>Obá</option>
+          <option>Obaluaê / Omolu</option>
+          <option>Ogum</option>
+          <option>Oxalá</option>
+          <option>Oxossi</option>
+          <option>Oxum</option>
+          <option>Oxumaré</option>
+          <option>Xangô</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="field"><label>Entidade / Linha</label>
+        <select id="c-entidade">
+          <option value="">--</option>
+          <option>Boiadeiro</option>
+          <option>Caboclo</option>
+          <option>Criança / Erê</option>
+          <option>Exu</option>
+          <option>Marinheiro</option>
+          <option>Pomba-Gira</option>
+          <option>Preto-Velho</option>
+          <option>Zé Pilintra</option>
+          <option>Outro</option>
         </select>
       </div>
       <div class="field"><label>Status</label>
@@ -260,24 +279,38 @@ nav::-webkit-scrollbar{display:none}
       <div class="field"><label>Nome de candomble / santo</label><input type="text" id="f-nome" autocomplete="off"/></div>
       <div class="field"><label>Nome social</label><input type="text" id="f-social" autocomplete="off"/></div>
       <div class="field"><label>Contato (WhatsApp)</label><input type="tel" id="f-contato" placeholder="(11) 99999-9999"/></div>
-      <div class="field"><label>Orixa de cabeca</label>
+      <div class="field"><label>Orixá de cabeça</label>
         <select id="f-orixa">
           <option value="">--</option>
-          <option>Exu</option><option>Iansan</option><option>Iemanja</option>
-          <option>Nana</option><option>Oba</option><option>Obaluae / Omolu</option>
-          <option>Ogum</option><option>Oxala</option><option>Oxossi</option>
-          <option>Oxum</option><option>Oxumare</option><option>Preto-Velho</option>
-          <option>Xango</option><option>Outro</option>
+          <option>Iansã</option>
+          <option>Iemanjá</option>
+          <option>Nanã</option>
+          <option>Obá</option>
+          <option>Obaluaê / Omolu</option>
+          <option>Ogum</option>
+          <option>Oxalá</option>
+          <option>Oxossi</option>
+          <option>Oxum</option>
+          <option>Oxumaré</option>
+          <option>Xangô</option>
+          <option>Outro</option>
         </select>
       </div>
-      <div class="field"><label>Adjunto / Junto</label>
+      <div class="field"><label>Adjuntó</label>
         <select id="f-adjunto">
           <option value="">--</option>
-          <option>Exu</option><option>Iansan</option><option>Iemanja</option>
-          <option>Nana</option><option>Oba</option><option>Obaluae / Omolu</option>
-          <option>Ogum</option><option>Oxala</option><option>Oxossi</option>
-          <option>Oxum</option><option>Oxumare</option><option>Preto-Velho</option>
-          <option>Xango</option><option>Outro</option>
+          <option>Iansã</option>
+          <option>Iemanjá</option>
+          <option>Nanã</option>
+          <option>Obá</option>
+          <option>Obaluaê / Omolu</option>
+          <option>Ogum</option>
+          <option>Oxalá</option>
+          <option>Oxossi</option>
+          <option>Oxum</option>
+          <option>Oxumaré</option>
+          <option>Xangô</option>
+          <option>Outro</option>
         </select>
       </div>
       <div class="field"><label>Nacao</label>
@@ -338,9 +371,11 @@ nav::-webkit-scrollbar{display:none}
       <option>Flores e Naturais</option><option>Fumo</option><option>Velas</option>
     </select>
     <select id="cf-nivel" onchange="renderConsumiveis()">
-      <option value="">Todos os niveis</option>
-      <option value="urgente">Urgente</option><option value="alerta">Alerta</option>
-      <option value="repor">Repor</option><option value="ok">OK</option>
+      <option value="">Todos os níveis</option>
+      <option value="alerta">🔴 Alerta</option>
+      <option value="ok">✅ OK</option>
+      <option value="repor">⚠️ Repor</option>
+      <option value="urgente">🚨 Urgente</option>
     </select>
   </div>
   <div class="results-count" id="cf-count"></div>
@@ -352,12 +387,20 @@ nav::-webkit-scrollbar{display:none}
   <div class="filter-bar">
     <input type="search" id="fs-busca" placeholder="Buscar..." oninput="renderFilhos()"/>
     <select id="fs-orixa" onchange="renderFilhos()">
-      <option value="">Todos os orixas</option>
-      <option>Exu</option><option>Iansan</option><option>Iemanja</option>
-      <option>Nana</option><option>Oba</option><option>Obaluae / Omolu</option>
-      <option>Ogum</option><option>Oxala</option><option>Oxossi</option>
-      <option>Oxum</option><option>Oxumare</option><option>Preto-Velho</option>
-      <option>Xango</option><option>Outro</option>
+      <option value="">Todos os orixás</option>
+          <option value="">--</option>
+          <option>Iansã</option>
+          <option>Iemanjá</option>
+          <option>Nanã</option>
+          <option>Obá</option>
+          <option>Obaluaê / Omolu</option>
+          <option>Ogum</option>
+          <option>Oxalá</option>
+          <option>Oxossi</option>
+          <option>Oxum</option>
+          <option>Oxumaré</option>
+          <option>Xangô</option>
+          <option>Outro</option>
     </select>
     <select id="fs-status" onchange="renderFilhos()">
       <option value="">Todos os status</option>
@@ -532,10 +575,10 @@ async function salvarAcervo(){
   const nome=document.getElementById('c-nome').value.trim(),cat=document.getElementById('c-cat').value;
   if(!nome||!cat){toast('Preencha nome e categoria.',false);return;}
   const btn=document.getElementById('btnAcervo');btn.disabled=true;btn.textContent='Gravando...';
-  try{const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'inserir',nome:nome,categoria:cat,subcategoria:document.getElementById('c-subcat').value,orixa:document.getElementById('c-orixa').value,status:document.getElementById('c-status').value,local:document.getElementById('c-local').value,quantidade:document.getElementById('c-qtd').value,foto:document.getElementById('c-foto').value,observacoes:document.getElementById('c-obs').value})});const j=await r.json();if(j.ok){toast('Item gravado! ID: '+j.id);limparAcervo();acervo=[];carregarAcervo();}else toast(j.erro||'Erro.',false);}catch(e){toast('Erro de conexao.',false);}
+  try{const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'inserir',nome:nome,categoria:cat,subcategoria:document.getElementById('c-subcat').value,orixa:document.getElementById('c-orixa').value,entidade:document.getElementById('c-entidade').value,status:document.getElementById('c-status').value,local:document.getElementById('c-local').value,quantidade:document.getElementById('c-qtd').value,foto:document.getElementById('c-foto').value,observacoes:document.getElementById('c-obs').value})});const j=await r.json();if(j.ok){toast('Item gravado! ID: '+j.id);limparAcervo();acervo=[];carregarAcervo();}else toast(j.erro||'Erro.',false);}catch(e){toast('Erro de conexao.',false);}
   finally{btn.disabled=false;btn.textContent='Gravar';}
 }
-function limparAcervo(){['c-nome','c-local','c-foto','c-obs'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('c-qtd').value=1;['c-cat','c-orixa','c-status'].forEach(function(id){document.getElementById(id).selectedIndex=0;});document.getElementById('c-subcat').innerHTML='<option value="">--</option>';document.getElementById('foto-preview').innerHTML='';}
+function limparAcervo(){['c-nome','c-local','c-foto','c-obs'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('c-qtd').value=1;['c-cat','c-orixa','c-entidade','c-status'].forEach(function(id){var el=document.getElementById(id);if(el)el.selectedIndex=0;});document.getElementById('c-subcat').innerHTML='<option value="">--</option>';document.getElementById('foto-preview').innerHTML='';}
 
 async function salvarConsumivel(){
   const nome=document.getElementById('cu-nome').value.trim();
