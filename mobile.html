@@ -2,835 +2,696 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<meta name="theme-color" content="#2a1a0e"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="Terreiro"/>
-<link rel="manifest" href="manifest.json"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Ile Ase Vodun Ogum Ayres</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="manifest" href="manifest.json"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --terra:#1a0e06;--terra2:#0f0f0f;--terra3:#1a1a1a;
-  --ouro:#c9a84c;--ouro-lt:#f0d060;
-  --creme:#ffffff;--creme-lt:#f8f8f8;--cinza:#999999;
-  --borda:rgba(200,146,42,.22);--r:12px;
+  --bg:#0f0f0f;--card:#1a1a1a;--card2:#222;
+  --ouro:#c9a84c;--ouro-lt:#f0d060;--creme:#fff;--cinza:#999;
+  --borda:rgba(201,168,76,.22);--r:12px;
   --fd:'Cinzel',serif;--fb:'Inter',sans-serif;
-  --safe-b:env(safe-area-inset-bottom,0px);
-  --tab-h:64px;
+  --bottom:64px;
 }
-html{font-size:16px;height:100%}
-body{font-family:var(--fb);background:var(--terra);color:var(--creme);height:100%;overflow:hidden;position:fixed;width:100%}
+html,body{height:100%;overflow:hidden}
+body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;flex-direction:column}
 
-/* ── LAYOUT ─── */
-.app{display:flex;flex-direction:column;height:100dvh}
-.header{background:linear-gradient(160deg,#050505,#111111);border-bottom:1px solid var(--borda);padding:14px 16px 10px;text-align:center;flex-shrink:0}
-.header h1{font-family:var(--fd);font-size:1.05rem;font-weight:600;color:var(--ouro-lt);letter-spacing:.06em;line-height:1.2}
-.header p{font-size:10px;color:var(--cinza);margin-top:1px;letter-spacing:.08em;text-transform:uppercase}
+/* TOPO */
+.topo{background:linear-gradient(135deg,#1a0e06,#0a0a0a);border-bottom:1px solid var(--borda);padding:12px 16px 8px;text-align:center;flex-shrink:0}
+.topo h1{font-family:var(--fd);font-size:.95rem;color:var(--ouro-lt);letter-spacing:.05em}
+.topo p{font-size:9px;color:var(--cinza);margin-top:2px;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:8px}
+.topo p a{color:var(--cinza);text-decoration:none;font-size:9px}
+.topo p a:hover{color:var(--ouro)}
 
-.content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
-.page{display:none;min-height:100%}
+/* CONTENT */
+.content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--bottom)+16px)}
+
+/* SKELETON */
+.skeleton{background:linear-gradient(90deg,rgba(201,168,76,.08) 25%,rgba(201,168,76,.18) 50%,rgba(201,168,76,.08) 75%);background-size:200% 100%;animation:skel 1.4s infinite;border-radius:6px}
+@keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.skel-num{height:1.3rem;width:60px;margin:0 auto 3px}
+
+/* PÁGINAS */
+.page{display:none;padding:14px 14px 0}
 .page.active{display:block}
-.inner{padding:14px 14px calc(var(--tab-h) + var(--safe-b) + 16px)}
 
-/* ── BOTTOM NAV ─── */
-.bottom-nav{
-  position:fixed;bottom:0;left:0;right:0;
-  height:calc(var(--tab-h) + var(--safe-b));
-  background:#080808;
-  border-top:1px solid var(--borda);
-  display:flex;
-  padding-bottom:var(--safe-b);
-  z-index:100;
-}
-.nav-btn{
-  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:3px;border:none;background:none;color:var(--cinza);
-  font-family:var(--fb);font-size:10px;font-weight:500;
-  cursor:pointer;padding:8px 4px;transition:color .15s;
-  -webkit-appearance:none;
-}
-.nav-btn.active{color:var(--ouro-lt)}
-.nav-btn svg{display:block}
-.nav-dot{width:4px;height:4px;border-radius:50%;background:var(--ouro);display:none;margin:0 auto}
-.nav-btn.active .nav-dot{display:block}
+/* INÍCIO */
+.resumo-niveis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px}
+.nivel-card{border-radius:10px;padding:12px 4px;text-align:center;border:1px solid transparent;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.nivel-card:active{opacity:.7}
+.nivel-card .num{font-family:var(--fd);font-size:1.3rem;font-weight:600}
+.nivel-card .rot{font-size:9px;text-transform:uppercase;letter-spacing:.06em;margin-top:3px;color:var(--cinza)}
+.nivel-card.ok{background:rgba(30,107,58,.18);border-color:rgba(30,107,58,.3)}.nivel-card.ok .num{color:#7fd67f}
+.nivel-card.repor{background:rgba(180,140,0,.15);border-color:rgba(180,140,0,.3)}.nivel-card.repor .num{color:#e0c040}
+.nivel-card.alerta{background:rgba(180,40,40,.18);border-color:rgba(180,40,40,.3)}.nivel-card.alerta .num{color:#f08080}
+.nivel-card.urgente{background:rgba(120,0,0,.25);border-color:rgba(200,0,0,.35)}.nivel-card.urgente .num{color:#ff6060}
+.ornamento{text-align:center;color:var(--ouro);letter-spacing:.4em;font-size:11px;margin:0 0 14px}
+.home-card{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:12px 14px;margin-bottom:8px}
+.home-card-titulo{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ouro);margin-bottom:8px;font-weight:600}
+.home-item{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.home-item:last-child{border:none}
+.home-item .data{color:var(--cinza);font-size:11px}
 
-/* ── PROGRESS ─── */
-.progress{height:2px;background:rgba(200,146,42,.1);flex-shrink:0}
-.progress-fill{height:100%;background:var(--ouro);width:0;transition:width .3s}
-
-/* ── CONFIG ─── */
-.cfg{background:rgba(25,25,25,.5);border:1px solid var(--borda);border-radius:var(--r);padding:10px 12px;margin-bottom:14px}
-.cfg label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ouro);font-weight:600;display:block;margin-bottom:5px}
-.cfg input{width:100%;background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:11px;font-family:monospace;padding:8px 10px;outline:none;-webkit-appearance:none}
-.cfg input:focus{border-color:var(--ouro)}
-.cfg-hint{font-size:10px;color:var(--cinza);margin-top:4px}
-
-/* ── FORM ─── */
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.field{display:flex;flex-direction:column;gap:5px}
-.field.full{grid-column:1/-1}
-.field label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ouro);font-weight:600}
-.field input,.field select,.field textarea{
-  background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:10px;
-  color:var(--creme);font-family:var(--fb);font-size:15px;
-  padding:12px 13px;outline:none;-webkit-appearance:none;appearance:none;width:100%;
-  transition:border-color .15s;
-}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ouro);background:rgba(0,0,0,.45)}
-.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c8922a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px}
-.field select option{background:#111111}
-.field textarea{resize:none;min-height:80px}
-input[type="date"]{color-scheme:dark}
-
-/* ── BOTÕES ─── */
-.btn-row{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
-.btn{min-height:46px;padding:10px 20px;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid var(--borda);font-family:var(--fb)}
-.btn-ghost{background:transparent;color:var(--cinza)}
-.btn-primary{background:linear-gradient(135deg,var(--ouro),#a07020);color:#1a0e06;border-color:var(--ouro);font-weight:600}
-.btn-primary:active{opacity:.8}.btn-primary:disabled{opacity:.4}
-
-/* ── CARDS ─── */
-.card-list{display:flex;flex-direction:column;gap:10px}
-.card{background:linear-gradient(135deg,rgba(30,30,30,.6),rgba(15,15,15,.8));border:1px solid var(--borda);border-radius:var(--r);padding:13px;display:grid;grid-template-columns:1fr auto;gap:5px 10px;align-items:start}
-.card-tipo{font-size:10px;color:var(--cinza);text-transform:uppercase;letter-spacing:.07em}
-.card-nome{font-size:15px;font-weight:600;color:var(--creme-lt);line-height:1.3;margin-top:2px}
-.card-meta{font-size:12px;color:var(--cinza);line-height:1.7;margin-top:2px}
-.card-right{display:flex;flex-direction:column;align-items:flex-end;gap:7px}
-.badge{display:inline-block;font-size:10px;font-weight:600;padding:3px 9px;border-radius:99px;white-space:nowrap}
-.b-disponivel{background:rgba(34,139,34,.25);color:#7fd67f;border:1px solid rgba(34,139,34,.4)}
-.b-em-uso{background:rgba(200,146,42,.25);color:var(--ouro-lt);border:1px solid var(--borda)}
-.b-danificado{background:rgba(180,40,40,.25);color:#f08080;border:1px solid rgba(180,40,40,.4)}
-.b-necessita-reposicao{background:rgba(180,120,0,.25);color:#e8b84b;border:1px solid rgba(180,120,0,.4)}
-.card-foto{width:48px;height:48px;border-radius:8px;object-fit:cover;border:1px solid var(--borda)}
-.card-foto-ph{width:48px;height:48px;border-radius:8px;background:rgba(0,0,0,.25);border:1px dashed var(--borda);display:flex;align-items:center;justify-content:center;color:var(--cinza)}
-
-/* ── FILTRO ─── */
-.filter-row{display:flex;gap:7px;margin-bottom:12px;align-items:center;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
-.filter-row::-webkit-scrollbar{display:none}
-.filter-row select{background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:12px;padding:8px 26px 8px 10px;font-family:var(--fb);outline:none;flex-shrink:0;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c8922a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center}
-.filter-row select option{background:#111111}
-
-
-/* ── ORNAMENTO ─── */
-.ornamento{text-align:center;color:var(--ouro);opacity:.28;font-size:15px;letter-spacing:.5em;margin:12px 0;pointer-events:none}
-.secao-titulo{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--cinza);font-weight:600;margin:14px 0 8px;display:flex;align-items:center;gap:6px}
+/* SECAO TITULO */
+.secao-titulo{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ouro);font-weight:600;margin:16px 0 10px;display:flex;align-items:center;gap:8px}
 .secao-titulo::after{content:'';flex:1;height:1px;background:var(--borda)}
-.empty{text-align:center;padding:48px 20px;color:var(--cinza);font-size:13px}
 
-/* ── CONSUMÍVEIS ─── */
-.resumo-niveis{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
-.nivel-card{border-radius:10px;padding:10px 4px;text-align:center;border:1px solid transparent;transition:opacity .15s;active:opacity:.7}
-.nivel-card .num{font-family:var(--fd);font-size:1.5rem;font-weight:600;line-height:1}
-.nivel-card .rot{font-size:9px;text-transform:uppercase;letter-spacing:.04em;margin-top:3px;line-height:1.2}
-.nivel-card.ok{background:rgba(30,107,58,.2);border-color:rgba(30,107,58,.3)}.nivel-card.ok .num{color:#7fd67f}
-.nivel-card.repor{background:rgba(125,92,0,.2);border-color:rgba(125,92,0,.3)}.nivel-card.repor .num{color:#e8b84b}
-.nivel-card.alerta{background:rgba(139,0,0,.2);border-color:rgba(139,0,0,.3)}.nivel-card.alerta .num{color:#f08080}
-.nivel-card.urgente{background:rgba(92,0,0,.3);border-color:rgba(92,0,0,.4)}.nivel-card.urgente .num{color:#ffb3b3}
-.cat-grupo{margin-bottom:14px}
-.cat-titulo{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ouro);padding:6px 0;border-bottom:1px solid var(--borda);margin-bottom:8px}
-.csm-item{background:rgba(0,0,0,.2);border-radius:10px;padding:11px 13px;margin-bottom:7px;border-left:3px solid transparent}
-.csm-item.ok{border-left-color:#1e6b3a}.csm-item.repor{border-left-color:#c8922a}
-.csm-item.alerta{border-left-color:#cc0000}.csm-item.urgente{border-left-color:#880000;background:rgba(139,0,0,.12)}
-.csm-item-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
-.csm-nome{font-size:14px;font-weight:600;color:var(--creme-lt);flex:1;line-height:1.3}
-.csm-badge{font-size:10px;font-weight:600;padding:3px 9px;border-radius:99px;white-space:nowrap}
-.csm-badge.ok{background:#e6f4ea;color:#1e6b3a}.csm-badge.repor{background:#fef9e7;color:#7d5c00}
-.csm-badge.alerta{background:#fdecea;color:#8b0000}.csm-badge.urgente{background:#f5c6cb;color:#5c0000}
-.csm-barra-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--cinza);margin-bottom:4px}
-.csm-barra-bg{height:6px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden;margin-bottom:6px}
-.csm-barra-fill{height:100%;border-radius:99px;transition:width .4s}
-.fill-ok{background:linear-gradient(90deg,#228b22,#7fd67f)}.fill-repor{background:linear-gradient(90deg,#a07020,#e8b84b)}
-.fill-alerta{background:linear-gradient(90deg,#8b0000,#f08080)}.fill-urgente{background:linear-gradient(90deg,#5c0000,#cc2222)}
-.csm-info{display:flex;justify-content:space-between;align-items:center}
-.csm-meta{font-size:11px;color:var(--cinza)}
-.csm-acoes{display:flex;gap:5px}
-.btn-act{min-height:32px;border-radius:8px;padding:4px 11px;font-size:12px;cursor:pointer;font-family:var(--fb);border:1px solid var(--borda);background:rgba(200,146,42,.12);color:var(--ouro)}
-.btn-act.blue{background:rgba(52,152,219,.12);border-color:rgba(52,152,219,.3);color:#7fc8f8}
+/* FORMULÁRIO */
+.form-box{background:rgba(10,20,10,.3);border:1px solid rgba(150,200,150,.15);border-radius:var(--r);padding:14px;margin-bottom:14px}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.field label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ouro)}
+.field input,.field select,.field textarea{background:rgba(0,0,0,.35);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:14px;padding:10px 12px;outline:none;font-family:var(--fb);-webkit-appearance:none;width:100%}
+.field textarea{resize:none;min-height:60px;line-height:1.5}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ouro)}
+.field input[type=date]{color-scheme:dark}
+.btn-row{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.btn{padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:var(--fb);-webkit-tap-highlight-color:transparent}
+.btn-primary{background:linear-gradient(135deg,var(--ouro),#a07820);color:#0f0f0f}
+.btn-ghost{background:transparent;border:1px solid var(--borda);color:var(--cinza)}
+.btn:active{opacity:.8}
 
-/* ── FILHOS ─── */
-.filho-card{background:linear-gradient(135deg,rgba(42,10,42,.5),rgba(26,6,26,.7));border:1px solid rgba(200,150,220,.2);border-radius:var(--r);padding:13px;margin-bottom:9px}
-.filho-orixa{font-size:15px;font-weight:600;color:#e8c8f0;margin-bottom:4px}
-.filho-meta{font-size:12px;color:var(--cinza);line-height:1.7}
-.filho-badge{display:inline-block;font-size:10px;font-weight:600;padding:3px 9px;border-radius:99px;margin-top:5px}
-.fs-ativo{background:#e6f4ea;color:#1e6b3a}.fs-iao{background:#f0e6ff;color:#4a0080}
-.fs-ebomi{background:#e8f0fe;color:#1a56a0}.fs-suspenso{background:#fdecea;color:#8b0000}
-.fs-abiao{background:#fff9e6;color:#7d5c00}.fs-inativo{background:#f5f5f5;color:#666}
-.fs-oga{background:#e8f4fd;color:#0a6a8a}
+/* FILTER */
+.filter-bar{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
+.filter-bar input,.filter-bar select{background:rgba(0,0,0,.35);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:13px;padding:9px 11px;outline:none;font-family:var(--fb);-webkit-appearance:none;width:100%}
+.results-count{font-size:11px;color:var(--cinza);margin-bottom:8px}
 
-/* ── FINANCEIRO ─── */
-.fin-resumo{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-.fin-card{background:rgba(0,0,0,.28);border:1px solid var(--borda);border-radius:var(--r);padding:12px 8px;text-align:center}
-.fin-card .num{font-family:var(--fd);font-size:1.1rem;font-weight:600;line-height:1.2}
-.fin-card .rot{font-size:9px;text-transform:uppercase;letter-spacing:.06em;margin-top:3px;color:var(--cinza)}
-.fin-card.entrada .num{color:#7fd67f}.fin-card.saida .num{color:#f08080}.fin-card.saldo .num{color:var(--ouro-lt)}
-.fin-item{background:rgba(0,0,0,.2);border-radius:10px;padding:11px 13px;margin-bottom:7px;border-left:3px solid transparent}
-.fin-item.entrada{border-left-color:#1e6b3a}.fin-item.saida{border-left-color:#8b0000}
-.fin-desc{font-size:14px;font-weight:500;color:var(--creme-lt)}
-.fin-valor{font-size:15px;font-weight:700}
-.fin-valor.entrada{color:#7fd67f}.fin-valor.saida{color:#f08080}
-.fin-meta{font-size:11px;color:var(--cinza);margin-top:3px}
-.fin-item-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+/* ACERVO */
+.item-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:12px;margin-bottom:7px;-webkit-tap-highlight-color:transparent}
+.item-card:active{opacity:.8}
+.item-nome{font-size:14px;font-weight:600;margin-bottom:3px}
+.item-cat{font-size:11px;color:var(--cinza);margin-bottom:6px}
+.item-status{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block}
+.status-Disponível{background:#e6f4ea22;color:#7fd67f;border:1px solid #7fd67f44}
+.status-Em\ uso{background:#e8f0fe22;color:#90b0f0;border:1px solid #90b0f044}
+.status-Danificado{background:#fef3e222;color:#e0c040;border:1px solid #e0c04044}
+.status-Necessita\ reposição{background:#fdecea22;color:#f08080;border:1px solid #f0808044}
 
-/* ── HOME ─── */
-.datas-painel{background:rgba(0,0,0,.18);border:1px solid var(--borda);border-radius:var(--r);padding:12px;margin-bottom:12px}
-.datas-titulo{font-size:11px;font-weight:600;color:var(--ouro);margin-bottom:8px}
-.data-item{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(200,146,42,.08);font-size:12px}
-.data-item:last-child{border-bottom:none}
-.data-item .data{color:var(--ouro);font-weight:600;font-size:11px}
+/* CONSUMÍVEIS */
+.csm-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:12px 14px;margin-bottom:7px;-webkit-tap-highlight-color:transparent}
+.csm-card:active{opacity:.8}
+.csm-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px}
+.csm-nome{font-size:13px;font-weight:600;flex:1}
+.csm-cat{font-size:10px;color:var(--cinza);margin-top:2px}
+.csm-bar-wrap{height:5px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden;margin-bottom:4px}
+.csm-bar{height:100%;border-radius:99px}
+.csm-info{display:flex;justify-content:space-between;font-size:10px;color:var(--cinza)}
+.nivel-badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:99px;flex-shrink:0}
+.nivel-ok{background:#e6f4ea22;color:#7fd67f;border:1px solid #7fd67f44}
+.nivel-repor{background:#fef9e722;color:#e0c040;border:1px solid #e0c04044}
+.nivel-alerta{background:#fdecea22;color:#f08080;border:1px solid #f0808044}
+.nivel-urgente{background:#5c000022;color:#ff6060;border:1px solid #ff606044}
 
-/* ── MODAL (bottom sheet) ─── */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:flex-end}
+/* FILHOS */
+.filho-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:14px;margin-bottom:7px;text-align:center}
+.filho-titulo{font-size:14px;font-weight:600;color:var(--ouro-lt);margin-bottom:3px}
+.filho-nacao{font-size:10px;color:var(--cinza);margin-bottom:8px}
+.filho-row{display:flex;justify-content:space-between;font-size:11px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04);text-align:left}
+.filho-row:last-child{border:none}
+.filho-rot{color:var(--cinza)}
+.fs-abiao{background:#fff9e622;color:#e0c040;border:1px solid #e0c04044;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block;margin-bottom:8px}
+.fs-ativo{background:#e6f4ea22;color:#7fd67f;border:1px solid #7fd67f44;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block;margin-bottom:8px}
+.fs-ebomi{background:#e8f0fe22;color:#90b0f0;border:1px solid #90b0f044;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block;margin-bottom:8px}
+.fs-iao{background:#f0e6ff22;color:#c090f0;border:1px solid #c090f044;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block;margin-bottom:8px}
+.fs-inativo{background:#33333322;color:#888;border:1px solid #88888844;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block;margin-bottom:8px}
+.fs-oga{background:#fdecea22;color:#f0a080;border:1px solid #f0a08044;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block;margin-bottom:8px}
+.fs-suspenso{background:#fdecea22;color:#f08080;border:1px solid #f0808044;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block;margin-bottom:8px}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:flex-end;z-index:100}
 .modal-overlay.open{display:flex}
-.modal{background:#111111;border:1px solid var(--borda);border-radius:20px 20px 0 0;padding:20px 16px;padding-bottom:calc(20px + var(--safe-b));width:100%;max-height:90dvh;overflow-y:auto;position:relative}
-.modal-handle{width:36px;height:4px;background:rgba(200,146,42,.3);border-radius:99px;margin:0 auto 16px}
-.modal h3{font-family:var(--fd);font-size:14px;color:var(--ouro-lt);margin-bottom:4px;text-align:center}
-.modal-info{font-size:11px;color:var(--cinza);text-align:center;margin-bottom:14px}
-.ml-resultados{display:flex;flex-direction:column;gap:7px;margin-top:8px;max-height:200px;overflow-y:auto}
-.ml-item{background:rgba(255,255,255,.05);border:1px solid var(--borda);border-radius:10px;padding:9px 11px;display:flex;gap:9px;align-items:center;cursor:pointer;min-height:56px}
-.ml-item:active{background:rgba(200,146,42,.1)}
-.ml-thumb{width:40px;height:40px;border-radius:7px;object-fit:cover;flex-shrink:0}
-.ml-info{flex:1;min-width:0}
-.ml-titulo{font-size:11px;color:var(--creme);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.ml-preco{font-size:13px;font-weight:600;color:var(--ouro-lt);margin-top:2px}
-.ml-unit{font-size:10px;color:var(--cinza)}
+.modal{background:#1a1a1a;border:1px solid var(--borda);border-radius:var(--r) var(--r) 0 0;padding:18px 16px;width:100%;max-height:75dvh;overflow-y:auto}
+.modal-titulo{font-family:var(--fd);font-size:.95rem;color:var(--ouro-lt);margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.modal-fechar{cursor:pointer;color:var(--cinza);font-size:20px;line-height:1;padding:4px}
+.modal-row{display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.modal-row:last-child{border:none}
+.modal-rot{color:var(--cinza)}
 
-/* ── TOAST ─── */
-#toast{position:fixed;bottom:calc(var(--tab-h) + var(--safe-b) + 12px);left:50%;transform:translateX(-50%) translateY(20px);background:var(--terra);border:1px solid var(--ouro);border-radius:99px;color:var(--ouro-lt);padding:10px 22px;font-size:13px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:300;white-space:nowrap;max-width:90vw;text-align:center}
+/* ML */
+.ml-item{background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:8px;padding:10px;display:flex;gap:10px;align-items:center;margin-bottom:6px}
+.ml-thumb{width:40px;height:40px;object-fit:contain;border-radius:6px;flex-shrink:0;background:#111}
+.ml-info{flex:1;min-width:0}
+.ml-nome{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ml-preco{font-size:13px;font-weight:700;color:var(--ouro-lt)}
+.btn-ml-usar{font-size:11px;padding:6px 10px;border-radius:8px;background:rgba(201,168,76,.15);border:1px solid var(--borda);color:var(--ouro);cursor:pointer;font-family:var(--fb);flex-shrink:0}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--bottom);background:#111;border-top:1px solid var(--borda);display:flex;align-items:stretch;z-index:50;padding-bottom:env(safe-area-inset-bottom)}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:none;border:none;color:var(--cinza);font-family:var(--fb);font-size:9px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:color .15s}
+.nav-btn .ic{font-size:19px;line-height:1}
+.nav-btn.active{color:var(--ouro-lt)}
+.nav-btn.active::after{content:'';display:block;width:20px;height:2px;background:var(--ouro);border-radius:1px;margin-top:2px}
+
+/* PWA BANNER */
+#pwa-banner{display:none;position:fixed;top:0;left:0;right:0;background:#1a1a1a;border-bottom:1px solid var(--borda);padding:10px 14px;align-items:center;gap:10px;z-index:200}
+#pwa-banner p{flex:1;font-size:12px;color:var(--creme)}
+.btn-pwa{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:var(--fb)}
+.btn-pwa.sim{background:var(--ouro);color:#0f0f0f}
+.btn-pwa.nao{background:transparent;border:1px solid var(--borda);color:var(--cinza)}
+
+.empty{text-align:center;color:var(--cinza);font-size:13px;padding:40px 16px;font-style:italic}
+#toast{position:fixed;bottom:calc(var(--bottom)+10px);left:50%;transform:translateX(-50%) translateY(20px);background:#111;border:1px solid var(--ouro);border-radius:99px;color:var(--ouro-lt);padding:8px 18px;font-size:12px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:999;white-space:nowrap;max-width:90vw;text-align:center}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 #toast.erro{border-color:#f08080;color:#f08080}
-
-/* ── PWA BANNER ─── */
-#pwa-banner{display:none;position:fixed;bottom:calc(var(--tab-h) + var(--safe-b));left:0;right:0;background:var(--terra);border-top:1px solid var(--borda);padding:12px 16px;z-index:150;align-items:center;gap:10px}
-#pwa-banner p{flex:1;font-size:13px;color:var(--creme)}
-.pwa-install{background:var(--ouro);color:#1a0e06;border:none;padding:9px 16px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--fb);min-height:40px}
-.pwa-dismiss{background:transparent;color:var(--cinza);border:1px solid var(--borda);padding:9px 14px;border-radius:10px;font-size:13px;cursor:pointer;font-family:var(--fb);min-height:40px}
-
-/* form input nos modais */
-.modal .field input,.modal .field select{font-size:14px;padding:11px 12px}
-
-.skeleton{background:linear-gradient(90deg,rgba(201,168,76,.08) 25%,rgba(201,168,76,.15) 50%,rgba(201,168,76,.08) 75%);background-size:200% 100%;animation:skel 1.4s infinite;border-radius:6px}
-@keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.skel-num{height:1.4rem;width:80px;margin:0 auto 4px}
-.skel-rot{height:10px;width:60px;margin:0 auto}
 </style>
 </head>
 <body>
-<div class="app">
-  <div class="header">
-    <h1>✦ Ile Ase Vodun Ogum Ayres ✦</h1>
-    <p>Ile Ase Vodun Ogum Ayres · <a href="index.html" style="color:var(--ouro);text-decoration:none">🖥️ Versão desktop</a></p>
-  </div>
-  <div class="progress"><div class="progress-fill" id="prog"></div></div>
-
-  <div class="content">
-
-    <!-- HOME -->
-    <div class="page active" id="page-home">
-      <div class="inner">
-        </div>
-        <div id="datas-home"></div>
-        <div id="fin-home" class="fin-resumo" style="display:none">
-          <div class="fin-card entrada" onclick="irParaMobile('financeiro',()=>filtrarFinMobile('Entrada'))" style="cursor:pointer"><div class="num skeleton skel-num" id="h-ent"></div><div class="rot skeleton skel-rot"></div></div>
-          <div class="fin-card saida" onclick="irParaMobile('financeiro',()=>filtrarFinMobile('Saída'))" style="cursor:pointer"><div class="num skeleton skel-num" id="h-sai"></div><div class="rot skeleton skel-rot"></div></div>
-          <div class="fin-card saldo" onclick="irParaMobile('financeiro',()=>filtrarFinMobile(''))" style="cursor:pointer"><div class="num skeleton skel-num" id="h-sal"></div><div class="rot skeleton skel-rot"></div></div>
-        </div>
-        
-      </div>
-    </div>
-
-    <!-- CADASTRAR -->
-    <div class="page" id="page-cadastro">
-      <div class="inner">
-        <div class="ornamento">✦ ✦ ✦</div>
-        <div class="form-grid">
-          <div class="field full"><label>Nome do item *</label><input type="text" id="nome" placeholder="Ex: Vestido de Oxum" autocomplete="off"/></div>
-          <div class="field"><label>Categoria *</label>
-            <select id="categoria" onchange="updateSubcat()">
-              <option value="">Selecione</option>
-              <option>Roupas e indumentárias</option><option>Ferramentas e objetos rituais</option>
-              <option>Ervas e plantas</option><option>Alimentos e oferendas</option>
-            </select>
-          </div>
-          <div class="field"><label>Subcategoria</label><select id="subcategoria"><option value="">—</option></select></div>
-          <div class="field"><label>Orixá / Entidade</label>
-            <select id="orixa">
-              <option value="">—</option>
-              <option>Preto-Velho</option><option>Exu</option><option>Xangô</option><option>Ogum</option>
-              <option>Oxalá</option><option>Iemanjá</option><option>Oxossi</option><option>Iansã</option>
-              <option>Obá</option><option>Nanã</option><option>Obaluaê / Omolu</option><option>Oxum</option>
-              <option>Oxumaré</option><option>Caboclo</option><option>Geral / Sem entidade</option>
-            </select>
-          </div>
-          <div class="field"><label>Status</label>
-            <select id="status">
-              <option value="Disponível">Disponível</option><option value="Em uso">Em uso</option>
-              <option value="Danificado">Danificado</option><option value="Necessita reposição">Necessita reposição</option>
-            </select>
-          </div>
-          <div class="field full"><label>Localização</label><input type="text" id="local" placeholder="Armário 2 — prateleira A" autocomplete="off"/></div>
-          <div class="field"><label>Quantidade</label><input type="number" id="qtd" value="1" min="1" inputmode="numeric"/></div>
-          <div class="field full"><label>URL da foto</label><input type="url" id="foto" placeholder="https://..." inputmode="url" autocomplete="off"/></div>
-          <div class="field full"><label>Observações</label><textarea id="obs" placeholder="Estado, histórico..."></textarea></div>
-        </div>
-        <div class="btn-row">
-          <button class="btn btn-ghost" onclick="limpar()">Limpar</button>
-          <button class="btn btn-primary" id="btnSalvar" onclick="salvar()">Gravar</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ACERVO -->
-    <div class="page" id="page-acervo">
-      <div class="inner">
-        <div class="filter-row">
-          <select id="f-cat" onchange="renderLista()">
-            <option value="">Todas categorias</option>
-            <option>Roupas e indumentárias</option><option>Ferramentas e objetos rituais</option>
-            <option>Ervas e plantas</option><option>Alimentos e oferendas</option>
-          </select>
-          <select id="f-status" onchange="renderLista()">
-            <option value="">Todos status</option>
-            <option>Em uso</option><option>Disponível</option><option>Danificado</option><option>Necessita reposição</option>
-          </select>
-          
-        </div>
-        <div class="card-list" id="lista"><div class="empty">Carregando...</div></div>
-      </div>
-    </div>
-
-    <!-- CONSUMÍVEIS -->
-    <div class="page" id="page-consumiveis">
-      <div class="inner">
-        <div class="resumo-niveis">
-          <div class="nivel-card ok" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('ok'))" style="cursor:pointer"><div class="num skeleton skel-num" id="cnt-ok"></div><div class="rot">✅ OK</div></div>
-          <div class="nivel-card repor" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('repor'))" style="cursor:pointer"><div class="num skeleton skel-num" id="cnt-repor"></div><div class="rot">⚠️ Repor</div></div>
-          <div class="nivel-card alerta" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('alerta'))" style="cursor:pointer"><div class="num skeleton skel-num" id="cnt-alerta"></div><div class="rot">🔴 Alerta</div></div>
-          <div class="nivel-card urgente" onclick="irParaMobile('consumiveis',()=>filtrarNivelMobile('urgente'))" style="cursor:pointer"><div class="num skeleton skel-num" id="cnt-urgente"></div><div class="rot">🚨 Urgente</div></div>
-        </div>
-        <div class="filter-row">
-          <select id="cf-nivel" onchange="renderConsumiveis()">
-            <option value="">Todos níveis</option>
-            <option value="alerta">🔴 Alerta</option><option value="urgente">🚨 Urgente</option>
-            <option value="repor">⚠️ Repor</option><option value="ok">✅ OK</option>
-          </select>
-          <select id="cf-cat" onchange="renderConsumiveis()">
-            <option value="">Todas categorias</option>
-            <option>Fumo</option><option>Bebidas</option><option>Velas</option>
-            <option>Ervas e Defumação</option><option>Alimentos</option><option>Flores e Naturais</option>
-          </select>
-          
-        </div>
-        <div id="csm-lista"><div class="empty">Carregando...</div></div>
-      </div>
-    </div>
-
-    <!-- FILHOS -->
-    <div class="page" id="page-filhos">
-      <div class="inner">
-        <div class="filter-row">
-          <select id="ff-orixa" onchange="renderFilhos()">
-            <option value="">Todos orixás</option>
-            <option>Exu</option><option>Oxalá</option><option>Oxossi</option><option>Oxum</option>
-            <option>Xangô</option><option>Iemanjá</option><option>Ogum</option><option>Iansã</option>
-            <option>Obá</option><option>Nanã</option><option>Obaluaê / Omolu</option><option>Oxumaré</option>
-          </select>
-          <select id="ff-status" onchange="renderFilhos()">
-            <option value="">Todos status</option>
-            <option>Ativo</option><option>Abiã</option><option>Iaô</option><option>Ebomi</option>
-            <option>Suspenso</option><option>Ogã / Ekedi</option><option>Inativo</option>
-          </select>
-          
-        </div>
-        <div id="filhos-lista"><div class="empty">Carregando...</div></div>
-
-        <div class="secao-titulo">Cadastrar filho</div>
-        <div style="background:rgba(42,10,42,.3);border:1px solid rgba(200,150,220,.2);border-radius:var(--r);padding:14px">
-          <div class="form-grid">
-            <div class="field full"><label>Nome social *</label><input type="text" id="f-nomesocial" autocomplete="off"/></div>
-            <div class="field full"><label>Nome de candomblé</label><input type="text" id="f-nomesanto" autocomplete="off"/></div>
-            <div class="field"><label>Orixá de cabeça</label>
-              <select id="f-orixa2">
-                <option value="">—</option>
-                <option>Exu</option><option>Oxalá</option><option>Oxossi</option><option>Oxum</option>
-                <option>Xangô</option><option>Iemanjá</option><option>Ogum</option><option>Iansã</option>
-                <option>Obá</option><option>Nanã</option><option>Obaluaê / Omolu</option><option>Oxumaré</option>
-              </select>
-            </div>
-            <div class="field"><label>Adjuntó</label>
-              <select id="f-adjunto">
-                <option value="">—</option>
-                <option>Exu</option><option>Xangô</option><option>Oxossi</option><option>Ogum</option>
-                <option>Oxum</option><option>Iemanjá</option><option>Oxalá</option><option>Iansã</option>
-              </select>
-            </div>
-            <div class="field"><label>Nação</label>
-              <select id="f-nacao">
-                <option value="">—</option>
-                <option>Jeje</option><option>Angola</option><option>Ketu</option><option>Efon</option>
-                <option>Ijexá</option><option>Nagô</option><option>Umbanda</option><option>Outra</option>
-              </select>
-            </div>
-            <div class="field"><label>Status</label>
-              <select id="f-status2">
-                <option value="Ativo">Ativo</option><option value="Abiã">Abiã</option>
-                <option value="Iaô">Iaô</option><option value="Ebomi">Ebomi</option>
-                <option value="Suspenso">Suspenso</option><option value="Ogã / Ekedi">Ogã / Ekedi</option>
-                <option value="Inativo">Inativo</option>
-              </select>
-            </div>
-            <div class="field"><label>Aniversário</label><input type="date" id="f-aniversario"/></div>
-            <div class="field"><label>Feitura</label><input type="date" id="f-feitura"/></div>
-            <div class="field full"><label>Próxima obrigação</label><input type="date" id="f-proxobrigacao"/></div>
-            <div class="field full"><label>Obrigações realizadas</label><input type="text" id="f-obrigacoes" placeholder="Ex: Feitura 2020, 1 ano 2021" autocomplete="off"/></div>
-            <div class="field full"><label>Observações</label><textarea id="f-obs" placeholder="Notas livres..."></textarea></div>
-          </div>
-          <div class="btn-row">
-            <button class="btn btn-ghost" onclick="limparFilho()">Limpar</button>
-            <button class="btn btn-primary" id="btnFilho" onclick="salvarFilho()">Gravar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FINANCEIRO -->
-    <div class="page" id="page-financeiro">
-      <div class="inner">
-        <div class="fin-resumo">
-          <div class="fin-card entrada" onclick="filtrarFinMobile('Entrada');document.getElementById('fin-lista').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer"><div class="num" id="fin-ent">—</div><div class="rot">↑ Mês</div></div>
-          <div class="fin-card saida" onclick="filtrarFinMobile('Saída');document.getElementById('fin-lista').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer"><div class="num" id="fin-sai">—</div><div class="rot">↓ Mês</div></div>
-          <div class="fin-card saldo" onclick="filtrarFinMobile('');document.getElementById('fin-lista').scrollIntoView({behavior:'smooth',block:'start'})" style="cursor:pointer"><div class="num" id="fin-sal">—</div><div class="rot">= Saldo</div></div>
-        </div>
-        <div class="filter-row">
-          <select id="fn-tipo" onchange="renderFin()">
-            <option value="">Entrada e saída</option>
-            <option value="Entrada">Entradas</option><option value="Saída">Saídas</option>
-          </select>
-          
-        </div>
-        <div id="fin-lista"><div class="empty">Carregando...</div></div>
-
-        <div class="secao-titulo">Lançar</div>
-        <div style="background:rgba(10,42,10,.3);border:1px solid rgba(150,220,150,.15);border-radius:var(--r);padding:14px">
-          <div class="form-grid">
-            <div class="field"><label>Tipo *</label>
-              <select id="fn-tipo2"><option value="Entrada">↑ Entrada</option><option value="Saída">↓ Saída</option></select>
-            </div>
-            <div class="field"><label>Data *</label><input type="date" id="fn-data"/></div>
-            <div class="field full"><label>Categoria</label>
-              <select id="fn-cat2">
-                <option value="Consumíveis">Consumíveis</option>
-                <option value="Dízimo / Doação">Dízimo / Doação</option>
-                <option value="Evento / Gira">Evento / Gira</option>
-                <option value="Indumentária / Acervo">Indumentária / Acervo</option>
-                <option value="Manutenção">Manutenção</option>
-                <option value="Outros">Outros</option>
-                <option value="Ritual / Oferenda">Ritual / Oferenda</option>
-              </select>
-            </div>
-            <div class="field full"><label>Descrição *</label><input type="text" id="fn-desc" placeholder="Ex: Compra de velas" autocomplete="off"/></div>
-            <div class="field"><label>Valor (R$) *</label><input type="number" id="fn-valor" step="0.01" min="0" inputmode="decimal" placeholder="0,00"/></div>
-            <div class="field"><label>Responsável</label><input type="text" id="fn-resp" autocomplete="off"/></div>
-          </div>
-          <div class="btn-row">
-            <button class="btn btn-ghost" onclick="limparFin()">Limpar</button>
-            <button class="btn btn-primary" id="btnFin" onclick="salvarFin()">Lançar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /content -->
-
-  <!-- BOTTOM NAV -->
-  <nav class="bottom-nav">
-    <button class="nav-btn active" onclick="navTo('home',this)">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-      Início<div class="nav-dot"></div>
-    </button>
-    <button class="nav-btn" onclick="navTo('cadastro',this)">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      Cadastrar<div class="nav-dot"></div>
-    </button>
-    <button class="nav-btn" onclick="navTo('consumiveis',this)">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><polyline points="2 17 12 22 22 17"/></svg>
-      Consumíveis<div class="nav-dot"></div>
-    </button>
-    <button class="nav-btn" onclick="navTo('filhos',this)">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-      Filhos<div class="nav-dot"></div>
-    </button>
-    <button class="nav-btn" onclick="navTo('financeiro',this)">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-      Financeiro<div class="nav-dot"></div>
-    </button>
-  </nav>
-</div>
-
-<!-- Modal consumível -->
-<div class="modal-overlay" id="modal-overlay" onclick="fecharModal(event)">
-  <div class="modal">
-    <div class="modal-handle"></div>
-    <h3 id="modal-titulo"></h3>
-    <div class="modal-info" id="modal-info"></div>
-    <div class="form-grid">
-      <div class="field"><label>Qtd atual</label><input type="number" id="m-atual" min="0" inputmode="numeric"/></div>
-      <div class="field"><label>Qtd mínima</label><input type="number" id="m-minimo" min="0" inputmode="numeric"/></div>
-      <div class="field"><label>Fornecedor</label><input type="text" id="m-fornecedor" autocomplete="off"/></div>
-      <div class="field"><label>Preço unit. (R$)</label><input type="number" id="m-precounit" step="0.01" inputmode="decimal"/></div>
-      <div class="field"><label>Qtd/pacote</label><input type="number" id="m-qtdpac" min="1" inputmode="numeric"/></div>
-      <div class="field"><label>Preço pacote (R$)</label><input type="number" id="m-precopac" step="0.01" inputmode="decimal"/></div>
-      <div class="field full"><label>Link de compra</label><input type="url" id="m-link" inputmode="url" autocomplete="off"/></div>
-    </div>
-    <div class="secao-titulo" style="margin-top:12px">Buscar no Mercado Livre</div>
-    <div style="display:flex;gap:6px;margin-bottom:6px">
-      <input type="search" id="ml-query" style="flex:1;background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:10px;color:var(--creme);font-size:14px;padding:10px 12px;outline:none;-webkit-appearance:none" placeholder="Ex: vela 7 dias branca"/>
-      <button class="btn btn-ghost" style="min-height:44px;padding:0 14px;font-size:16px" onclick="buscarML()">🔍</button>
-    </div>
-    <div id="ml-resultados"></div>
-    <div class="btn-row" style="margin-top:14px">
-      <button class="btn btn-ghost" onclick="fecharModal()">Cancelar</button>
-      <button class="btn btn-primary" id="btnModal" onclick="salvarModal()">Gravar</button>
-    </div>
-  </div>
-</div>
 
 <div id="pwa-banner">
-  <p>📲 Instalar na tela inicial?</p>
-  <button class="pwa-dismiss" onclick="document.getElementById('pwa-banner').style.display='none'">Não</button>
-  <button class="pwa-install" onclick="installPwa()">Instalar</button>
+  <p>📱 Instalar na tela inicial?</p>
+  <button class="btn-pwa nao" onclick="document.getElementById('pwa-banner').style.display='none'">Não</button>
+  <button class="btn-pwa sim" onclick="installPwa()">Instalar</button>
 </div>
+
+<div class="topo">
+  <h1>✦ Ile Ase Vodun Ogum Ayres ✦</h1>
+  <p>Terreiro de Umbanda · <a href="index.html">🖥️ Versão desktop</a></p>
+</div>
+
+<div class="content">
+
+  <!-- INÍCIO -->
+  <div class="page active" id="page-home">
+    <div style="padding-top:14px">
+      <div class="resumo-niveis">
+        <div class="nivel-card ok" onclick="filtrarNivel('ok')">
+          <div class="num skeleton skel-num" id="cnt-ok"></div>
+          <div class="rot">✅ OK</div>
+        </div>
+        <div class="nivel-card repor" onclick="filtrarNivel('repor')">
+          <div class="num skeleton skel-num" id="cnt-repor"></div>
+          <div class="rot">⚠️ Repor</div>
+        </div>
+        <div class="nivel-card alerta" onclick="filtrarNivel('alerta')">
+          <div class="num skeleton skel-num" id="cnt-alerta"></div>
+          <div class="rot">🔴 Alerta</div>
+        </div>
+        <div class="nivel-card urgente" onclick="filtrarNivel('urgente')">
+          <div class="num skeleton skel-num" id="cnt-urgente"></div>
+          <div class="rot">🚨 Urgente</div>
+        </div>
+      </div>
+      <div class="ornamento">✦ ✦ ✦</div>
+      <div id="home-datas"></div>
+    </div>
+  </div>
+
+  <!-- CADASTRAR -->
+  <div class="page" id="page-cadastro">
+    <div class="secao-titulo">📦 Novo item do acervo</div>
+    <div class="form-box">
+      <div class="field"><label>Nome do item *</label>
+        <input type="text" id="c-nome" placeholder="Ex: Ojá de Oxum" autocomplete="off"/>
+      </div>
+      <div class="field"><label>Categoria *</label>
+        <select id="c-cat" onchange="atualizarSubcat()">
+          <option value="">Selecione</option>
+          <option>Alimentos e oferendas</option>
+          <option>Ervas e plantas</option>
+          <option>Ferramentas e objetos rituais</option>
+          <option>Roupas e indumentárias</option>
+        </select>
+      </div>
+      <div class="field"><label>Subcategoria</label>
+        <select id="c-subcat"><option value="">—</option></select>
+      </div>
+      <div class="field"><label>Orixá / Entidade</label>
+        <select id="c-orixa">
+          <option value="">—</option>
+          <option>Boiadeiro</option><option>Caboclo</option><option>Criança / Erê</option>
+          <option>Exu</option><option>Geral / Sem entidade</option><option>Iansã</option>
+          <option>Iemanjá</option><option>Marinheiro</option><option>Nanã</option>
+          <option>Obá</option><option>Obaluaê / Omolu</option><option>Ogum</option>
+          <option>Oxalá</option><option>Oxossi</option><option>Oxum</option>
+          <option>Oxumaré</option><option>Pomba-Gira</option><option>Preto-Velho</option>
+          <option>Xangô</option><option>Zé Pilintra</option>
+        </select>
+      </div>
+      <div class="field"><label>Status</label>
+        <select id="c-status">
+          <option value="Disponível">Disponível</option>
+          <option value="Danificado">Danificado</option>
+          <option value="Em uso">Em uso</option>
+          <option value="Necessita reposição">Necessita reposição</option>
+        </select>
+      </div>
+      <div class="field"><label>Localização / Armário</label>
+        <input type="text" id="c-local" placeholder="Ex: Armário 2" autocomplete="off"/>
+      </div>
+      <div class="field"><label>Quantidade</label>
+        <input type="number" id="c-qtd" min="1" value="1"/>
+      </div>
+      <div class="field"><label>Foto (URL)</label>
+        <input type="url" id="c-foto" placeholder="https://..."/>
+      </div>
+      <div class="field"><label>Observações</label>
+        <textarea id="c-obs" placeholder="Notas livres..."></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="limparAcervo()">Limpar</button>
+        <button class="btn btn-primary" id="btnAcervo" onclick="salvarAcervo()">Gravar</button>
+      </div>
+    </div>
+
+    <div class="secao-titulo">🕯️ Atualizar consumível</div>
+    <div class="form-box">
+      <div class="field"><label>Item (nome exato)</label>
+        <input type="text" id="cu-nome" placeholder="Ex: Vela 7 dias branca" autocomplete="off"/>
+      </div>
+      <div class="field"><label>Quantidade atual</label>
+        <input type="number" id="cu-atual" min="0" placeholder="0"/>
+      </div>
+      <div class="field"><label>Quantidade mínima</label>
+        <input type="number" id="cu-min" min="0" placeholder="0"/>
+      </div>
+      <div class="field"><label>Fornecedor</label>
+        <input type="text" id="cu-forn" placeholder="Ex: Casa dos Orixás" autocomplete="off"/>
+      </div>
+      <div class="field"><label>Preço do pacote (R$)</label>
+        <input type="number" id="cu-preco" step="0.01" min="0" placeholder="0,00"/>
+      </div>
+      <div class="field"><label>Qtd por pacote</label>
+        <input type="number" id="cu-qtdpac" min="1" placeholder="1"/>
+      </div>
+      <div class="field"><label>Link de compra</label>
+        <input type="url" id="cu-link" placeholder="https://..."/>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="limparConsumivel()">Limpar</button>
+        <button class="btn btn-primary" id="btnCsm" onclick="salvarConsumivel()">Atualizar</button>
+      </div>
+    </div>
+
+    <div class="secao-titulo">🔍 Buscar no Mercado Livre</div>
+    <div class="form-box">
+      <div class="field">
+        <input type="text" id="ml-q" placeholder="Ex: vela 7 dias branca"/>
+      </div>
+      <button class="btn btn-primary" onclick="buscarML()" style="width:100%">Buscar</button>
+      <div id="ml-resultado" style="margin-top:10px"></div>
+    </div>
+
+    <div class="secao-titulo">👥 Novo filho de santo</div>
+    <div class="form-box">
+      <div class="field"><label>Nome de candomblé / santo</label>
+        <input type="text" id="f-nome" autocomplete="off"/>
+      </div>
+      <div class="field"><label>Nome social</label>
+        <input type="text" id="f-social" autocomplete="off"/>
+      </div>
+      <div class="field"><label>Contato (WhatsApp)</label>
+        <input type="tel" id="f-contato" placeholder="(11) 99999-9999"/>
+      </div>
+      <div class="field"><label>Orixá de cabeça</label>
+        <select id="f-orixa">
+          <option value="">—</option>
+          <option>Exu</option><option>Iansã</option><option>Iemanjá</option>
+          <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
+          <option>Ogum</option><option>Oxalá</option><option>Oxossi</option>
+          <option>Oxum</option><option>Oxumaré</option><option>Preto-Velho</option>
+          <option>Xangô</option><option>Outro</option>
+        </select>
+      </div>
+      <div class="field"><label>Adjuntó</label>
+        <select id="f-adjunto">
+          <option value="">—</option>
+          <option>Exu</option><option>Iansã</option><option>Iemanjá</option>
+          <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
+          <option>Ogum</option><option>Oxalá</option><option>Oxossi</option>
+          <option>Oxum</option><option>Oxumaré</option><option>Preto-Velho</option>
+          <option>Xangô</option><option>Outro</option>
+        </select>
+      </div>
+      <div class="field"><label>Nação</label>
+        <select id="f-nacao">
+          <option value="">—</option>
+          <option>Angola</option><option>Efon</option><option>Ijexá</option>
+          <option>Jeje</option><option>Ketu</option><option>Nagô</option>
+          <option>Omolokô</option><option>Outra</option><option>Umbanda</option>
+        </select>
+      </div>
+      <div class="field"><label>Status</label>
+        <select id="f-status">
+          <option value="Abiã">Abiã</option>
+          <option value="Ativo" selected>Ativo</option>
+          <option value="Ebomi">Ebomi</option>
+          <option value="Iaô">Iaô</option>
+          <option value="Inativo">Inativo</option>
+          <option value="Ogã / Ekedi">Ogã / Ekedi</option>
+          <option value="Suspenso">Suspenso</option>
+        </select>
+      </div>
+      <div class="field"><label>Data de aniversário</label><input type="date" id="f-aniv"/></div>
+      <div class="field"><label>Data de feitura</label><input type="date" id="f-feitura"/></div>
+      <div class="field"><label>Próxima obrigação</label><input type="date" id="f-obrig"/></div>
+      <div class="field"><label>Obrigações realizadas</label>
+        <input type="text" id="f-obrigrealiz" placeholder="Ex: Feitura 2020, 1 ano 2021" autocomplete="off"/>
+      </div>
+      <div class="field"><label>Observações</label>
+        <textarea id="f-obs" placeholder="Notas livres..."></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="limparFilho()">Limpar</button>
+        <button class="btn btn-primary" id="btnFilho" onclick="salvarFilho()">Gravar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONSUMÍVEIS -->
+  <div class="page" id="page-consumiveis">
+    <div style="padding-top:14px">
+      <div class="filter-bar">
+        <input type="search" id="cf-busca" placeholder="🔍 Buscar consumível..." oninput="renderConsumiveis()"/>
+        <select id="cf-cat" onchange="renderConsumiveis()">
+          <option value="">Todas as categorias</option>
+          <option>Alimentos</option><option>Bebidas</option>
+          <option>Ervas e Defumação</option><option>Flores e Naturais</option>
+          <option>Fumo</option><option>Velas</option>
+        </select>
+        <select id="cf-nivel" onchange="renderConsumiveis()">
+          <option value="">Todos os níveis</option>
+          <option value="urgente">🚨 Urgente</option>
+          <option value="alerta">🔴 Alerta</option>
+          <option value="repor">⚠️ Repor</option>
+          <option value="ok">✅ OK</option>
+        </select>
+      </div>
+      <div class="results-count" id="cf-count"></div>
+      <div id="csm-lista"><div class="empty">Carregando...</div></div>
+    </div>
+  </div>
+
+  <!-- FILHOS -->
+  <div class="page" id="page-filhos">
+    <div style="padding-top:14px">
+      <div class="filter-bar">
+        <input type="search" id="fs-busca" placeholder="🔍 Buscar..." oninput="renderFilhos()"/>
+        <select id="fs-orixa" onchange="renderFilhos()">
+          <option value="">Todos os orixás</option>
+          <option>Exu</option><option>Iansã</option><option>Iemanjá</option>
+          <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
+          <option>Ogum</option><option>Oxalá</option><option>Oxossi</option>
+          <option>Oxum</option><option>Oxumaré</option><option>Preto-Velho</option>
+          <option>Xangô</option><option>Outro</option>
+        </select>
+        <select id="fs-status" onchange="renderFilhos()">
+          <option value="">Todos os status</option>
+          <option>Abiã</option><option>Ativo</option><option>Ebomi</option>
+          <option>Iaô</option><option>Inativo</option><option>Ogã / Ekedi</option><option>Suspenso</option>
+        </select>
+      </div>
+      <div class="results-count" id="fs-count"></div>
+      <div id="filho-lista"><div class="empty">Carregando...</div></div>
+    </div>
+  </div>
+
+  <!-- ACERVO -->
+  <div class="page" id="page-acervo">
+    <div style="padding-top:14px">
+      <div class="filter-bar">
+        <input type="search" id="a-busca" placeholder="🔍 Buscar item..." oninput="renderAcervo()"/>
+        <select id="a-cat" onchange="renderAcervo()">
+          <option value="">Todas as categorias</option>
+          <option>Alimentos e oferendas</option><option>Ervas e plantas</option>
+          <option>Ferramentas e objetos rituais</option><option>Roupas e indumentárias</option>
+        </select>
+        <select id="a-status" onchange="renderAcervo()">
+          <option value="">Todos os status</option>
+          <option>Danificado</option><option>Disponível</option>
+          <option>Em uso</option><option>Necessita reposição</option>
+        </select>
+      </div>
+      <div class="results-count" id="a-count"></div>
+      <div id="acervo-lista"><div class="empty">Carregando...</div></div>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="navTo('home',this)"><span class="ic">🏠</span>Início</button>
+  <button class="nav-btn" onclick="navTo('cadastro',this)"><span class="ic">＋</span>Cadastrar</button>
+  <button class="nav-btn" onclick="navTo('consumiveis',this)"><span class="ic">🕯️</span>Consumíveis</button>
+  <button class="nav-btn" onclick="navTo('filhos',this)"><span class="ic">👥</span>Filhos</button>
+  <button class="nav-btn" onclick="navTo('acervo',this)"><span class="ic">📦</span>Acervo</button>
+</nav>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="fecharModal(event)">
+  <div class="modal">
+    <div class="modal-titulo">
+      <span id="modal-nome">—</span>
+      <span class="modal-fechar" onclick="fecharModal()">✕</span>
+    </div>
+    <div id="modal-corpo"></div>
+  </div>
+</div>
+
 <div id="toast"></div>
 
 <script>
-const SUBCATS={
-  'Roupas e indumentárias':['Vestido','Saia','Torço / Ojá','Guia / Colar','Pulseira / Oxé','Capacete / Coroa','Calçado','Capa / Manto','Outro'],
-  'Ferramentas e objetos rituais':['Ferramenta de orixá','Ibá / Sopera','Espada / Ogó','Arco e flecha','Leque','Xaxará','Pemba / Efun','Atabaques / Instrumento','Outro'],
-  'Ervas e plantas':['Folha para banho','Folha para defumação','Erva medicinal','Raiz','Semente','Outro'],
-  'Alimentos e oferendas':['Axé / Ebó','Comida de orixá','Bebida ritual','Vela / Bujão','Incenso / Defumação','Flores','Outro']
-};
-const CAT_ICONES={'Velas':'🕯️','Bebidas':'🍶','Fumo':'🚬','Ervas e Defumação':'🌿','Alimentos':'🌽','Flores e Naturais':'🌸'};
-let acervo=[],consumiveis=[],filhos=[],lancamentos=[],modalItem=null,deferredPrompt=null;
+const URL_GS = 'https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAfyjHqC_mvDwvKDCFieibGTvp7u7Fyls9OcmCc2aDvlvsVwAW706SlWw/exec';
 
-// ── INIT ────────────────────────────────────────────────
+const SUBCATS = {
+  'Alimentos e oferendas':['Alimentos rituais','Axé / Ebó','Bebida ritual','Comida de orixá','Flores','Incenso / Defumação','Vela / Bujão'],
+  'Ervas e plantas':['Folha para banho','Folha para defumação','Raiz','Semente'],
+  'Ferramentas e objetos rituais':['Arco e flecha','Atabaques / Instrumento','Espada / Ogó','Ferramenta de orixá','Ibá / Sopera','Leque','Pemba / Efun','Xaxará'],
+  'Roupas e indumentárias':['Calçado','Capa / Manto','Capacete / Coroa','Guia / Colar','Ojá / Torço','Pulseira / Oxé','Saia','Vestido']
+};
+const CAT_IC = {Velas:'🕯️',Bebidas:'🍶',Fumo:'🚬','Ervas e Defumação':'🌿',Alimentos:'🌽','Flores e Naturais':'🌸'};
+const NIVEL_SLUG = {'✅ OK':'ok','⚠️ Repor':'repor','🔴 Alerta':'alerta','🚨 Urgente / Zero':'urgente'};
+const STATUS_CLASS = {Abiã:'fs-abiao',Ativo:'fs-ativo',Ebomi:'fs-ebomi',Iaô:'fs-iao',Inativo:'fs-inativo','Ogã / Ekedi':'fs-oga',Suspenso:'fs-suspenso'};
+
+let acervo=[], consumiveis=[], filhos=[];
+let deferredPrompt=null;
+
 window.addEventListener('DOMContentLoaded',()=>{
-  const hoje=new Date().toISOString().split('T')[0];
-  const el=document.getElementById('fn-data');if(el)el.value=hoje;
-  // Carrega em paralelo — mais rápido, especialmente no celular
-  Promise.all([
-    carregarHome(),
-    carregarConsumiveis(),
-    carregarAcervo(),
-    carregarFilhos(),
-    carregarFin()
-  ]).catch(()=>{});
+  Promise.all([carregarHome(),carregarConsumiveis(),carregarAcervo(),carregarFilhos()]).catch(()=>{});
+  if('serviceWorker'in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 });
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('pwa-banner').style.display='flex';});
 function installPwa(){if(!deferredPrompt)return;deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;document.getElementById('pwa-banner').style.display='none';});}
-if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 
-// ── HELPERS ─────────────────────────────────────────────
-function getUrl(){return'https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAfyjHqC_mvDwvKDCFieibGTvp7u7Fyls9OcmCc2aDvlvsVwAW706SlWw/exec';}
-function toast(msg,ok=true){const t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok?'':' erro');clearTimeout(t._t);t._t=setTimeout(()=>t.className='',3000);}
-function prog(p){document.getElementById('prog').style.width=p+'%';}
-function _fillNum(id, val){
-  const el=document.getElementById(id);
-  if(!el)return;
-  el.classList.remove('skeleton','skel-num');
-  el.textContent=val;
-  // remove skeleton do rot irmão se existir
-  const rot=el.nextElementSibling;
-  if(rot&&rot.classList.contains('skeleton'))rot.classList.remove('skeleton','skel-rot');
-}
-function fmtBRL(v){return'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
-function filtrarFinMobile(tipo){
-  document.getElementById('fn-tipo').value=tipo;
-  renderFin();
-  document.getElementById('fin-lista').scrollIntoView({behavior:'smooth',block:'start'});
-}
-function filtrarNivelMobile(nivel){
-  document.getElementById('cf-nivel').value=nivel;
-  renderConsumiveis();
-  navTo('consumiveis',document.querySelectorAll('.nav-btn')[2]);
-}
-function nivelClass(n){return(n||'').includes('OK')?'ok':(n||'').includes('Repor')?'repor':(n||'').includes('Alerta')?'alerta':'urgente';}
-function pctNum(p){return parseInt((p||'0').replace('%',''))||0;}
-function badgeClass(s){return'b-'+(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'-');}
-function statusClass(s){const m={'Ativo':'fs-ativo','Iaô':'fs-iao','Ebomi':'fs-ebomi','Suspenso':'fs-suspenso','Abiã':'fs-abiao','Inativo':'fs-inativo','Ogã / Ekedi':'fs-oga'};return m[s]||'fs-ativo';}
-function updateSubcat(){
-  const c=document.getElementById('categoria').value,s=document.getElementById('subcategoria');
-  s.innerHTML='<option value="">—</option>';
-  (SUBCATS[c]||[]).forEach(x=>{const o=document.createElement('option');o.textContent=x;s.appendChild(o);});
-}
+// ── HELPERS ───────────────────────────────────────────
+function toast(msg,ok=true){const t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok?'':' erro');clearTimeout(t._t);t._t=setTimeout(()=>t.className='',3200);}
+function fmtData(s){if(!s||s==='—')return'—';try{if(s.includes('/'))return s;return new Date(s).toLocaleDateString('pt-BR');}catch(e){return s;}}
+function _fillNum(id,val){const el=document.getElementById(id);if(!el)return;el.classList.remove('skeleton','skel-num');el.textContent=val;}
 
-// ── NAVEGAÇÃO ────────────────────────────────────────────
-function irParaMobile(id,cb){
-  const btns=document.querySelectorAll('.nav-btn');
-  const mapa={home:0,cadastro:1,consumiveis:2,filhos:3,financeiro:4};
-  const el=btns[mapa[id]];
-  if(el)navTo(id,el);
-  if(cb)setTimeout(cb,300);
-}
 function navTo(id,el){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   el.classList.add('active');
-  // scroll to top
   document.querySelector('.content').scrollTo(0,0);
-  // lazy load
-  if(id==='acervo'&&!acervo.length)carregarAcervo();
-  if(id==='consumiveis'&&!consumiveis.length)carregarConsumiveis();
-  if(id==='filhos'&&!filhos.length)carregarFilhos();
-  if(id==='financeiro')carregarFin();
+}
+function filtrarNivel(nivel){
+  document.getElementById('cf-nivel').value=nivel;
+  renderConsumiveis();
+  navTo('consumiveis',document.querySelectorAll('.nav-btn')[2]);
+}
+function atualizarSubcat(){
+  const cat=document.getElementById('c-cat').value;
+  const sel=document.getElementById('c-subcat');
+  sel.innerHTML='<option value="">—</option>';
+  (SUBCATS[cat]||[]).forEach(s=>{const o=document.createElement('option');o.textContent=s;sel.appendChild(o);});
 }
 
-// ── HOME ────────────────────────────────────────────────
+// ── HOME ──────────────────────────────────────────────
 async function carregarHome(){
-  const url=getUrl();if(!url)return;
   try{
-    const [rd,dd]=await Promise.all([
-      fetch(url+'?acao=financeiro-resumo').then(r=>r.json()).catch(()=>({ok:false})),
-      fetch(url+'?acao=datas-mes').then(r=>r.json()).catch(()=>({ok:false}))
-    ]);
-    if(rd.ok){
-      _fillNum('h-ent',fmtBRL(rd.entradasMes));
-      _fillNum('h-sai',fmtBRL(rd.saidasMes));
-      _fillNum('h-sal',fmtBRL(rd.saldo));
-      document.getElementById('fin-home').style.display='grid';
+    const r=await fetch(URL_GS+'?acao=datas-mes');
+    const j=await r.json();if(!j.ok)return;
+    const el=document.getElementById('home-datas');
+    let html='';
+    if(j.aniversariantes?.length){
+      html+=`<div class="home-card"><div class="home-card-titulo">🎂 Aniversariantes do mês</div>`;
+      j.aniversariantes.forEach(a=>{html+=`<div class="home-item"><span>${a.nome||'✦ Filho de '+a.orixa}</span><span class="data">${a.data}</span></div>`;});
+      html+='</div>';
     }
-    if(dd.ok){
-      let html='';
-      if(dd.obrigacoes?.length){
-        html+=`<div class="datas-painel"><div class="datas-titulo">⚠️ Obrigações este mês</div>`;
-        dd.obrigacoes.forEach(o=>html+=`<div class="data-item"><span>${o.nome}</span><span class="data">${o.data}</span></div>`);
-        html+='</div>';
-      }
-      if(dd.aniversariantes?.length){
-        html+=`<div class="datas-painel"><div class="datas-titulo">🎂 Aniversariantes do mês</div>`;
-        dd.aniversariantes.forEach(a=>html+=`<div class="data-item"><span>${a.nome}${a.orixa?' ('+a.orixa+')':''}</span><span class="data">${a.data}</span></div>`);
-        html+='</div>';
-      }
-      if(dd.festas?.length){
-        html+=`<div class="datas-painel"><div class="datas-titulo">🥁 Festas do mês</div>`;
-        dd.festas.forEach(f=>html+=`<div class="data-item"><span>${f.entidade}</span><span class="data">${f.data}</span></div>`);
-        html+='</div>';
-      }
-      document.getElementById('datas-home').innerHTML=html;
+    if(j.obrigacoes?.length){
+      html+=`<div class="home-card"><div class="home-card-titulo">⚠️ Obrigações este mês</div>`;
+      j.obrigacoes.forEach(o=>{html+=`<div class="home-item"><span>${o.nome||'Filho de Santo'}</span><span class="data">${o.data}</span></div>`;});
+      html+='</div>';
     }
+    if(j.festas?.length){
+      html+=`<div class="home-card"><div class="home-card-titulo">🥁 Festas de orixás</div>`;
+      j.festas.forEach(f=>{html+=`<div class="home-item"><span>${f.entidade}${f.saudacao?' — '+f.saudacao:''}</span><span class="data">${f.data}</span></div>`;});
+      html+='</div>';
+    }
+    if(!html)html='<div class="home-card"><div style="color:var(--cinza);font-size:12px;font-style:italic">Nenhum evento este mês.</div></div>';
+    el.innerHTML=html;
   }catch(e){}
 }
 
-// ── ACERVO ──────────────────────────────────────────────
-function limpar(){
-  ['nome','local','obs','foto'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('qtd').value=1;
-  ['categoria','subcategoria','orixa'].forEach(id=>document.getElementById(id).selectedIndex=0);
-  document.getElementById('status').selectedIndex=0;updateSubcat();
-}
-async function salvar(){
-  const url=getUrl();if(!url){toast('Configure a URL.',false);return;}
-  const nome=document.getElementById('nome').value.trim(),cat=document.getElementById('categoria').value;
-  if(!nome){toast('Informe o nome.',false);return;}if(!cat){toast('Selecione a categoria.',false);return;}
-  const btn=document.getElementById('btnSalvar');btn.disabled=true;prog(40);
-  try{const r=await fetch(url,{method:'POST',body:JSON.stringify({acao:'inserir',nome,categoria:cat,
-    subcategoria:document.getElementById('subcategoria').value,orixa:document.getElementById('orixa').value,
-    status:document.getElementById('status').value,local:document.getElementById('local').value,
-    quantidade:document.getElementById('qtd').value,foto:document.getElementById('foto').value,
-    observacoes:document.getElementById('obs').value})});
-    const j=await r.json();prog(100);
-    if(j.ok){toast('✓ Item gravado!');limpar();}else toast('Erro: '+(j.erro||'?'),false);
-  }catch(e){toast('Falha.',false);}finally{btn.disabled=false;setTimeout(()=>prog(0),900);}
-}
+// ── ACERVO ────────────────────────────────────────────
 async function carregarAcervo(){
-  const url=getUrl();if(!url){toast('Configure a URL.',false);return;}
-  document.getElementById('lista').innerHTML='<div class="empty">Carregando...</div>';
-  try{const r=await fetch(url+'?acao=listar');const j=await r.json();acervo=j.itens||[];renderLista();}
-  catch(e){document.getElementById('lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
+  try{const r=await fetch(URL_GS+'?acao=listar');const j=await r.json();if(j.ok){acervo=j.itens||[];renderAcervo();}}
+  catch(e){document.getElementById('acervo-lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
 }
-function renderLista(){
-  const cat=document.getElementById('f-cat').value,sta=document.getElementById('f-status').value;
-  const f=acervo.filter(i=>(!cat||i.categoria===cat)&&(!sta||i.status===sta));
-  const el=document.getElementById('lista');
-  if(!f.length){el.innerHTML='<div class="empty">Nenhum item.</div>';return;}
-  el.innerHTML=f.map(i=>`<div class="card"><div>
-    <div class="card-tipo">${i.categoria||'—'}${i.subcategoria?' · '+i.subcategoria:''}</div>
-    <div class="card-nome">${i.nome}</div>
-    <div class="card-meta">${i.orixa?'🔱 '+i.orixa:''}${i.local?' · 📍 '+i.local:''}${i.dataCadastro?' · '+i.dataCadastro:''}</div>
-  </div><div class="card-right">
-    <span class="badge ${badgeClass(i.status)}">${i.status||'—'}</span>
-    ${i.foto?`<img class="card-foto" src="${i.foto}" onerror="this.style.display='none'"/>`:`<div class="card-foto-ph"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="13" r="4"/><path d="M5 7H3a2 2 0 00-2 2v10a2 2 0 002 2h18a2 2 0 002-2V9a2 2 0 00-2-2h-2l-2-3H9L7 7z"/></svg></div>`}
-  </div></div>`).join('');
+function renderAcervo(){
+  const busca=(document.getElementById('a-busca').value||'').toLowerCase();
+  const cat=document.getElementById('a-cat').value;
+  const status=document.getElementById('a-status').value;
+  const f=acervo.filter(i=>(!busca||i.nome?.toLowerCase().includes(busca))&&(!cat||i.categoria===cat)&&(!status||i.status===status));
+  document.getElementById('a-count').textContent=f.length+' item(s)';
+  if(!f.length){document.getElementById('acervo-lista').innerHTML='<div class="empty">Nenhum item encontrado.</div>';return;}
+  document.getElementById('acervo-lista').innerHTML=f.map((i,idx)=>`
+    <div class="item-card" onclick="abrirModal(${acervo.indexOf(i)})">
+      <div class="item-nome">${i.nome||'—'}</div>
+      <div class="item-cat">${i.categoria||''}${i.subcategoria?' › '+i.subcategoria:''}</div>
+      ${i.status?`<span class="item-status status-${i.status.replace(/ /g,'\\ ')}">${i.status}</span>`:''}
+    </div>`).join('');
 }
+function abrirModal(idx){
+  const i=acervo[idx];
+  document.getElementById('modal-nome').textContent=i.nome||'—';
+  document.getElementById('modal-corpo').innerHTML=[
+    ['Categoria',i.categoria+(i.subcategoria?' › '+i.subcategoria:'')],
+    ['Orixá / Entidade',i.orixa||'—'],['Status',i.status||'—'],
+    ['Localização',i.local||'—'],['Quantidade',i.quantidade||'—'],
+    ['Observações',i.observacoes||'—'],['Cadastrado em',fmtData(i.dataCadastro)],
+  ].map(([r,v])=>`<div class="modal-row"><span class="modal-rot">${r}</span><span>${v}</span></div>`).join('')+
+  (i.foto?`<img src="${i.foto}" style="width:100%;border-radius:8px;margin-top:10px" onerror="this.style.display='none'"/>`:'');
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function fecharModal(e){if(!e||e.target.id==='modal-overlay'||e.currentTarget?.className==='modal-fechar')document.getElementById('modal-overlay').classList.remove('open');}
 
-// ── CONSUMÍVEIS ─────────────────────────────────────────
+// ── CONSUMÍVEIS ───────────────────────────────────────
 async function carregarConsumiveis(){
-  const url=getUrl();if(!url){toast('Configure a URL.',false);return;}
-  document.getElementById('csm-lista').innerHTML='<div class="empty">Carregando...</div>';
-  try{const r=await fetch(url+'?acao=consumiveis-listar');const j=await r.json();consumiveis=j.itens||[];renderConsumiveis();}
-  catch(e){document.getElementById('csm-lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
+  try{
+    const r=await fetch(URL_GS+'?acao=consumiveis-listar');const j=await r.json();
+    if(j.ok){
+      consumiveis=j.itens||[];renderConsumiveis();
+      const counts={ok:0,repor:0,alerta:0,urgente:0};
+      consumiveis.forEach(i=>{const s=NIVEL_SLUG[i.nivel]||'ok';if(counts[s]!==undefined)counts[s]++;});
+      _fillNum('cnt-ok',counts.ok);_fillNum('cnt-repor',counts.repor);
+      _fillNum('cnt-alerta',counts.alerta);_fillNum('cnt-urgente',counts.urgente);
+    }
+  }catch(e){document.getElementById('csm-lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
 }
 function renderConsumiveis(){
-  let ok=0,repor=0,alerta=0,urgente=0;
-  consumiveis.forEach(i=>{const cl=nivelClass(i.nivel);if(cl==='ok')ok++;else if(cl==='repor')repor++;else if(cl==='alerta')alerta++;else urgente++;});
-  _fillNum('cnt-ok',ok);_fillNum('cnt-repor',repor);
-  _fillNum('cnt-alerta',alerta);_fillNum('cnt-urgente',urgente);
-  const fN=document.getElementById('cf-nivel').value,fC=document.getElementById('cf-cat').value;
-  let f=consumiveis.filter(i=>(!fC||i.categoria===fC)&&(!fN||nivelClass(i.nivel)===fN));
-  const ord={urgente:0,alerta:1,repor:2,ok:3};
-  f.sort((a,b)=>(ord[nivelClass(a.nivel)]??4)-(ord[nivelClass(b.nivel)]??4)||(pctNum(a.pct)-pctNum(b.pct)));
-  if(!f.length){document.getElementById('csm-lista').innerHTML='<div class="empty">Nenhum item.</div>';return;}
-  const grupos={};f.forEach(i=>{if(!grupos[i.categoria])grupos[i.categoria]=[];grupos[i.categoria].push(i);});
-  const catOrd=Object.keys(grupos).sort((a,b)=>(ord[nivelClass(grupos[a][0].nivel)]??4)-(ord[nivelClass(grupos[b][0].nivel)]??4));
-  document.getElementById('csm-lista').innerHTML=catOrd.map(cat=>`
-    <div class="cat-grupo"><div class="cat-titulo">${CAT_ICONES[cat]||'📦'} ${cat}</div>
-    ${grupos[cat].map(i=>{
-      const cl=nivelClass(i.nivel),pct=pctNum(i.pct),falta=Math.max(0,(Number(i.minimo)||0)-(Number(i.atual)||0));
-      return`<div class="csm-item ${cl}">
-        <div class="csm-item-top"><span class="csm-nome">${i.nome}</span><span class="csm-badge ${cl}">${i.nivel||'—'}</span></div>
-        <div class="csm-barra-labels"><span><b>${i.atual||0}</b>/${i.minimo||0} ${i.unidade||''}</span><span>${falta>0?'faltam '+falta:pct+'%'}</span></div>
-        <div class="csm-barra-bg"><div class="csm-barra-fill fill-${cl}" style="width:${Math.min(pct,100)}%"></div></div>
-        <div class="csm-info"><div class="csm-meta">${i.fornecedor?'📍 '+i.fornecedor:''}${i.precoUnit?' · R$'+Number(i.precoUnit).toFixed(2)+'/'+i.unidade:''}</div>
-        <div class="csm-acoes">${i.link?`<a href="${i.link}" target="_blank" class="btn-act blue">🛒</a>`:''}<button class="btn-act" onclick='abrirModal(${JSON.stringify(i).replace(/'/g,"&#39;")})'>✏️</button></div></div>
-      </div>`;}).join('')}</div>`).join('');
+  const busca=(document.getElementById('cf-busca').value||'').toLowerCase();
+  const cat=document.getElementById('cf-cat').value;
+  const nivel=document.getElementById('cf-nivel').value;
+  const f=consumiveis.filter(i=>(!busca||i.nome?.toLowerCase().includes(busca))&&(!cat||i.categoria===cat)&&(!nivel||(NIVEL_SLUG[i.nivel]||'ok')===nivel));
+  document.getElementById('cf-count').textContent=f.length+' item(s)';
+  if(!f.length){document.getElementById('csm-lista').innerHTML='<div class="empty">Nenhum item encontrado.</div>';return;}
+  document.getElementById('csm-lista').innerHTML=f.map(i=>{
+    const a=Number(i.atual)||0,m=Number(i.minimo)||0;
+    const pct=m>0?Math.min(100,Math.round(a/m*100)):100;
+    const sl=NIVEL_SLUG[i.nivel]||'ok';
+    const cor=sl==='ok'?'#7fd67f':sl==='repor'?'#e0c040':sl==='alerta'?'#f08080':'#ff6060';
+    return `<div class="csm-card" onclick="abrirModalCsm('${i.id}')">
+      <div class="csm-top">
+        <div><div class="csm-nome">${CAT_IC[i.categoria]||'📦'} ${i.nome}</div><div class="csm-cat">${i.categoria}</div></div>
+        <span class="nivel-badge nivel-${sl}">${i.nivel||'—'}</span>
+      </div>
+      <div class="csm-bar-wrap"><div class="csm-bar" style="width:${pct}%;background:${cor}"></div></div>
+      <div class="csm-info"><span>${a} / ${m} ${i.unidade||''}</span><span>${pct}%</span></div>
+    </div>`;
+  }).join('');
 }
-function abrirModal(item){
-  modalItem=item;
-  document.getElementById('modal-titulo').textContent=item.nome;
-  document.getElementById('modal-info').textContent=`${item.categoria} · ${item.nivel||'—'}`;
-  document.getElementById('m-atual').value=item.atual||'';document.getElementById('m-minimo').value=item.minimo||'';
-  document.getElementById('m-fornecedor').value=item.fornecedor||'';document.getElementById('m-precounit').value=item.precoUnit||'';
-  document.getElementById('m-qtdpac').value=item.qtdPacote||1;document.getElementById('m-precopac').value=item.precoPacote||'';
-  document.getElementById('m-link').value=item.link||'';document.getElementById('ml-query').value=item.nome;
-  document.getElementById('ml-resultados').innerHTML='';document.getElementById('modal-overlay').classList.add('open');
-}
-function fecharModal(e){if(e&&e.target!==document.getElementById('modal-overlay'))return;document.getElementById('modal-overlay').classList.remove('open');modalItem=null;}
-async function salvarModal(){
-  const url=getUrl();if(!url){toast('Configure a URL.',false);return;}
-  const btn=document.getElementById('btnModal');btn.disabled=true;prog(40);
-  try{const r=await fetch(url,{method:'POST',body:JSON.stringify({acao:'consumivel-atualizar',id:modalItem?.id,nome:modalItem?.nome,
-    atual:document.getElementById('m-atual').value,minimo:document.getElementById('m-minimo').value,
-    fornecedor:document.getElementById('m-fornecedor').value,precoUnit:document.getElementById('m-precounit').value,
-    qtdPacote:document.getElementById('m-qtdpac').value,precoPacote:document.getElementById('m-precopac').value,
-    link:document.getElementById('m-link').value})});
-    const j=await r.json();prog(100);
-    if(j.ok){toast(`✓ ${j.nivel}`);document.getElementById('modal-overlay').classList.remove('open');await carregarConsumiveis();}
-    else toast('Erro: '+(j.erro||'?'),false);
-  }catch(e){toast('Falha.',false);}finally{btn.disabled=false;setTimeout(()=>prog(0),900);}
-}
-async function buscarML(){
-  const url=getUrl();if(!url)return;
-  const q=document.getElementById('ml-query').value.trim();if(!q)return;
-  document.getElementById('ml-resultados').innerHTML='<div style="font-size:12px;color:var(--cinza);text-align:center;padding:8px">Buscando...</div>';
-  try{const r=await fetch(`${url}?acao=ml-buscar&q=${encodeURIComponent(q)}`);const j=await r.json();
-    if(!j.ok||!j.resultados?.length){document.getElementById('ml-resultados').innerHTML='<div style="font-size:12px;color:var(--cinza);text-align:center;padding:8px">Sem resultado.</div>';return;}
-    document.getElementById('ml-resultados').innerHTML=`<div class="ml-resultados">${j.resultados.map(r=>`
-      <div class="ml-item" onclick='selecionarML(${JSON.stringify(r).replace(/'/g,"&#39;")})'>
-        <img class="ml-thumb" src="${r.thumbnail}" onerror="this.style.display='none'"/>
-        <div class="ml-info"><div class="ml-titulo">${r.titulo}</div><div class="ml-preco">R$ ${Number(r.preco).toFixed(2)}</div>
-        ${r.qtdPacote>1?`<div class="ml-unit">Pacote c/${r.qtdPacote} → R$${(r.preco/r.qtdPacote).toFixed(2)}/un</div>`:''}</div>
-      </div>`).join('')}</div>`;
-  }catch(e){}
-}
-function selecionarML(r){
-  document.getElementById('m-link').value=r.link||'';
-  if(r.qtdPacote>1){document.getElementById('m-qtdpac').value=r.qtdPacote;document.getElementById('m-precopac').value=r.preco;document.getElementById('m-precounit').value=(r.preco/r.qtdPacote).toFixed(2);}
-  else document.getElementById('m-precounit').value=r.preco;
-  if(r.vendedor)document.getElementById('m-fornecedor').value=r.vendedor;
-  toast('✓ Preço preenchido!');
+function abrirModalCsm(id){
+  const i=consumiveis.find(x=>x.id===id);if(!i)return;
+  document.getElementById('modal-nome').textContent=i.nome||'—';
+  document.getElementById('modal-corpo').innerHTML=[
+    ['Categoria',i.categoria||'—'],['Nível',i.nivel||'—'],
+    ['Estoque',`${i.atual||0} / ${i.minimo||0} ${i.unidade||''}`],
+    ['Fornecedor',i.fornecedor||'—'],
+    ['Preço unitário',i.precoUnit?'R$\u00a0'+Number(i.precoUnit).toLocaleString('pt-BR',{minimumFractionDigits:2}):'—'],
+    ['Qtd por pacote',i.qtdPacote||'—'],
+    ['Atualizado em',fmtData(i.atualizado)],
+  ].map(([r,v])=>`<div class="modal-row"><span class="modal-rot">${r}</span><span>${v}</span></div>`).join('')+
+  (i.link?`<div style="margin-top:10px;text-align:center"><a href="${i.link}" target="_blank" style="color:var(--ouro);font-size:12px">🔗 Ver link de compra</a></div>`:'');
+  document.getElementById('modal-overlay').classList.add('open');
 }
 
-// ── FILHOS ──────────────────────────────────────────────
-function limparFilho(){
-  ['f-nomesanto','f-nomesocial','f-aniversario','f-feitura','f-proxobrigacao','f-obrigacoes','f-obs'].forEach(id=>document.getElementById(id).value='');
-  ['f-orixa2','f-adjunto','f-nacao'].forEach(id=>document.getElementById(id).selectedIndex=0);
-  document.getElementById('f-status2').selectedIndex=0;
-}
+// ── FILHOS ────────────────────────────────────────────
 async function carregarFilhos(){
-  const url=getUrl();if(!url){toast('Configure a URL.',false);return;}
-  document.getElementById('filhos-lista').innerHTML='<div class="empty">Carregando...</div>';
-  try{const r=await fetch(url+'?acao=filhos-listar');const j=await r.json();filhos=j.itens||[];renderFilhos();}
-  catch(e){document.getElementById('filhos-lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
+  try{const r=await fetch(URL_GS+'?acao=filhos-listar');const j=await r.json();if(j.ok){filhos=j.itens||[];renderFilhos();}}
+  catch(e){document.getElementById('filho-lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
 }
 function renderFilhos(){
-  const fO=document.getElementById('ff-orixa').value,fS=document.getElementById('ff-status').value;
-  const f=filhos.filter(i=>(!fO||i.orixa===fO)&&(!fS||i.statusTerreiro===fS));
-  const el=document.getElementById('filhos-lista');
-  if(!f.length){el.innerHTML='<div class="empty">Nenhum filho cadastrado ainda.</div>';return;}
-  el.innerHTML=f.map(i=>`<div class="filho-card">
-    <div class="filho-orixa">✦ Filho de ${i.orixa||'—'}</div>
-    <div class="filho-meta">
-      ${i.nacao?'Nação: '+i.nacao:''}
-      ${i.feitura?'<br>📅 Feitura: '+i.feitura:''}
-      ${i.proximaObrigacao?'<br>⚠️ Próxima obrigação: <b>'+i.proximaObrigacao+'</b>':''}
-    </div>
-    <span class="filho-badge ${statusClass(i.statusTerreiro)}">${i.statusTerreiro||'Ativo'}</span>
-  </div>`).join('');
-}
-async function salvarFilho(){
-  const url=getUrl();if(!url){toast('Configure a URL.',false);return;}
-  const nomeSocial=document.getElementById('f-nomesocial').value.trim();
-  if(!nomeSocial){toast('Informe o nome social.',false);return;}
-  const btn=document.getElementById('btnFilho');btn.disabled=true;prog(40);
-  try{const r=await fetch(url,{method:'POST',body:JSON.stringify({acao:'filho-inserir',
-    nomeSanto:document.getElementById('f-nomesanto').value,nomeSocial,
-    orixa:document.getElementById('f-orixa2').value,adjunto:document.getElementById('f-adjunto').value,
-    nacao:document.getElementById('f-nacao').value,statusTerreiro:document.getElementById('f-status2').value,
-    aniversario:document.getElementById('f-aniversario').value,feitura:document.getElementById('f-feitura').value,
-    proximaObrigacao:document.getElementById('f-proxobrigacao').value,
-    obrigacoesRealizadas:document.getElementById('f-obrigacoes').value,
-    observacoes:document.getElementById('f-obs').value})});
-    const j=await r.json();prog(100);
-    if(j.ok){toast('✓ Cadastrado!');filhos=[];limparFilho();await carregarFilhos();}
-    else toast('Erro: '+(j.erro||'?'),false);
-  }catch(e){toast('Falha.',false);}finally{btn.disabled=false;setTimeout(()=>prog(0),900);}
+  const busca=(document.getElementById('fs-busca').value||'').toLowerCase();
+  const orixa=document.getElementById('fs-orixa').value;
+  const status=document.getElementById('fs-status').value;
+  const f=filhos.filter(i=>(!busca||('filho de '+(i.orixa||'')).toLowerCase().includes(busca))&&(!orixa||i.orixa===orixa)&&(!status||i.statusTerreiro===status));
+  document.getElementById('fs-count').textContent=f.length+' filho(s)';
+  if(!f.length){document.getElementById('filho-lista').innerHTML='<div class="empty">Nenhum registro encontrado.</div>';return;}
+  document.getElementById('filho-lista').innerHTML=f.map(i=>{
+    const sc=STATUS_CLASS[i.statusTerreiro]||'fs-ativo';
+    return `<div class="filho-card">
+      <div class="filho-titulo">✦ Filho de ${i.orixa||'—'} ✦</div>
+      <div class="filho-nacao">${i.nacao||''}</div>
+      ${i.statusTerreiro?`<span class="${sc}">${i.statusTerreiro}</span>`:''}
+      ${i.feitura&&i.feitura!=='—'?`<div class="filho-row" style="margin-top:8px"><span class="filho-rot">Feitura</span><span>${i.feitura}</span></div>`:''}
+      ${i.proximaObrigacao&&i.proximaObrigacao!=='—'?`<div class="filho-row"><span class="filho-rot">Próxima obrigação</span><span>${i.proximaObrigacao}</span></div>`:''}
+    </div>`;
+  }).join('');
 }
 
-// ── FINANCEIRO ──────────────────────────────────────────
-function limparFin(){
-  ['fn-desc','fn-resp','fn-valor'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('fn-tipo2').selectedIndex=0;document.getElementById('fn-cat2').selectedIndex=0;
-  document.getElementById('fn-data').value=new Date().toISOString().split('T')[0];
-}
-async function carregarFin(){
-  const url=getUrl();if(!url){toast('Configure a URL.',false);return;}
-  document.getElementById('fin-lista').innerHTML='<div class="empty">Carregando...</div>';
+// ── SALVAR ────────────────────────────────────────────
+async function salvarAcervo(){
+  const nome=document.getElementById('c-nome').value.trim(),cat=document.getElementById('c-cat').value;
+  if(!nome||!cat){toast('Preencha nome e categoria.',false);return;}
+  const btn=document.getElementById('btnAcervo');btn.disabled=true;btn.textContent='Gravando...';
   try{
-    const r=await fetch(url+'?acao=financeiro-resumo');const j=await r.json();
-    if(j.ok){
-      _fillNum('fin-ent',fmtBRL(j.entradasMes));
-      _fillNum('fin-sai',fmtBRL(j.saidasMes));
-      _fillNum('fin-sal',fmtBRL(j.saldo));
-      lancamentos=[];renderFin();
-    }
-  }catch(e){document.getElementById('fin-lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
+    const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'inserir',nome,categoria:cat,subcategoria:document.getElementById('c-subcat').value,orixa:document.getElementById('c-orixa').value,status:document.getElementById('c-status').value,local:document.getElementById('c-local').value,quantidade:document.getElementById('c-qtd').value,foto:document.getElementById('c-foto').value,observacoes:document.getElementById('c-obs').value})});
+    const j=await r.json();
+    if(j.ok){toast('✓ Item gravado!');limparAcervo();acervo=[];carregarAcervo();}
+    else toast(j.erro||'Erro.',false);
+  }catch(e){toast('Erro de conexão.',false);}finally{btn.disabled=false;btn.textContent='Gravar';}
 }
-function renderFin(){
-  const fT=document.getElementById('fn-tipo').value;
-  const f=lancamentos.filter(i=>(!fT||i.tipo===fT));
-  const el=document.getElementById('fin-lista');
-  if(!f.length){el.innerHTML='<div class="empty">Sem lançamentos. Use o formulário abaixo.</div>';return;}
-  el.innerHTML=f.map(i=>{const cl=i.tipo==='Entrada'?'entrada':'saida';return`<div class="fin-item ${cl}">
-    <div class="fin-item-top">
-      <div><div class="fin-desc">${i.descricao||'—'}</div><div class="fin-meta">${i.data||''} · ${i.categoria||''}</div></div>
-      <div class="fin-valor ${cl}">${i.tipo==='Entrada'?'+':'-'}${fmtBRL(i.valor)}</div>
-    </div></div>`;}).join('');
+function limparAcervo(){['c-nome','c-local','c-foto','c-obs'].forEach(id=>document.getElementById(id).value='');document.getElementById('c-qtd').value=1;['c-cat','c-orixa','c-status'].forEach(id=>document.getElementById(id).selectedIndex=0);document.getElementById('c-subcat').innerHTML='<option value="">—</option>';}
+
+async function salvarConsumivel(){
+  const nome=document.getElementById('cu-nome').value.trim();
+  if(!nome){toast('Informe o nome do item.',false);return;}
+  const btn=document.getElementById('btnCsm');btn.disabled=true;btn.textContent='Atualizando...';
+  try{
+    const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'consumivel-atualizar',nome,atual:document.getElementById('cu-atual').value,minimo:document.getElementById('cu-min').value,fornecedor:document.getElementById('cu-forn').value,precoPacote:document.getElementById('cu-preco').value,qtdPacote:document.getElementById('cu-qtdpac').value,link:document.getElementById('cu-link').value})});
+    const j=await r.json();
+    if(j.ok){toast('✓ Atualizado! Nível: '+j.nivel);limparConsumivel();consumiveis=[];carregarConsumiveis();}
+    else toast(j.erro||'Erro.',false);
+  }catch(e){toast('Erro de conexão.',false);}finally{btn.disabled=false;btn.textContent='Atualizar';}
 }
-async function salvarFin(){
-  const url=getUrl();if(!url){toast('Configure a URL.',false);return;}
-  const desc=document.getElementById('fn-desc').value.trim(),valor=document.getElementById('fn-valor').value;
-  if(!desc){toast('Informe a descrição.',false);return;}if(!valor||valor<=0){toast('Informe o valor.',false);return;}
-  const btn=document.getElementById('btnFin');btn.disabled=true;prog(40);
-  try{const r=await fetch(url,{method:'POST',body:JSON.stringify({acao:'financeiro-inserir',
-    tipo:document.getElementById('fn-tipo2').value,data:document.getElementById('fn-data').value,
-    categoria:document.getElementById('fn-cat2').value,descricao:desc,valor,
-    responsavel:document.getElementById('fn-resp').value})});
-    const j=await r.json();prog(100);
-    if(j.ok){toast('✓ Lançado!');limparFin();await carregarFin();}
-    else toast('Erro: '+(j.erro||'?'),false);
-  }catch(e){toast('Falha.',false);}finally{btn.disabled=false;setTimeout(()=>prog(0),900);}
+function limparConsumivel(){['cu-nome','cu-atual','cu-min','cu-forn','cu-preco','cu-qtdpac','cu-link'].forEach(id=>document.getElementById(id).value='');}
+
+async function salvarFilho(){
+  const btn=document.getElementById('btnFilho');btn.disabled=true;btn.textContent='Gravando...';
+  try{
+    const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'filho-inserir',nomeSanto:document.getElementById('f-nome').value,nomeSocial:document.getElementById('f-social').value,contato:document.getElementById('f-contato').value,orixa:document.getElementById('f-orixa').value,adjunto:document.getElementById('f-adjunto').value,nacao:document.getElementById('f-nacao').value,statusTerreiro:document.getElementById('f-status').value,aniversario:document.getElementById('f-aniv').value,feitura:document.getElementById('f-feitura').value,proximaObrigacao:document.getElementById('f-obrig').value,obrigacoesRealizadas:document.getElementById('f-obrigrealiz').value,observacoes:document.getElementById('f-obs').value})});
+    const j=await r.json();
+    if(j.ok){toast('✓ Gravado!');limparFilho();filhos=[];carregarFilhos();}
+    else toast(j.erro||'Erro.',false);
+  }catch(e){toast('Erro de conexão.',false);}finally{btn.disabled=false;btn.textContent='Gravar';}
+}
+function limparFilho(){['f-nome','f-social','f-contato','f-aniv','f-feitura','f-obrig','f-obrigrealiz','f-obs'].forEach(id=>document.getElementById(id).value='');document.getElementById('f-status').value='Ativo';['f-orixa','f-adjunto','f-nacao'].forEach(id=>document.getElementById(id).selectedIndex=0);}
+
+// ── ML ────────────────────────────────────────────────
+async function buscarML(){
+  const q=document.getElementById('ml-q').value.trim();if(!q){toast('Digite o que deseja buscar.',false);return;}
+  const el=document.getElementById('ml-resultado');el.innerHTML='<div class="empty">Buscando...</div>';
+  try{
+    const r=await fetch(URL_GS+'?acao=ml-buscar&q='+encodeURIComponent(q));const j=await r.json();
+    if(!j.ok||!j.resultados?.length){el.innerHTML='<div class="empty">Nenhum resultado.</div>';return;}
+    el.innerHTML=j.resultados.map(x=>`
+      <div class="ml-item">
+        <img class="ml-thumb" src="${x.thumbnail}" onerror="this.style.display='none'"/>
+        <div class="ml-info"><div class="ml-nome">${x.titulo}</div><div class="ml-preco">R$\u00a0${Number(x.preco).toLocaleString('pt-BR',{minimumFractionDigits:2})}</div></div>
+        <button class="btn-ml-usar" onclick="usarML('${encodeURIComponent(x.titulo)}',${x.preco},'${encodeURIComponent(x.link||'')}')">Usar</button>
+      </div>`).join('');
+  }catch(e){el.innerHTML='<div class="empty">Erro na busca.</div>';}
+}
+function usarML(titulo,preco,link){
+  document.getElementById('cu-nome').value=decodeURIComponent(titulo);
+  document.getElementById('cu-preco').value=preco;
+  document.getElementById('cu-link').value=decodeURIComponent(link);
+  navTo('cadastro',document.querySelectorAll('.nav-btn')[1]);
+  toast('✓ Dados preenchidos!');
 }
 </script>
 </body>
