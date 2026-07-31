@@ -629,6 +629,28 @@ function abrirModal(idx){
   (i.foto?`<img src="${i.foto}" style="width:100%;border-radius:8px;margin-top:10px" onerror="this.style.display='none'"/>`:'');
   document.getElementById('modal-overlay').classList.add('open');
 }
+function editarConsumivel(id){
+  var i=consumiveis.find(function(x){return x.id===id;});
+  if(!i)return;
+  // Fecha modal
+  document.getElementById('modal-bg').classList.remove('aberto');
+  // Preenche campos do form consumivel
+  var el=function(id){return document.getElementById(id);};
+  if(el('cu-nome'))el('cu-nome').value=i.nome||'';
+  if(el('cu-atual'))el('cu-atual').value=i.atual||'';
+  if(el('cu-min'))el('cu-min').value=i.minimo||'';
+  if(el('cu-forn'))el('cu-forn').value=i.fornecedor||'';
+  if(el('cu-preco'))el('cu-preco').value=i.precoPacote||'';
+  if(el('cu-qtdpac'))el('cu-qtdpac').value=i.qtdPacote||'';
+  if(el('cu-link'))el('cu-link').value=i.link||'';
+  // Navega para cadastro > form consumivel
+  var tabs=document.querySelectorAll('.tab');
+  irPara('cadastro',tabs[1]);
+  abrirForm('consumivel');
+  // Scroll para o form
+  setTimeout(function(){var fw=document.getElementById('fw-consumivel');if(fw)fw.scrollIntoView({behavior:'smooth',block:'start'});},100);
+  toast('Dados preenchidos — ajuste e clique em Atualizar.');
+}
 function fecharModal(e){if(!e||e.target.id==='modal-overlay'||e.currentTarget?.className==='modal-fechar')document.getElementById('modal-overlay').classList.remove('open');}
 
 // ── CONSUMÍVEIS ───────────────────────────────────────
