@@ -213,7 +213,7 @@ nav::-webkit-scrollbar{display:none}
       </div>
       <div class="field"><label>Status</label>
         <select id="c-status">
-          <option value="Disponivel">Disponivel</option><option value="Danificado">Danificado</option>
+          <option value="Danificado">Danificado</option><option value="Disponivel">Disponivel</option>
           <option value="Em uso">Em uso</option><option value="Necessita reposicao">Necessita reposicao</option>
         </select>
       </div>
@@ -403,9 +403,13 @@ function irPara(id,el){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   el.classList.add('active');
   document.getElementById('sec-'+id).classList.add('active');
+  // Reseta filtros ao trocar de aba (exceto quando vem de filtrarNivel)
+  if(id==='consumiveis'&&!irPara._nivelFiltro){const el2=document.getElementById('cf-nivel');if(el2)el2.value='';renderConsumiveis();}
+  irPara._nivelFiltro=false;
 }
 
 function filtrarNivel(nivel){
+  irPara._nivelFiltro=true;
   document.getElementById('cf-nivel').value=nivel;
   renderConsumiveis();
   irPara('consumiveis',document.querySelectorAll('.tab')[3]);
@@ -426,10 +430,11 @@ function atualizarSubcat(){
 
 function nivelSlug(n){
   if(!n)return'ok';
-  const nl=n.toLowerCase();
+  const nl=String(n).toLowerCase();
   if(nl.includes('urgente')||nl.includes('zero'))return'urgente';
   if(nl.includes('alerta'))return'alerta';
   if(nl.includes('repor'))return'repor';
+  if(nl.includes('ok'))return'ok';
   return'ok';
 }
 
