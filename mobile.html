@@ -528,7 +528,7 @@ async function carregarHome(){
 
 // ── ACERVO ────────────────────────────────────────────
 async function carregarAcervo(){
-  try{const r=await fetch(URL_GS+'?acao=listar');const j=await r.json();if(j.ok){acervo=j.itens||[];renderAcervo();}}
+  try{const r=await fetch(URL_GS+'?acao=listar');const j=await r.json();if(j.ok){acervo=(j.itens||[]).sort((a,b)=>(a.nome||"").localeCompare((b.nome||""),"pt-BR"));renderAcervo();}}
   catch(e){document.getElementById('acervo-lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
 }
 function renderAcervo(){
@@ -611,7 +611,7 @@ function abrirModalCsm(id){
 
 // ── FILHOS ────────────────────────────────────────────
 async function carregarFilhos(){
-  try{const r=await fetch(URL_GS+'?acao=filhos-listar');const j=await r.json();if(j.ok){filhos=j.itens||[];renderFilhos();}}
+  try{const r=await fetch(URL_GS+'?acao=filhos-listar');const j=await r.json();if(j.ok){filhos=(j.itens||[]).sort((a,b)=>(a.orixa||"").localeCompare((b.orixa||""),"pt-BR"));renderFilhos();}}
   catch(e){document.getElementById('filho-lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
 }
 function renderFilhos(){
