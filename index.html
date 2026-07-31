@@ -141,6 +141,13 @@ nav::-webkit-scrollbar{display:none}
   .ml-resultado{grid-template-columns:1fr}
   .nav-links{display:none}
 }
+
+.cad-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:20px 16px;cursor:pointer;transition:border-color .15s,transform .1s;text-align:center}
+.cad-card:hover{border-color:var(--ouro);transform:translateY(-2px)}
+.cad-card:active{transform:translateY(0)}
+.cad-ic{font-size:28px;margin-bottom:8px}
+.cad-lb{font-size:13px;font-weight:600;color:var(--ouro-lt);margin-bottom:4px}
+.cad-dc{font-size:11px;color:var(--cinza);line-height:1.4}
 </style>
 </head>
 <body>
@@ -171,23 +178,37 @@ nav::-webkit-scrollbar{display:none}
     </div>
     <div class="nivel-card repor" onclick="filtrarNivel('repor')">
       <div class="num skeleton skel-num" id="cnt-repor"></div>
-      <div class="rot">Repor</div>
+      <div class="rot"<div class="section" id="sec-cadastro">
+
+  <!-- CARDS DE SELEÇÃO -->
+  <div id="cad-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:28px">
+    <div class="cad-card" onclick="abrirForm('acervo')">
+      <div class="cad-ic">📦</div>
+      <div class="cad-lb">Novo item do acervo</div>
+      <div class="cad-dc">Roupas, ferramentas, objetos rituais</div>
     </div>
-    <div class="nivel-card alerta" onclick="filtrarNivel('alerta')">
-      <div class="num skeleton skel-num" id="cnt-alerta"></div>
-      <div class="rot">Alerta</div>
+    <div class="cad-card" onclick="abrirForm('consumivel')">
+      <div class="cad-ic">🕯️</div>
+      <div class="cad-lb">Atualizar consumível</div>
+      <div class="cad-dc">Atualizar estoque e fornecedor</div>
     </div>
-    <div class="nivel-card urgente" onclick="filtrarNivel('urgente')">
-      <div class="num skeleton skel-num" id="cnt-urgente"></div>
-      <div class="rot">Urgente</div>
+    <div class="cad-card" onclick="abrirForm('ml')">
+      <div class="cad-ic">🛒</div>
+      <div class="cad-lb">Buscar no Mercado Livre</div>
+      <div class="cad-dc">Pesquisar preços e preencher dados</div>
+    </div>
+    <div class="cad-card" onclick="abrirForm('filho')">
+      <div class="cad-ic">👥</div>
+      <div class="cad-lb">Novo filho de santo</div>
+      <div class="cad-dc">Cadastrar membro do terreiro</div>
     </div>
   </div>
-  <div class="home-datas" id="home-datas"></div>
-</div>
 
-<!-- CADASTRAR -->
-<div class="section" id="sec-cadastro">
-  <div class="secao-titulo">Novo item do acervo</div>
+  <!-- FORMS (aparecem ao clicar no card) -->
+
+  <div id="form-acervo" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><button onclick="fecharForm()" style="background:none;border:none;color:var(--cinza);cursor:pointer;font-size:18px;padding:0">←</button><span style="font-size:11px;color:var(--cinza)">Voltar</span></div>
+<div class="secao-titulo">Novo item do acervo</div>
   <div class="form-box">
     <div class="form-grid">
       <div class="field full"><label>Nome do item *</label><input type="text" id="c-nome" placeholder="Ex: Oja de Oxum" autocomplete="off"/></div>
@@ -256,7 +277,11 @@ nav::-webkit-scrollbar{display:none}
     </div>
   </div>
 
-  <div class="secao-titulo">Atualizar consumivel</div>
+  
+  </div>
+  <div id="form-consumivel" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><button onclick="fecharForm()" style="background:none;border:none;color:var(--cinza);cursor:pointer;font-size:18px;padding:0">←</button><span style="font-size:11px;color:var(--cinza)">Voltar</span></div>
+<div class="secao-titulo">Atualizar consumivel</div>
   <div class="form-box">
     <div class="form-grid">
       <div class="field full"><label>Item (nome exato ou ID)</label><input type="text" id="cu-nome" placeholder="Ex: Vela 7 dias branca" autocomplete="off"/></div>
@@ -273,7 +298,11 @@ nav::-webkit-scrollbar{display:none}
     </div>
   </div>
 
-  <div class="secao-titulo">Buscar no Mercado Livre</div>
+  
+  </div>
+  <div id="form-ml" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><button onclick="fecharForm()" style="background:none;border:none;color:var(--cinza);cursor:pointer;font-size:18px;padding:0">←</button><span style="font-size:11px;color:var(--cinza)">Voltar</span></div>
+<div class="secao-titulo">Buscar no Mercado Livre</div>
   <div class="form-box">
     <div style="display:flex;gap:8px">
       <input type="text" id="ml-q" placeholder="Ex: vela 7 dias branca" style="flex:1;background:rgba(0,0,0,.35);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:13px;padding:9px 11px;outline:none;font-family:var(--fb)"/>
@@ -282,7 +311,11 @@ nav::-webkit-scrollbar{display:none}
     <div class="ml-resultado" id="ml-resultado"></div>
   </div>
 
-  <div class="secao-titulo">Novo filho de santo</div>
+  
+  </div>
+  <div id="form-filho" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><button onclick="fecharForm()" style="background:none;border:none;color:var(--cinza);cursor:pointer;font-size:18px;padding:0">←</button><span style="font-size:11px;color:var(--cinza)">Voltar</span></div>
+<div class="secao-titulo">Novo filho de santo</div>
   <div class="form-box">
     <div class="form-grid">
       <div class="field"><label>Nome de candomble / santo</label><input type="text" id="f-nome" autocomplete="off"/></div>
@@ -350,6 +383,17 @@ nav::-webkit-scrollbar{display:none}
       <div class="field"><label>Data de feitura</label><input type="date" id="f-feitura"/></div>
       <div class="field"><label>Proxima obrigacao</label><input type="date" id="f-obrig"/></div>
       <div class="field full"><label>Obrigacoes realizadas</label><input type="text" id="f-obrigrealiz" placeholder="Ex: Feitura 2020, 1 ano 2021" autocomplete="off"/></div>
+      <div class="field full"><label>Observacoes</label><textarea id="f-obs" placeholder="Notas livres..."></textarea></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="limparFilho()">Limpar</button>
+      <button class="btn btn-primary" id="btnFilho" onclick="salvarFilho()">Gravar</button>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- ACERVOut type="text" id="f-obrigrealiz" placeholder="Ex: Feitura 2020, 1 ano 2021" autocomplete="off"/></div>
       <div class="field full"><label>Observacoes</label><textarea id="f-obs" placeholder="Notas livres..."></textarea></div>
     </div>
     <div class="btn-row">
@@ -440,6 +484,21 @@ nav::-webkit-scrollbar{display:none}
 
 <script>
 
+
+function abrirForm(id){
+  document.getElementById('cad-cards').style.display='none';
+  ['acervo','consumivel','ml','filho'].forEach(function(f){
+    var el=document.getElementById('form-'+f);
+    if(el)el.style.display=f===id?'block':'none';
+  });
+}
+function fecharForm(){
+  document.getElementById('cad-cards').style.display='grid';
+  ['acervo','consumivel','ml','filho'].forEach(function(f){
+    var el=document.getElementById('form-'+f);
+    if(el)el.style.display='none';
+  });
+}
 function toggleOutro(selId, inputId){
   const sel=document.getElementById(selId);
   const inp=document.getElementById(inputId);

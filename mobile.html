@@ -155,6 +155,12 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
 #toast{position:fixed;bottom:calc(var(--bottom)+10px);left:50%;transform:translateX(-50%) translateY(20px);background:#111;border:1px solid var(--ouro);border-radius:99px;color:var(--ouro-lt);padding:8px 18px;font-size:12px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:999;white-space:nowrap;max-width:90vw;text-align:center}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 #toast.erro{border-color:#f08080;color:#f08080}
+
+.cad-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:16px 12px;cursor:pointer;transition:border-color .15s;text-align:center;-webkit-tap-highlight-color:transparent}
+.cad-card:active{border-color:var(--ouro);opacity:.85}
+.cad-ic{font-size:26px;margin-bottom:6px}
+.cad-lb{font-size:12px;font-weight:600;color:var(--ouro-lt);margin-bottom:3px}
+.cad-dc{font-size:10px;color:var(--cinza);line-height:1.4}
 </style>
 </head>
 <body>
@@ -200,7 +206,34 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
 
   <!-- CADASTRAR -->
   <div class="page" id="page-cadastro">
-    <div class="secao-titulo">📦 Novo item do acervo</div>
+
+  <!-- CARDS DE SELEÇÃO -->
+  <div id="cad-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;padding-top:14px">
+    <div class="cad-card" onclick="abrirForm('acervo')">
+      <div class="cad-ic">📦</div>
+      <div class="cad-lb">Novo item do acervo</div>
+      <div class="cad-dc">Roupas, ferramentas, objetos</div>
+    </div>
+    <div class="cad-card" onclick="abrirForm('consumivel')">
+      <div class="cad-ic">🕯️</div>
+      <div class="cad-lb">Atualizar consumível</div>
+      <div class="cad-dc">Estoque e fornecedor</div>
+    </div>
+    <div class="cad-card" onclick="abrirForm('ml')">
+      <div class="cad-ic">🛒</div>
+      <div class="cad-lb">Mercado Livre</div>
+      <div class="cad-dc">Pesquisar preços</div>
+    </div>
+    <div class="cad-card" onclick="abrirForm('filho')">
+      <div class="cad-ic">👥</div>
+      <div class="cad-lb">Novo filho de santo</div>
+      <div class="cad-dc">Cadastrar membro</div>
+    </div>
+  </div>
+
+  <div id="form-acervo" style="display:none;padding-top:14px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><button onclick="fecharForm()" style="background:none;border:none;color:var(--cinza);cursor:pointer;font-size:22px;padding:4px">←</button><span style="font-size:12px;color:var(--cinza)">Voltar</span></div>
+<div class="secao-titulo">📦 Novo item do acervo</div>
     <div class="form-box">
       <div class="field"><label>Nome do item *</label>
         <input type="text" id="c-nome" placeholder="Ex: Ojá de Oxum" autocomplete="off"/>
@@ -254,8 +287,10 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
         <button class="btn btn-primary" id="btnAcervo" onclick="salvarAcervo()">Gravar</button>
       </div>
     </div>
-
-    <div class="secao-titulo">🕯️ Atualizar consumível</div>
+  </div>
+  <div id="form-consumivel" style="display:none;padding-top:14px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><button onclick="fecharForm()" style="background:none;border:none;color:var(--cinza);cursor:pointer;font-size:22px;padding:4px">←</button><span style="font-size:12px;color:var(--cinza)">Voltar</span></div>
+<div class="secao-titulo">🕯️ Atualizar consumível</div>
     <div class="form-box">
       <div class="field"><label>Item (nome exato)</label>
         <input type="text" id="cu-nome" placeholder="Ex: Vela 7 dias branca" autocomplete="off"/>
@@ -283,8 +318,10 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
         <button class="btn btn-primary" id="btnCsm" onclick="salvarConsumivel()">Atualizar</button>
       </div>
     </div>
-
-    <div class="secao-titulo">🔍 Buscar no Mercado Livre</div>
+  </div>
+  <div id="form-ml" style="display:none;padding-top:14px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><button onclick="fecharForm()" style="background:none;border:none;color:var(--cinza);cursor:pointer;font-size:22px;padding:4px">←</button><span style="font-size:12px;color:var(--cinza)">Voltar</span></div>
+<div class="secao-titulo">🔍 Buscar no Mercado Livre</div>
     <div class="form-box">
       <div class="field">
         <input type="text" id="ml-q" placeholder="Ex: vela 7 dias branca"/>
@@ -292,8 +329,10 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
       <button class="btn btn-primary" onclick="buscarML()" style="width:100%">Buscar</button>
       <div id="ml-resultado" style="margin-top:10px"></div>
     </div>
-
-    <div class="secao-titulo">👥 Novo filho de santo</div>
+  </div>
+  <div id="form-filho" style="display:none;padding-top:14px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><button onclick="fecharForm()" style="background:none;border:none;color:var(--cinza);cursor:pointer;font-size:22px;padding:4px">←</button><span style="font-size:12px;color:var(--cinza)">Voltar</span></div>
+<div class="secao-titulo">👥 Novo filho de santo</div>
     <div class="form-box">
       <div class="field"><label>Nome de candomblé / santo</label>
         <input type="text" id="f-nome" autocomplete="off"/>
@@ -382,6 +421,8 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
   </div>
 
   <!-- CONSUMÍVEIS -->
+  </div>
+  
   <div class="page" id="page-consumiveis">
     <div style="padding-top:14px">
       <div class="filter-bar">
@@ -724,6 +765,23 @@ function usarML(titulo,preco,link){
   toast('✓ Dados preenchidos!');
 }
 
+
+function abrirForm(id){
+  document.getElementById('cad-cards').style.display='none';
+  ['acervo','consumivel','ml','filho'].forEach(function(f){
+    var el=document.getElementById('form-'+f);
+    if(el)el.style.display=f===id?'block':'none';
+  });
+  document.querySelector('.content').scrollTo(0,0);
+}
+function fecharForm(){
+  document.getElementById('cad-cards').style.display='grid';
+  ['acervo','consumivel','ml','filho'].forEach(function(f){
+    var el=document.getElementById('form-'+f);
+    if(el)el.style.display='none';
+  });
+  document.querySelector('.content').scrollTo(0,0);
+}
 function toggleOutro(selId, inputId) {
   const sel = document.getElementById(selId);
   const inp = document.getElementById(inputId);
