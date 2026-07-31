@@ -16,55 +16,44 @@
 }
 html{font-size:16px}
 body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:100dvh;padding-bottom:20px}
-
-/* TOPO */
 .topo{background:linear-gradient(135deg,#1a0e06,#0a0a0a);border-bottom:1px solid var(--borda);padding:14px 16px 10px;text-align:center}
 .topo h1{font-family:var(--fd);font-size:1.05rem;color:var(--ouro-lt);letter-spacing:.06em}
 .topo p{font-size:10px;color:var(--cinza);margin-top:3px;letter-spacing:.12em;text-transform:uppercase}
-
-/* PROGRESS */
 .progress-bar{height:2px;background:rgba(201,168,76,.12)}
 #prog{height:100%;width:0;background:var(--ouro);transition:width .3s}
-
-/* NAV */
 nav{background:#111;border-bottom:1px solid var(--borda);display:flex;overflow-x:auto;scrollbar-width:none}
 nav::-webkit-scrollbar{display:none}
-.tab{flex-shrink:0;padding:11px 14px;font-size:12px;font-weight:500;color:var(--cinza);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:var(--fb);white-space:nowrap;transition:color .15s}
+.tab{flex-shrink:0;padding:11px 16px;font-size:12px;font-weight:500;color:var(--cinza);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:var(--fb);white-space:nowrap;transition:color .15s}
 .tab:hover{color:var(--ouro-lt)}
 .tab.active{color:var(--ouro-lt);border-bottom-color:var(--ouro)}
-.nav-links{display:flex;justify-content:flex-end;gap:16px;padding:5px 14px;background:#111;border-bottom:1px solid var(--borda)}
-.nav-links a{font-size:11px;color:var(--cinza);text-decoration:none}.nav-links a:hover{color:var(--ouro)}
-
-/* SEÇÕES */
-.section{display:none;padding:20px 32px;width:100%}
+.nav-links{display:flex;justify-content:flex-end;gap:16px;padding:5px 20px;background:#111;border-bottom:1px solid var(--borda)}
+.nav-links a{font-size:11px;color:var(--cinza);text-decoration:none}
+.nav-links a:hover{color:var(--ouro)}
+.section{display:none;padding:24px 32px;width:100%}
 .section.active{display:block}
-
-/* SKELETON */
 .skeleton{background:linear-gradient(90deg,rgba(201,168,76,.08) 25%,rgba(201,168,76,.18) 50%,rgba(201,168,76,.08) 75%);background-size:200% 100%;animation:skel 1.4s infinite;border-radius:6px}
 @keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .skel-num{height:1.4rem;width:80px;margin:0 auto 4px}
-.skel-rot{height:10px;width:60px;margin:0 auto}
-
-/* INICIO */
 .ornamento{text-align:center;color:var(--ouro);letter-spacing:.4em;font-size:12px;margin:18px 0 16px}
 .resumo-niveis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;width:100%}
 .nivel-card{border-radius:12px;padding:24px 8px;text-align:center;border:1px solid transparent;cursor:pointer;transition:transform .1s,opacity .15s}
 .nivel-card:hover{opacity:.82;transform:translateY(-1px)}
 .nivel-card .num{font-family:var(--fd);font-size:2rem;font-weight:600}
 .nivel-card .rot{font-size:11px;text-transform:uppercase;letter-spacing:.07em;margin-top:6px;color:var(--cinza)}
-.nivel-card.ok{background:rgba(30,107,58,.18);border-color:rgba(30,107,58,.3)}.nivel-card.ok .num{color:#7fd67f}
-.nivel-card.repor{background:rgba(180,140,0,.15);border-color:rgba(180,140,0,.3)}.nivel-card.repor .num{color:#e0c040}
-.nivel-card.alerta{background:rgba(180,40,40,.18);border-color:rgba(180,40,40,.3)}.nivel-card.alerta .num{color:#f08080}
-.nivel-card.urgente{background:rgba(120,0,0,.25);border-color:rgba(200,0,0,.35)}.nivel-card.urgente .num{color:#ff6060}
+.nivel-card.ok{background:rgba(30,107,58,.18);border-color:rgba(30,107,58,.3)}
+.nivel-card.ok .num{color:#7fd67f}
+.nivel-card.repor{background:rgba(180,140,0,.15);border-color:rgba(180,140,0,.3)}
+.nivel-card.repor .num{color:#e0c040}
+.nivel-card.alerta{background:rgba(180,40,40,.18);border-color:rgba(180,40,40,.3)}
+.nivel-card.alerta .num{color:#f08080}
+.nivel-card.urgente{background:rgba(120,0,0,.25);border-color:rgba(200,0,0,.35)}
+.nivel-card.urgente .num{color:#ff6060}
 .home-datas{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;width:100%}
-.home-card{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:12px 14px}
+.home-card{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:14px 16px}
 .home-card-titulo{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ouro);margin-bottom:8px;font-weight:600}
-.home-item{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.home-item{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04)}
 .home-item:last-child{border:none}
 .home-item .data{color:var(--cinza);font-size:11px}
-.home-vazio{color:var(--cinza);font-size:12px;font-style:italic}
-
-/* FORMULÁRIO */
 .secao-titulo{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ouro);font-weight:600;margin:20px 0 12px;display:flex;align-items:center;gap:8px}
 .secao-titulo::after{content:'';flex:1;height:1px;background:var(--borda)}
 .form-box{background:rgba(10,20,10,.3);border:1px solid rgba(150,200,150,.15);border-radius:var(--r);padding:20px;margin-bottom:20px;width:100%}
@@ -83,31 +72,20 @@ nav::-webkit-scrollbar{display:none}
 .btn:hover{opacity:.85}
 .foto-thumb{width:100%;max-height:120px;object-fit:cover;border-radius:8px;margin-top:4px}
 .foto-ph{background:rgba(255,255,255,.05);border-radius:8px;height:50px;display:flex;align-items:center;justify-content:center;color:var(--cinza);font-size:11px}
-
-/* FILTER BAR */
 .filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center;width:100%}
-.filter-bar select{background:rgba(0,0,0,.35);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:11px;padding:6px 26px 6px 9px;font-family:var(--fb);outline:none;flex:1;min-width:130px;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c8922a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center}
-.filter-bar input{background:rgba(0,0,0,.35);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:11px;padding:6px 10px;font-family:var(--fb);outline:none;flex:1;min-width:130px}
-.filter-bar input:focus,.filter-bar select:focus{border-color:var(--ouro)}
+.filter-bar select,.filter-bar input{background:rgba(0,0,0,.35);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:12px;padding:8px 12px;font-family:var(--fb);outline:none;flex:1;min-width:160px;-webkit-appearance:none}
+.filter-bar select:focus,.filter-bar input:focus{border-color:var(--ouro)}
 .results-count{font-size:11px;color:var(--cinza);margin-bottom:10px}
-
-/* ACERVO */
 .acervo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;width:100%}
-.item-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:12px;cursor:pointer;transition:border-color .15s}
+.item-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:14px;cursor:pointer;transition:border-color .15s}
 .item-card:hover{border-color:var(--ouro)}
 .item-nome{font-size:13px;font-weight:600;margin-bottom:4px}
 .item-cat{font-size:10px;color:var(--cinza);margin-bottom:6px}
 .item-status{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block}
-.status-Disponível{background:#e6f4ea22;color:#7fd67f;border:1px solid #7fd67f44}
-.status-Em\ uso{background:#e8f0fe22;color:#90b0f0;border:1px solid #90b0f044}
-.status-Danificado{background:#fef3e222;color:#e0c040;border:1px solid #e0c04044}
-.status-Necessita\ reposição{background:#fdecea22;color:#f08080;border:1px solid #f0808044}
-
-/* CONSUMÍVEIS */
 .csm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;width:100%}
-.csm-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:12px 14px;cursor:pointer;transition:border-color .15s}
+.csm-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:14px;cursor:pointer;transition:border-color .15s}
 .csm-card:hover{border-color:var(--ouro)}
-.csm-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+.csm-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
 .csm-nome{font-size:13px;font-weight:600;flex:1}
 .csm-cat{font-size:10px;color:var(--cinza)}
 .csm-bar-wrap{height:5px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden;margin-bottom:4px}
@@ -118,36 +96,30 @@ nav::-webkit-scrollbar{display:none}
 .nivel-repor{background:#fef9e722;color:#e0c040;border:1px solid #e0c04044}
 .nivel-alerta{background:#fdecea22;color:#f08080;border:1px solid #f0808044}
 .nivel-urgente{background:#5c000022;color:#ff6060;border:1px solid #ff606044}
-
-/* FILHOS */
-.filho-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:12px 14px;margin-bottom:7px}
-.filho-ic{font-size:22px;margin-bottom:4px;text-align:center}
-.filho-titulo{font-size:14px;font-weight:600;color:var(--ouro-lt);text-align:center;margin-bottom:4px}
-.filho-nacao{font-size:10px;color:var(--cinza);text-align:center;margin-bottom:8px}
+.filho-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;width:100%}
+.filho-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:14px;text-align:center}
+.filho-titulo{font-size:14px;font-weight:600;color:var(--ouro-lt);margin-bottom:4px}
+.filho-nacao{font-size:10px;color:var(--cinza);margin-bottom:8px}
 .filho-row{display:flex;justify-content:space-between;font-size:11px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04)}
 .filho-row:last-child{border:none}
 .filho-rot{color:var(--cinza)}
-.filho-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;width:100%}
-.fs-abiao{background:#fff9e622;color:#e0c040;border:1px solid #e0c04044;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block}
-.fs-ativo{background:#e6f4ea22;color:#7fd67f;border:1px solid #7fd67f44;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block}
-.fs-ebomi{background:#e8f0fe22;color:#90b0f0;border:1px solid #90b0f044;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block}
-.fs-iao{background:#f0e6ff22;color:#c090f0;border:1px solid #c090f044;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block}
-.fs-inativo{background:#33333322;color:#888;border:1px solid #88888844;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block}
-.fs-oga{background:#fdecea22;color:#f0a080;border:1px solid #f0a08044;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block}
-.fs-suspenso{background:#fdecea22;color:#f08080;border:1px solid #f0808044;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block}
-
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:flex-end;justify-content:center;z-index:100;padding:0}
+.fs-abiao,.fs-ativo,.fs-ebomi,.fs-iao,.fs-inativo,.fs-oga,.fs-suspenso{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block;margin-bottom:6px}
+.fs-abiao{background:#fff9e622;color:#e0c040;border:1px solid #e0c04044}
+.fs-ativo{background:#e6f4ea22;color:#7fd67f;border:1px solid #7fd67f44}
+.fs-ebomi{background:#e8f0fe22;color:#90b0f0;border:1px solid #90b0f044}
+.fs-iao{background:#f0e6ff22;color:#c090f0;border:1px solid #c090f044}
+.fs-inativo{background:#33333322;color:#888;border:1px solid #88888844}
+.fs-oga{background:#fdecea22;color:#f0a080;border:1px solid #f0a08044}
+.fs-suspenso{background:#fdecea22;color:#f08080;border:1px solid #f0808044}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:flex-end;justify-content:center;z-index:100}
 .modal-overlay.open{display:flex}
-.modal{background:#1a1a1a;border:1px solid var(--borda);border-radius:var(--r) var(--r) 0 0;padding:20px 16px;width:100%;max-height:80dvh;overflow-y:auto}
+.modal{background:#1a1a1a;border:1px solid var(--borda);border-radius:var(--r) var(--r) 0 0;padding:20px 16px;width:100%;max-width:560px;max-height:80dvh;overflow-y:auto}
 .modal-titulo{font-family:var(--fd);font-size:1rem;color:var(--ouro-lt);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
 .modal-fechar{cursor:pointer;color:var(--cinza);font-size:18px;line-height:1}
 .modal-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .modal-row:last-child{border:none}
 .modal-rot{color:var(--cinza)}
-
-/* ML */
-.ml-resultado{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+.ml-resultado{margin-top:10px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
 .ml-item{background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:8px;padding:10px;display:flex;gap:10px;align-items:center}
 .ml-thumb{width:44px;height:44px;object-fit:contain;border-radius:6px;flex-shrink:0;background:#111}
 .ml-info{flex:1;min-width:0}
@@ -155,86 +127,180 @@ nav::-webkit-scrollbar{display:none}
 .ml-preco{font-size:13px;font-weight:700;color:var(--ouro-lt);margin-top:2px}
 .btn-ml-usar{font-size:11px;padding:5px 10px;border-radius:8px;background:rgba(201,168,76,.15);border:1px solid var(--borda);color:var(--ouro);cursor:pointer;font-family:var(--fb);flex-shrink:0}
 .btn-ml-usar:hover{background:rgba(201,168,76,.3)}
-
-/* EMPTY / TOAST */
 .empty{text-align:center;color:var(--cinza);font-size:13px;padding:40px 20px;font-style:italic}
 #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:#111;border:1px solid var(--ouro);border-radius:99px;color:var(--ouro-lt);padding:8px 20px;font-size:12px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:999;white-space:nowrap}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 #toast.erro{border-color:#f08080;color:#f08080}
+@media(max-width:768px){
+  .section{padding:16px}
+  .resumo-niveis{grid-template-columns:repeat(2,1fr);gap:10px}
+  .form-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .acervo-grid,.filho-grid{grid-template-columns:1fr 1fr}
+  .csm-grid{grid-template-columns:1fr}
+  .ml-resultado{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+<div class="topo">
+  <h1>&#10022; Ile Ase Vodun Ogum Ayres &#10022;</h1>
+  <p>Terreiro de Umbanda</p>
+</div>
+<div class="progress-bar"><div id="prog"></div></div>
+<nav>
+  <button class="tab active" onclick="irPara('home',this)">&#127968; In&iacute;cio</button>
+  <button class="tab" onclick="irPara('cadastro',this)">&#65291; Cadastrar</button>
+  <button class="tab" onclick="irPara('acervo',this)">&#128230; Acervo</button>
+  <button class="tab" onclick="irPara('consumiveis',this)">&#128305;&#65039; Consum&iacute;veis</button>
+  <button class="tab" onclick="irPara('filhos',this)">&#128101; Filhos de Santo</button>
+</nav>
+<div class="nav-links">
+  <a href="mobile.html">&#128241; Vers&atilde;o celular</a>
+  <a href="faq.html">&#10067; Ajuda</a>
+</div>
 
-@media(gap:8px">
+<!-- INICIO -->
+<div class="section active" id="sec-home">
+  <div class="ornamento">&#10022; &#10022; &#10022;</div>
+  <div class="resumo-niveis">
+    <div class="nivel-card ok" onclick="filtrarNivel('ok')">
+      <div class="num skeleton skel-num" id="cnt-ok"></div>
+      <div class="rot">OK</div>
+    </div>
+    <div class="nivel-card repor" onclick="filtrarNivel('repor')">
+      <div class="num skeleton skel-num" id="cnt-repor"></div>
+      <div class="rot">Repor</div>
+    </div>
+    <div class="nivel-card alerta" onclick="filtrarNivel('alerta')">
+      <div class="num skeleton skel-num" id="cnt-alerta"></div>
+      <div class="rot">Alerta</div>
+    </div>
+    <div class="nivel-card urgente" onclick="filtrarNivel('urgente')">
+      <div class="num skeleton skel-num" id="cnt-urgente"></div>
+      <div class="rot">Urgente</div>
+    </div>
+  </div>
+  <div class="home-datas" id="home-datas"></div>
+</div>
+
+<!-- CADASTRAR -->
+<div class="section" id="sec-cadastro">
+  <div class="secao-titulo">Novo item do acervo</div>
+  <div class="form-box">
+    <div class="form-grid">
+      <div class="field full"><label>Nome do item *</label><input type="text" id="c-nome" placeholder="Ex: Oja de Oxum" autocomplete="off"/></div>
+      <div class="field"><label>Categoria *</label>
+        <select id="c-cat" onchange="atualizarSubcat()">
+          <option value="">Selecione</option>
+          <option>Alimentos e oferendas</option><option>Ervas e plantas</option>
+          <option>Ferramentas e objetos rituais</option><option>Roupas e indumentarias</option>
+        </select>
+      </div>
+      <div class="field"><label>Subcategoria</label><select id="c-subcat"><option value="">--</option></select></div>
+      <div class="field"><label>Orixa / Entidade</label>
+        <select id="c-orixa">
+          <option value="">--</option>
+          <option>Boiadeiro</option><option>Caboclo</option><option>Crianca / Ere</option>
+          <option>Exu</option><option>Geral / Sem entidade</option><option>Iansan</option>
+          <option>Iemanja</option><option>Marinheiro</option><option>Nana</option>
+          <option>Oba</option><option>Obaluae / Omolu</option><option>Ogum</option>
+          <option>Oxala</option><option>Oxossi</option><option>Oxum</option>
+          <option>Oxumare</option><option>Pomba-Gira</option><option>Preto-Velho</option>
+          <option>Xango</option><option>Ze Pilintra</option>
+        </select>
+      </div>
+      <div class="field"><label>Status</label>
+        <select id="c-status">
+          <option value="Disponivel">Disponivel</option><option value="Danificado">Danificado</option>
+          <option value="Em uso">Em uso</option><option value="Necessita reposicao">Necessita reposicao</option>
+        </select>
+      </div>
+      <div class="field"><label>Localizacao / Armario</label><input type="text" id="c-local" placeholder="Ex: Armario 2, prateleira A" autocomplete="off"/></div>
+      <div class="field"><label>Quantidade</label><input type="number" id="c-qtd" min="1" value="1"/></div>
+      <div class="field full"><label>Foto (URL)</label><input type="url" id="c-foto" placeholder="https://..." oninput="previewFoto(this.value)"/><div id="foto-preview"></div></div>
+      <div class="field full"><label>Observacoes</label><textarea id="c-obs" placeholder="Notas livres..."></textarea></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="limparAcervo()">Limpar</button>
+      <button class="btn btn-primary" id="btnAcervo" onclick="salvarAcervo()">Gravar</button>
+    </div>
+  </div>
+
+  <div class="secao-titulo">Atualizar consumivel</div>
+  <div class="form-box">
+    <div class="form-grid">
+      <div class="field full"><label>Item (nome exato ou ID)</label><input type="text" id="cu-nome" placeholder="Ex: Vela 7 dias branca" autocomplete="off"/></div>
+      <div class="field"><label>Quantidade atual</label><input type="number" id="cu-atual" min="0" placeholder="0"/></div>
+      <div class="field"><label>Quantidade minima</label><input type="number" id="cu-min" min="0" placeholder="0"/></div>
+      <div class="field"><label>Fornecedor</label><input type="text" id="cu-forn" placeholder="Ex: Casa dos Orixas" autocomplete="off"/></div>
+      <div class="field"><label>Preco do pacote (R$)</label><input type="number" id="cu-preco" step="0.01" min="0" placeholder="0,00"/></div>
+      <div class="field"><label>Qtd por pacote</label><input type="number" id="cu-qtdpac" min="1" placeholder="1"/></div>
+      <div class="field full"><label>Link de compra</label><input type="url" id="cu-link" placeholder="https://..."/></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="limparConsumivel()">Limpar</button>
+      <button class="btn btn-primary" id="btnCsm" onclick="salvarConsumivel()">Atualizar</button>
+    </div>
+  </div>
+
+  <div class="secao-titulo">Buscar no Mercado Livre</div>
+  <div class="form-box">
+    <div style="display:flex;gap:8px">
       <input type="text" id="ml-q" placeholder="Ex: vela 7 dias branca" style="flex:1;background:rgba(0,0,0,.35);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:13px;padding:9px 11px;outline:none;font-family:var(--fb)"/>
-      <button class="btn btn-primary" onclick="buscarML()" style="flex-shrink:0">Buscar</button>
+      <button class="btn btn-primary" onclick="buscarML()">Buscar</button>
     </div>
     <div class="ml-resultado" id="ml-resultado"></div>
   </div>
 
-  <div class="secao-titulo">👥 Novo filho de santo</div>
+  <div class="secao-titulo">Novo filho de santo</div>
   <div class="form-box">
     <div class="form-grid">
-      <div class="field"><label>Nome de candomblé / santo</label>
-        <input type="text" id="f-nome" autocomplete="off"/>
-      </div>
-      <div class="field"><label>Nome social</label>
-        <input type="text" id="f-social" autocomplete="off"/>
-      </div>
-      <div class="field"><label>Contato (WhatsApp)</label>
-        <input type="tel" id="f-contato" placeholder="(11) 99999-9999"/>
-      </div>
-      <div class="field"><label>Orixá de cabeça</label>
+      <div class="field"><label>Nome de candomble / santo</label><input type="text" id="f-nome" autocomplete="off"/></div>
+      <div class="field"><label>Nome social</label><input type="text" id="f-social" autocomplete="off"/></div>
+      <div class="field"><label>Contato (WhatsApp)</label><input type="tel" id="f-contato" placeholder="(11) 99999-9999"/></div>
+      <div class="field"><label>Orixa de cabeca</label>
         <select id="f-orixa">
-          <option value="">—</option>
-          <option>Exu</option><option>Iansã</option><option>Iemanjá</option>
-          <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
-          <option>Ogum</option><option>Oxalá</option><option>Oxossi</option>
-          <option>Oxum</option><option>Oxumaré</option><option>Preto-Velho</option>
-          <option>Xangô</option><option>Outro</option>
+          <option value="">--</option>
+          <option>Exu</option><option>Iansan</option><option>Iemanja</option>
+          <option>Nana</option><option>Oba</option><option>Obaluae / Omolu</option>
+          <option>Ogum</option><option>Oxala</option><option>Oxossi</option>
+          <option>Oxum</option><option>Oxumare</option><option>Preto-Velho</option>
+          <option>Xango</option><option>Outro</option>
         </select>
       </div>
-      <div class="field"><label>Adjuntó / Juntó</label>
+      <div class="field"><label>Adjunto / Junto</label>
         <select id="f-adjunto">
-          <option value="">—</option>
-          <option>Exu</option><option>Iansã</option><option>Iemanjá</option>
-          <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
-          <option>Ogum</option><option>Oxalá</option><option>Oxossi</option>
-          <option>Oxum</option><option>Oxumaré</option><option>Preto-Velho</option>
-          <option>Xangô</option><option>Outro</option>
+          <option value="">--</option>
+          <option>Exu</option><option>Iansan</option><option>Iemanja</option>
+          <option>Nana</option><option>Oba</option><option>Obaluae / Omolu</option>
+          <option>Ogum</option><option>Oxala</option><option>Oxossi</option>
+          <option>Oxum</option><option>Oxumare</option><option>Preto-Velho</option>
+          <option>Xango</option><option>Outro</option>
         </select>
       </div>
-      <div class="field"><label>Nação</label>
+      <div class="field"><label>Nacao</label>
         <select id="f-nacao">
-          <option value="">—</option>
-          <option>Angola</option><option>Efon</option><option>Ijexá</option>
-          <option>Jeje</option><option>Ketu</option><option>Nagô</option>
-          <option>Omolokô</option><option>Outra</option><option>Umbanda</option>
+          <option value="">--</option>
+          <option>Angola</option><option>Efon</option><option>Ijexa</option>
+          <option>Jeje</option><option>Ketu</option><option>Nago</option>
+          <option>Omoloko</option><option>Outra</option><option>Umbanda</option>
         </select>
       </div>
       <div class="field"><label>Status no terreiro</label>
         <select id="f-status">
-          <option value="Abiã">Abiã</option>
-          <option value="Ativo" selected>Ativo</option>
-          <option value="Ebomi">Ebomi</option>
-          <option value="Iaô">Iaô</option>
-          <option value="Inativo">Inativo</option>
-          <option value="Ogã / Ekedi">Ogã / Ekedi</option>
+          <option value="Abiao">Abiao</option><option value="Ativo" selected>Ativo</option>
+          <option value="Ebomi">Ebomi</option><option value="Iao">Iao</option>
+          <option value="Inativo">Inativo</option><option value="Oga / Ekedi">Oga / Ekedi</option>
           <option value="Suspenso">Suspenso</option>
         </select>
       </div>
-      <div class="field"><label>Data de aniversário</label>
-        <input type="date" id="f-aniv"/>
-      </div>
-      <div class="field"><label>Data de feitura</label>
-        <input type="date" id="f-feitura"/>
-      </div>
-      <div class="field"><label>Próxima obrigação</label>
-        <input type="date" id="f-obrig"/>
-      </div>
-      <div class="field full"><label>Obrigações realizadas</label>
-        <input type="text" id="f-obrigrealiz" placeholder="Ex: Feitura 2020, 1 ano 2021" autocomplete="off"/>
-      </div>
-      <div class="field full"><label>Observações</label>
-        <textarea id="f-obs" placeholder="Notas livres..."></textarea>
-      </div>
+      <div class="field"><label>Data de aniversario</label><input type="date" id="f-aniv"/></div>
+      <div class="field"><label>Data de feitura</label><input type="date" id="f-feitura"/></div>
+      <div class="field"><label>Proxima obrigacao</label><input type="date" id="f-obrig"/></div>
+      <div class="field full"><label>Obrigacoes realizadas</label><input type="text" id="f-obrigrealiz" placeholder="Ex: Feitura 2020, 1 ano 2021" autocomplete="off"/></div>
+      <div class="field full"><label>Observacoes</label><textarea id="f-obs" placeholder="Notas livres..."></textarea></div>
     </div>
     <div class="btn-row">
       <button class="btn btn-ghost" onclick="limparFilho()">Limpar</button>
@@ -243,119 +309,94 @@ nav::-webkit-scrollbar{display:none}
   </div>
 </div>
 
-<!-- ── ACERVO ── -->
+<!-- ACERVO -->
 <div class="section" id="sec-acervo">
   <div class="filter-bar">
-    <input type="search" id="a-busca" placeholder="🔍 Buscar item..." oninput="renderAcervo()"/>
+    <input type="search" id="a-busca" placeholder="Buscar item..." oninput="renderAcervo()"/>
     <select id="a-cat" onchange="renderAcervo()">
       <option value="">Todas as categorias</option>
       <option>Alimentos e oferendas</option><option>Ervas e plantas</option>
-      <option>Ferramentas e objetos rituais</option><option>Roupas e indumentárias</option>
+      <option>Ferramentas e objetos rituais</option><option>Roupas e indumentarias</option>
     </select>
     <select id="a-status" onchange="renderAcervo()">
       <option value="">Todos os status</option>
-      <option>Danificado</option><option>Disponível</option>
-      <option>Em uso</option><option>Necessita reposição</option>
+      <option>Danificado</option><option>Disponivel</option>
+      <option>Em uso</option><option>Necessita reposicao</option>
     </select>
   </div>
   <div class="results-count" id="a-count"></div>
   <div class="acervo-grid" id="acervo-lista"><div class="empty">Carregando...</div></div>
 </div>
 
-<!-- ── CONSUMÍVEIS ── -->
+<!-- CONSUMIVEIS -->
 <div class="section" id="sec-consumiveis">
   <div class="filter-bar">
-    <input type="search" id="cf-busca" placeholder="🔍 Buscar consumível..." oninput="renderConsumiveis()"/>
+    <input type="search" id="cf-busca" placeholder="Buscar consumivel..." oninput="renderConsumiveis()"/>
     <select id="cf-cat" onchange="renderConsumiveis()">
       <option value="">Todas as categorias</option>
-      <option>Alimentos</option><option>Bebidas</option>
-      <option>Ervas e Defumação</option><option>Flores e Naturais</option>
-      <option>Fumo</option><option>Velas</option>
+      <option>Alimentos</option><option>Bebidas</option><option>Ervas e Defumacao</option>
+      <option>Flores e Naturais</option><option>Fumo</option><option>Velas</option>
     </select>
     <select id="cf-nivel" onchange="renderConsumiveis()">
-      <option value="">Todos os níveis</option>
-      <option value="urgente">🚨 Urgente</option>
-      <option value="alerta">🔴 Alerta</option>
-      <option value="repor">⚠️ Repor</option>
-      <option value="ok">✅ OK</option>
+      <option value="">Todos os niveis</option>
+      <option value="urgente">Urgente</option><option value="alerta">Alerta</option>
+      <option value="repor">Repor</option><option value="ok">OK</option>
     </select>
   </div>
   <div class="results-count" id="cf-count"></div>
   <div class="csm-grid" id="csm-lista"><div class="empty">Carregando...</div></div>
 </div>
 
-<!-- ── FILHOS DE SANTO ── -->
+<!-- FILHOS -->
 <div class="section" id="sec-filhos">
   <div class="filter-bar">
-    <input type="search" id="fs-busca" placeholder="🔍 Buscar..." oninput="renderFilhos()"/>
+    <input type="search" id="fs-busca" placeholder="Buscar..." oninput="renderFilhos()"/>
     <select id="fs-orixa" onchange="renderFilhos()">
-      <option value="">Todos os orixás</option>
-      <option>Exu</option><option>Iansã</option><option>Iemanjá</option>
-      <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
-      <option>Ogum</option><option>Oxalá</option><option>Oxossi</option>
-      <option>Oxum</option><option>Oxumaré</option><option>Preto-Velho</option>
-      <option>Xangô</option><option>Outro</option>
+      <option value="">Todos os orixas</option>
+      <option>Exu</option><option>Iansan</option><option>Iemanja</option>
+      <option>Nana</option><option>Oba</option><option>Obaluae / Omolu</option>
+      <option>Ogum</option><option>Oxala</option><option>Oxossi</option>
+      <option>Oxum</option><option>Oxumare</option><option>Preto-Velho</option>
+      <option>Xango</option><option>Outro</option>
     </select>
     <select id="fs-status" onchange="renderFilhos()">
       <option value="">Todos os status</option>
-      <option>Abiã</option><option>Ativo</option><option>Ebomi</option>
-      <option>Iaô</option><option>Inativo</option><option>Ogã / Ekedi</option><option>Suspenso</option>
+      <option>Abiao</option><option>Ativo</option><option>Ebomi</option>
+      <option>Iao</option><option>Inativo</option><option>Oga / Ekedi</option><option>Suspenso</option>
     </select>
   </div>
   <div class="results-count" id="fs-count"></div>
   <div class="filho-grid" id="filho-lista"><div class="empty">Carregando...</div></div>
 </div>
 
-<!-- Modal consumível -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="fecharModal(event)">
   <div class="modal">
-    <div class="modal-titulo">
-      <span id="modal-nome">—</span>
-      <span class="modal-fechar" onclick="fecharModal()">✕</span>
-    </div>
+    <div class="modal-titulo"><span id="modal-nome">--</span><span class="modal-fechar" onclick="fecharModal()">&#x2715;</span></div>
     <div id="modal-corpo"></div>
   </div>
 </div>
-
 <div id="toast"></div>
 
 <script>
-const URL_GS = 'https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAfyjHqC_mvDwvKDCFieibGTvp7u7Fyls9OcmCc2aDvlvsVwAW706SlWw/exec';
+const URL_GS='https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAfyjHqC_mvDwvKDCFieibGTvp7u7Fyls9OcmCc2aDvlvsVwAW706SlWw/exec';
+const SUBCATS={'Alimentos e oferendas':['Alimentos rituais','Axe / Ebo','Bebida ritual','Comida de orixa','Flores','Incenso / Defumacao','Vela / Bujao'],'Ervas e plantas':['Folha para banho','Folha para defumacao','Raiz','Semente'],'Ferramentas e objetos rituais':['Arco e flecha','Atabaques / Instrumento','Espada / Ogo','Ferramenta de orixa','Iba / Sopera','Leque','Pemba / Efun','Xaxara'],'Roupas e indumentarias':['Calcado','Capa / Manto','Capacete / Coroa','Guia / Colar','Oja / Torco','Pulseira / Oxe','Saia','Vestido']};
+const CAT_IC={Velas:'&#128305;',Bebidas:'&#127870;',Fumo:'&#128684;','Ervas e Defumacao':'&#127807;',Alimentos:'&#127807;','Flores e Naturais':'&#127800;'};
+const NIVEL_SLUG={'OK':'ok','Repor':'repor','Alerta':'alerta','Urgente / Zero':'urgente'};
+const STATUS_CLASS={Abiao:'fs-abiao',Ativo:'fs-ativo',Ebomi:'fs-ebomi',Iao:'fs-iao',Inativo:'fs-inativo','Oga / Ekedi':'fs-oga',Suspenso:'fs-suspenso'};
+let acervo=[],consumiveis=[],filhos=[];
 
-const SUBCATS = {
-  'Alimentos e oferendas':['Alimentos rituais','Axé / Ebó','Bebida ritual','Comida de orixá','Flores','Incenso / Defumação','Vela / Bujão'],
-  'Ervas e plantas':['Folha para banho','Folha para defumação','Raiz','Semente'],
-  'Ferramentas e objetos rituais':['Arco e flecha','Atabaques / Instrumento','Espada / Ogó','Ferramenta de orixá','Ibá / Sopera','Leque','Pemba / Efun','Xaxará'],
-  'Roupas e indumentárias':['Calçado','Capa / Manto','Capacete / Coroa','Guia / Colar','Ojá / Torço','Pulseira / Oxé','Saia','Vestido']
-};
-const CAT_IC = {Velas:'🕯️',Bebidas:'🍶',Fumo:'🚬','Ervas e Defumação':'🌿',Alimentos:'🌽','Flores e Naturais':'🌸'};
-const NIVEL_SLUG = {'✅ OK':'ok','⚠️ Repor':'repor','🔴 Alerta':'alerta','🚨 Urgente / Zero':'urgente'};
-
-let acervo=[], consumiveis=[], filhos=[], modalItem=null;
-
-// ── INIT ──────────────────────────────────────────────
-window.addEventListener('DOMContentLoaded', () => {
-  Promise.all([
-    carregarHome(),
-    carregarAcervo(),
-    carregarConsumiveis(),
-    carregarFilhos()
-  ]).catch(()=>{});
-  if('serviceWorker'in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+window.addEventListener('DOMContentLoaded',()=>{
+  Promise.all([carregarHome(),carregarAcervo(),carregarConsumiveis(),carregarFilhos()]).catch(()=>{});
+  if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 });
 
-// ── HELPERS ───────────────────────────────────────────
 function toast(msg,ok=true){const t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok?'':' erro');clearTimeout(t._t);t._t=setTimeout(()=>t.className='',3200);}
 function prog(p){document.getElementById('prog').style.width=p+'%';}
 function fmtBRL(v){return'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2});}
-function fmtData(s){if(!s||s==='—')return'—';try{const p=s.includes('/')?s.split('/'):null;if(p)return s;return new Date(s).toLocaleDateString('pt-BR');}catch(e){return s;}}
+function fmtData(s){if(!s||s==='--')return'--';try{if(s.includes('/'))return s;return new Date(s).toLocaleDateString('pt-BR');}catch(e){return s;}}
 
-function _fillNum(id,val){
-  const el=document.getElementById(id);
-  if(!el)return;
-  el.classList.remove('skeleton','skel-num');
-  el.textContent=val;
-}
+function _fillNum(id,val){const el=document.getElementById(id);if(!el)return;el.classList.remove('skeleton','skel-num');el.textContent=val;}
 
 function irPara(id,el){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -367,318 +408,153 @@ function irPara(id,el){
 function filtrarNivel(nivel){
   document.getElementById('cf-nivel').value=nivel;
   renderConsumiveis();
-  const tabCsm=document.querySelectorAll('.tab')[3];
-  irPara('consumiveis',tabCsm);
+  irPara('consumiveis',document.querySelectorAll('.tab')[3]);
 }
 
 function previewFoto(url){
   const w=document.getElementById('foto-preview');
   if(!url){w.innerHTML='';return;}
-  w.innerHTML=url.startsWith('http')
-    ?`<img class="foto-thumb" src="${url}" onerror="this.style.display='none'"/>`
-    :`<div class="foto-ph">URL inválida</div>`;
+  w.innerHTML=url.startsWith('http')?'<img class="foto-thumb" src="'+url+'" onerror="this.style.display=\'none\'"/>':'<div class="foto-ph">URL invalida</div>';
 }
 
 function atualizarSubcat(){
   const cat=document.getElementById('c-cat').value;
   const sel=document.getElementById('c-subcat');
-  sel.innerHTML='<option value="">—</option>';
+  sel.innerHTML='<option value="">--</option>';
   (SUBCATS[cat]||[]).forEach(s=>{const o=document.createElement('option');o.textContent=s;sel.appendChild(o);});
 }
 
-// ── HOME ──────────────────────────────────────────────
+function nivelSlug(n){
+  if(!n)return'ok';
+  const nl=n.toLowerCase();
+  if(nl.includes('urgente')||nl.includes('zero'))return'urgente';
+  if(nl.includes('alerta'))return'alerta';
+  if(nl.includes('repor'))return'repor';
+  return'ok';
+}
+
 async function carregarHome(){
   try{
-    const r=await fetch(URL_GS+'?acao=datas-mes');
-    const j=await r.json();
-    if(!j.ok) return;
-    const el=document.getElementById('home-datas');
-    let html='<div class="home-datas">';
-    if(j.aniversariantes?.length){
-      html+=`<div class="home-card"><div class="home-card-titulo">🎂 Aniversariantes do mês</div>`;
-      j.aniversariantes.forEach(a=>{html+=`<div class="home-item"><span>${a.nome||'✦ Filho de '+a.orixa}</span><span class="data">${a.data}</span></div>`;});
-      html+='</div>';
-    }
-    if(j.obrigacoes?.length){
-      html+=`<div class="home-card"><div class="home-card-titulo">⚠️ Obrigações este mês</div>`;
-      j.obrigacoes.forEach(o=>{html+=`<div class="home-item"><span>${o.nome||'Filho de Santo'}</span><span class="data">${o.data}</span></div>`;});
-      html+='</div>';
-    }
-    if(j.festas?.length){
-      html+=`<div class="home-card"><div class="home-card-titulo">🥁 Festas de orixás</div>`;
-      j.festas.forEach(f=>{html+=`<div class="home-item"><span>${f.entidade}${f.saudacao?' — '+f.saudacao:''}</span><span class="data">${f.data}</span></div>`;});
-      html+='</div>';
-    }
-    if(!j.aniversariantes?.length && !j.obrigacoes?.length && !j.festas?.length){
-      html+=`<div class="home-card"><div class="home-vazio">Nenhum evento este mês.</div></div>`;
-    }
-    html+='</div>';
+    const r=await fetch(URL_GS+'?acao=datas-mes');const j=await r.json();if(!j.ok)return;
+    const el=document.getElementById('home-datas');let html='';
+    if(j.aniversariantes&&j.aniversariantes.length){html+='<div class="home-card"><div class="home-card-titulo">Aniversariantes do mes</div>';j.aniversariantes.forEach(a=>{html+='<div class="home-item"><span>'+(a.nome||'Filho de '+a.orixa)+'</span><span class="data">'+a.data+'</span></div>';});html+='</div>';}
+    if(j.obrigacoes&&j.obrigacoes.length){html+='<div class="home-card"><div class="home-card-titulo">Obrigacoes este mes</div>';j.obrigacoes.forEach(o=>{html+='<div class="home-item"><span>'+(o.nome||'Filho de Santo')+'</span><span class="data">'+o.data+'</span></div>';});html+='</div>';}
+    if(j.festas&&j.festas.length){html+='<div class="home-card"><div class="home-card-titulo">Festas de orixas</div>';j.festas.forEach(f=>{html+='<div class="home-item"><span>'+f.entidade+(f.saudacao?' -- '+f.saudacao:'')+'</span><span class="data">'+f.data+'</span></div>';});html+='</div>';}
+    if(!html)html='<div class="home-card"><div style="color:var(--cinza);font-size:12px;font-style:italic">Nenhum evento este mes.</div></div>';
     el.innerHTML=html;
   }catch(e){}
 }
 
-// ── ACERVO ────────────────────────────────────────────
 async function carregarAcervo(){
-  try{
-    prog(20);
-    const r=await fetch(URL_GS+'?acao=listar');
-    const j=await r.json();
-    prog(60);
-    if(j.ok){acervo=j.itens||[];renderAcervo();}
-    prog(100);setTimeout(()=>prog(0),500);
-  }catch(e){document.getElementById('acervo-lista').innerHTML='<div class="empty">Erro ao carregar acervo.</div>';}
+  try{prog(20);const r=await fetch(URL_GS+'?acao=listar');const j=await r.json();prog(60);if(j.ok){acervo=j.itens||[];renderAcervo();}prog(100);setTimeout(()=>prog(0),500);}
+  catch(e){document.getElementById('acervo-lista').innerHTML='<div class="empty">Erro ao carregar acervo.</div>';}
 }
 
 function renderAcervo(){
   const busca=(document.getElementById('a-busca').value||'').toLowerCase();
   const cat=document.getElementById('a-cat').value;
   const status=document.getElementById('a-status').value;
-  const filtrado=acervo.filter(i=>
-    (!busca||i.nome?.toLowerCase().includes(busca)||i.local?.toLowerCase().includes(busca))&&
-    (!cat||i.categoria===cat)&&(!status||i.status===status)
-  );
-  document.getElementById('a-count').textContent=filtrado.length+' item(s)';
-  if(!filtrado.length){document.getElementById('acervo-lista').innerHTML='<div class="empty">Nenhum item encontrado.</div>';return;}
-  document.getElementById('acervo-lista').innerHTML=filtrado.map(i=>`
-    <div class="item-card" onclick="abrirModal(${acervo.indexOf(i)})">
-      <div class="item-nome">${i.nome||'—'}</div>
-      <div class="item-cat">${i.categoria||''}${i.subcategoria?' › '+i.subcategoria:''}</div>
-      ${i.status?`<span class="item-status status-${i.status.replace(/ /g,'\\ ')}">${i.status}</span>`:''}
-    </div>`).join('');
+  const f=acervo.filter(i=>(!busca||((i.nome||'').toLowerCase().includes(busca)||(i.local||'').toLowerCase().includes(busca)))&&(!cat||i.categoria===cat)&&(!status||i.status===status));
+  document.getElementById('a-count').textContent=f.length+' item(s)';
+  if(!f.length){document.getElementById('acervo-lista').innerHTML='<div class="empty">Nenhum item encontrado.</div>';return;}
+  document.getElementById('acervo-lista').innerHTML=f.map(i=>'<div class="item-card" onclick="abrirModal('+acervo.indexOf(i)+')"><div class="item-nome">'+(i.nome||'--')+'</div><div class="item-cat">'+(i.categoria||'')+(i.subcategoria?' &rsaquo; '+i.subcategoria:'')+'</div>'+(i.status?'<span class="item-status">'+(i.status)+'</span>':'')+'</div>').join('');
 }
 
 function abrirModal(idx){
-  modalItem=acervo[idx];const i=modalItem;
-  document.getElementById('modal-nome').textContent=i.nome||'—';
-  document.getElementById('modal-corpo').innerHTML=[
-    ['Categoria',i.categoria+(i.subcategoria?' › '+i.subcategoria:'')],
-    ['Orixá / Entidade',i.orixa||'—'],
-    ['Status',i.status||'—'],
-    ['Localização',i.local||'—'],
-    ['Quantidade',i.quantidade||'—'],
-    ['Observações',i.observacoes||'—'],
-    ['Cadastrado em',fmtData(i.dataCadastro)],
-  ].map(([r,v])=>`<div class="modal-row"><span class="modal-rot">${r}</span><span>${v}</span></div>`).join('')+
-  (i.foto?`<img src="${i.foto}" style="width:100%;border-radius:8px;margin-top:10px" onerror="this.style.display='none'"/>`:'');
+  const i=acervo[idx];
+  document.getElementById('modal-nome').textContent=i.nome||'--';
+  document.getElementById('modal-corpo').innerHTML=[['Categoria',(i.categoria||'')+(i.subcategoria?' > '+i.subcategoria:'')],['Orixa / Entidade',i.orixa||'--'],['Status',i.status||'--'],['Localizacao',i.local||'--'],['Quantidade',i.quantidade||'--'],['Observacoes',i.observacoes||'--'],['Cadastrado em',fmtData(i.dataCadastro)]].map(function(p){return'<div class="modal-row"><span class="modal-rot">'+p[0]+'</span><span>'+p[1]+'</span></div>';}).join('')+(i.foto?'<img src="'+i.foto+'" style="width:100%;border-radius:8px;margin-top:10px" onerror="this.style.display=\'none\'"/>':'');
   document.getElementById('modal-overlay').classList.add('open');
 }
 
-function fecharModal(e){
-  if(!e||e.target.id==='modal-overlay'||e.currentTarget.className==='modal-fechar')
-    document.getElementById('modal-overlay').classList.remove('open');
-}
+function fecharModal(e){if(!e||e.target.id==='modal-overlay'||e.currentTarget.className==='modal-fechar')document.getElementById('modal-overlay').classList.remove('open');}
 
-// ── CONSUMÍVEIS ───────────────────────────────────────
 async function carregarConsumiveis(){
   try{
-    const r=await fetch(URL_GS+'?acao=consumiveis-listar');
-    const j=await r.json();
+    const r=await fetch(URL_GS+'?acao=consumiveis-listar');const j=await r.json();
     if(j.ok){
-      consumiveis=j.itens||[];
-      renderConsumiveis();
-      // Atualiza contadores da home
+      consumiveis=j.itens||[];renderConsumiveis();
       const counts={ok:0,repor:0,alerta:0,urgente:0};
-      consumiveis.forEach(i=>{
-        const slug=NIVEL_SLUG[i.nivel]||'ok';
-        if(counts[slug]!==undefined)counts[slug]++;
-      });
-      _fillNum('cnt-ok',counts.ok);
-      _fillNum('cnt-repor',counts.repor);
-      _fillNum('cnt-alerta',counts.alerta);
-      _fillNum('cnt-urgente',counts.urgente);
+      consumiveis.forEach(i=>{const s=nivelSlug(i.nivel);if(counts[s]!==undefined)counts[s]++;});
+      _fillNum('cnt-ok',counts.ok);_fillNum('cnt-repor',counts.repor);_fillNum('cnt-alerta',counts.alerta);_fillNum('cnt-urgente',counts.urgente);
     }
   }catch(e){document.getElementById('csm-lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
 }
-
-function nivelSlug(n){return NIVEL_SLUG[n]||'ok';}
-function nivelClass(n){const s=nivelSlug(n);return 'nivel-'+s;}
 
 function renderConsumiveis(){
   const busca=(document.getElementById('cf-busca').value||'').toLowerCase();
   const cat=document.getElementById('cf-cat').value;
   const nivel=document.getElementById('cf-nivel').value;
-  const filtrado=consumiveis.filter(i=>
-    (!busca||i.nome?.toLowerCase().includes(busca))&&
-    (!cat||i.categoria===cat)&&
-    (!nivel||nivelSlug(i.nivel)===nivel)
-  );
-  document.getElementById('cf-count').textContent=filtrado.length+' item(s)';
-  if(!filtrado.length){document.getElementById('csm-lista').innerHTML='<div class="empty">Nenhum item encontrado.</div>';return;}
-  document.getElementById('csm-lista').innerHTML=filtrado.map(i=>{
+  const f=consumiveis.filter(i=>(!busca||(i.nome||'').toLowerCase().includes(busca))&&(!cat||i.categoria===cat)&&(!nivel||nivelSlug(i.nivel)===nivel));
+  document.getElementById('cf-count').textContent=f.length+' item(s)';
+  if(!f.length){document.getElementById('csm-lista').innerHTML='<div class="empty">Nenhum item encontrado.</div>';return;}
+  document.getElementById('csm-lista').innerHTML=f.map(function(i){
     const a=Number(i.atual)||0,m=Number(i.minimo)||0;
     const pct=m>0?Math.min(100,Math.round(a/m*100)):100;
-    const cor=nivelSlug(i.nivel)==='ok'?'#7fd67f':nivelSlug(i.nivel)==='repor'?'#e0c040':nivelSlug(i.nivel)==='alerta'?'#f08080':'#ff6060';
-    return `<div class="csm-card" onclick="abrirModalCsm('${i.id}')">
-      <div class="csm-top">
-        <div>
-          <div class="csm-nome">${CAT_IC[i.categoria]||'📦'} ${i.nome}</div>
-          <div class="csm-cat">${i.categoria}</div>
-        </div>
-        <span class="nivel-badge nivel-${nivelSlug(i.nivel)}">${i.nivel||'—'}</span>
-      </div>
-      <div class="csm-bar-wrap"><div class="csm-bar" style="width:${pct}%;background:${cor}"></div></div>
-      <div class="csm-info"><span>${a} / ${m} ${i.unidade||''}</span><span>${pct}%</span></div>
-    </div>`;
+    const sl=nivelSlug(i.nivel);
+    const cor=sl==='ok'?'#7fd67f':sl==='repor'?'#e0c040':sl==='alerta'?'#f08080':'#ff6060';
+    return'<div class="csm-card" onclick="abrirModalCsm(\''+i.id+'\')"><div class="csm-top"><div><div class="csm-nome">'+i.nome+'</div><div class="csm-cat">'+i.categoria+'</div></div><span class="nivel-badge nivel-'+sl+'">'+(i.nivel||'--')+'</span></div><div class="csm-bar-wrap"><div class="csm-bar" style="width:'+pct+'%;background:'+cor+'"></div></div><div class="csm-info"><span>'+a+' / '+m+' '+(i.unidade||'')+'</span><span>'+pct+'%</span></div></div>';
   }).join('');
 }
 
 function abrirModalCsm(id){
-  const i=consumiveis.find(x=>x.id===id);if(!i)return;
-  document.getElementById('modal-nome').textContent=i.nome||'—';
-  document.getElementById('modal-corpo').innerHTML=[
-    ['Categoria',i.categoria||'—'],
-    ['Nível',i.nivel||'—'],
-    ['Estoque',`${i.atual||0} / ${i.minimo||0} ${i.unidade||''}`],
-    ['Fornecedor',i.fornecedor||'—'],
-    ['Preço unitário',i.precoUnit?fmtBRL(i.precoUnit):'—'],
-    ['Qtd por pacote',i.qtdPacote||'—'],
-    ['Preço do pacote',i.precoPacote?fmtBRL(i.precoPacote):'—'],
-    ['Atualizado em',fmtData(i.atualizado)],
-  ].map(([r,v])=>`<div class="modal-row"><span class="modal-rot">${r}</span><span>${v}</span></div>`).join('')+
-  (i.link?`<div style="margin-top:10px;text-align:center"><a href="${i.link}" target="_blank" style="color:var(--ouro);font-size:12px">🔗 Ver link de compra</a></div>`:'');
+  const i=consumiveis.find(function(x){return x.id===id;});if(!i)return;
+  document.getElementById('modal-nome').textContent=i.nome||'--';
+  document.getElementById('modal-corpo').innerHTML=[['Categoria',i.categoria||'--'],['Nivel',i.nivel||'--'],['Estoque',(i.atual||0)+' / '+(i.minimo||0)+' '+(i.unidade||'')],['Fornecedor',i.fornecedor||'--'],['Preco unitario',i.precoUnit?fmtBRL(i.precoUnit):'--'],['Qtd por pacote',i.qtdPacote||'--'],['Atualizado em',fmtData(i.atualizado)]].map(function(p){return'<div class="modal-row"><span class="modal-rot">'+p[0]+'</span><span>'+p[1]+'</span></div>';}).join('')+(i.link?'<div style="margin-top:10px;text-align:center"><a href="'+i.link+'" target="_blank" style="color:var(--ouro);font-size:12px">Ver link de compra</a></div>':'');
   document.getElementById('modal-overlay').classList.add('open');
 }
 
-// ── FILHOS ────────────────────────────────────────────
 async function carregarFilhos(){
-  try{
-    const r=await fetch(URL_GS+'?acao=filhos-listar');
-    const j=await r.json();
-    if(j.ok){filhos=j.itens||[];renderFilhos();}
-  }catch(e){document.getElementById('filho-lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
+  try{const r=await fetch(URL_GS+'?acao=filhos-listar');const j=await r.json();if(j.ok){filhos=j.itens||[];renderFilhos();}}
+  catch(e){document.getElementById('filho-lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
 }
 
 function renderFilhos(){
   const busca=(document.getElementById('fs-busca').value||'').toLowerCase();
   const orixa=document.getElementById('fs-orixa').value;
   const status=document.getElementById('fs-status').value;
-  const filtrado=filhos.filter(i=>
-    (!busca||('filho de '+(i.orixa||'')).toLowerCase().includes(busca))&&
-    (!orixa||i.orixa===orixa)&&(!status||i.statusTerreiro===status)
-  );
-  document.getElementById('fs-count').textContent=filtrado.length+' filho(s)';
-  if(!filtrado.length){document.getElementById('filho-lista').innerHTML='<div class="empty">Nenhum registro encontrado.</div>';return;}
-  document.getElementById('filho-lista').innerHTML=filtrado.map(i=>{
+  const f=filhos.filter(i=>(!busca||('filho de '+(i.orixa||'')).toLowerCase().includes(busca))&&(!orixa||i.orixa===orixa)&&(!status||i.statusTerreiro===status));
+  document.getElementById('fs-count').textContent=f.length+' filho(s)';
+  if(!f.length){document.getElementById('filho-lista').innerHTML='<div class="empty">Nenhum registro encontrado.</div>';return;}
+  document.getElementById('filho-lista').innerHTML=f.map(function(i){
     const sc=STATUS_CLASS[i.statusTerreiro]||'fs-ativo';
-    return `<div class="filho-card">
-      <div class="filho-titulo">✦ Filho de ${i.orixa||'—'} ✦</div>
-      <div class="filho-nacao">${i.nacao||''}</div>
-      ${i.statusTerreiro?`<div style="text-align:center;margin-bottom:8px"><span class="${sc}">${i.statusTerreiro}</span></div>`:''}
-      ${i.feitura&&i.feitura!=='—'?`<div class="filho-row"><span class="filho-rot">Feitura</span><span>${i.feitura}</span></div>`:''}
-      ${i.proximaObrigacao&&i.proximaObrigacao!=='—'?`<div class="filho-row"><span class="filho-rot">Próxima obrigação</span><span>${i.proximaObrigacao}</span></div>`:''}
-    </div>`;
+    return'<div class="filho-card"><div class="filho-titulo">Filho de '+(i.orixa||'--')+'</div><div class="filho-nacao">'+(i.nacao||'')+'</div>'+(i.statusTerreiro?'<span class="'+sc+'">'+i.statusTerreiro+'</span>':'')+(i.feitura&&i.feitura!=='--'?'<div class="filho-row" style="margin-top:8px"><span class="filho-rot">Feitura</span><span>'+i.feitura+'</span></div>':'')+(i.proximaObrigacao&&i.proximaObrigacao!=='--'?'<div class="filho-row"><span class="filho-rot">Proxima obrigacao</span><span>'+i.proximaObrigacao+'</span></div>':'')+'</div>';
   }).join('');
 }
 
-const STATUS_CLASS = {Abiã:'fs-abiao',Ativo:'fs-ativo',Ebomi:'fs-ebomi',Iaô:'fs-iao',Inativo:'fs-inativo','Ogã / Ekedi':'fs-oga',Suspenso:'fs-suspenso'};
-
-// ── SALVAR ACERVO ─────────────────────────────────────
 async function salvarAcervo(){
-  const nome=document.getElementById('c-nome').value.trim();
-  const cat=document.getElementById('c-cat').value;
+  const nome=document.getElementById('c-nome').value.trim(),cat=document.getElementById('c-cat').value;
   if(!nome||!cat){toast('Preencha nome e categoria.',false);return;}
   const btn=document.getElementById('btnAcervo');btn.disabled=true;btn.textContent='Gravando...';
-  try{
-    const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({
-      acao:'inserir',nome,categoria:cat,
-      subcategoria:document.getElementById('c-subcat').value,
-      orixa:document.getElementById('c-orixa').value,
-      status:document.getElementById('c-status').value,
-      local:document.getElementById('c-local').value,
-      quantidade:document.getElementById('c-qtd').value,
-      foto:document.getElementById('c-foto').value,
-      observacoes:document.getElementById('c-obs').value
-    })});
-    const j=await r.json();
-    if(j.ok){toast('✓ Item gravado! ID: '+j.id);limparAcervo();acervo=[];carregarAcervo();}
-    else toast(j.erro||'Erro.',false);
-  }catch(e){toast('Erro de conexão.',false);}
+  try{const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'inserir',nome:nome,categoria:cat,subcategoria:document.getElementById('c-subcat').value,orixa:document.getElementById('c-orixa').value,status:document.getElementById('c-status').value,local:document.getElementById('c-local').value,quantidade:document.getElementById('c-qtd').value,foto:document.getElementById('c-foto').value,observacoes:document.getElementById('c-obs').value})});const j=await r.json();if(j.ok){toast('Item gravado! ID: '+j.id);limparAcervo();acervo=[];carregarAcervo();}else toast(j.erro||'Erro.',false);}catch(e){toast('Erro de conexao.',false);}
   finally{btn.disabled=false;btn.textContent='Gravar';}
 }
-function limparAcervo(){['c-nome','c-local','c-foto','c-obs'].forEach(id=>document.getElementById(id).value='');document.getElementById('c-qtd').value=1;document.getElementById('c-cat').selectedIndex=0;document.getElementById('c-subcat').innerHTML='<option value="">—</option>';document.getElementById('c-orixa').selectedIndex=0;document.getElementById('c-status').selectedIndex=0;document.getElementById('foto-preview').innerHTML='';}
+function limparAcervo(){['c-nome','c-local','c-foto','c-obs'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('c-qtd').value=1;['c-cat','c-orixa','c-status'].forEach(function(id){document.getElementById(id).selectedIndex=0;});document.getElementById('c-subcat').innerHTML='<option value="">--</option>';document.getElementById('foto-preview').innerHTML='';}
 
-// ── SALVAR CONSUMÍVEL ─────────────────────────────────
 async function salvarConsumivel(){
   const nome=document.getElementById('cu-nome').value.trim();
   if(!nome){toast('Informe o nome do item.',false);return;}
   const btn=document.getElementById('btnCsm');btn.disabled=true;btn.textContent='Atualizando...';
-  try{
-    const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({
-      acao:'consumivel-atualizar',nome,
-      atual:document.getElementById('cu-atual').value,
-      minimo:document.getElementById('cu-min').value,
-      fornecedor:document.getElementById('cu-forn').value,
-      precoPacote:document.getElementById('cu-preco').value,
-      qtdPacote:document.getElementById('cu-qtdpac').value,
-      link:document.getElementById('cu-link').value
-    })});
-    const j=await r.json();
-    if(j.ok){toast('✓ Consumível atualizado! Nível: '+j.nivel);limparConsumivel();consumiveis=[];carregarConsumiveis();}
-    else toast(j.erro||'Erro.',false);
-  }catch(e){toast('Erro de conexão.',false);}
+  try{const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'consumivel-atualizar',nome:nome,atual:document.getElementById('cu-atual').value,minimo:document.getElementById('cu-min').value,fornecedor:document.getElementById('cu-forn').value,precoPacote:document.getElementById('cu-preco').value,qtdPacote:document.getElementById('cu-qtdpac').value,link:document.getElementById('cu-link').value})});const j=await r.json();if(j.ok){toast('Atualizado! Nivel: '+j.nivel);limparConsumivel();consumiveis=[];carregarConsumiveis();}else toast(j.erro||'Erro.',false);}catch(e){toast('Erro de conexao.',false);}
   finally{btn.disabled=false;btn.textContent='Atualizar';}
 }
-function limparConsumivel(){['cu-nome','cu-atual','cu-min','cu-forn','cu-preco','cu-qtdpac','cu-link'].forEach(id=>document.getElementById(id).value='');}
+function limparConsumivel(){['cu-nome','cu-atual','cu-min','cu-forn','cu-preco','cu-qtdpac','cu-link'].forEach(function(id){document.getElementById(id).value='';});}
 
-// ── SALVAR FILHO ──────────────────────────────────────
 async function salvarFilho(){
   const btn=document.getElementById('btnFilho');btn.disabled=true;btn.textContent='Gravando...';
-  try{
-    const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({
-      acao:'filho-inserir',
-      nomeSanto:document.getElementById('f-nome').value,
-      nomeSocial:document.getElementById('f-social').value,
-      contato:document.getElementById('f-contato').value,
-      orixa:document.getElementById('f-orixa').value,
-      adjunto:document.getElementById('f-adjunto').value,
-      nacao:document.getElementById('f-nacao').value,
-      statusTerreiro:document.getElementById('f-status').value,
-      aniversario:document.getElementById('f-aniv').value,
-      feitura:document.getElementById('f-feitura').value,
-      proximaObrigacao:document.getElementById('f-obrig').value,
-      obrigacoesRealizadas:document.getElementById('f-obrigrealiz').value,
-      observacoes:document.getElementById('f-obs').value
-    })});
-    const j=await r.json();
-    if(j.ok){toast('✓ Filho de santo gravado!');limparFilho();filhos=[];carregarFilhos();}
-    else toast(j.erro||'Erro.',false);
-  }catch(e){toast('Erro de conexão.',false);}
+  try{const r=await fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'filho-inserir',nomeSanto:document.getElementById('f-nome').value,nomeSocial:document.getElementById('f-social').value,contato:document.getElementById('f-contato').value,orixa:document.getElementById('f-orixa').value,adjunto:document.getElementById('f-adjunto').value,nacao:document.getElementById('f-nacao').value,statusTerreiro:document.getElementById('f-status').value,aniversario:document.getElementById('f-aniv').value,feitura:document.getElementById('f-feitura').value,proximaObrigacao:document.getElementById('f-obrig').value,obrigacoesRealizadas:document.getElementById('f-obrigrealiz').value,observacoes:document.getElementById('f-obs').value})});const j=await r.json();if(j.ok){toast('Filho de santo gravado!');limparFilho();filhos=[];carregarFilhos();}else toast(j.erro||'Erro.',false);}catch(e){toast('Erro de conexao.',false);}
   finally{btn.disabled=false;btn.textContent='Gravar';}
 }
-function limparFilho(){['f-nome','f-social','f-contato','f-aniv','f-feitura','f-obrig','f-obrigrealiz','f-obs'].forEach(id=>document.getElementById(id).value='');document.getElementById('f-status').value='Ativo';['f-orixa','f-adjunto','f-nacao'].forEach(id=>document.getElementById(id).selectedIndex=0);}
+function limparFilho(){['f-nome','f-social','f-contato','f-aniv','f-feitura','f-obrig','f-obrigrealiz','f-obs'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('f-status').value='Ativo';['f-orixa','f-adjunto','f-nacao'].forEach(function(id){document.getElementById(id).selectedIndex=0;});}
 
-// ── BUSCA ML ──────────────────────────────────────────
 async function buscarML(){
-  const q=document.getElementById('ml-q').value.trim();
-  if(!q){toast('Digite o que deseja buscar.',false);return;}
-  const el=document.getElementById('ml-resultado');
-  el.innerHTML='<div class="empty">Buscando...</div>';
-  try{
-    const r=await fetch(URL_GS+'?acao=ml-buscar&q='+encodeURIComponent(q));
-    const j=await r.json();
-    if(!j.ok||!j.resultados?.length){el.innerHTML='<div class="empty">Nenhum resultado.</div>';return;}
-    el.innerHTML=j.resultados.map(x=>`
-      <div class="ml-item">
-        <img class="ml-thumb" src="${x.thumbnail}" onerror="this.style.display='none'"/>
-        <div class="ml-info">
-          <div class="ml-nome">${x.titulo}</div>
-          <div class="ml-preco">${fmtBRL(x.preco)}</div>
-        </div>
-        <button class="btn-ml-usar" onclick="usarML('${encodeURIComponent(x.titulo)}',${x.preco},'${encodeURIComponent(x.link||'')}')">Usar</button>
-      </div>`).join('');
-  }catch(e){el.innerHTML='<div class="empty">Erro na busca.</div>';}
+  const q=document.getElementById('ml-q').value.trim();if(!q){toast('Digite o que deseja buscar.',false);return;}
+  const el=document.getElementById('ml-resultado');el.innerHTML='<div class="empty">Buscando...</div>';
+  try{const r=await fetch(URL_GS+'?acao=ml-buscar&q='+encodeURIComponent(q));const j=await r.json();if(!j.ok||!j.resultados||!j.resultados.length){el.innerHTML='<div class="empty">Nenhum resultado.</div>';return;}
+  el.innerHTML=j.resultados.map(function(x){return'<div class="ml-item"><img class="ml-thumb" src="'+x.thumbnail+'" onerror="this.style.display=\'none\'"/><div class="ml-info"><div class="ml-nome">'+x.titulo+'</div><div class="ml-preco">'+fmtBRL(x.preco)+'</div></div><button class="btn-ml-usar" onclick="usarML(\''+encodeURIComponent(x.titulo)+'\','+x.preco+',\''+encodeURIComponent(x.link||'')+'\')">Usar</button></div>';}).join('');}
+  catch(e){el.innerHTML='<div class="empty">Erro na busca.</div>';}
 }
-
-function usarML(titulo,preco,link){
-  const nome=decodeURIComponent(titulo);
-  document.getElementById('cu-nome').value=nome;
-  document.getElementById('cu-preco').value=preco;
-  document.getElementById('cu-link').value=decodeURIComponent(link);
-  const tabCad=document.querySelectorAll('.tab')[1];
-  irPara('cadastro',tabCad);
-  document.getElementById('cu-nome').focus();
-  toast('✓ Dados do ML preenchidos!');
-}
+function usarML(titulo,preco,link){document.getElementById('cu-nome').value=decodeURIComponent(titulo);document.getElementById('cu-preco').value=preco;document.getElementById('cu-link').value=decodeURIComponent(link);irPara('cadastro',document.querySelectorAll('.tab')[1]);document.getElementById('cu-nome').focus();toast('Dados preenchidos!');}
 </script>
 </body>
 </html>
