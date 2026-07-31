@@ -36,7 +36,7 @@ nav::-webkit-scrollbar{display:none}
 .nav-links a{font-size:11px;color:var(--cinza);text-decoration:none}.nav-links a:hover{color:var(--ouro)}
 
 /* SEÇÕES */
-.section{display:none;padding:18px 16px;max-width:900px;margin:0 auto}
+.section{display:none;padding:18px 24px}
 .section.active{display:block}
 
 /* SKELETON */
@@ -47,16 +47,16 @@ nav::-webkit-scrollbar{display:none}
 
 /* INICIO */
 .ornamento{text-align:center;color:var(--ouro);letter-spacing:.4em;font-size:12px;margin:18px 0 16px}
-.resumo-niveis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
+.resumo-niveis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;max-width:800px}
 .nivel-card{border-radius:10px;padding:12px 4px;text-align:center;border:1px solid transparent;cursor:pointer;transition:transform .1s,opacity .15s}
 .nivel-card:hover{opacity:.82;transform:translateY(-1px)}
-.nivel-card .num{font-family:var(--fd);font-size:1.3rem;font-weight:600}
+.nivel-card .num{font-family:var(--fd);font-size:1.5rem;font-weight:600}
 .nivel-card .rot{font-size:9px;text-transform:uppercase;letter-spacing:.07em;margin-top:4px;color:var(--cinza)}
 .nivel-card.ok{background:rgba(30,107,58,.18);border-color:rgba(30,107,58,.3)}.nivel-card.ok .num{color:#7fd67f}
 .nivel-card.repor{background:rgba(180,140,0,.15);border-color:rgba(180,140,0,.3)}.nivel-card.repor .num{color:#e0c040}
 .nivel-card.alerta{background:rgba(180,40,40,.18);border-color:rgba(180,40,40,.3)}.nivel-card.alerta .num{color:#f08080}
 .nivel-card.urgente{background:rgba(120,0,0,.25);border-color:rgba(200,0,0,.35)}.nivel-card.urgente .num{color:#ff6060}
-.home-datas{display:flex;flex-direction:column;gap:7px}
+.home-datas{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
 .home-card{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:12px 14px}
 .home-card-titulo{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ouro);margin-bottom:8px;font-weight:600}
 .home-item{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04)}
@@ -68,7 +68,7 @@ nav::-webkit-scrollbar{display:none}
 .secao-titulo{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ouro);font-weight:600;margin:20px 0 12px;display:flex;align-items:center;gap:8px}
 .secao-titulo::after{content:'';flex:1;height:1px;background:var(--borda)}
 .form-box{background:rgba(10,20,10,.3);border:1px solid rgba(150,200,150,.15);border-radius:var(--r);padding:16px;margin-bottom:18px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .field{display:flex;flex-direction:column;gap:5px}
 .field.full{grid-column:1/-1}
 .field label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ouro)}
@@ -92,7 +92,7 @@ nav::-webkit-scrollbar{display:none}
 .results-count{font-size:11px;color:var(--cinza);margin-bottom:10px}
 
 /* ACERVO */
-.acervo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.acervo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
 .item-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:12px;cursor:pointer;transition:border-color .15s}
 .item-card:hover{border-color:var(--ouro)}
 .item-nome{font-size:13px;font-weight:600;margin-bottom:4px}
@@ -104,7 +104,7 @@ nav::-webkit-scrollbar{display:none}
 .status-Necessita\ reposição{background:#fdecea22;color:#f08080;border:1px solid #f0808044}
 
 /* CONSUMÍVEIS */
-.csm-grid{display:flex;flex-direction:column;gap:7px}
+.csm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
 .csm-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:12px 14px;cursor:pointer;transition:border-color .15s}
 .csm-card:hover{border-color:var(--ouro)}
 .csm-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
@@ -127,7 +127,7 @@ nav::-webkit-scrollbar{display:none}
 .filho-row{display:flex;justify-content:space-between;font-size:11px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04)}
 .filho-row:last-child{border:none}
 .filho-rot{color:var(--cinza)}
-.filho-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.filho-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
 .fs-abiao{background:#fff9e622;color:#e0c040;border:1px solid #e0c04044;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block}
 .fs-ativo{background:#e6f4ea22;color:#7fd67f;border:1px solid #7fd67f44;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block}
 .fs-ebomi{background:#e8f0fe22;color:#90b0f0;border:1px solid #90b0f044;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block}
