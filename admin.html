@@ -12,29 +12,26 @@
   --ouro:#c9a84c;--ouro-lt:#f0d060;--creme:#fff;--cinza:#999;
   --borda:rgba(201,168,76,.22);--r:12px;
   --fd:'Cinzel',serif;--fb:'Inter',sans-serif;
-  --ok:#1e6b3a;--ok-bg:#e6f4ea;--err:#8b0000;--err-bg:#fdecea;
 }
 html{font-size:16px}
 body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:100dvh;padding:0 0 60px}
 
-/* ── TELAS ── */
+/* TELAS */
 .tela{display:none}
-.tela.ativa{display:block}
 #tela-primeiro{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:20px}
 #tela-login{display:none;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:20px}
 #tela-login.ativa{display:flex}
 #tela-admin{display:none}
 #tela-admin.ativa{display:block}
 
-/* ── FORMS DE ACESSO ── */
-.acesso-wrap{width:100%;text-align:center}
-.acesso-wrap h1{font-family:var(--fd);font-size:1.05rem;color:var(--ouro-lt);margin-bottom:4px}
+/* ACESSO */
+.acesso-wrap{width:100%;max-width:340px;text-align:center}
+.acesso-wrap h1{font-family:var(--fd);font-size:1rem;color:var(--ouro-lt);margin-bottom:4px}
 .acesso-wrap p{font-size:11px;color:var(--cinza);margin-bottom:22px}
 .acesso-box{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:24px}
 .field-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ouro);display:block;margin-bottom:5px;text-align:left}
-.field-inp{width:100%;background:rgba(0,0,0,.4);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:15px;padding:11px 13px;outline:none;-webkit-appearance:none;margin-bottom:10px}
+.field-inp{width:100%;background:rgba(0,0,0,.4);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:15px;padding:11px 13px;outline:none;-webkit-appearance:none;margin-bottom:10px;font-family:var(--fb)}
 .field-inp:focus{border-color:var(--ouro)}
-.field-inp:last-of-type{margin-bottom:0}
 .acesso-err{font-size:12px;color:#f08080;min-height:18px;margin:8px 0 4px}
 .btn-acesso{width:100%;padding:12px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:linear-gradient(135deg,var(--ouro),#a07820);color:#0f0f0f;font-family:var(--fb);margin-top:10px}
 .btn-acesso:hover{opacity:.88}
@@ -42,113 +39,210 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 .acesso-sub{font-size:11px;color:var(--cinza);margin-top:14px}
 .acesso-sub a{color:var(--ouro);text-decoration:none}
 
-/* ── TOPO ADMIN ── */
-.admin-top{background:linear-gradient(135deg,#050505,#111);border-bottom:1px solid var(--borda);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:0;z-index:10}
+/* TOPO ADMIN */
+.admin-top{background:linear-gradient(135deg,#050505,#111);border-bottom:1px solid var(--borda);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:0;z-index:10}
 .admin-top h1{font-family:var(--fd);font-size:.9rem;color:var(--ouro-lt)}
 .admin-sub{font-size:10px;color:var(--cinza);margin-top:2px}
-.top-nav{display:flex;align-items:center;gap:12px;font-size:11px}
+.top-nav{display:flex;align-items:center;gap:14px;font-size:11px}
 .top-nav a{color:var(--cinza);text-decoration:none}.top-nav a:hover{color:var(--ouro)}
 .top-nav span{color:var(--cinza);cursor:pointer}.top-nav span:hover{color:#f08080}
 
-.admin-body{margin:0 auto;padding:18px 16px}
+.admin-body{padding:20px 32px;width:100%}
 
-/* ── FINANCEIRO ── */
+/* SECAO */
+.sec-titulo{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ouro);font-weight:600;margin:22px 0 12px;display:flex;align-items:center;gap:8px}
+.sec-titulo::after{content:'';flex:1;height:1px;background:var(--borda)}
+
+/* FINANCEIRO */
 .fin-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;width:100%}
-.fc{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:12px 8px;text-align:center}
-.fc .num{font-family:var(--fd);font-size:.95rem;font-weight:600;line-height:1.2}
-.fc .rot{font-size:9px;color:var(--cinza);text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+.fc{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:14px 8px;text-align:center}
+.fc .num{font-family:var(--fd);font-size:1rem;font-weight:600;line-height:1.2}
+.fc .rot{font-size:9px;color:var(--cinza);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
 .fc.ent .num{color:#7fd67f}.fc.sai .num{color:#f08080}.fc.sal .num{color:var(--ouro-lt)}
 
-/* ── SEÇÕES ── */
-.sec-title{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ouro);font-weight:600;margin:18px 0 10px;display:flex;align-items:center;gap:8px}
-.sec-title::after{content:'';flex:1;height:1px;background:var(--borda)}
+/* BOTOES GRID */
 .btn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.btn-adm{display:flex;flex-direction:column;align-items:flex-start;gap:3px;background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:13px 14px;cursor:pointer;font-family:var(--fb);color:var(--creme);text-align:left;transition:border-color .15s}
+.btn-adm{display:flex;flex-direction:column;align-items:flex-start;gap:3px;background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:14px 16px;cursor:pointer;font-family:var(--fb);color:var(--creme);text-align:left;transition:border-color .15s}
 .btn-adm:hover{border-color:var(--ouro);background:var(--card2)}
-.btn-adm .ic{font-size:17px;margin-bottom:2px}
+.btn-adm .ic{font-size:18px;margin-bottom:3px}
 .btn-adm .lb{font-size:13px;font-weight:600}
 .btn-adm .dc{font-size:10px;color:var(--cinza);line-height:1.4}
 
-/* ── PRAZO ── */
-.prazo-box{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:12px;color:var(--cinza)}
-.prazo-box input{background:rgba(0,0,0,.4);border:1px solid var(--borda);border-radius:6px;color:var(--creme);font-size:12px;padding:4px 8px;width:65px;outline:none;text-align:center}
+/* PRAZO */
+.prazo-box{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:12px;color:var(--cinza)}
+.prazo-box input{background:rgba(0,0,0,.4);border:1px solid var(--borda);border-radius:6px;color:var(--creme);font-size:12px;padding:4px 8px;width:65px;outline:none;text-align:center;font-family:var(--fb)}
 
-/* ── RESULTADO ── */
-.resultado{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:14px;margin-top:12px;display:none;font-size:12px;line-height:1.8;color:var(--creme);font-family:monospace;white-space:pre-wrap;max-height:300px;overflow-y:auto}
+/* RESULTADO */
+.resultado{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:16px;margin-top:14px;display:none;font-size:12px;line-height:1.8;color:var(--creme);font-family:monospace;white-space:pre-wrap;max-height:320px;overflow-y:auto}
 
-/* ── MAILING ── */
+/* MAILING */
 .msg-box{background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:8px;padding:10px 12px;margin-bottom:10px}
 .msg-box label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ouro);display:block;margin-bottom:5px}
-.msg-box textarea{width:100%;background:transparent;border:none;color:var(--creme);font-size:12px;font-family:var(--fb);resize:vertical;outline:none;line-height:1.6;min-height:75px}
+.msg-box textarea{width:100%;background:transparent;border:none;color:var(--creme);font-size:12px;font-family:var(--fb);resize:vertical;outline:none;line-height:1.6;min-height:80px}
 
-/* ── ADMINS ── */
-.admin-lista{display:flex;flex-direction:column;gap:7px;margin-top:10px}
-.adm-item{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:12px 14px}
-.adm-item-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
+/* ADMINS LISTA */
+.admins-lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:12px}
+.adm-item{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:14px 16px}
 .adm-nome{font-size:13px;font-weight:600}
-.adm-email{font-size:10px;color:var(--cinza)}
+.adm-email{font-size:10px;color:var(--cinza);margin-top:1px}
 .adm-nivel{font-size:10px;color:var(--cinza);margin-top:2px}
-.adm-perms{font-size:10px;color:var(--ouro);margin-top:4px;line-height:1.5}
-.adm-acoes{display:flex;gap:6px;align-items:center}
-.badge-bloq{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--err-bg);color:var(--err)}
+.adm-perms{font-size:10px;color:var(--ouro);margin-top:6px;line-height:1.5}
+.adm-acoes{display:flex;gap:6px;align-items:center;margin-top:8px}
+.badge-bloq{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;background:rgba(139,0,0,.3);color:#f08080;border:1px solid #f0808044}
 .btn-liberar{font-size:11px;font-weight:600;padding:4px 10px;border-radius:8px;background:rgba(201,168,76,.15);border:1px solid var(--borda);color:var(--ouro);cursor:pointer;font-family:var(--fb)}
 .btn-liberar:hover{background:rgba(201,168,76,.3)}
 
-/* ── NOVO ADMIN FORM ── */
-.novo-admin-form{display:none;background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:var(--r);padding:16px;margin-top:10px}
-.novo-admin-form .field-inp{margin-bottom:8px}
+/* FORM NOVO ADMIN */
+.novo-form{display:none;background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:var(--r);padding:18px;margin-top:12px}
+.novo-form .field-inp{margin-bottom:8px}
 .perms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px;margin:8px 0 12px}
 .perm-cb{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--cinza);cursor:pointer}
 .perm-cb input{accent-color:var(--ouro);width:14px;height:14px}
-.perm-cb span{text-transform:capitalize}
 
-/* ── TROCAR SENHA ── */
-.senha-form{display:none;background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:var(--r);padding:14px;margin-top:10px}
+/* TROCAR SENHA */
+.senha-form{display:none;background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:var(--r);padding:16px;margin-top:10px}
 .senha-form .field-inp{margin-bottom:8px}
 .btn-row{display:flex;gap:8px;justify-content:flex-end}
 .btn-sm{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--borda);font-family:var(--fb);background:transparent;color:var(--cinza)}
 .btn-sm.primary{background:linear-gradient(135deg,var(--ouro),#a07820);color:#0f0f0f;border-color:var(--ouro)}
 
-/* ── FAQ ── */
+/* FAQ */
 .faq-item{margin-bottom:7px;background:var(--card);border:1px solid var(--borda);border-radius:10px;overflow:hidden}
-.faq-q{padding:11px 14px;font-size:12px;font-weight:600;color:var(--ouro-lt);cursor:pointer;display:flex;justify-content:space-between;gap:8px;user-select:none}
+.faq-q{padding:12px 14px;font-size:12px;font-weight:600;color:var(--ouro-lt);cursor:pointer;display:flex;justify-content:space-between;gap:8px;user-select:none}
 .faq-q:hover{background:var(--card2)}
 .faq-q .arrow{color:var(--ouro);font-size:10px;transition:transform .2s;flex-shrink:0}
-.faq-q.open .arrow{transform:rotate(180deg)}
+.faq-q.aberto .arrow{transform:rotate(180deg)}
 .faq-a{display:none;padding:0 14px 12px;font-size:12px;color:#ccc;line-height:1.7}
-.faq-a.open{display:block}
+.faq-a.aberto{display:block}
 .faq-a code{background:rgba(255,255,255,.08);padding:1px 5px;border-radius:4px;font-size:11px}
 
 #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:#111;border:1px solid var(--ouro);border-radius:99px;color:var(--ouro-lt);padding:8px 18px;font-size:12px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:999;white-space:nowrap}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 #toast.erro{border-color:#f08080;color:#f08080}
 
-@media(margin-bottom:10px" onclick="copiarMsg()">
-        <span class="ic">📋</span><span class="lb">Copiar mensagem</span><span class="dc">Cole no WhatsApp de cada membro individualmente</span>
+@media(max-width:600px){.btn-grid{grid-template-columns:1fr}.fin-bar{grid-template-columns:1fr 1fr}.admin-body{padding:16px}}
+</style>
+</head>
+<body>
+
+<!-- TELA 1: PRIMEIRO ACESSO -->
+<div id="tela-primeiro">
+  <div class="acesso-wrap">
+    <h1>&#10022; Ile Ase Vodun Ogum Ayres &#10022;</h1>
+    <p>Primeiro acesso — crie a conta do Pai de Santo</p>
+    <div class="acesso-box">
+      <label class="field-lbl">Seu nome</label>
+      <input class="field-inp" type="text" id="p-nome" placeholder="Ex: Maria das Dores" autocomplete="name"/>
+      <label class="field-lbl">E-mail</label>
+      <input class="field-inp" type="email" id="p-email" placeholder="seu@email.com" inputmode="email"/>
+      <label class="field-lbl">Senha (mín. 6 caracteres)</label>
+      <input class="field-inp" type="password" id="p-senha" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"/>
+      <label class="field-lbl">Confirmar senha</label>
+      <input class="field-inp" type="password" id="p-conf" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" onkeydown="if(event.key==='Enter')criarPrimeiro()"/>
+      <div class="acesso-err" id="p-err"></div>
+      <button class="btn-acesso" onclick="criarPrimeiro()">Criar conta</button>
+    </div>
+    <div class="acesso-sub"><a href="index.html">&#8592; Voltar ao site</a></div>
+  </div>
+</div>
+
+<!-- TELA 2: LOGIN -->
+<div id="tela-login">
+  <div class="acesso-wrap">
+    <h1>&#10022; Ile Ase Vodun Ogum Ayres &#10022;</h1>
+    <p>&#128274; Área da liderança</p>
+    <div class="acesso-box">
+      <label class="field-lbl">E-mail</label>
+      <input class="field-inp" type="email" id="l-email" placeholder="seu@email.com" inputmode="email"/>
+      <label class="field-lbl">Senha</label>
+      <input class="field-inp" type="password" id="l-senha" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" onkeydown="if(event.key==='Enter')entrar()"/>
+      <div class="acesso-err" id="l-err"></div>
+      <button class="btn-acesso" id="btn-entrar" onclick="entrar()">Entrar</button>
+    </div>
+    <div class="acesso-sub"><a href="index.html">&#8592; Voltar ao site</a></div>
+  </div>
+</div>
+
+<!-- TELA 3: PAINEL -->
+<div id="tela-admin">
+  <div class="admin-top">
+    <div>
+      <h1>&#127963;&#65039; Painel da Liderança</h1>
+      <div class="admin-sub" id="admin-sub"></div>
+    </div>
+    <div class="top-nav">
+      <a href="index.html">&#128187;</a>
+      <a href="faq.html">&#10067;</a>
+      <span onclick="sair()">Sair</span>
+    </div>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- Financeiro resumo topo -->
+    <div id="sec-fin-bar" style="display:none">
+      <div class="fin-bar">
+        <div class="fc ent"><div class="num" id="f-ent">—</div><div class="rot">&#8593; Entradas mês</div></div>
+        <div class="fc sai"><div class="num" id="f-sai">—</div><div class="rot">&#8595; Saídas mês</div></div>
+        <div class="fc sal"><div class="num" id="f-sal">—</div><div class="rot">= Saldo total</div></div>
+      </div>
+    </div>
+
+    <!-- Estoque -->
+    <div id="sec-estoque" style="display:none">
+      <div class="sec-titulo">&#128305; Estoque</div>
+      <div class="btn-grid">
+        <button class="btn-adm" onclick="listaCompras()"><span class="ic">&#128722;</span><span class="lb">Lista de compras</span><span class="dc">Itens a repor com fornecedor e preço</span></button>
+        <button class="btn-adm" onclick="statusEstoque()"><span class="ic">&#128202;</span><span class="lb">Status do estoque</span><span class="dc">Visão por categoria e nível</span></button>
+      </div>
+    </div>
+
+    <!-- Datas -->
+    <div id="sec-datas" style="display:none">
+      <div class="sec-titulo">&#128197; Datas e Obrigações</div>
+      <div class="prazo-box">Obrigações dos próximos <input type="number" id="prazo" value="180" min="30" max="730"/> dias</div>
+      <div class="btn-grid">
+        <button class="btn-adm" onclick="datasMes()"><span class="ic">&#129345;</span><span class="lb">Datas do mês</span><span class="dc">Aniversários, festas e obrigações</span></button>
+        <button class="btn-adm" onclick="obrigacoes()"><span class="ic">&#9888;&#65039;</span><span class="lb">Obrigações</span><span class="dc">Próximas no prazo definido</span></button>
+      </div>
+    </div>
+
+    <!-- Mailing -->
+    <div id="sec-mailing" style="display:none">
+      <div class="sec-titulo">&#9993;&#65039; Convites</div>
+      <div class="msg-box">
+        <label>Mensagem de convite</label>
+        <textarea id="msg-convite">Axé! &#128591;
+Gostaríamos de convidar você para nossa próxima gira no Ile Ase Vodun Ogum Ayres.
+Em breve enviaremos mais detalhes.
+Salve! &#10024;</textarea>
+      </div>
+      <button class="btn-adm" style="width:100%;margin-bottom:10px" onclick="copiarMsg()">
+        <span class="ic">&#128203;</span><span class="lb">Copiar mensagem</span><span class="dc">Cole no WhatsApp de cada membro</span>
       </button>
       <div id="mailing-lista"></div>
     </div>
 
     <!-- Financeiro detalhado -->
     <div id="sec-fin-detalhe" style="display:none">
-      <div class="sec-title">💰 Financeiro</div>
+      <div class="sec-titulo">&#128176; Financeiro</div>
       <button class="btn-adm" style="width:100%" onclick="resumoFin()">
-        <span class="ic">📈</span><span class="lb">Resumo completo</span><span class="dc">Entradas, saídas e breakdown por categoria</span>
+        <span class="ic">&#128200;</span><span class="lb">Resumo completo</span><span class="dc">Entradas, saídas e breakdown por categoria</span>
       </button>
     </div>
 
     <!-- Admins -->
     <div id="sec-cfg" style="display:none">
-      <div class="sec-title">👤 Admins</div>
-      <div class="btn-grid" style="margin-bottom:10px">
-        <button class="btn-adm" onclick="listarAdmins()"><span class="ic">👥</span><span class="lb">Ver admins</span><span class="dc">Usuários com acesso e seus status</span></button>
-        <button class="btn-adm" onclick="toggleNovoAdmin()"><span class="ic">➕</span><span class="lb">Novo admin</span><span class="dc">Criar acesso para membro da liderança</span></button>
+      <div class="sec-titulo">&#128100; Admins</div>
+      <div class="btn-grid" style="margin-bottom:12px">
+        <button class="btn-adm" onclick="listarAdmins()"><span class="ic">&#128101;</span><span class="lb">Ver admins</span><span class="dc">Usuários e status de acesso</span></button>
+        <button class="btn-adm" onclick="toggleNovoAdmin()"><span class="ic">&#10133;</span><span class="lb">Novo admin</span><span class="dc">Criar acesso para membro da liderança</span></button>
+        <button class="btn-adm" onclick="toggleSenha()"><span class="ic">&#128273;</span><span class="lb">Trocar minha senha</span><span class="dc">Altere sua senha de acesso</span></button>
       </div>
 
-      <!-- Formulário novo admin -->
-      <div class="novo-admin-form" id="novo-admin-form">
+      <div class="novo-form" id="novo-form">
         <label class="field-lbl">Nome</label>
-        <input class="field-inp" type="text" id="na-nome" placeholder="Nome completo" autocomplete="off"/>
+        <input class="field-inp" type="text" id="na-nome" placeholder="Nome completo"/>
         <label class="field-lbl">E-mail</label>
         <input class="field-inp" type="email" id="na-email" placeholder="email@exemplo.com" inputmode="email"/>
         <label class="field-lbl">Senha provisória</label>
@@ -156,14 +250,14 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
         <label class="field-lbl">Nível</label>
         <input class="field-inp" type="text" id="na-nivel" placeholder="Ex: Diretoria, Ogã, Ekedi"/>
         <label class="field-lbl">Permissões</label>
-        <div class="perms-grid" id="perms-grid">
-          <label class="perm-cb"><input type="checkbox" value="estoque"/><span>Estoque</span></label>
-          <label class="perm-cb"><input type="checkbox" value="datas"/><span>Datas</span></label>
-          <label class="perm-cb"><input type="checkbox" value="obrigacoes"/><span>Obrigações</span></label>
-          <label class="perm-cb"><input type="checkbox" value="financeiro"/><span>Financeiro</span></label>
-          <label class="perm-cb"><input type="checkbox" value="mailing"/><span>Mailing</span></label>
-          <label class="perm-cb"><input type="checkbox" value="filhos"/><span>Filhos de Santo</span></label>
-          <label class="perm-cb"><input type="checkbox" value="configuracoes"/><span>Configurações</span></label>
+        <div class="perms-grid">
+          <label class="perm-cb"><input type="checkbox" value="estoque"/> Estoque</label>
+          <label class="perm-cb"><input type="checkbox" value="datas"/> Datas</label>
+          <label class="perm-cb"><input type="checkbox" value="obrigacoes"/> Obrigações</label>
+          <label class="perm-cb"><input type="checkbox" value="financeiro"/> Financeiro</label>
+          <label class="perm-cb"><input type="checkbox" value="mailing"/> Mailing</label>
+          <label class="perm-cb"><input type="checkbox" value="filhos"/> Filhos de Santo</label>
+          <label class="perm-cb"><input type="checkbox" value="configuracoes"/> Configurações</label>
         </div>
         <div id="na-err" style="font-size:12px;color:#f08080;margin-bottom:8px;min-height:16px"></div>
         <div class="btn-row">
@@ -172,19 +266,13 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
         </div>
       </div>
 
-      <!-- Trocar senha -->
-      <div style="margin-top:10px">
-        <button class="btn-adm" style="width:100%" onclick="toggleSenha()">
-          <span class="ic">🔑</span><span class="lb">Trocar minha senha</span><span class="dc">Altere sua senha de acesso</span>
-        </button>
-      </div>
       <div class="senha-form" id="senha-form">
         <label class="field-lbl">Senha atual</label>
-        <input class="field-inp" type="password" id="s-atual" autocomplete="current-password"/>
+        <input class="field-inp" type="password" id="s-atual"/>
         <label class="field-lbl">Nova senha</label>
-        <input class="field-inp" type="password" id="s-nova" autocomplete="new-password"/>
+        <input class="field-inp" type="password" id="s-nova"/>
         <label class="field-lbl">Confirmar nova senha</label>
-        <input class="field-inp" type="password" id="s-conf" autocomplete="new-password"/>
+        <input class="field-inp" type="password" id="s-conf"/>
         <div id="s-err" style="font-size:12px;color:#f08080;margin-bottom:8px;min-height:16px"></div>
         <div class="btn-row">
           <button class="btn-sm" onclick="toggleSenha()">Cancelar</button>
@@ -192,19 +280,17 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
         </div>
       </div>
 
-      <div id="admins-lista"></div>
+      <div class="admins-lista" id="admins-lista"></div>
     </div>
 
-    <!-- Resultado -->
     <div class="resultado" id="resultado"></div>
 
     <!-- Suporte -->
-    <div class="sec-title" style="margin-top:22px">🔧 Suporte técnico</div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">"Ação desconhecida" ao gravar <span class="arrow">▼</span></div><div class="faq-a">Reimplante o Apps Script: <code>Implantar → Gerenciar implantações → ✏️ → Nova versão → Implantar</code>.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Dados não carregam ao abrir <span class="arrow">▼</span></div><div class="faq-a">Verifique: (1) Web App publicado como "Qualquer pessoa"? (2) Abas existem na planilha? (3) Abra a URL do script no navegador — deve aparecer <code>{"ok":true}</code>.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Permissões disponíveis <span class="arrow">▼</span></div><div class="faq-a"><code>estoque</code> · <code>datas</code> · <code>obrigacoes</code> · <code>financeiro</code> · <code>mailing</code> · <code>filhos</code> · <code>configuracoes</code></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Critério de qualidade — busca no Mercado Livre <span class="arrow">▼</span></div><div class="faq-a">A busca retorna os primeiros resultados do ML. Defina o padrão de cada item internamente e use o campo "Fornecedor" para registrar a marca preferida. O link é referência de preço — a decisão final é sempre de quem compra.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Como atualizar o app (nova versão) <span class="arrow">▼</span></div><div class="faq-a">Substitua os arquivos HTML no GitHub. O Pages atualiza em minutos. No celular, limpe o cache: Chrome → 3 pontos → Atualizar.</div></div>
+    <div class="sec-titulo" style="margin-top:28px">&#128295; Suporte técnico</div>
+    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">"Ação desconhecida" ao gravar <span class="arrow">&#9660;</span></div><div class="faq-a">Reimplante o Apps Script: <code>Implantar &#8594; Gerenciar implantações &#8594; &#9999;&#65039; &#8594; Nova versão &#8594; Implantar</code></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Dados não carregam ao abrir <span class="arrow">&#9660;</span></div><div class="faq-a">Verifique: (1) Web App publicado como "Qualquer pessoa"? (2) Abas existem na planilha? (3) Abra a URL do script — deve aparecer <code>{"ok":true}</code>.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Permissões disponíveis <span class="arrow">&#9660;</span></div><div class="faq-a"><code>estoque</code> · <code>datas</code> · <code>obrigacoes</code> · <code>financeiro</code> · <code>mailing</code> · <code>filhos</code> · <code>configuracoes</code></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Como atualizar o app <span class="arrow">&#9660;</span></div><div class="faq-a">Substitua os arquivos HTML no GitHub. O Pages atualiza em minutos. No celular, limpe o cache: Chrome &#8594; 3 pontos &#8594; Atualizar.</div></div>
 
   </div>
 </div>
@@ -212,322 +298,239 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 <div id="toast"></div>
 
 <script>
-const URL = 'https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAfyjHqC_mvDwvKDCFieibGTvp7u7Fyls9OcmCc2aDvlvsVwAW706SlWw/exec';
-let TOKEN = null, PERMS = [], NOME_ADMIN = '', EMAIL_ADMIN = '';
+var URL_GS='https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAfyjHqC_mvDwvKDCFieibGTvp7u7Fyls9OcmCc2aDvlvsVwAW706SlWw/exec';
+var TOKEN=null,PERMS=[],NOME_ADMIN='';
 
-// ── INICIALIZAÇÃO ─────────────────────────────────────────
-window.addEventListener('DOMContentLoaded', async () => {
-  // Sessão salva?
-  const t = sessionStorage.getItem('t_token');
-  if (t) {
-    TOKEN = t;
-    PERMS = JSON.parse(sessionStorage.getItem('t_perms') || '[]');
-    NOME_ADMIN  = sessionStorage.getItem('t_nome')  || '';
-    EMAIL_ADMIN = sessionStorage.getItem('t_email') || '';
-    mostrarAdmin();
-    return;
+function toast(msg,ok){var t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok===false?' erro':'');clearTimeout(t._t);t._t=setTimeout(function(){t.className='';},3200);}
+function fmtBRL(v){return'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2});}
+function faqT(el){el.classList.toggle('aberto');el.nextElementSibling.classList.toggle('aberto');}
+
+window.addEventListener('DOMContentLoaded',function(){
+  var t=sessionStorage.getItem('a_token');
+  if(t){
+    TOKEN=t;PERMS=JSON.parse(sessionStorage.getItem('a_perms')||'[]');NOME_ADMIN=sessionStorage.getItem('a_nome')||'';
+    mostrarAdmin();return;
   }
-
-  // Verifica se aba Admins está vazia (primeiro acesso)
-  try {
-    const r = await fetch(URL + '?acao=admins-vazio');
-    const j = await r.json();
-    if (j.ok && j.vazio) {
-      document.getElementById('tela-primeiro').style.display = 'flex';
-    } else {
-      document.getElementById('tela-login').classList.add('ativa');
-      document.getElementById('l-email').focus();
-    }
-  } catch(e) {
-    // Fallback: mostra login
+  fetch(URL_GS+'?acao=admins-vazio').then(function(r){return r.json();}).then(function(j){
+    if(j.ok&&j.vazio){document.getElementById('tela-primeiro').style.display='flex';}
+    else{document.getElementById('tela-login').classList.add('ativa');document.getElementById('l-email').focus();}
+  }).catch(function(){
     document.getElementById('tela-login').classList.add('ativa');
-    document.getElementById('l-email').focus();
-  }
+  });
 });
 
-// ── PRIMEIRO ACESSO ───────────────────────────────────────
-async function criarPrimeiro() {
-  const nome  = document.getElementById('p-nome').value.trim();
-  const email = document.getElementById('p-email').value.trim();
-  const senha = document.getElementById('p-senha').value;
-  const conf  = document.getElementById('p-conf').value;
-  const err   = document.getElementById('p-err');
-
-  if (!nome)              { err.textContent = 'Informe seu nome.'; return; }
-  if (!email.includes('@')){ err.textContent = 'E-mail inválido.'; return; }
-  if (senha.length < 6)  { err.textContent = 'A senha precisa ter pelo menos 6 caracteres.'; return; }
-  if (senha !== conf)    { err.textContent = 'As senhas não coincidem.'; return; }
-
-  err.textContent = 'Criando...';
-  try {
-    const r = await fetch(URL, { method: 'POST', body: JSON.stringify({ acao: 'primeiro-admin', email, senha, nome }) });
-    const j = await r.json();
-    if (j.ok) {
-      _salvarSessao(j);
-      document.getElementById('tela-primeiro').style.display = 'none';
-      mostrarAdmin();
-    } else {
-      err.textContent = j.erro || 'Erro ao criar conta.';
-    }
-  } catch(e) { err.textContent = 'Erro de conexão.'; }
+function criarPrimeiro(){
+  var nome=document.getElementById('p-nome').value.trim();
+  var email=document.getElementById('p-email').value.trim();
+  var senha=document.getElementById('p-senha').value;
+  var conf=document.getElementById('p-conf').value;
+  var err=document.getElementById('p-err');
+  if(!nome){err.textContent='Informe seu nome.';return;}
+  if(!email.includes('@')){err.textContent='E-mail inválido.';return;}
+  if(senha.length<6){err.textContent='A senha precisa ter pelo menos 6 caracteres.';return;}
+  if(senha!==conf){err.textContent='As senhas não coincidem.';return;}
+  err.textContent='Criando...';
+  fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'primeiro-admin',email:email,senha:senha,nome:nome})})
+    .then(function(r){return r.json();}).then(function(j){
+      if(j.ok){_salvarSessao(j);document.getElementById('tela-primeiro').style.display='none';mostrarAdmin();}
+      else err.textContent=j.erro||'Erro ao criar conta.';
+    }).catch(function(){err.textContent='Erro de conexão.';});
 }
 
-// ── LOGIN ─────────────────────────────────────────────────
-async function entrar() {
-  const email = document.getElementById('l-email').value.trim();
-  const senha = document.getElementById('l-senha').value;
-  const err   = document.getElementById('l-err');
-  const btn   = document.getElementById('btn-entrar');
-
-  if (!email || !senha) { err.textContent = 'Preencha e-mail e senha.'; return; }
-  err.textContent = 'Verificando...';
-  btn.disabled = true;
-
-  try {
-    const r = await fetch(URL, { method: 'POST', body: JSON.stringify({ acao: 'login', email, senha }) });
-    const j = await r.json();
-    if (j.ok) {
-      _salvarSessao(j);
-      document.getElementById('tela-login').classList.remove('ativa');
-      mostrarAdmin();
-    } else {
-      err.textContent = j.erro || 'Erro no login.';
-      document.getElementById('l-senha').value = '';
-      document.getElementById('l-senha').focus();
-    }
-  } catch(e) { err.textContent = 'Erro de conexão. Tente novamente.'; }
-  finally { btn.disabled = false; }
+function entrar(){
+  var email=document.getElementById('l-email').value.trim();
+  var senha=document.getElementById('l-senha').value;
+  var err=document.getElementById('l-err');
+  var btn=document.getElementById('btn-entrar');
+  if(!email||!senha){err.textContent='Preencha e-mail e senha.';return;}
+  err.textContent='Verificando...';btn.disabled=true;
+  fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'login',email:email,senha:senha})})
+    .then(function(r){return r.json();}).then(function(j){
+      if(j.ok){_salvarSessao(j);document.getElementById('tela-login').classList.remove('ativa');mostrarAdmin();}
+      else{err.textContent=j.erro||'Erro no login.';document.getElementById('l-senha').value='';document.getElementById('l-senha').focus();}
+    }).catch(function(){err.textContent='Erro de conexão.';})
+    .finally(function(){btn.disabled=false;});
 }
 
-async function sair() {
-  if (TOKEN) fetch(URL, { method: 'POST', body: JSON.stringify({ acao: 'logout', token: TOKEN }) }).catch(() => {});
-  TOKEN = null; PERMS = []; NOME_ADMIN = ''; EMAIL_ADMIN = '';
-  sessionStorage.clear();
+function sair(){
+  if(TOKEN)fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'logout',token:TOKEN})}).catch(function(){});
+  TOKEN=null;PERMS=[];NOME_ADMIN='';sessionStorage.clear();
   document.getElementById('tela-admin').classList.remove('ativa');
-  document.getElementById('l-senha').value = '';
-  document.getElementById('l-err').textContent = '';
+  document.getElementById('l-senha').value='';document.getElementById('l-err').textContent='';
   document.getElementById('tela-login').classList.add('ativa');
-  document.getElementById('l-email').focus();
 }
 
-function _salvarSessao(j) {
-  TOKEN = j.token; PERMS = j.permissoes; NOME_ADMIN = j.nome; EMAIL_ADMIN = j.email || '';
-  sessionStorage.setItem('t_token', TOKEN);
-  sessionStorage.setItem('t_perms', JSON.stringify(PERMS));
-  sessionStorage.setItem('t_nome',  NOME_ADMIN);
-  sessionStorage.setItem('t_email', EMAIL_ADMIN);
+function _salvarSessao(j){
+  TOKEN=j.token;PERMS=j.permissoes||[];NOME_ADMIN=j.nome||'';
+  sessionStorage.setItem('a_token',TOKEN);
+  sessionStorage.setItem('a_perms',JSON.stringify(PERMS));
+  sessionStorage.setItem('a_nome',NOME_ADMIN);
 }
 
-function tem(p) { return PERMS.includes(p); }
+function tem(p){return PERMS.includes(p);}
 
-function mostrarAdmin() {
+function mostrarAdmin(){
   document.getElementById('tela-admin').classList.add('ativa');
-  document.getElementById('admin-sub').textContent = NOME_ADMIN;
-
-  if (tem('financeiro'))  { document.getElementById('sec-fin-bar').style.display = 'block'; document.getElementById('sec-fin-detalhe').style.display = 'block'; carregarFinBar(); }
-  if (tem('estoque'))     document.getElementById('sec-estoque').style.display = 'block';
-  if (tem('datas') || tem('obrigacoes')) document.getElementById('sec-datas').style.display = 'block';
-  if (tem('mailing'))     { document.getElementById('sec-mailing').style.display = 'block'; carregarMailing(); }
-  if (tem('configuracoes')) document.getElementById('sec-cfg').style.display = 'block';
+  document.getElementById('admin-sub').textContent=NOME_ADMIN;
+  if(tem('financeiro')){document.getElementById('sec-fin-bar').style.display='block';document.getElementById('sec-fin-detalhe').style.display='block';carregarFinBar();}
+  if(tem('estoque'))document.getElementById('sec-estoque').style.display='block';
+  if(tem('datas')||tem('obrigacoes'))document.getElementById('sec-datas').style.display='block';
+  if(tem('mailing')){document.getElementById('sec-mailing').style.display='block';carregarMailing();}
+  if(tem('configuracoes'))document.getElementById('sec-cfg').style.display='block';
 }
 
-// ── HELPERS ──────────────────────────────────────────────
-function toast(msg, ok=true) { const t=document.getElementById('toast'); t.textContent=msg; t.className='show'+(ok?'':' erro'); clearTimeout(t._t); t._t=setTimeout(()=>t.className='',3000); }
-function mostrar(txt) { const el=document.getElementById('resultado'); el.style.display='block'; el.textContent=txt; el.scrollIntoView({behavior:'smooth',block:'nearest'}); }
-function fmtBRL(v) { return 'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2}); }
-function faqT(el) { el.classList.toggle('open'); el.nextElementSibling.classList.toggle('open'); }
-async function req(acao, extra={}) {
-  const params = '?acao='+acao+'&token='+(TOKEN||'')+Object.entries(extra).map(([k,v])=>'&'+k+'='+encodeURIComponent(v)).join('');
-  return fetch(URL+params).then(r=>r.json());
+function req(acao,extra){
+  var params='?acao='+acao+'&token='+(TOKEN||'');
+  if(extra)Object.keys(extra).forEach(function(k){params+='&'+k+'='+encodeURIComponent(extra[k]);});
+  return fetch(URL_GS+params).then(function(r){return r.json();});
 }
-async function post(body) {
-  return fetch(URL, {method:'POST', body:JSON.stringify({...body, token:TOKEN})}).then(r=>r.json());
-}
+function post(body){return fetch(URL_GS,{method:'POST',body:JSON.stringify(Object.assign({},body,{token:TOKEN}))}).then(function(r){return r.json();});}
+function mostrar(txt){var el=document.getElementById('resultado');el.style.display='block';el.textContent=txt;el.scrollIntoView({behavior:'smooth',block:'nearest'});}
 
-// ── FINANCEIRO ────────────────────────────────────────────
-async function carregarFinBar() {
-  try {
-    const j = await req('financeiro-resumo');
-    if (j.ok) {
-      document.getElementById('f-ent').textContent = fmtBRL(j.entradasMes);
-      document.getElementById('f-sai').textContent = fmtBRL(j.saidasMes);
-      document.getElementById('f-sal').textContent = fmtBRL(j.saldo);
-    }
-  } catch(e) {}
+// FINANCEIRO
+function carregarFinBar(){
+  req('financeiro-resumo').then(function(j){
+    if(j.ok){document.getElementById('f-ent').textContent=fmtBRL(j.entradasMes);document.getElementById('f-sai').textContent=fmtBRL(j.saidasMes);document.getElementById('f-sal').textContent=fmtBRL(j.saldo);}
+  }).catch(function(){});
 }
-async function resumoFin() {
+function resumoFin(){
   toast('Carregando...');
-  try {
-    const j = await req('financeiro-resumo');
-    if (!j.ok) { toast(j.erro||'Erro.',false); return; }
-    let txt = '💰 RESUMO FINANCEIRO\n'+'─'.repeat(28)+'\n';
-    txt += `  Entradas do mês: ${fmtBRL(j.entradasMes)}\n  Saídas do mês:   ${fmtBRL(j.saidasMes)}\n  Saldo do mês:    ${fmtBRL(j.saldoMes)}\n\n`;
-    txt += `  Total entradas: ${fmtBRL(j.totalEntradas)}\n  Total saídas:   ${fmtBRL(j.totalSaidas)}\n  Saldo geral:    ${fmtBRL(j.saldo)}\n`;
-    if (j.porCategoria && Object.keys(j.porCategoria).length) {
-      txt += '\n📂 SAÍDAS POR CATEGORIA\n'+'─'.repeat(28)+'\n';
-      Object.entries(j.porCategoria).sort((a,b)=>b[1]-a[1]).forEach(([c,v])=>txt+=`  ${c}: ${fmtBRL(v)}\n`);
-    }
-    mostrar(txt); toast('✓ Carregado!');
-  } catch(e) { toast('Erro.',false); }
+  req('financeiro-resumo').then(function(j){
+    if(!j.ok){toast(j.erro||'Erro.',false);return;}
+    var txt='RESUMO FINANCEIRO\n'+'─'.repeat(28)+'\n';
+    txt+='Entradas do mês: '+fmtBRL(j.entradasMes)+'\nSaídas do mês:   '+fmtBRL(j.saidasMes)+'\nSaldo do mês:    '+fmtBRL(j.saldoMes)+'\n\n';
+    txt+='Total entradas: '+fmtBRL(j.totalEntradas)+'\nTotal saídas:   '+fmtBRL(j.totalSaidas)+'\nSaldo geral:    '+fmtBRL(j.saldo)+'\n';
+    if(j.porCategoria&&Object.keys(j.porCategoria).length){txt+='\nSAÍDAS POR CATEGORIA\n'+'─'.repeat(28)+'\n';Object.entries(j.porCategoria).sort(function(a,b){return b[1]-a[1];}).forEach(function(p){txt+='  '+p[0]+': '+fmtBRL(p[1])+'\n';});}
+    mostrar(txt);toast('Carregado!');
+  }).catch(function(){toast('Erro.',false);});
 }
 
-// ── ESTOQUE ───────────────────────────────────────────────
-async function listaCompras() {
+// ESTOQUE
+function listaCompras(){
   toast('Gerando...');
-  try {
-    const j = await req('consumiveis-listar');
-    if (!j.ok) { toast('Erro.',false); return; }
-    const ord = {'🚨 Urgente / Zero':0,'🔴 Alerta':1,'⚠️ Repor':2};
-    const nok = j.itens.filter(i=>!String(i.nivel).includes('OK')&&!String(i.nivel).includes('mínimo'))
-      .sort((a,b)=>(ord[a.nivel]??3)-(ord[b.nivel]??3));
-    if (!nok.length) { mostrar('✅ Nenhum item precisa ser reposto!'); toast('Tudo em dia!'); return; }
-    let txt='🛒 LISTA DE COMPRAS\n'+'─'.repeat(28)+'\n', nAt='';
-    nok.forEach(i=>{
-      if(i.nivel!==nAt){txt+=`\n${i.nivel}:\n`;nAt=i.nivel;}
-      const f=Math.max(0,(Number(i.minimo)||0)-(Number(i.atual)||0));
-      txt+=`  • ${i.nome} — faltam ${f} ${i.unidade||''}`;
-      if(i.fornecedor)txt+=` | ${i.fornecedor}`;
-      if(i.precoUnit) txt+=` | ~R$${Number(i.precoUnit).toFixed(2)}/un`;
+  req('consumiveis-listar').then(function(j){
+    if(!j.ok){toast('Erro.',false);return;}
+    var ord={'urgente':0,'alerta':1,'repor':2};
+    var nok=j.itens.filter(function(i){return !String(i.nivel).toLowerCase().includes('ok')&&!String(i.nivel).includes('mínimo');})
+      .sort(function(a,b){return (ord[_ns(a.nivel)]||3)-(ord[_ns(b.nivel)]||3);});
+    if(!nok.length){mostrar('Nenhum item precisa ser reposto!');toast('Tudo em dia!');return;}
+    var txt='LISTA DE COMPRAS\n'+'─'.repeat(28)+'\n',nAt='';
+    nok.forEach(function(i){
+      if(i.nivel!==nAt){txt+='\n'+i.nivel+':\n';nAt=i.nivel;}
+      var f=Math.max(0,(Number(i.minimo)||0)-(Number(i.atual)||0));
+      txt+='  • '+i.nome+' — faltam '+f+' '+(i.unidade||'');
+      if(i.fornecedor)txt+=' | '+i.fornecedor;
       txt+='\n';
     });
-    mostrar(txt); toast('✓ Lista gerada!');
-  } catch(e) { toast('Erro.',false); }
+    mostrar(txt);toast('Lista gerada!');
+  }).catch(function(){toast('Erro.',false);});
 }
-async function statusEstoque() {
+function statusEstoque(){
   toast('Verificando...');
-  try {
-    const j = await req('consumiveis-listar');
-    if (!j.ok) { toast('Erro.',false); return; }
-    const cats={};
-    j.itens.forEach(i=>{if(!cats[i.categoria])cats[i.categoria]={ok:0,repor:0,alerta:0,urgente:0};const k=String(i.nivel).includes('OK')?'ok':String(i.nivel).includes('Repor')?'repor':String(i.nivel).includes('Alerta')?'alerta':'urgente';cats[i.categoria][k]++;});
-    let txt='📊 STATUS DO ESTOQUE\n'+'─'.repeat(28)+'\n';
-    Object.entries(cats).forEach(([cat,c])=>{txt+=`\n${cat}:\n`;if(c.urgente)txt+=`  🚨 Urgente: ${c.urgente}\n`;if(c.alerta)txt+=`  🔴 Alerta:  ${c.alerta}\n`;if(c.repor)txt+=`  ⚠️  Repor:   ${c.repor}\n`;if(c.ok)txt+=`  ✅ OK:       ${c.ok}\n`;});
-    mostrar(txt); toast('✓ Verificado!');
-  } catch(e) { toast('Erro.',false); }
-}
-
-// ── DATAS ─────────────────────────────────────────────────
-async function datasMes() {
-  toast('Carregando...');
-  try {
-    const j = await req('datas-mes');
-    if (!j.ok) { toast('Erro.',false); return; }
-    const nomeMes=new Date().toLocaleString('pt-BR',{month:'long',year:'numeric'});
-    let txt=`📅 ${nomeMes.toUpperCase()}\n`+'─'.repeat(28)+'\n';
-    if(j.obrigacoes?.length){txt+='\n⚠️ OBRIGAÇÕES:\n';j.obrigacoes.forEach(o=>txt+=`  • ${o.data} — ${o.nome}\n`);}else txt+='\n⚠️ Sem obrigações este mês.\n';
-    if(j.aniversariantes?.length){txt+='\n🎂 ANIVERSARIANTES:\n';j.aniversariantes.forEach(a=>txt+=`  • ${a.data} — ${a.nome}\n`);}else txt+='\n🎂 Sem aniversariantes este mês.\n';
-    if(j.festas?.length){txt+='\n🥁 FESTAS:\n';j.festas.forEach(f=>txt+=`  • ${f.data} — ${f.entidade}${f.saudacao?' · '+f.saudacao:''}\n`);}
-    mostrar(txt); toast('✓ Carregado!');
-  } catch(e) { toast('Erro.',false); }
-}
-async function obrigacoes() {
-  const dias=parseInt(document.getElementById('prazo').value)||180;
-  toast('Verificando...');
-  try {
-    const j=await req('filhos-listar');
+  req('consumiveis-listar').then(function(j){
     if(!j.ok){toast('Erro.',false);return;}
-    const hoje=new Date(),lim=new Date(hoje);lim.setDate(lim.getDate()+dias);
-    const prox=j.itens.filter(i=>{
-      if(!i.proximaObrigacao||i.proximaObrigacao==='—')return false;
-      try{const p=i.proximaObrigacao.split('/');const d=new Date(parseInt(p[2]||new Date().getFullYear()),parseInt(p[1])-1,parseInt(p[0]));return d>=hoje&&d<=lim;}catch(e){return false;}
+    var cats={};
+    j.itens.forEach(function(i){if(!cats[i.categoria])cats[i.categoria]={ok:0,repor:0,alerta:0,urgente:0};cats[i.categoria][_ns(i.nivel)]++;});
+    var txt='STATUS DO ESTOQUE\n'+'─'.repeat(28)+'\n';
+    Object.entries(cats).forEach(function(e){var c=e[1];txt+='\n'+e[0]+':\n';if(c.urgente)txt+='  Urgente: '+c.urgente+'\n';if(c.alerta)txt+='  Alerta:  '+c.alerta+'\n';if(c.repor)txt+='  Repor:   '+c.repor+'\n';if(c.ok)txt+='  OK:       '+c.ok+'\n';});
+    mostrar(txt);toast('Verificado!');
+  }).catch(function(){toast('Erro.',false);});
+}
+function _ns(n){var nl=(n||'').toLowerCase();if(nl.includes('urgente')||nl.includes('zero'))return'urgente';if(nl.includes('alerta'))return'alerta';if(nl.includes('repor'))return'repor';return'ok';}
+
+// DATAS
+function datasMes(){
+  toast('Carregando...');
+  req('datas-mes').then(function(j){
+    if(!j.ok){toast('Erro.',false);return;}
+    var nomeMes=new Date().toLocaleString('pt-BR',{month:'long',year:'numeric'});
+    var txt=nomeMes.toUpperCase()+'\n'+'─'.repeat(28)+'\n';
+    if(j.obrigacoes&&j.obrigacoes.length){txt+='\nOBRIGAÇÕES:\n';j.obrigacoes.forEach(function(o){txt+='  • '+o.data+' — '+(o.nome||'Filho de Santo')+'\n';});}else txt+='\nSem obrigações este mês.\n';
+    if(j.aniversariantes&&j.aniversariantes.length){txt+='\nANIVERSARIANTES:\n';j.aniversariantes.forEach(function(a){txt+='  • '+a.data+' — '+(a.nome||'Filho de '+a.orixa)+'\n';});}else txt+='\nSem aniversariantes este mês.\n';
+    if(j.festas&&j.festas.length){txt+='\nFESTAS:\n';j.festas.forEach(function(f){txt+='  • '+f.data+' — '+f.entidade+(f.saudacao?' · '+f.saudacao:'')+'\n';});}
+    mostrar(txt);toast('Carregado!');
+  }).catch(function(){toast('Erro.',false);});
+}
+function obrigacoes(){
+  var dias=parseInt(document.getElementById('prazo').value)||180;
+  toast('Verificando...');
+  req('filhos-listar').then(function(j){
+    if(!j.ok){toast('Erro.',false);return;}
+    var hoje=new Date(),lim=new Date(hoje);lim.setDate(lim.getDate()+dias);
+    var prox=j.itens.filter(function(i){
+      if(!i.proximaObrigacao||i.proximaObrigacao==='--')return false;
+      try{var p=i.proximaObrigacao.split('/');var d=new Date(parseInt(p[2]||new Date().getFullYear()),parseInt(p[1])-1,parseInt(p[0]));return d>=hoje&&d<=lim;}catch(e){return false;}
     });
-    let txt=`⚠️ OBRIGAÇÕES — ${dias} DIAS\n`+'─'.repeat(28)+'\n';
+    var txt='OBRIGAÇÕES — '+dias+' DIAS\n'+'─'.repeat(28)+'\n';
     if(!prox.length)txt+='\nNenhuma obrigação neste período.';
-    else prox.forEach(i=>txt+=`  • ${i.proximaObrigacao} — Filho de ${i.orixa||'—'} (${i.statusTerreiro||'Ativo'})\n`);
-    mostrar(txt); toast(prox.length?`✓ ${prox.length} encontrada(s).`:'Nenhuma.');
-  } catch(e) { toast('Erro.',false); }
+    else prox.forEach(function(i){txt+='  • '+i.proximaObrigacao+' — Filho de '+(i.orixa||'—')+' ('+( i.statusTerreiro||'Ativo')+')\n';});
+    mostrar(txt);toast(prox.length?prox.length+' encontrada(s).':'Nenhuma.');
+  }).catch(function(){toast('Erro.',false);});
 }
 
-// ── MAILING ───────────────────────────────────────────────
-async function carregarMailing() {
-  try {
-    const j=await req('filhos-listar');
+// MAILING
+function carregarMailing(){
+  req('filhos-listar').then(function(j){
     if(!j.ok){document.getElementById('mailing-lista').innerHTML='<div style="font-size:12px;color:#f08080">Erro ao carregar.</div>';return;}
-    const ativos=j.itens.filter(i=>i.statusTerreiro!=='Inativo'&&i.statusTerreiro!=='Suspenso');
-    if(!ativos.length){document.getElementById('mailing-lista').innerHTML='<div style="font-size:12px;color:var(--cinza);text-align:center;padding:10px">Nenhum membro ativo cadastrado ainda.</div>';return;}
-    document.getElementById('mailing-lista').innerHTML=`
-      <div style="font-size:11px;color:var(--cinza);margin-bottom:8px">
-        ${ativos.length} membro(s) ativo(s). Contatos na
-        <a href="https://docs.google.com/spreadsheets/d/1zzP0TgsT85omd2MyIGLU-B2ONRMwI6aQkgQO4DroIFc/edit" target="_blank" style="color:var(--ouro)">planilha → Filhos de Santo → coluna Contato</a>.
-      </div>
-      <div style="display:flex;flex-direction:column;gap:7px">
-        ${ativos.map(i=>`<div style="background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:10px 13px;display:flex;align-items:center;justify-content:space-between;gap:10px">
-          <div><div style="font-size:13px;font-weight:500">✦ Filho de ${i.orixa||'—'}</div><div style="font-size:10px;color:var(--cinza)">${i.statusTerreiro||'Ativo'}${i.nacao?' · '+i.nacao:''}</div></div>
-          <span style="font-size:10px;color:var(--cinza)">Ver planilha</span>
-        </div>`).join('')}
-      </div>`;
-  } catch(e) {}
+    var ativos=j.itens.filter(function(i){return i.statusTerreiro!=='Inativo'&&i.statusTerreiro!=='Suspenso';});
+    document.getElementById('mailing-lista').innerHTML='<div style="font-size:11px;color:var(--cinza);margin-top:6px">'+ativos.length+' membro(s) ativo(s). Contatos na <a href="https://docs.google.com/spreadsheets/d/1zzP0TgsT85omd2MyIGLU-B2ONRMwI6aQkgQO4DroIFc/edit" target="_blank" style="color:var(--ouro)">planilha &#8594; Filhos de Santo &#8594; coluna Contato</a>.</div>';
+  }).catch(function(){});
 }
 function copiarMsg(){
-  const msg=document.getElementById('msg-convite').value;
-  navigator.clipboard.writeText(msg).then(()=>toast('✓ Mensagem copiada!')).catch(()=>{const ta=document.createElement('textarea');ta.value=msg;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('✓ Mensagem copiada!');});
+  var msg=document.getElementById('msg-convite').value;
+  navigator.clipboard.writeText(msg).then(function(){toast('Mensagem copiada!');}).catch(function(){var ta=document.createElement('textarea');ta.value=msg;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Mensagem copiada!');});
 }
 
-// ── ADMINS ────────────────────────────────────────────────
-async function listarAdmins() {
+// ADMINS
+function listarAdmins(){
   toast('Carregando...');
-  try {
-    const j=await req('admins-listar');
+  req('admins-listar').then(function(j){
     if(!j.ok){toast(j.erro||'Erro.',false);return;}
-    document.getElementById('admins-lista').innerHTML=`
-      <div class="admin-lista" style="margin-top:10px">${j.admins.map(a=>`
-        <div class="adm-item">
-          <div class="adm-item-top">
-            <div>
-              <div class="adm-nome">${a.nome}</div>
-              <div class="adm-email">${a.email}</div>
-              <div class="adm-nivel">${a.nivel} · Último acesso: ${a.ultimoAcesso||'—'}</div>
-            </div>
-            <div class="adm-acoes">
-              ${a.bloqueado?`<span class="badge-bloq">Bloqueado</span><button class="btn-liberar" onclick="desbloquear('${a.email}')">Liberar</button>`:''}
-            </div>
-          </div>
-          <div class="adm-perms">${a.permissoes.join(' · ')||'Sem permissões'}</div>
-        </div>`).join('')}
-      </div>`;
-    toast('✓ Carregado!');
-  } catch(e) { toast('Erro.',false); }
+    document.getElementById('admins-lista').innerHTML=j.admins.map(function(a){
+      return '<div class="adm-item">'+'<div class="adm-nome">'+a.nome+'</div>'+'<div class="adm-email">'+a.email+'</div>'+'<div class="adm-nivel">'+a.nivel+' · Último acesso: '+(a.ultimoAcesso||'—')+'</div>'+'<div class="adm-perms">'+(a.permissoes.join(' · ')||'Sem permissões')+'</div>'+(a.bloqueado?'<div class="adm-acoes"><span class="badge-bloq">Bloqueado até '+a.bloqAte+'</span><button class="btn-liberar" onclick="desbloquear(\''+a.email+'\')">Liberar</button></div>':'')+'</div>';
+    }).join('');
+    toast('Carregado!');
+  }).catch(function(){toast('Erro.',false);});
 }
-async function desbloquear(email) {
+function desbloquear(email){
   toast('Desbloqueando...');
-  try {
-    const j=await post({acao:'admin-desbloquear',email});
-    if(j.ok){toast('✓ Desbloqueado!');listarAdmins();}else toast(j.erro||'Erro.',false);
-  } catch(e) { toast('Erro.',false); }
+  post({acao:'admin-desbloquear',email:email}).then(function(j){
+    if(j.ok){toast('Desbloqueado!');listarAdmins();}else toast(j.erro||'Erro.',false);
+  }).catch(function(){toast('Erro.',false);});
 }
-function toggleNovoAdmin(){const f=document.getElementById('novo-admin-form');f.style.display=f.style.display==='block'?'none':'block';}
-function toggleSenha(){const f=document.getElementById('senha-form');f.style.display=f.style.display==='block'?'none':'block';}
-async function criarAdmin(){
-  const nome  =document.getElementById('na-nome').value.trim();
-  const email =document.getElementById('na-email').value.trim();
-  const senha =document.getElementById('na-senha').value.trim();
-  const nivel =document.getElementById('na-nivel').value.trim();
-  const perms =[...document.querySelectorAll('#perms-grid input:checked')].map(cb=>cb.value);
-  const err   =document.getElementById('na-err');
+function toggleNovoAdmin(){var f=document.getElementById('novo-form');f.style.display=f.style.display==='block'?'none':'block';}
+function toggleSenha(){var f=document.getElementById('senha-form');f.style.display=f.style.display==='block'?'none':'block';}
+
+function criarAdmin(){
+  var nome=document.getElementById('na-nome').value.trim();
+  var email=document.getElementById('na-email').value.trim();
+  var senha=document.getElementById('na-senha').value.trim();
+  var nivel=document.getElementById('na-nivel').value.trim();
+  var perms=[].slice.call(document.querySelectorAll('.perms-grid input:checked')).map(function(cb){return cb.value;});
+  var err=document.getElementById('na-err');
   if(!nome){err.textContent='Informe o nome.';return;}
   if(!email.includes('@')){err.textContent='E-mail inválido.';return;}
   if(senha.length<6){err.textContent='Senha muito curta (mín. 6 caracteres).';return;}
   err.textContent='Criando...';
-  try{
-    const j=await post({acao:'admin-criar',nome,email,senha,nivel,permissoes:perms});
-    if(j.ok){toast('✓ Admin criado!');toggleNovoAdmin();err.textContent='';document.querySelectorAll('#perms-grid input').forEach(cb=>cb.checked=false);['na-nome','na-email','na-senha','na-nivel'].forEach(id=>document.getElementById(id).value='');listarAdmins();}
+  post({acao:'admin-criar',nome:nome,email:email,senha:senha,nivel:nivel,permissoes:perms}).then(function(j){
+    if(j.ok){toast('Admin criado!');toggleNovoAdmin();err.textContent='';document.querySelectorAll('.perms-grid input').forEach(function(cb){cb.checked=false;});['na-nome','na-email','na-senha','na-nivel'].forEach(function(id){document.getElementById(id).value='';});listarAdmins();}
     else err.textContent=j.erro||'Erro.';
-  }catch(e){err.textContent='Erro de conexão.';}
+  }).catch(function(){err.textContent='Erro de conexão.';});
 }
-async function trocarSenha(){
-  const atual=document.getElementById('s-atual').value;
-  const nova =document.getElementById('s-nova').value;
-  const conf =document.getElementById('s-conf').value;
-  const err  =document.getElementById('s-err');
+
+function trocarSenha(){
+  var atual=document.getElementById('s-atual').value;
+  var nova=document.getElementById('s-nova').value;
+  var conf=document.getElementById('s-conf').value;
+  var err=document.getElementById('s-err');
   if(!atual||!nova||!conf){err.textContent='Preencha todos os campos.';return;}
   if(nova!==conf){err.textContent='As senhas novas não coincidem.';return;}
   if(nova.length<6){err.textContent='Mín. 6 caracteres.';return;}
   err.textContent='Salvando...';
-  try{
-    const j=await post({acao:'trocar-senha',senhaAtual:atual,senhaNova:nova});
-    if(j.ok){toast('✓ Senha alterada!');toggleSenha();err.textContent='';['s-atual','s-nova','s-conf'].forEach(id=>document.getElementById(id).value='');}
+  post({acao:'trocar-senha',senhaAtual:atual,senhaNova:nova}).then(function(j){
+    if(j.ok){toast('Senha alterada!');toggleSenha();err.textContent='';['s-atual','s-nova','s-conf'].forEach(function(id){document.getElementById(id).value='';});}
     else err.textContent=j.erro||'Erro.';
-  }catch(e){err.textContent='Erro de conexão.';}
+  }).catch(function(){err.textContent='Erro de conexão.';});
 }
 </script>
 </body>
