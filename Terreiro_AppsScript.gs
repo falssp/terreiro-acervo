@@ -348,8 +348,8 @@ function _listarAcervo() {
   if (!aba) return saida({ ok: false, erro: 'Aba Acervo não encontrada.' });
   const [,...rows] = aba.getDataRange().getValues();
   return saida({ ok: true, itens: rows.filter(l=>l[0]!=='').map(l=>({
-    id:l[0],nome:l[1],categoria:l[2],subcategoria:l[3],orixa:l[4],
-    status:l[5],local:l[6],quantidade:l[7],foto:l[8],observacoes:l[9],dataCadastro:l[10]
+    id:l[0],nome:l[1],categoria:l[2],subcategoria:l[3],orixa:l[4],entidade:l[5],
+    status:l[6],local:l[7],quantidade:l[8],foto:l[9],observacoes:l[10],dataCadastro:l[11]
   }))});
 }
 function _listarConsumiveis() {
@@ -423,7 +423,7 @@ function _inserirAcervo(d){
   const aba=SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ABA_ACERVO);
   if(!aba)return saida({ok:false,erro:'Aba Acervo não encontrada.'});
   const id='ACE-'+Utilities.getUuid().substring(0,6).toUpperCase();
-  aba.appendRow([id,d.nome,d.categoria,d.subcategoria||'',d.orixa||'',d.status||'Disponível',d.local||'',Number(d.quantidade)||1,d.foto||'',d.observacoes||'',_dataFormatada()]);
+  aba.appendRow([id,d.nome,d.categoria,d.subcategoria||'',d.orixa||'',d.entidade||'',d.status||'Disponível',d.local||'',Number(d.quantidade)||1,d.foto||'',d.observacoes||'',_dataFormatada()]);
   return saida({ok:true,id});
 }
 function _atualizarConsumivel(d){
@@ -489,11 +489,13 @@ function _excluirPadrao(ss){['Página1','Planilha1','Plan1','Sheet1'].forEach(n=
 
 function _criarAcervo(ss){
   const aba=_novaAba(ss,ABA_ACERVO);
-  _cabecalho(aba,['ID','Nome','Categoria','Subcategoria','Orixá / Entidade','Status','Localização / Armário','Qtd','Foto (URL)','Observações','Data cadastro'],'#2c1a10','#f0d090');
+  _cabecalho(aba,['ID','Nome','Categoria','Subcategoria','Orixá de Cabeça','Entidade / Linha','Status','Localização / Armário','Qtd','Foto (URL)','Observações','Data cadastro'],'#2c1a10','#f0d090');
   _validacao(aba,'C2:C200',['Alimentos e Oferendas','Ervas e Plantas','Ferramentas e Objetos Rituais','Roupas e Indumentárias','Outro']);
-  _validacao(aba,'F2:F200',['Danificado','Disponível','Em uso','Necessita reposição','N/A']);
-  _formatCond(aba,'F2:F200',[{v:'Disponível',bg:'#e6f4ea',f:'#1e6b3a'},{v:'Em uso',bg:'#e8f0fe',f:'#1a56a0'},{v:'Danificado',bg:'#fef3e2',f:'#7a3800'},{v:'Necessita reposição',bg:'#fdecea',f:'#8b0000'}]);
-  aba.getRange(1,1,2,11).createFilter();
+  _validacao(aba,'E2:E200',['Iansã','Iemanjá','Logun Edé','Nanã','Obá','Obaluaê / Omolu','Ogum','Oxaguiã / Oxalufã','Oxalá','Oxossi','Oxum','Oxumaré','Xangô','Outro']);
+  _validacao(aba,'F2:F200',['Baiano / Baiana','Boiadeiro / Boiadeira','Caboclo / Cabocla','Cigano / Cigana','Criança / Erê','Exu','Marinheiro / Marinheira','Ogum Beira-Mar','Pomba-Gira','Preto-Velho / Preta-Velha','Zé Pilintra','Outro']);
+  _validacao(aba,'G2:G200',['Danificado','Disponível','Em uso','Necessita reposição','N/A']);
+  _formatCond(aba,'G2:G200',[{v:'Disponível',bg:'#e6f4ea',f:'#1e6b3a'},{v:'Em uso',bg:'#e8f0fe',f:'#1a56a0'},{v:'Danificado',bg:'#fef3e2',f:'#7a3800'},{v:'Necessita reposição',bg:'#fdecea',f:'#8b0000'}]);
+  aba.getRange(1,1,2,12).createFilter();
 }
 function _criarConsumiveis(ss){
   const aba=_novaAba(ss,ABA_CONSUMIVEIS);
@@ -507,7 +509,7 @@ function _criarConsumiveis(ss){
 }
 function _criarFilhos(ss){
   const aba=_novaAba(ss,ABA_FILHOS);
-  _cabecalho(aba,['ID','Nome de Candomblé','Nome Social','Contato','Data de Aniversário','Data de Feitura','Orixá de Cabeça','Adjuntó / Juntó','Nação','Próxima Obrigação','Obrigações Realizadas','Status no Terreiro','Observações','Cadastrado em'],'#2a0a2a','#e8c8f0');
+  _cabecalho(aba,['ID','Nome de Candomblé','Nome Social','Contato','Data de Aniversário','Data de Feitura','Orixá de Cabeça','Adjuntó','Nação','Próxima Obrigação','Obrigações Realizadas','Status no Terreiro','Observações','Cadastrado em'],'#2a0a2a','#e8c8f0');
   const ox=['Iansã','Iemanjá','Logun Edé','Nanã','Obá','Obaluaê / Omolu','Ogum','Oxaguiã / Oxalufã','Oxalá','Oxossi','Oxum','Oxumaré','Xangô','Outro'];
   _validacao(aba,'G2:G200',ox);_validacao(aba,'H2:H200',ox);
   _validacao(aba,'I2:I200',['Angola','Efon','Ijexá','Jeje','Ketu','Nagô','Omolokô','Umbanda','Outra','N/A']);
