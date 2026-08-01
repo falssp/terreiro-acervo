@@ -25,14 +25,13 @@ const PERMISSOES_TODAS = ['estoque','datas','obrigacoes','financeiro','mailing',
 // ── MENU ─────────────────────────────────────────────────
 function onOpen() {
   SpreadsheetApp.getUi()
-    .createMenu('🏛️ Terreiro')
-    .addItem('⚙️ Configurar planilha (setup)', 'setup')
+    .createMenu('🏛️ Gestão do Terreiro')
+    .addItem('⚙️ Configurar planilha', 'setup')
     .addSeparator()
+    .addItem('📅 Datas do mês atual', 'verDatasMes')
+    .addItem('🛒 Lista de compras', 'gerarListaCompras')
+    .addItem('⚠️ Obrigações próximas (180 dias)', 'verObrigacoes')
     .addItem('🔄 Recalcular níveis de estoque', 'recalcularEstoque')
-    .addItem('🛒 Gerar lista de compras', 'gerarListaCompras')
-    .addSeparator()
-    .addItem('📅 Ver datas do mês atual', 'verDatasMes')
-    .addItem('⚠️ Ver obrigações próximas (180 dias)', 'verObrigacoes')
     .addToUi();
 }
 
