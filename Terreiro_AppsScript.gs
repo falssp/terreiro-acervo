@@ -1,5 +1,5 @@
 // ================================================================
-//  GESTÃO DO TERREIRO — Ile Ase Vodun Ogum Ayres — Apps Script v12
+//  GESTÃO DO TERREIRO — Ile Ase Vodun Ogum Ayres — Apps Script v13
 //  Corrigido: filtros até linha 201, colunas extras removidas,
 //  dropdown Nível em Consumíveis, Admins sem filtro
 // ================================================================
@@ -98,8 +98,13 @@ function _finalizarAba(aba, numCols, numLinhasDados) {
   if (totalCols > numCols) {
     aba.deleteColumns(numCols + 1, totalCols - numCols);
   }
+  const totalRows = aba.getMaxRows();
+  const keepRows = numLinhasDados + 1; // cabeçalho + dados
+  if (totalRows > keepRows) {
+    aba.deleteRows(keepRows + 1, totalRows - keepRows);
+  }
   // Filtro cobre cabeçalho + área de dados
-  aba.getRange(1, 1, numLinhasDados + 1, numCols).createFilter();
+  aba.getRange(1, 1, keepRows, numCols).createFilter();
 }
 
 function _novaAba(ss, nome) { return ss.insertSheet(nome); }
@@ -125,6 +130,7 @@ function _criarAdmins(ss) {
   // Remove colunas extras (8 colunas usadas)
   const totalCols = aba.getMaxColumns();
   if (totalCols > 8) aba.deleteColumns(9, totalCols - 8);
+  aba.getRange(1, 1, 1, 8).createFilter();
 }
 
 // ── AUTENTICAÇÃO ─────────────────────────────────────────
@@ -247,7 +253,7 @@ function doGet(e) {
     const tem = perm => sessao.permissoes.includes(perm);
     if (acao === 'financeiro-resumo') { if (!tem('financeiro')) return saida({ ok: false, erro: 'Sem permissão.', code: 403 }); return _resumoFinanceiro(); }
     if (acao === 'admins-listar')     { if (!tem('configuracoes')) return saida({ ok: false, erro: 'Sem permissão.', code: 403 }); return _listarAdmins(); }
-    return saida({ ok: true, msg: 'Gestão do Terreiro — Ile Ase Vodun Ogum Ayres — v12' });
+    return saida({ ok: true, msg: 'Gestão do Terreiro — Ile Ase Vodun Ogum Ayres — v13' });
   } catch(err) { return saida({ ok: false, erro: err.message }); }
 }
 
