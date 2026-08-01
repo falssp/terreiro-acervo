@@ -491,15 +491,15 @@ function _excluirPadrao(ss){['Página1','Planilha1','Plan1','Sheet1'].forEach(n=
 function _criarAcervo(ss){
   const aba=_novaAba(ss,ABA_ACERVO);
   _cabecalho(aba,['ID','Nome','Categoria','Subcategoria','Orixá / Entidade','Status','Localização / Armário','Qtd','Foto (URL)','Observações','Data cadastro'],'#2c1a10','#f0d090');
-  _validacao(aba,'C2:C200',['Alimentos e oferendas','Ervas e plantas','Ferramentas e objetos rituais','Roupas e indumentárias']);
-  _validacao(aba,'F2:F200',['Danificado','Disponível','Em uso','Necessita reposição']);
+  _validacao(aba,'C2:C200',['Alimentos e Oferendas','Ervas e Plantas','Ferramentas e Objetos Rituais','Roupas e Indumentárias','Outro']);
+  _validacao(aba,'F2:F200',['Danificado','Disponível','Em uso','Necessita reposição','N/A']);
   _formatCond(aba,'F2:F200',[{v:'Disponível',bg:'#e6f4ea',f:'#1e6b3a'},{v:'Em uso',bg:'#e8f0fe',f:'#1a56a0'},{v:'Danificado',bg:'#fef3e2',f:'#7a3800'},{v:'Necessita reposição',bg:'#fdecea',f:'#8b0000'}]);
   aba.getRange(1,1,2,11).createFilter();
 }
 function _criarConsumiveis(ss){
   const aba=_novaAba(ss,ABA_CONSUMIVEIS);
   _cabecalho(aba,['ID','Categoria','Item','Unidade','Qtd Atual','Qtd Mínima','% Estoque','Nível','Fornecedor','Preço Unit.','Qtd/Pac','Preço Pacote','Link Compra','Atualizado em'],'#1a1a3a','#c8d8f0');
-  _validacao(aba,'B2:B200',['Alimentos','Bebidas','Ervas e Defumação','Flores e Naturais','Fumo','Velas']);
+  _validacao(aba,'B2:B200',['Alimentos','Bebidas','Ervas e Defumação','Flores e Naturais','Fumo','Velas','Outro']);
   _formatCond(aba,'H2:H200',[{v:'✅ OK',bg:'#e6f4ea',f:'#1e6b3a'},{v:'⚠️ Repor',bg:'#fef9e7',f:'#7d5c00'},{v:'🔴 Alerta',bg:'#fdecea',f:'#8b0000'},{v:'🚨 Urgente / Zero',bg:'#f5c6cb',f:'#5c0000'}]);
   const dt=_dataFormatada();
   [['Velas','Vela 7 dias branca','unidade',0,10],['Velas','Vela 7 dias vermelha','unidade',0,6],['Velas','Vela 7 dias amarela','unidade',0,6],['Velas','Vela 7 dias azul','unidade',0,6],['Velas','Vela 7 dias verde','unidade',0,6],['Velas','Vela 7 dias preta','unidade',0,4],['Velas','Vela votiva branca','pacote',0,2],['Velas','Vela taça branca','unidade',0,6],['Bebidas','Cachaça','garrafa',0,3],['Bebidas','Cerveja preta','unidade',0,6],['Bebidas','Vinho tinto seco','garrafa',0,2],['Bebidas','Mel','pote',0,2],['Bebidas','Azeite de dendê','garrafa',0,1],['Bebidas','Água mineral','garrafa',0,6],['Fumo','Cigarro (maço)','maço',0,3],['Fumo','Charuto','unidade',0,4],['Fumo','Cigarrilha','unidade',0,6],['Fumo','Cachimbo (tabaco)','pacote',0,1],['Ervas e Defumação','Incenso (caixinha)','caixa',0,3],['Ervas e Defumação','Pemba branca','unidade',0,4],['Ervas e Defumação','Pemba colorida','unidade',0,4],['Ervas e Defumação','Ervas para banho (mix)','maço',0,3],['Ervas e Defumação','Erva para defumação','maço',0,2],['Alimentos','Farofa','kg',0,1],['Alimentos','Pipoca','pacote',0,2],['Alimentos','Milho de pipoca','kg',0,1],['Alimentos','Azeite de oliva','garrafa',0,1],['Alimentos','Amendoim','pacote',0,2],['Alimentos','Inhame','unidade',0,4],['Flores e Naturais','Rosas brancas','dúzia',0,1],['Flores e Naturais','Girassol','unidade',0,6],['Flores e Naturais','Flores mistas','buquê',0,1],['Flores e Naturais','Folhas de bananeira','folha',0,4]]
@@ -509,10 +509,10 @@ function _criarConsumiveis(ss){
 function _criarFilhos(ss){
   const aba=_novaAba(ss,ABA_FILHOS);
   _cabecalho(aba,['ID','Nome de Candomblé','Nome Social','Contato','Data de Aniversário','Data de Feitura','Orixá de Cabeça','Adjuntó / Juntó','Nação','Próxima Obrigação','Obrigações Realizadas','Status no Terreiro','Observações','Cadastrado em'],'#2a0a2a','#e8c8f0');
-  const ox=['Exu','Ogum','Oxossi','Xangô','Oxum','Iemanjá','Oxalá','Iansã','Obá','Nanã','Obaluaê / Omolu','Oxumaré','Preto-Velho','Caboclo','Outro'];
+  const ox=['Iansã','Iemanjá','Logun Edé','Nanã','Obá','Obaluaê / Omolu','Ogum','Oxaguiã / Oxalufã','Oxalá','Oxossi','Oxum','Oxumaré','Xangô','Outro'];
   _validacao(aba,'G2:G200',ox);_validacao(aba,'H2:H200',ox);
-  _validacao(aba,'I2:I200',['Angola','Efon','Ijexá','Jeje','Ketu','Nagô','Omolokô','Outra','Umbanda']);
-  _validacao(aba,'L2:L200',['Abiã','Ativo','Ebomi','Iaô','Inativo','Ogã / Ekedi','Suspenso']);
+  _validacao(aba,'I2:I200',['Angola','Efon','Ijexá','Jeje','Ketu','Nagô','Omolokô','Umbanda','Outra','N/A']);
+  _validacao(aba,'L2:L200',['Abiã','Ativo','Ebomi','Iaô','Inativo','N/A','Ogã / Ekedi','Suspenso']);
   aba.getRange('E2:F200').setNumberFormat('dd/MM/yyyy');
   aba.getRange('J2:J200').setNumberFormat('dd/MM/yyyy');
   _formatCond(aba,'L2:L200',[{v:'Ativo',bg:'#e6f4ea',f:'#1e6b3a'},{v:'Ebomi',bg:'#e8f0fe',f:'#1a56a0'},{v:'Suspenso',bg:'#fdecea',f:'#8b0000'},{v:'Inativo',bg:'#f5f5f5',f:'#666'},{v:'Abiã',bg:'#fff9e6',f:'#7d5c00'},{v:'Iaô',bg:'#f0e6ff',f:'#4a0080'}]);
@@ -532,7 +532,7 @@ function _criarFinanceiro(ss){
   aba.getRange('B2:B200').setNumberFormat('dd/MM/yyyy');
   aba.getRange('F2:F200').setNumberFormat('R$ #,##0.00');
   _validacao(aba,'C2:C200',['Entrada','Saída']);
-  _validacao(aba,'D2:D200',['Consumíveis','Dízimo / Doação','Evento / Gira','Indumentária / Acervo','Manutenção','Outros (entrada)','Outros (saída)','Ritual / Oferenda','Venda']);
+  _validacao(aba,'D2:D200',['Consumíveis','Dízimo / Doação','Evento / Gira','Indumentária / Acervo','Manutenção','Ritual / Oferenda','Venda','Outros']);
   _formatCond(aba,'C2:C200',[{v:'Entrada',bg:'#e6f4ea',f:'#1e6b3a'},{v:'Saída',bg:'#fdecea',f:'#8b0000'}]);
   aba.getRange(1,1,2,9).createFilter();
 }
