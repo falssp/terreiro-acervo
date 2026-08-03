@@ -15,7 +15,7 @@
   --fd:'Cinzel',serif;--fb:'Inter',sans-serif;
   --bottom:64px;
 }
-html,body{height:100%;overflow:hidden}
+html{height:100%}body{height:100%;overflow:hidden}
 body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;flex-direction:column}
 
 .topo{background:linear-gradient(135deg,#1a0e06,#0a0a0a);border-bottom:1px solid var(--borda);padding:12px 16px 8px;text-align:center;flex-shrink:0}
@@ -30,7 +30,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
 @keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .skel-num{height:1.3rem;width:60px;margin:0 auto 3px}
 
-.page{display:none;padding:14px 14px 0}
+.page{display:none;padding:14px 14px calc(var(--bottom)+50px)}
 .page.active{display:block}
 
 /* INÍCIO */
