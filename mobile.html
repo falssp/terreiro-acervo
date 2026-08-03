@@ -311,6 +311,12 @@ function toast(msg,ok){var t=document.getElementById('toast');t.textContent=msg;
 function fmtBRL(v){return'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2});}
 function fmtData(s){if(!s||s==='—')return'—';try{if(String(s).includes('/'))return s;return new Date(s).toLocaleDateString('pt-BR');}catch(e){return s;}}
 function _fillNum(id,val){var el=document.getElementById(id);if(!el)return;el.classList.remove('skeleton','skel-num');el.textContent=val;}
+function fmtFesta(d){
+  if(!d)return'';
+  if(typeof d==='string'&&d.includes('/')&&d.length<=5)return d;
+  try{var dt=new Date(d);if(!isNaN(dt))return String(dt.getDate()).padStart(2,'0')+'/'+(String(dt.getMonth()+1).padStart(2,'0'));}catch(e){}
+  return d;
+}
 function nslug(n){var nl=(NIVEL_SLUG[n]||n||'').toLowerCase();if(nl.includes('urgente')||nl.includes('zero'))return'urgente';if(nl.includes('alerta'))return'alerta';if(nl.includes('repor'))return'repor';return'ok';}
 
 function navTo(id,el){
@@ -459,10 +465,19 @@ function renderEntidades(){
   var f=entidades.filter(function(i){return!busca||(i.entidade||'').toLowerCase().includes(busca)||(i.nacao||'').toLowerCase().includes(busca);});
   document.getElementById('ent-count').textContent=f.length+' registro(s)';
   if(!f.length){document.getElementById('ent-lista').innerHTML='<div class="empty">Nenhum resultado.</div>';return;}
-  var orixa_list=f.filter(function(i){return i.nacao!=='Umbanda';});
-  var ent_list=f.filter(function(i){return i.nacao==='Umbanda';});
+  var ENT_NAMES=['Exu','Exu / Pombagira','Pombagira'];
+  var ent_list=f.filter(function(i){return i.nacao==='Umbanda'||ENT_NAMES.includes(i.entidade);});
+  var orixa_list=f.filter(function(i){return i.nacao!=='Umbanda'&&!ENT_NAMES.includes(i.entidade);});
+  function fmtFesta(d){
+    if(!d||d==='')return'';
+    if(String(d).includes('T')||String(d).includes('-')){
+      try{var dt=new Date(d);return String(dt.getDate()).padStart(2,'0')+'/'+(String(dt.getMonth()+1).padStart(2,'0'));}catch(e){return'';}
+    }
+    return String(d);
+  }
   function renderCard(i){
-    return'<div class="ent-card"><div class="ent-nome">'+(i.entidade||'—')+'</div><div class="ent-nacao">'+(i.nacao||'')+(i.diaSemana?' · '+i.diaSemana:'')+(i.dataFesta?'<span style="margin-left:6px;font-size:10px;color:var(--ouro)">Festa: '+i.dataFesta+'</span>':'')+'</div>'+
+    var festa=fmtFesta(i.dataFesta);
+    return'<div class="ent-card"><div class="ent-nome">'+(i.entidade||'—')+'</div><div class="ent-nacao">'+(i.nacao||'')+(i.diaSemana?' · '+i.diaSemana:'')+(festa?'<span style="margin-left:6px;font-size:10px;color:var(--ouro)">Festa: '+festa+'</span>':'')+'</div>'+
     (i.cores?'<div class="ent-row"><span class="ent-rot">Cores</span><span>'+i.cores+'</span></div>':'')+
     (i.oferendas?'<div class="ent-row"><span class="ent-rot">Oferendas</span><span>'+i.oferendas+'</span></div>':'')+
     (i.bebidas?'<div class="ent-row"><span class="ent-rot">Bebidas</span><span>'+i.bebidas+'</span></div>':'')+

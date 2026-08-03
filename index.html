@@ -349,6 +349,14 @@ function atualizarSubcat(){
   sel.innerHTML='<option value="">--</option>';
   (SUBCATS[cat]||[]).forEach(function(s){var o=document.createElement('option');o.textContent=s;sel.appendChild(o);});
 }
+function fmtFesta(d){
+  if(!d)return'';
+  // Se já é dd/MM retorna direto
+  if(typeof d==='string'&&d.includes('/')&&d.length<=5)return d;
+  // Se é timestamp ISO ou Date
+  try{var dt=new Date(d);if(!isNaN(dt))return String(dt.getDate()).padStart(2,'0')+'/'+(String(dt.getMonth()+1).padStart(2,'0'));}catch(e){}
+  return d;
+}
 function nslug(n){
   var nl=(n||'').toLowerCase();
   if(nl.includes('urgente')||nl.includes('zero'))return'urgente';
@@ -490,10 +498,20 @@ function renderEntidades(){
   if(!f.length){document.getElementById('ent-lista').innerHTML='<div class="empty">Nenhum resultado.</div>';return;}
   // Separar orixás (Ketu/Angola/Jeje/etc) de entidades de Umbanda
   var UMBANDA=['Umbanda'];
-  var orixa_list=f.filter(function(i){return!UMBANDA.includes(i.nacao);});
-  var ent_list=f.filter(function(i){return UMBANDA.includes(i.nacao);});
+  var ENT_NAMES=['Exu','Exu / Pombagira','Pombagira'];
+  var ent_list=f.filter(function(i){return UMBANDA.includes(i.nacao)||ENT_NAMES.includes(i.entidade);});
+  var orixa_list=f.filter(function(i){return !UMBANDA.includes(i.nacao)&&!ENT_NAMES.includes(i.entidade);});
+  function fmtFesta(d){
+    if(!d||d==='')return'';
+    // Se vier como ISO (ex: 2026-04-23T...) converte para dd/MM
+    if(String(d).includes('T')||String(d).includes('-')){
+      try{var dt=new Date(d);return String(dt.getDate()).padStart(2,'0')+'/'+(String(dt.getMonth()+1).padStart(2,'0'));}catch(e){return'';}
+    }
+    return String(d); // já está no formato dd/MM
+  }
   function renderCard(i){
-    return'<div class="ent-card">'+'<div class="ent-nome">'+(i.entidade||'--')+'</div>'+'<div class="ent-nacao">'+(i.nacao||'')+(i.diaSemana?' · '+i.diaSemana:'')+(i.dataFesta?'<span style="margin-left:6px;font-size:10px;color:var(--ouro)">Festa: '+i.dataFesta+'</span>':'')+'</div>'+
+    var festa=fmtFesta(i.dataFesta);
+    return'<div class="ent-card">'+'<div class="ent-nome">'+(i.entidade||'--')+'</div>'+'<div class="ent-nacao">'+(i.nacao||'')+(i.diaSemana?' · '+i.diaSemana:'')+(festa?'<span style="margin-left:6px;font-size:10px;color:var(--ouro)">Festa: '+festa+'</span>':'')+'</div>'+
     (i.cores?'<div class="ent-row"><span class="ent-rot">Cores</span><span>'+i.cores+'</span></div>':'')+
     (i.oferendas?'<div class="ent-row"><span class="ent-rot">Oferendas</span><span>'+i.oferendas+'</span></div>':'')+
     (i.bebidas?'<div class="ent-row"><span class="ent-rot">Bebidas</span><span>'+i.bebidas+'</span></div>':'')+
