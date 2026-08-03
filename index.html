@@ -210,7 +210,7 @@ nav::-webkit-scrollbar{display:none}
 <div class="section" id="sec-cadastro">
   <div class="cad-grid" id="cad-cards">
     <div class="cad-card" onclick="abrirForm('acervo')"><div class="cad-ic">&#128230;</div><div class="cad-lb">Novo Item do Acervo</div><div class="cad-dc">Roupas, ferramentas e objetos rituais</div></div>
-    <div class="cad-card" onclick="abrirForm('consumivel')"><div class="cad-ic">&#128305;</div><div class="cad-lb">Atualizar Consumível</div><div class="cad-dc">Estoque, fornecedor e preço</div></div>
+
     <div class="cad-card" onclick="abrirForm('ml')"><div class="cad-ic">&#128722;</div><div class="cad-lb">Buscar no Mercado Livre</div><div class="cad-dc">Pesquisar preços e preencher dados</div></div>
   </div>
 
@@ -556,7 +556,7 @@ function abrirModalCsm(id){
     ['Preço unit.',i.precoUnit?fmtBRL(i.precoUnit):'--'],
     ['Qtd por Pacote',i.qtdPacote||'--'],
     ['Atualizado em',fmtData(i.atualizado)]
-  ].map(function(p){return'<div class="modal-row"><span class="modal-rot">'+p[0]+'</span><span>'+p[1]+'</span></div>';}).join('')+(i.link?'<div style="margin-top:10px;text-align:center"><a href="'+i.link+'" target="_blank" style="color:var(--ouro);font-size:12px">Ver link de compra &#8594;</a></div>':'')+'<div style="margin-top:14px"><button onclick="editarConsumivel(\''+i.id+'\')" style="width:100%;padding:10px;border-radius:10px;background:linear-gradient(135deg,var(--ouro),#a07820);color:#0f0f0f;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:var(--fb)">&#9999;&#65039; Atualizar estoque</button></div>';
+  ].map(function(p){return'<div class="modal-row"><span class="modal-rot">'+p[0]+'</span><span>'+p[1]+'</span></div>';}).join('')+(i.link?'<div style="margin-top:10px;text-align:center"><a href="'+i.link+'" target="_blank" style="color:var(--ouro);font-size:12px">Ver link de compra &#8594;</a></div>':'');
   document.getElementById('modal-bg').classList.add('aberto');
 }
 function editarConsumivel(id){

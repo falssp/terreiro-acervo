@@ -195,7 +195,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
   <div class="page" id="page-cadastro">
     <div id="cad-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;padding-top:14px">
       <div class="cad-card" onclick="abrirForm('acervo')"><div class="cad-ic">&#128230;</div><div class="cad-lb">Novo Acervo</div><div class="cad-dc">Roupas, ferramentas, objetos</div></div>
-      <div class="cad-card" onclick="abrirForm('consumivel')"><div class="cad-ic">&#128305;</div><div class="cad-lb">Consumível</div><div class="cad-dc">Atualizar estoque</div></div>
+
       <div class="cad-card" onclick="abrirForm('ml')" style="grid-column:1/-1"><div class="cad-ic">&#128722;</div><div class="cad-lb">Mercado Livre</div><div class="cad-dc">Pesquisar preços</div></div>
     </div>
 
@@ -516,7 +516,7 @@ function abrirModalCsm(id){
     ['Preço unit.',i.precoUnit?fmtBRL(i.precoUnit):'—'],
     ['Qtd/Pacote',i.qtdPacote||'—'],
     ['Atualizado',fmtData(i.atualizado)]
-  ].map(function(p){return'<div class="modal-row"><span class="modal-rot">'+p[0]+'</span><span>'+p[1]+'</span></div>';}).join('')+(i.link?'<div style="margin-top:10px;text-align:center"><a href="'+i.link+'" target="_blank" style="color:var(--ouro);font-size:12px">&#128279; Link de compra</a></div>':'')+'<div style="margin-top:14px"><button onclick="editarConsumivel(\''+i.id+'\')" style="width:100%;padding:10px;border-radius:10px;background:linear-gradient(135deg,var(--ouro),#a07820);color:#0f0f0f;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:var(--fb)">&#9999;&#65039; Atualizar estoque</button></div>';
+  ].map(function(p){return'<div class="modal-row"><span class="modal-rot">'+p[0]+'</span><span>'+p[1]+'</span></div>';}).join('')+(i.link?'<div style="margin-top:10px;text-align:center"><a href="'+i.link+'" target="_blank" style="color:var(--ouro);font-size:12px">&#128279; Link de compra</a></div>':'');
   document.getElementById('modal-overlay').classList.add('open');
 }
 function editarConsumivel(id){
