@@ -182,11 +182,10 @@ nav::-webkit-scrollbar{display:none}
 <div class="progress-bar"><div id="prog"></div></div>
 <nav>
   <button class="tab active" onclick="irPara('home',this)">&#127968; In&iacute;cio</button>
-  <button class="tab" onclick="irPara('cadastro',this)">&#65291; Cadastrar</button>
   <button class="tab" onclick="irPara('acervo',this)">&#128230; Acervo</button>
   <button class="tab" onclick="irPara('consumiveis',this)">&#128305; Consum&iacute;veis</button>
   <button class="tab" onclick="irPara('calendario',this)">&#128197; Calend&aacute;rio</button>
-  <button class="tab" onclick="irPara('entidades',this)">&#10024; Orix&aacute;s</button>
+  <button class="tab" onclick="irPara('entidades',this)">&#10024; Orix&aacute;s &amp; Entidades</button>
 </nav>
 <div class="nav-links">
   <a href="mobile.html">&#128241; Vers&atilde;o celular</a>
@@ -206,111 +205,6 @@ nav::-webkit-scrollbar{display:none}
   <div class="home-datas" id="home-datas"></div>
 </div>
 
-<!-- CADASTRO -->
-<div class="section" id="sec-cadastro">
-  <div class="cad-grid" id="cad-cards">
-    <div class="cad-card" onclick="abrirForm('acervo')"><div class="cad-ic">&#128230;</div><div class="cad-lb">Novo Item do Acervo</div><div class="cad-dc">Roupas, ferramentas e objetos rituais</div></div>
-
-    <div class="cad-card" onclick="abrirForm('ml')"><div class="cad-ic">&#128722;</div><div class="cad-lb">Buscar no Mercado Livre</div><div class="cad-dc">Pesquisar preços e preencher dados</div></div>
-  </div>
-
-  <!-- Form Acervo -->
-  <div class="form-wrap" id="fw-acervo">
-    <button class="btn-voltar" onclick="fecharForm()">&#8592; Voltar</button>
-    <div class="secao-titulo">&#128230; Novo Item do Acervo</div>
-    <div class="form-box">
-      <div class="form-grid">
-        <div class="field full"><label>Nome do Item *</label><input type="text" id="c-nome" placeholder="Ex: Ojá de Oxum" autocomplete="off"/></div>
-        <div class="field"><label>Categoria *</label>
-          <select id="c-cat" onchange="atualizarSubcat()">
-            <option value="">Selecione</option>
-            <option>Alimentos e Oferendas</option><option>Ervas e Plantas</option>
-            <option>Ferramentas e Objetos Rituais</option><option>Roupas e Indumentárias</option><option>Outro</option>
-          </select>
-        </div>
-        <div class="field"><label>Subcategoria</label><select id="c-subcat"><option value="">--</option></select></div>
-        <div class="field"><label>Orixá de Cabeça</label>
-          <select id="c-orixa" onchange="toggleOutro('c-orixa','c-orixa-outro')">
-            <option value="">--</option>
-            <option>Iansã</option><option>Iemanjá</option><option>Logun Edé</option>
-            <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
-            <option>Ogum</option><option>Oxaguiã / Oxalufã</option><option>Oxalá</option>
-            <option>Oxossi</option><option>Oxum</option><option>Oxumaré</option>
-            <option>Xangô</option><option value="Outro">Outro</option>
-          </select>
-          <input type="text" id="c-orixa-outro" placeholder="Especifique..." style="display:none;margin-top:6px" autocomplete="off"/>
-        </div>
-        <div class="field"><label>Entidade / Linha</label>
-          <select id="c-entidade" onchange="toggleOutro('c-entidade','c-entidade-outro')">
-            <option value="">--</option>
-            <option>Baiano / Baiana</option><option>Boiadeiro / Boiadeira</option>
-            <option>Caboclo / Cabocla</option><option>Cigano / Cigana</option>
-            <option>Criança / Erê</option><option>Exu</option>
-            <option>Marinheiro / Marinheira</option><option>Ogum Beira-Mar</option>
-            <option>Pomba-Gira</option><option>Preto-Velho / Preta-Velha</option>
-            <option>Zé Pilintra</option><option value="Outro">Outro</option>
-          </select>
-          <input type="text" id="c-entidade-outro" placeholder="Especifique..." style="display:none;margin-top:6px" autocomplete="off"/>
-        </div>
-        <div class="field"><label>Status</label>
-          <select id="c-status">
-            <option value="Danificado">Danificado</option>
-            <option value="Disponível" selected>Disponível</option>
-            <option value="Em Uso">Em Uso</option>
-            <option value="Necessita Reposição">Necessita Reposição</option>
-            <option value="N/A">N/A</option>
-          </select>
-        </div>
-        <div class="field"><label>Localização / Armário</label><input type="text" id="c-local" placeholder="Ex: Armário 2, prateleira A" autocomplete="off"/></div>
-        <div class="field"><label>Quantidade</label><input type="number" id="c-qtd" min="1" value="1"/></div>
-        <div class="field full"><label>Foto (URL)</label><input type="url" id="c-foto" placeholder="https://..." oninput="previewFoto(this.value)"/><div id="foto-preview"></div></div>
-        <div class="field full"><label>Observações</label><textarea id="c-obs" placeholder="Notas livres..."></textarea></div>
-      </div>
-      <div class="btn-row">
-        <button class="btn btn-ghost" onclick="limparAcervo()">Limpar</button>
-        <button class="btn btn-primary" id="btnAcervo" onclick="salvarAcervo()">Gravar</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Form Consumivel -->
-  <div class="form-wrap" id="fw-consumivel">
-    <button class="btn-voltar" onclick="fecharForm()">&#8592; Voltar</button>
-    <div class="secao-titulo">&#128305; Atualizar Consumível</div>
-    <div class="form-box">
-      <div class="form-grid">
-        <div class="field full"><label>Item (nome exato ou ID)</label>
-          <input type="text" id="cu-nome" placeholder="Ex: Vela 7 dias branca" list="csm-list" autocomplete="off"/>
-          <datalist id="csm-list"></datalist>
-        </div>
-        <div class="field"><label>Quantidade Atual</label><input type="number" id="cu-atual" min="0" placeholder="Qtd atual"/></div>
-        <div class="field"><label>Quantidade Mínima</label><input type="number" id="cu-min" min="0" placeholder="Qtd mínima"/></div>
-        <div class="field"><label>Fornecedor</label><input type="text" id="cu-forn" placeholder="Ex: Casa dos Orixás" autocomplete="off"/></div>
-        <div class="field"><label>Preço do Pacote (R$)</label><input type="number" id="cu-preco" step="0.01" min="0" placeholder="0,00"/></div>
-        <div class="field"><label>Qtd por Pacote</label><input type="number" id="cu-qtdpac" min="1" placeholder="1"/></div>
-        <div class="field full"><label>Link de Compra</label><input type="url" id="cu-link" placeholder="https://..."/></div>
-      </div>
-      <div class="btn-row">
-        <button class="btn btn-ghost" onclick="limparConsumivel()">Limpar</button>
-        <button class="btn btn-primary" id="btnCsm" onclick="salvarConsumivel()">Atualizar</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Form ML -->
-  <div class="form-wrap" id="fw-ml">
-    <button class="btn-voltar" onclick="fecharForm()">&#8592; Voltar</button>
-    <div class="secao-titulo">&#128722; Buscar no Mercado Livre</div>
-    <div class="form-box">
-      <div style="display:flex;gap:8px;margin-bottom:10px">
-        <input type="text" id="ml-q" placeholder="Ex: vela 7 dias branca" style="flex:1;background:rgba(0,0,0,.35);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:13px;padding:9px 11px;outline:none;font-family:var(--fb)"/>
-        <button class="btn btn-primary" onclick="buscarML()">Buscar</button>
-      </div>
-      <div class="ml-grid" id="ml-resultado"></div>
-    </div>
-  </div>
-</div>
-
 <!-- ACERVO -->
 <div class="section" id="sec-acervo">
   <div class="filter-bar">
@@ -322,8 +216,10 @@ nav::-webkit-scrollbar{display:none}
     </select>
     <select id="a-status" onchange="renderAcervo()">
       <option value="">Todos os Status</option>
-      <option>Danificado</option><option>Disponível</option>
-      <option>Em Uso</option><option>Necessita Reposição</option>
+      <option value="Danificado">Danificado</option>
+      <option value="Disponível">Disponível</option>
+      <option value="Em Uso">Em Uso</option>
+      <option value="Necessita Reposição">Necessita Reposição</option>
     </select>
   </div>
   <div class="results-count" id="a-count"></div>
@@ -559,20 +455,6 @@ function abrirModalCsm(id){
   ].map(function(p){return'<div class="modal-row"><span class="modal-rot">'+p[0]+'</span><span>'+p[1]+'</span></div>';}).join('')+(i.link?'<div style="margin-top:10px;text-align:center"><a href="'+i.link+'" target="_blank" style="color:var(--ouro);font-size:12px">Ver link de compra &#8594;</a></div>':'');
   document.getElementById('modal-bg').classList.add('aberto');
 }
-function editarConsumivel(id){
-  var i=consumiveis.find(function(x){return x.id===id;});if(!i)return;
-  document.getElementById('modal-bg').classList.remove('aberto');
-  document.getElementById('cu-nome').value=i.nome||'';
-  document.getElementById('cu-atual').value=i.atual||'';
-  document.getElementById('cu-min').value=i.minimo||'';
-  document.getElementById('cu-forn').value=i.fornecedor||'';
-  document.getElementById('cu-preco').value=i.precoPacote||'';
-  document.getElementById('cu-qtdpac').value=i.qtdPacote||'';
-  document.getElementById('cu-link').value=i.link||'';
-  irPara('cadastro',document.querySelectorAll('.tab')[1]);
-  abrirForm('consumivel');
-  toast('Dados preenchidos — ajuste e clique em Atualizar.');
-}
 
 // CALENDÁRIO
 async function carregarCalendario(){
@@ -587,8 +469,10 @@ function renderCalendario(){
   var f=calendario.filter(function(e){return(!busca||(e.titulo||'').toLowerCase().includes(busca))&&(!tipo||e.tipo===tipo);});
   document.getElementById('cal-count').textContent=f.length+' evento(s)';
   if(!f.length){document.getElementById('cal-lista').innerHTML='<div class="empty">Nenhum evento encontrado.</div>';return;}
+  var TIPO_IC={Festa:'&#129345;',Gira:'&#127949;&#65039;',Obrigação:'&#9888;&#65039;',Reunião:'&#128101;',Outro:'&#128197;'};
   document.getElementById('cal-lista').innerHTML=f.map(function(e){
-    return'<div class="cal-card">'+'<div class="cal-data">'+e.data+'<span class="tipo-badge tipo-'+e.tipo+'">'+e.tipo+'</span></div>'+'<div class="cal-titulo">'+(e.titulo||'--')+'</div>'+(e.descricao?'<div class="cal-desc">'+e.descricao+'</div>':'')+(e.responsavel?'<div class="cal-tipo" style="margin-top:6px">Responsável: '+e.responsavel+'</div>':'')+'</div>';
+    var ic=TIPO_IC[e.tipo]||'&#128197;';
+    return'<div class="cal-card"><div class="cal-data">'+e.data+'<span class="tipo-badge tipo-'+e.tipo+'">'+e.tipo+'</span></div><div class="cal-titulo">'+ic+' '+(e.titulo||'--')+'</div>'+(e.descricao?'<div class="cal-desc">'+e.descricao+'</div>':'')+(e.responsavel?'<div style="font-size:10px;color:var(--cinza);margin-top:6px">&#128100; '+e.responsavel+'</div>':'')+'</div>';
   }).join('');
 }
 
@@ -604,12 +488,22 @@ function renderEntidades(){
   var f=entidades.filter(function(i){return!busca||(i.entidade||'').toLowerCase().includes(busca)||(i.nacao||'').toLowerCase().includes(busca);});
   document.getElementById('ent-count').textContent=f.length+' registro(s)';
   if(!f.length){document.getElementById('ent-lista').innerHTML='<div class="empty">Nenhum resultado.</div>';return;}
-  document.getElementById('ent-lista').innerHTML=f.map(function(i){
-    return'<div class="ent-card">'+'<div class="ent-nome">'+(i.entidade||'--')+'</div>'+'<div class="ent-nacao">'+(i.nacao||'')+(i.diaSemana?' · '+i.diaSemana:'')+(i.dataFesta?' · Festa: '+i.dataFesta:'')+'</div>'+(i.cores?'<div class="ent-row"><span class="ent-rot">Cores</span><span>'+i.cores+'</span></div>':'')+
+  // Separar orixás (Ketu/Angola/Jeje/etc) de entidades de Umbanda
+  var UMBANDA=['Umbanda'];
+  var orixa_list=f.filter(function(i){return!UMBANDA.includes(i.nacao);});
+  var ent_list=f.filter(function(i){return UMBANDA.includes(i.nacao);});
+  function renderCard(i){
+    return'<div class="ent-card">'+'<div class="ent-nome">'+(i.entidade||'--')+'</div>'+'<div class="ent-nacao">'+(i.nacao||'')+(i.diaSemana?' · '+i.diaSemana:'')+(i.dataFesta?'<span style="margin-left:6px;font-size:10px;color:var(--ouro)">Festa: '+i.dataFesta+'</span>':'')+'</div>'+
+    (i.cores?'<div class="ent-row"><span class="ent-rot">Cores</span><span>'+i.cores+'</span></div>':'')+
     (i.oferendas?'<div class="ent-row"><span class="ent-rot">Oferendas</span><span>'+i.oferendas+'</span></div>':'')+
     (i.bebidas?'<div class="ent-row"><span class="ent-rot">Bebidas</span><span>'+i.bebidas+'</span></div>':'')+
+    (i.itensAcervo?'<div class="ent-row"><span class="ent-rot">Itens</span><span>'+i.itensAcervo+'</span></div>':'')+
     (i.saudacao?'<div class="ent-saudacao">'+i.saudacao+'</div>':'')+'</div>';
-  }).join('');
+  }
+  var html='';
+  if(orixa_list.length){html+='<div class="ent-grupo-titulo">&#10022; Orix&aacute;s</div><div class="ent-grid">'+orixa_list.map(renderCard).join('')+'</div>';}
+  if(ent_list.length){html+='<div class="ent-grupo-titulo" style="margin-top:28px">&#10024; Entidades / Linhas</div><div class="ent-grid">'+ent_list.map(renderCard).join('')+'</div>';}
+  document.getElementById('ent-lista').innerHTML=html;
 }
 
 // SALVAR ACERVO
