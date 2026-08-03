@@ -519,9 +519,9 @@ function renderEntidades(){
     (i.itensAcervo?'<div class="ent-row"><span class="ent-rot">Itens</span><span>'+i.itensAcervo+'</span></div>':'')+
     (i.saudacao?'<div class="ent-saudacao">'+i.saudacao+'</div>':'')+'</div>';
   }
-  var html='<div class="ent-lista-wrap">';
-  if(orixa_list.length){html+='<div class="ent-grupo-titulo">&#10022; Orix&aacute;s</div><div class="ent-grid">'+orixa_list.map(renderCard).join('')+'</div>';}
-  if(ent_list.length){html+='<div class="ent-grupo-titulo" style="margin-top:24px">&#10024; Entidades / Linhas</div><div class="ent-grid">'+ent_list.map(renderCard).join('')+'</div>';}
+  var html='<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start">';
+  html+='<div><div class="ent-grupo-titulo">&#10022; Orix&aacute;s</div>'+orixa_list.map(renderCard).join('')+'</div>';
+  html+='<div><div class="ent-grupo-titulo">&#10024; Entidades / Linhas</div>'+ent_list.map(renderCard).join('')+'</div>';
   html+='</div>';
   document.getElementById('ent-lista').innerHTML=html;
 }
