@@ -129,7 +129,8 @@ nav::-webkit-scrollbar{display:none}
 .tipo-Outro{background:rgba(100,100,100,.15);color:#999;border:1px solid rgba(100,100,100,.3)}
 
 /* ENTIDADES */
-.ent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.ent-lista-wrap{display:block}
+.ent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:8px}
 .ent-card{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:14px 16px}
 .ent-nome{font-size:14px;font-weight:600;color:var(--ouro-lt);margin-bottom:2px}
 .ent-nacao{font-size:10px;color:var(--cinza);margin-bottom:8px}
@@ -518,9 +519,10 @@ function renderEntidades(){
     (i.itensAcervo?'<div class="ent-row"><span class="ent-rot">Itens</span><span>'+i.itensAcervo+'</span></div>':'')+
     (i.saudacao?'<div class="ent-saudacao">'+i.saudacao+'</div>':'')+'</div>';
   }
-  var html='';
+  var html='<div class="ent-lista-wrap">';
   if(orixa_list.length){html+='<div class="ent-grupo-titulo">&#10022; Orix&aacute;s</div><div class="ent-grid">'+orixa_list.map(renderCard).join('')+'</div>';}
-  if(ent_list.length){html+='<div class="ent-grupo-titulo" style="margin-top:28px">&#10024; Entidades / Linhas</div><div class="ent-grid">'+ent_list.map(renderCard).join('')+'</div>';}
+  if(ent_list.length){html+='<div class="ent-grupo-titulo" style="margin-top:24px">&#10024; Entidades / Linhas</div><div class="ent-grid">'+ent_list.map(renderCard).join('')+'</div>';}
+  html+='</div>';
   document.getElementById('ent-lista').innerHTML=html;
 }
 
