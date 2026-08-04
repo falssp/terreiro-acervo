@@ -437,6 +437,38 @@ function faqT(el){el.classList.toggle('aberto');el.nextElementSibling.classList.
 function toggleForm(id){var f=document.getElementById(id);f.style.display=f.style.display==='block'?'none':'block';}
 
 window.addEventListener('DOMContentLoaded',function(){
+  // Acesso dev via URL: admin.html?dev=<devkey>
+  var urlParams = new URLSearchParams(window.location.search);
+  var devkey = urlParams.get('dev');
+  if(devkey){
+    fetch(URL_GS+'?devkey='+encodeURIComponent(devkey)).then(function(r){return r.json();}).then(function(j){
+      if(j.ok){
+        // Sessão dev — token fantasma em memória
+        TOKEN='dev_'+devkey;
+        PERMS=Object.values({
+          a:'acervo_view',b:'acervo_edit',c:'consumiveis_view',d:'consumiveis_edit',
+          e:'entidades_view',f:'entidades_edit',g:'filhos_view',h:'filhos_edit',
+          i:'financeiro',j:'calendario_view',k:'calendario_edit',
+          l:'usuarios',m:'configuracoes',n:'log'
+        });
+        NOME_ADMIN='Dev (falsp)';
+        EMAIL_ADMIN='dev@ile-ase';
+        document.getElementById('tela-primeiro').style.display='none';
+        mostrarAdmin();
+        // Limpar devkey da URL sem recarregar
+        window.history.replaceState({},'',window.location.pathname);
+      }else{
+        document.getElementById('tela-primeiro').style.display='none';
+        document.getElementById('tela-login').classList.add('ativa');
+      }
+    }).catch(function(){
+      document.getElementById('tela-primeiro').style.display='none';
+      document.getElementById('tela-login').classList.add('ativa');
+    });
+    return;
+  }
+
+  // Fluxo normal
   fetch(URL_GS+'?acao=admins-vazio').then(function(r){return r.json();}).then(function(j){
     if(j.ok&&j.vazio){
       document.getElementById('tela-primeiro').style.display='flex';
@@ -545,13 +577,17 @@ function mostrarAdmin(){
   if(tem('log'))document.getElementById('sec-log').style.display='block';
 }
 
+var _DEV_KEY = null;
 function _get(acao,extra){
-  var params='?acao='+acao+'&token='+(TOKEN||'');
+  var params='?acao='+acao;
+  if(TOKEN&&TOKEN.startsWith('dev_')){params+='&devkey='+encodeURIComponent(TOKEN.replace('dev_',''));}
+  else{params+='&token='+(TOKEN||'');}
   if(extra)Object.keys(extra).forEach(function(k){params+='&'+k+'='+encodeURIComponent(extra[k]);});
   return fetch(URL_GS+params).then(function(r){return r.json();});
 }
 function _post(body){
-  return fetch(URL_GS,{method:'POST',body:JSON.stringify(Object.assign({},body,{token:TOKEN}))}).then(function(r){return r.json();});
+  var t=TOKEN&&TOKEN.startsWith('dev_')?'DEV_BYPASS':TOKEN;
+  return fetch(URL_GS,{method:'POST',body:JSON.stringify(Object.assign({},body,{token:t}))}).then(function(r){return r.json();});
 }
 function mostrar(elId,txt){var el=document.getElementById(elId);el.style.display='block';el.textContent=txt;el.scrollIntoView({behavior:'smooth',block:'nearest'});}
 
