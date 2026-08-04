@@ -263,7 +263,12 @@ html{height:100%}body{font-family:var(--fb);background:var(--bg);color:var(--cre
   <div class="page" id="page-entidades">
     <div style="padding-top:14px">
       <div class="filter-bar">
-        <input type="search" id="ent-busca" placeholder="&#128269; Buscar orixá ou entidade..." oninput="renderEntidades()"/>
+        <input type="search" id="ent-busca" placeholder="&#128269; Buscar..." oninput="renderEntidades()"/>
+      </div>
+      <div style="display:flex;gap:6px;margin-bottom:10px">
+        <button onclick="setGrupoEnt('todos',this)" class="btn-grupo-ent active" style="flex:1;padding:7px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid rgba(201,168,76,.4);background:rgba(201,168,76,.15);color:var(--ouro-lt);font-family:var(--fb)">Todos</button>
+        <button onclick="setGrupoEnt('orixa',this)" class="btn-grupo-ent" style="flex:1;padding:7px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--borda);background:transparent;color:var(--cinza);font-family:var(--fb)">&#10022; Orixas</button>
+        <button onclick="setGrupoEnt('entidade',this)" class="btn-grupo-ent" style="flex:1;padding:7px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--borda);background:transparent;color:var(--cinza);font-family:var(--fb)">&#10024; Entidades</button>
       </div>
       <div class="results-count" id="ent-count"></div>
       <div id="ent-lista"><div class="empty">Carregando...</div></div>
@@ -278,7 +283,7 @@ html{height:100%}body{font-family:var(--fb);background:var(--bg);color:var(--cre
   <button class="nav-btn" onclick="navTo('consumiveis',this)"><span class="ic">&#128305;</span>Consumíveis</button>
   <button class="nav-btn" onclick="navTo('calendario',this)"><span class="ic">&#128197;</span>Agenda</button>
   <button class="nav-btn" onclick="navTo('acervo',this)"><span class="ic">&#128230;</span>Acervo</button>
-  <button class="nav-btn" onclick="navTo('entidades',this)"><span class="ic">&#10024;</span>Orixás</button>
+  <button class="nav-btn" onclick="navTo('entidades',this)"><span class="ic">&#10024;</span>Orixás &amp; Ent.</button>
 </nav>
 
 <!-- MODAL -->
@@ -304,6 +309,7 @@ const CAT_IC={Velas:'vela',Bebidas:'bebida',Fumo:'fumo','Ervas e Defumacao':'erv
 const NIVEL_SLUG={'OK OK':'ok','! Repor':'repor','Alerta':'alerta','Urgente / Zero':'urgente'};
 
 let acervo=[],consumiveis=[],calendario=[],entidades=[];
+let _grupoEnt='todos';
 let deferredPrompt=null;
 
 window.addEventListener('DOMContentLoaded',function(){
@@ -457,14 +463,28 @@ async function carregarEntidades(){
     if(j.ok){entidades=j.itens||[];renderEntidades();}
   }catch(e){document.getElementById('ent-lista').innerHTML='<div class="empty">Erro ao carregar.</div>';}
 }
+function setGrupoEnt(grupo, btn){
+  _grupoEnt=grupo;
+  document.querySelectorAll('.btn-grupo-ent').forEach(function(b){
+    b.style.background='transparent';b.style.color='var(--cinza)';b.style.borderColor='var(--borda)';
+  });
+  btn.style.background='rgba(201,168,76,.15)';btn.style.color='var(--ouro-lt)';btn.style.borderColor='rgba(201,168,76,.4)';
+  renderEntidades();
+}
 function renderEntidades(){
   var busca=(document.getElementById('ent-busca').value||'').toLowerCase();
-  var f=entidades.filter(function(i){return!busca||(i.entidade||'').toLowerCase().includes(busca)||(i.nacao||'').toLowerCase().includes(busca);});
+  var ENT_NAMES=['Exu','Exu / Pombagira','Pombagira'];
+  var f=entidades.filter(function(i){
+    var matchBusca=!busca||(i.entidade||'').toLowerCase().includes(busca)||(i.nacao||'').toLowerCase().includes(busca);
+    var ehEntidade=i.nacao==='Umbanda'||ENT_NAMES.includes(i.entidade);
+    var matchGrupo=_grupoEnt==='todos'||(_grupoEnt==='orixa'&&!ehEntidade)||(_grupoEnt==='entidade'&&ehEntidade);
+    return matchBusca&&matchGrupo;
+  });
   document.getElementById('ent-count').textContent=f.length+' registro(s)';
   if(!f.length){document.getElementById('ent-lista').innerHTML='<div class="empty">Nenhum resultado.</div>';return;}
-  var ENT_NAMES=['Exu','Exu / Pombagira','Pombagira'];
-  var ent_list=f.filter(function(i){return i.nacao==='Umbanda'||ENT_NAMES.includes(i.entidade);});
-  var orixa_list=f.filter(function(i){return i.nacao!=='Umbanda'&&!ENT_NAMES.includes(i.entidade);});
+  var ENT_NAMES_R=['Exu','Exu / Pombagira','Pombagira'];
+  var ent_list=f.filter(function(i){return i.nacao==='Umbanda'||ENT_NAMES_R.includes(i.entidade);});
+  var orixa_list=f.filter(function(i){return i.nacao!=='Umbanda'&&!ENT_NAMES_R.includes(i.entidade);});
   function fmtFesta(d){
     if(!d||d==='')return'';
     if(String(d).includes('T')||String(d).includes('-')){
