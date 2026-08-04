@@ -220,6 +220,7 @@ html{height:100%}body{font-family:var(--fb);background:var(--bg);color:var(--cre
         <input type="search" id="cal-busca" placeholder="&#128269; Buscar evento..." oninput="renderCalendario()"/>
         <select id="cal-tipo" onchange="renderCalendario()">
           <option value="">Todos os Tipos</option>
+          <option>Consulta / Búzios</option><option>Consulta / Tarot</option>
           <option>Festa</option><option>Gira</option><option>Obrigação</option>
           <option>Reunião</option><option>Outro</option>
         </select>
@@ -436,7 +437,7 @@ function renderCalendario(){
   var f=calendario.filter(function(e){return(!busca||(e.titulo||'').toLowerCase().includes(busca))&&(!tipo||e.tipo===tipo);});
   document.getElementById('cal-count').textContent=f.length+' evento(s)';
   if(!f.length){document.getElementById('cal-lista').innerHTML='<div class="empty">Nenhum evento encontrado.</div>';return;}
-  var TIPO_IC={Festa:'&#129345;',Gira:'&#127949;&#65039;',Obrigação:'&#9888;&#65039;',Reunião:'&#128101;',Outro:'&#128197;'};
+  var TIPO_IC={Festa:'&#129345;',Gira:'&#127949;&#65039;',Obrigação:'&#9888;&#65039;',Reunião:'&#128101;','Consulta / Búzios':'&#127775;','Consulta / Tarot':'&#127183;',Outro:'&#128197;'};
   document.getElementById('cal-lista').innerHTML=f.map(function(e){
     var ic=TIPO_IC[e.tipo]||'&#128197;';
     return'<div class="cal-card"><div class="cal-data">'+e.data+'<span class="tipo-badge tipo-'+e.tipo+'">'+e.tipo+'</span></div><div class="cal-titulo">'+ic+' '+(e.titulo||'—')+'</div>'+(e.descricao?'<div class="cal-desc">'+e.descricao+'</div>':'')+'</div>';

@@ -223,11 +223,27 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
     <!-- Estoque -->
     <div id="sec-estoque" style="display:none">
       <div class="sec-titulo">&#128305; Estoque</div>
-      <div class="btn-grid">
-        <button class="btn-adm" onclick="listaCompras()"><span class="ic">&#128722;</span><span class="lb">Lista de compras</span><span class="dc">Itens a repor com nível de urgência</span></button>
+      <div class="btn-grid" style="margin-bottom:12px">
+        <button class="btn-adm" onclick="listaComprasMes()"><span class="ic">&#128722;</span><span class="lb">Compras do mês</span><span class="dc">Itens a repor com base no estoque atual</span></button>
         <button class="btn-adm" onclick="statusEstoque()"><span class="ic">&#128202;</span><span class="lb">Status do estoque</span><span class="dc">Visão por categoria e nível</span></button>
+        <button class="btn-adm" onclick="verListaPontual();toggleForm('form-lista')"><span class="ic">&#128221;</span><span class="lb">Compras pontuais</span><span class="dc">Itens avulsos para compra específica</span></button>
       </div>
       <div class="resultado" id="resultado-estoque"></div>
+
+      <!-- Lista de compras pontuais -->
+      <div class="inner-form" id="form-lista" style="margin-top:12px">
+        <div class="sec-titulo" style="margin-top:0">&#128221; Compras Pontuais</div>
+        <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+          <input class="field-inp" type="text" id="lst-item" placeholder="Item" style="flex:2;margin-bottom:0" autocomplete="off"/>
+          <input class="field-inp" type="number" id="lst-qtd" placeholder="Qtd" style="flex:.5;margin-bottom:0" min="1" value="1"/>
+          <input class="field-inp" type="text" id="lst-unid" placeholder="Unidade" style="flex:.8;margin-bottom:0" autocomplete="off"/>
+          <button class="btn-sm primary" onclick="adicionarLista()" style="flex-shrink:0">Adicionar</button>
+        </div>
+        <input class="field-inp" type="text" id="lst-obs" placeholder="Observação (opcional)" style="margin-bottom:10px" autocomplete="off"/>
+        <div id="lista-pontual-items" style="margin-bottom:10px"></div>
+        <button class="btn-sm primary" onclick="gerarListaCompleta()" style="width:100%">&#128247; Gerar lista completa (estoque + pontuais)</button>
+      </div>
+      <div class="resultado" id="resultado-lista-completa" style="margin-top:10px"></div>
     </div>
 
     <!-- Calendário -->
@@ -244,6 +260,8 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
         <input class="field-inp" type="date" id="cal-data" style="color-scheme:dark"/>
         <label class="field-lbl">Tipo</label>
         <select class="field-inp" id="cal-tipo" style="-webkit-appearance:none">
+          <option value="Consulta / Búzios">Consulta / Búzios</option>
+          <option value="Consulta / Tarot">Consulta / Tarot</option>
           <option value="Festa">Festa</option><option value="Gira">Gira</option>
           <option value="Obrigação">Obrigação</option><option value="Reunião">Reunião</option><option value="Outro">Outro</option>
         </select>
@@ -329,9 +347,44 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
     <!-- Financeiro -->
     <div id="sec-financeiro" style="display:none">
       <div class="sec-titulo">&#128176; Financeiro</div>
-      <button class="btn-adm" style="width:100%" onclick="resumoFin()">
-        <span class="ic">&#128200;</span><span class="lb">Resumo completo</span><span class="dc">Entradas, saídas e breakdown por categoria</span>
-      </button>
+      <div class="btn-grid" style="margin-bottom:12px">
+        <button class="btn-adm" onclick="resumoFin()"><span class="ic">&#128200;</span><span class="lb">Resumo completo</span><span class="dc">Entradas, saídas e breakdown por categoria</span></button>
+        <button class="btn-adm" onclick="toggleForm('form-fin')"><span class="ic">&#10133;</span><span class="lb">Nova entrada / saída</span><span class="dc">Registrar lançamento financeiro</span></button>
+      </div>
+      <div class="inner-form" id="form-fin">
+        <label class="field-lbl">Tipo *</label>
+        <select class="field-inp" id="fin-tipo" style="-webkit-appearance:none" onchange="atualizarCatFin()">
+          <option value="Entrada">Entrada</option>
+          <option value="Saída">Saída</option>
+        </select>
+        <label class="field-lbl">Categoria *</label>
+        <select class="field-inp" id="fin-cat" style="-webkit-appearance:none">
+          <option value="Consulta / Atendimento">Consulta / Atendimento</option>
+          <option value="Consumíveis">Consumíveis</option>
+          <option value="Dízimo / Doação">Dízimo / Doação</option>
+          <option value="Evento / Gira">Evento / Gira</option>
+          <option value="Indumentária / Acervo">Indumentária / Acervo</option>
+          <option value="Manutenção">Manutenção</option>
+          <option value="Ritual / Oferenda">Ritual / Oferenda</option>
+          <option value="Venda">Venda</option>
+          <option value="Outros">Outros</option>
+        </select>
+        <label class="field-lbl">Descrição</label>
+        <input class="field-inp" type="text" id="fin-desc" placeholder="Ex: Consulta de búzios — Maria" autocomplete="off"/>
+        <label class="field-lbl">Valor (R$) *</label>
+        <input class="field-inp" type="number" id="fin-valor" step="0.01" min="0" placeholder="0,00"/>
+        <label class="field-lbl">Data</label>
+        <input class="field-inp" type="date" id="fin-data" style="color-scheme:dark"/>
+        <label class="field-lbl">Responsável</label>
+        <input class="field-inp" type="text" id="fin-resp" placeholder="Nome do responsável" autocomplete="off"/>
+        <label class="field-lbl">Observações</label>
+        <input class="field-inp" type="text" id="fin-obs" autocomplete="off"/>
+        <div id="fin-err" style="font-size:12px;color:#f08080;margin-bottom:8px;min-height:16px"></div>
+        <div class="btn-row">
+          <button class="btn-sm" onclick="toggleForm('form-fin')">Cancelar</button>
+          <button class="btn-sm primary" onclick="salvarFinanceiro()">Registrar</button>
+        </div>
+      </div>
       <div class="resultado" id="resultado-fin"></div>
     </div>
 
@@ -750,6 +803,123 @@ function trocarSenha(){
     if(j.ok){toast('Senha alterada!');toggleForm('form-senha');err.textContent='';['s-atual','s-nova','s-conf'].forEach(function(id){document.getElementById(id).value='';});}
     else err.textContent=j.erro||'Erro.';
   }).catch(function(){err.textContent='Erro de conexão.';});
+}
+
+// FINANCEIRO — LANÇAMENTO
+function salvarFinanceiro(){
+  var tipo=document.getElementById('fin-tipo').value;
+  var cat=document.getElementById('fin-cat').value;
+  var valor=document.getElementById('fin-valor').value;
+  var err=document.getElementById('fin-err');
+  if(!valor||Number(valor)<=0){err.textContent='Informe o valor.';return;}
+  err.textContent='Registrando...';
+  var data=document.getElementById('fin-data').value||_hoje();
+  _post({acao:'financeiro-inserir',tipo:tipo,categoria:cat,descricao:document.getElementById('fin-desc').value,valor:valor,data:data,responsavel:document.getElementById('fin-resp').value||NOME_ADMIN,observacoes:document.getElementById('fin-obs').value}).then(function(j){
+    if(j.ok){toast('Lançamento registrado! ID: '+j.id);toggleForm('form-fin');err.textContent='';['fin-desc','fin-valor','fin-data','fin-resp','fin-obs'].forEach(function(id){document.getElementById(id).value='';});carregarFinBar();}
+    else err.textContent=j.erro||'Erro.';
+  }).catch(function(){err.textContent='Erro de conexão.';});
+}
+function _hoje(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+
+// LISTA DE COMPRAS DUPLA
+var _listaPontual=[];
+
+function listaComprasMes(){
+  toast('Gerando...');
+  _get('consumiveis-listar').then(function(j){
+    if(!j.ok){toast('Erro.',false);return;}
+    var ns=function(n){var nl=(n||'').toLowerCase();if(nl.includes('urgente')||nl.includes('zero'))return 0;if(nl.includes('alerta'))return 1;if(nl.includes('repor'))return 2;return 3;};
+    var nok=j.itens.filter(function(i){return!String(i.nivel).toLowerCase().includes('ok')&&!String(i.nivel).includes('mínimo');}).sort(function(a,b){return ns(a.nivel)-ns(b.nivel);});
+    if(!nok.length){mostrar('resultado-estoque','✅ Nenhum item precisa ser reposto!');toast('Tudo em dia!');return;}
+    var txt='🛒 COMPRAS DO MÊS — ESTOQUE
+'+'─'.repeat(28)+'
+',nAt='';
+    nok.forEach(function(i){
+      if(i.nivel!==nAt){txt+='
+'+i.nivel+':
+';nAt=i.nivel;}
+      var f=Math.max(0,(Number(i.minimo)||0)-(Number(i.atual)||0));
+      txt+='  • '+i.nome+' — faltam '+f+' '+(i.unidade||'');
+      if(i.fornecedor)txt+=' | '+i.fornecedor;
+      txt+='
+';
+    });
+    mostrar('resultado-estoque',txt);toast('Lista gerada!');
+  }).catch(function(){toast('Erro.',false);});
+}
+
+function verListaPontual(){
+  _get('lista-listar').then(function(j){
+    if(!j.ok)return;
+    _listaPontual=j.itens||[];
+    renderListaPontual();
+  }).catch(function(){});
+}
+
+function renderListaPontual(){
+  var el=document.getElementById('lista-pontual-items');
+  if(!_listaPontual.length){el.innerHTML='<div style="font-size:12px;color:var(--cinza);margin-bottom:6px">Nenhum item pontual cadastrado.</div>';return;}
+  el.innerHTML=_listaPontual.map(function(i){
+    return'<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--borda);font-size:12px"><span>'+i.qtd+' '+i.unidade+' — '+i.item+(i.obs?' ('+i.obs+')':'')+'</span><button onclick="removerLista(''+i.id+'')" style="background:none;border:none;color:#f08080;cursor:pointer;font-size:14px">&#10005;</button></div>';
+  }).join('');
+}
+
+function adicionarLista(){
+  var item=document.getElementById('lst-item').value.trim();
+  if(!item){toast('Informe o item.',false);return;}
+  _post({acao:'lista-inserir',item:item,qtd:document.getElementById('lst-qtd').value||1,unidade:document.getElementById('lst-unid').value||'unidade',obs:document.getElementById('lst-obs').value}).then(function(j){
+    if(j.ok){toast('Item adicionado!');['lst-item','lst-obs'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('lst-qtd').value=1;verListaPontual();}
+    else toast(j.erro||'Erro.',false);
+  }).catch(function(){toast('Erro.',false);});
+}
+
+function removerLista(id){
+  _post({acao:'lista-deletar',id:id}).then(function(j){
+    if(j.ok){toast('Removido!');verListaPontual();}
+    else toast(j.erro||'Erro.',false);
+  }).catch(function(){toast('Erro.',false);});
+}
+
+function gerarListaCompleta(){
+  toast('Gerando lista completa...');
+  Promise.all([
+    _get('consumiveis-listar'),
+    _get('lista-listar')
+  ]).then(function(rs){
+    var jCsm=rs[0],jLst=rs[1];
+    var txt='📋 LISTA COMPLETA DE COMPRAS
+'+'─'.repeat(28)+'
+';
+    // Estoque
+    if(jCsm.ok){
+      var ns=function(n){var nl=(n||'').toLowerCase();if(nl.includes('urgente')||nl.includes('zero'))return 0;if(nl.includes('alerta'))return 1;if(nl.includes('repor'))return 2;return 3;};
+      var nok=(jCsm.itens||[]).filter(function(i){return!String(i.nivel).toLowerCase().includes('ok')&&!String(i.nivel).includes('mínimo');}).sort(function(a,b){return ns(a.nivel)-ns(b.nivel);});
+      if(nok.length){
+        txt+='
+🛒 REPOSIÇÃO DE ESTOQUE:
+';
+        var nAt='';
+        nok.forEach(function(i){
+          if(i.nivel!==nAt){txt+='  ['+i.nivel+']
+';nAt=i.nivel;}
+          var f=Math.max(0,(Number(i.minimo)||0)-(Number(i.atual)||0));
+          txt+='    • '+i.nome+' — '+f+' '+(i.unidade||'')+'
+';
+        });
+      }
+    }
+    // Pontuais
+    if(jLst.ok&&jLst.itens&&jLst.itens.length){
+      txt+='
+📌 COMPRAS PONTUAIS:
+';
+      jLst.itens.forEach(function(i){txt+='  • '+i.qtd+' '+i.unidade+' de '+i.item+(i.obs?' — '+i.obs:'')+'
+';});
+    }
+    document.getElementById('resultado-lista-completa').style.display='block';
+    document.getElementById('resultado-lista-completa').textContent=txt;
+    toast('Lista completa gerada!');
+  }).catch(function(){toast('Erro.',false);});
 }
 
 // LOG

@@ -197,6 +197,7 @@ nav::-webkit-scrollbar{display:none}
 <!-- HOME -->
 <div class="section active" id="sec-home">
   <div class="ornamento">&#10022; &#10022; &#10022;</div>
+  <div class="home-card" style="margin-bottom:16px;background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(100,50,200,.08));border-color:rgba(201,168,76,.3)"><div class="home-card-titulo">&#127775; Consultas Espirituais</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px"><div style="font-size:12px"><div style="color:var(--ouro-lt);font-weight:600;margin-bottom:4px">&#127775; Jogo de Búzios</div><div style="color:var(--cinza);line-height:1.6">Leitura oracular africana com os búzios sagrados. Consulte os orixás e receba orientações para sua vida.</div></div><div style="font-size:12px"><div style="color:var(--ouro-lt);font-weight:600;margin-bottom:4px">&#127183; Tarot</div><div style="color:var(--cinza);line-height:1.6">Leitura de tarot para orientação espiritual, esclarecimento de situações e apoio nas decisões da vida.</div></div></div><div style="margin-top:10px;font-size:11px;color:var(--cinza);text-align:center">Para agendamento entre em contato com o terreiro.</div></div>
   <div class="niveis-grid">
     <div class="nivel-card ok" onclick="irParaFiltro('ok')"><div class="num skeleton skel-num" id="cnt-ok"></div><div class="rot">OK</div></div>
     <div class="nivel-card repor" onclick="irParaFiltro('repor')"><div class="num skeleton skel-num" id="cnt-repor"></div><div class="rot">Repor</div></div>
@@ -252,6 +253,7 @@ nav::-webkit-scrollbar{display:none}
     <input type="search" id="cal-busca" placeholder="Buscar evento..." oninput="renderCalendario()"/>
     <select id="cal-tipo" onchange="renderCalendario()">
       <option value="">Todos os Tipos</option>
+      <option>Consulta / Búzios</option><option>Consulta / Tarot</option>
       <option>Festa</option><option>Gira</option><option>Obrigação</option>
       <option>Reunião</option><option>Outro</option>
     </select>
@@ -478,7 +480,7 @@ function renderCalendario(){
   var f=calendario.filter(function(e){return(!busca||(e.titulo||'').toLowerCase().includes(busca))&&(!tipo||e.tipo===tipo);});
   document.getElementById('cal-count').textContent=f.length+' evento(s)';
   if(!f.length){document.getElementById('cal-lista').innerHTML='<div class="empty">Nenhum evento encontrado.</div>';return;}
-  var TIPO_IC={Festa:'&#129345;',Gira:'&#127949;&#65039;',Obrigação:'&#9888;&#65039;',Reunião:'&#128101;',Outro:'&#128197;'};
+  var TIPO_IC={Festa:'&#129345;',Gira:'&#127949;&#65039;',Obrigação:'&#9888;&#65039;',Reunião:'&#128101;','Consulta / Búzios':'&#127775;','Consulta / Tarot':'&#127183;',Outro:'&#128197;'};
   document.getElementById('cal-lista').innerHTML=f.map(function(e){
     var ic=TIPO_IC[e.tipo]||'&#128197;';
     return'<div class="cal-card"><div class="cal-data">'+e.data+'<span class="tipo-badge tipo-'+e.tipo+'">'+e.tipo+'</span></div><div class="cal-titulo">'+ic+' '+(e.titulo||'--')+'</div>'+(e.descricao?'<div class="cal-desc">'+e.descricao+'</div>':'')+(e.responsavel?'<div style="font-size:10px;color:var(--cinza);margin-top:6px">&#128100; '+e.responsavel+'</div>':'')+'</div>';

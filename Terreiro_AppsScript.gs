@@ -1,5 +1,5 @@
 // ================================================================
-//  GESTÃO DO TERREIRO — Ile Ase Vodun Ogum Ayres — Apps Script v16.1
+//  GESTÃO DO TERREIRO — Ile Ase Vodun Ogum Ayres — Apps Script v16.2
 //  Reescrito do zero — 01/08/2026
 //
 //  ABAS:
@@ -27,7 +27,8 @@ const ABA = {
   FILHOS:     'Filhos de Santo',
   FINANCEIRO: 'Financeiro',
   LOG:        'Log',
-  ADMINS:     'Admins'
+  ADMINS:     'Admins',
+  LISTA:      'Lista de Compras'
 };
 
 const SALT    = 'ile_ase_salt_v16_2026';
@@ -67,8 +68,8 @@ const LISTA = {
   STATUS_ACERVO: ['Danificado','Disponível','Em Uso','Necessita Reposição','N/A'],
   CAT_CONSUMIVEL: ['Alimentos','Bebidas','Ervas e Defumação','Flores e Naturais','Fumo','Velas','Outro'],
   NIVEL: ['— Sem mínimo','✅ OK','⚠️ Repor','🔴 Alerta','🚨 Urgente / Zero'],
-  CAT_FINANCEIRO: ['Consumíveis','Dízimo / Doação','Evento / Gira','Indumentária / Acervo','Manutenção','Ritual / Oferenda','Venda','Outros'],
-  TIPO_CALENDARIO: ['Festa','Gira','Obrigação','Reunião','Outro']
+  CAT_FINANCEIRO: ['Consulta / Atendimento','Consumíveis','Dízimo / Doação','Evento / Gira','Indumentária / Acervo','Manutenção','Ritual / Oferenda','Venda','Outros'],
+  TIPO_CALENDARIO: ['Consulta / Búzios','Consulta / Tarot','Festa','Gira','Obrigação','Reunião','Outro']
 };
 
 // ── MENU ─────────────────────────────────────────────────
@@ -98,7 +99,8 @@ function setup() {
     {nome: ABA.FILHOS,      criar: _criarFilhos,      cols: 14},
     {nome: ABA.FINANCEIRO,  criar: _criarFinanceiro,  cols: 9},
     {nome: ABA.LOG,         criar: _criarLog,         cols: 9},
-    {nome: ABA.ADMINS,      criar: _criarAdmins,      cols: 8}
+    {nome: ABA.ADMINS,      criar: _criarAdmins,      cols: 8},
+    {nome: ABA.LISTA,       criar: _criarLista,       cols: 6}
   ];
 
   ABAS_CONFIG.forEach(function(cfg) {
@@ -332,6 +334,13 @@ function _criarFinanceiro(ss) {
   _fechar(aba, cols.length, 501);
 }
 
+function _criarLista(ss) {
+  var aba = ss.insertSheet(ABA.LISTA);
+  var cols = ['ID','Item','Qtd','Unidade','Observações','Cadastrado em'];
+  _cab(aba, cols, '#1a1a1a', '#e0c8a0');
+  _fechar(aba, cols.length, 201);
+}
+
 function _criarLog(ss) {
   var aba = ss.insertSheet(ABA.LOG);
   var cols = ['Data/Hora','Usuário','E-mail','Ação','Aba','ID Item','Campo','Valor Anterior','Valor Novo'];
@@ -528,6 +537,8 @@ function doPost(e) {
     if (d.acao==='financeiro-inserir') return _saida(_inserirFinanceiro(d,sessao));
     if (d.acao==='calendario-inserir') return _saida(_inserirCalendario(d,sessao));
     if (d.acao==='entidade-inserir')   return _saida(_inserirEntidade(d,sessao));
+    if (d.acao==='lista-inserir')      return _saida(_inserirLista(d,sessao));
+    if (d.acao==='lista-deletar')      return _saida(_deletarLista(d,sessao));
     if (d.acao==='admin-criar')        return _saida(_criarAdmin(d,sessao));
     if (d.acao==='admin-desbloquear')  return _saida(_desbloquearAdmin(d.email,sessao));
     return _saida({ok:false,erro:'Ação desconhecida: '+d.acao});
@@ -550,6 +561,7 @@ function doGet(e) {
     if (acao==='calendario-listar')  return _saida(_listarCalendario());
     if (acao==='datas-mes')          return _saida(_datasDoMes());
     if (acao==='ml-buscar')          return _saida(_buscarML(p.q));
+    if (acao==='lista-listar')         return _saida(_listarLista());
     var sessao = _validarToken(p.token);
     if (!sessao) return _saida({ok:false,erro:'Não autorizado.',code:401});
     if (acao==='filhos-listar') {
@@ -758,6 +770,38 @@ function _inserirCalendario(d,s) {
   aba.appendRow([id,d.data||'',d.titulo||'',d.tipo||'Outro',d.descricao||'',d.responsavel||s.nome,d.observacoes||'',_hoje()]);
   _log(s.nome,s.email,'INSERIR',ABA.CALENDARIO,id,'-','-',d.titulo);
   return{ok:true,id};
+}
+
+function _listarLista() {
+  var aba=SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ABA.LISTA);
+  if(!aba)return{ok:false,erro:'Aba não encontrada.'};
+  var rows=aba.getDataRange().getValues().slice(1);
+  return{ok:true,itens:rows.filter(function(l){return l[0]!=='';}).map(function(l){return{id:l[0],item:l[1],qtd:l[2],unidade:l[3],obs:l[4],cadastrado:l[5]};})};
+}
+
+function _inserirLista(d,s) {
+  if(!_tem(s,'consumiveis_edit'))return{ok:false,erro:'Sem permissão.'};
+  var aba=SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ABA.LISTA);
+  if(!aba)return{ok:false,erro:'Aba não encontrada.'};
+  var id=_uuid('LST');
+  aba.appendRow([id,d.item||'',d.qtd||1,d.unidade||'unidade',d.obs||'',_hoje()]);
+  _log(s.nome,s.email,'INSERIR',ABA.LISTA,id,'-','-',d.item);
+  return{ok:true,id};
+}
+
+function _deletarLista(d,s) {
+  if(!_tem(s,'consumiveis_edit'))return{ok:false,erro:'Sem permissão.'};
+  var aba=SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ABA.LISTA);
+  if(!aba)return{ok:false,erro:'Aba não encontrada.'};
+  var rows=aba.getDataRange().getValues();
+  for(var i=1;i<rows.length;i++){
+    if(rows[i][0]===d.id){
+      aba.deleteRow(i+1);
+      _log(s.nome,s.email,'DELETAR',ABA.LISTA,d.id,'-','-',rows[i][1]);
+      return{ok:true};
+    }
+  }
+  return{ok:false,erro:'Item não encontrado.'};
 }
 
 function _inserirEntidade(d,s) {
