@@ -15,15 +15,12 @@
 }
 html{font-size:16px}
 body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:100dvh;padding:0 0 60px}
-
-/* TELAS */
 .tela{display:none}
 #tela-primeiro{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:20px}
 #tela-login,#tela-trocar{display:none;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:20px}
 #tela-login.ativa,#tela-trocar.ativa{display:flex}
 #tela-admin{display:none}
 #tela-admin.ativa{display:block}
-
 .acesso-wrap{width:100%;max-width:340px;text-align:center}
 .acesso-wrap h1{font-family:var(--fd);font-size:1rem;color:var(--ouro-lt);margin-bottom:4px}
 .acesso-wrap p{font-size:11px;color:var(--cinza);margin-bottom:22px}
@@ -31,14 +28,12 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 .field-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ouro);display:block;margin-bottom:5px;text-align:left}
 .field-inp{width:100%;background:rgba(0,0,0,.4);border:1px solid var(--borda);border-radius:8px;color:var(--creme);font-size:15px;padding:11px 13px;outline:none;-webkit-appearance:none;margin-bottom:10px;font-family:var(--fb)}
 .field-inp:focus{border-color:var(--ouro)}
-.acesso-err{font-size:12px;color:#f08080;min-height:18px;margin:8px 0 4px}
-.btn-acesso{width:100%;padding:12px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:linear-gradient(135deg,var(--ouro),#a07820);color:#0f0f0f;font-family:var(--fb);margin-top:10px}
+.acesso-err{font-size:12px;color:#f08080;min-height:18px;margin:4px 0}
+.btn-acesso{width:100%;padding:12px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:linear-gradient(135deg,var(--ouro),#a07820);color:#0f0f0f;font-family:var(--fb);margin-top:6px}
 .btn-acesso:hover{opacity:.88}
 .btn-acesso:disabled{opacity:.5;cursor:not-allowed}
 .acesso-sub{font-size:11px;color:var(--cinza);margin-top:14px}
 .acesso-sub a{color:var(--ouro);text-decoration:none}
-
-/* ADMIN TOPO */
 .admin-top{background:linear-gradient(135deg,#050505,#111);border-bottom:1px solid var(--borda);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:0;z-index:10}
 .admin-top h1{font-family:var(--fd);font-size:.9rem;color:var(--ouro-lt)}
 .admin-sub{font-size:10px;color:var(--cinza);margin-top:2px}
@@ -46,71 +41,20 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 .top-nav a{color:var(--cinza);text-decoration:none}.top-nav a:hover{color:var(--ouro)}
 .top-nav span{color:var(--cinza);cursor:pointer}.top-nav span:hover{color:#f08080}
 .admin-body{padding:20px 32px}
-
-/* SEÇÃO */
 .sec-titulo{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ouro);font-weight:600;margin:22px 0 12px;display:flex;align-items:center;gap:8px}
 .sec-titulo::after{content:'';flex:1;height:1px;background:var(--borda)}
-
-/* FINANCEIRO */
 .fin-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
 .fc{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:14px 8px;text-align:center}
 .fc .num{font-family:var(--fd);font-size:1rem;font-weight:600;line-height:1.2}
 .fc .rot{font-size:9px;color:var(--cinza);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
 .fc.ent .num{color:#7fd67f}.fc.sai .num{color:#f08080}.fc.sal .num{color:var(--ouro-lt)}
-
-/* BOTOES GRID */
 .btn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
 .btn-adm{display:flex;flex-direction:column;align-items:flex-start;gap:3px;background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:14px 16px;cursor:pointer;font-family:var(--fb);color:var(--creme);text-align:left;transition:border-color .15s}
 .btn-adm:hover{border-color:var(--ouro);background:var(--card2)}
 .btn-adm .ic{font-size:18px;margin-bottom:3px}
 .btn-adm .lb{font-size:13px;font-weight:600}
 .btn-adm .dc{font-size:10px;color:var(--cinza);line-height:1.4}
-
-/* RESULTADO */
 .resultado{background:var(--card);border:1px solid var(--borda);border-radius:var(--r);padding:16px;margin-top:14px;display:none;font-size:12px;line-height:1.8;color:var(--creme);font-family:monospace;white-space:pre-wrap;max-height:360px;overflow-y:auto}
-
-/* PRAZO */
-.prazo-box{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:12px;color:var(--cinza)}
-.prazo-box input{background:rgba(0,0,0,.4);border:1px solid var(--borda);border-radius:6px;color:var(--creme);font-size:12px;padding:4px 8px;width:65px;outline:none;text-align:center;font-family:var(--fb)}
-
-/* LISTA CARDS */
-.lista-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:12px}
-.card-item{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:14px 16px}
-
-/* ADMINS */
-.adm-nome{font-size:13px;font-weight:600}
-.adm-email{font-size:10px;color:var(--cinza);margin-top:1px}
-.adm-perms{font-size:10px;color:var(--ouro);margin-top:6px;line-height:1.5}
-.adm-acoes{display:flex;gap:6px;align-items:center;margin-top:8px;flex-wrap:wrap}
-.badge-bloq{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;background:rgba(139,0,0,.3);color:#f08080;border:1px solid #f0808044}
-.badge-troca{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;background:rgba(180,140,0,.2);color:#e0c040;border:1px solid #e0c04044}
-.btn-sm-adm{font-size:11px;font-weight:600;padding:4px 10px;border-radius:8px;background:rgba(201,168,76,.15);border:1px solid var(--borda);color:var(--ouro);cursor:pointer;font-family:var(--fb)}
-.btn-sm-adm:hover{background:rgba(201,168,76,.3)}
-
-/* FILHOS */
-.filho-nome{font-size:13px;font-weight:600;color:var(--ouro-lt)}
-.filho-info{font-size:11px;color:var(--cinza);margin-top:3px;line-height:1.6}
-.sbadge{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block;margin-top:6px}
-.sb-ativo{background:#e6f4ea22;color:#7fd67f;border:1px solid #7fd67f44}
-.sb-ebomi{background:#e8f0fe22;color:#90b0f0;border:1px solid #90b0f044}
-.sb-iao{background:#f0e6ff22;color:#c090f0;border:1px solid #c090f044}
-.sb-abiao{background:#fff9e622;color:#e0c040;border:1px solid #e0c04044}
-.sb-inativo{background:#33333322;color:#888;border:1px solid #88888844}
-.sb-oga{background:#fdecea22;color:#f0a080;border:1px solid #f0a08044}
-.sb-suspenso{background:#fdecea22;color:#f08080;border:1px solid #f0808044}
-
-/* CALENDÁRIO ADMIN */
-.cal-card-adm{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:14px 16px}
-.cal-data-adm{font-size:10px;color:var(--ouro);font-weight:600;margin-bottom:3px}
-.cal-titulo-adm{font-size:13px;font-weight:600}
-.cal-desc-adm{font-size:11px;color:#bbb;margin-top:4px;line-height:1.5}
-
-/* LOG */
-.log-item{background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:8px;padding:10px 12px;margin-bottom:6px;font-size:11px;line-height:1.7}
-.log-data{color:var(--cinza);font-size:10px}
-.log-acao{color:var(--ouro);font-weight:600}
-
-/* FORMS INTERNOS */
 .inner-form{display:none;background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:var(--r);padding:18px;margin-top:12px}
 .inner-form .field-inp{margin-bottom:8px}
 .perms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px;margin:8px 0 12px}
@@ -119,8 +63,32 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 .btn-row{display:flex;gap:8px;justify-content:flex-end}
 .btn-sm{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--borda);font-family:var(--fb);background:transparent;color:var(--cinza)}
 .btn-sm.primary{background:linear-gradient(135deg,var(--ouro),#a07820);color:#0f0f0f;border-color:var(--ouro)}
-
-/* FAQ */
+.lista-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:12px}
+.card-item{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:14px 16px}
+.adm-nome{font-size:13px;font-weight:600}
+.adm-email{font-size:10px;color:var(--cinza);margin-top:1px}
+.adm-perms{font-size:10px;color:var(--ouro);margin-top:6px;line-height:1.5}
+.adm-acoes{display:flex;gap:6px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.badge-bloq{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;background:rgba(139,0,0,.3);color:#f08080;border:1px solid rgba(240,128,128,.27)}
+.badge-troca{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;background:rgba(180,140,0,.2);color:#e0c040;border:1px solid rgba(224,192,64,.27)}
+.btn-sm-adm{font-size:11px;font-weight:600;padding:4px 10px;border-radius:8px;background:rgba(201,168,76,.15);border:1px solid var(--borda);color:var(--ouro);cursor:pointer;font-family:var(--fb)}
+.filho-nome{font-size:13px;font-weight:600;color:var(--ouro-lt)}
+.filho-info{font-size:11px;color:var(--cinza);margin-top:3px;line-height:1.6}
+.sbadge{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;display:inline-block;margin-top:6px}
+.sb-ativo{background:rgba(230,244,234,.13);color:#7fd67f;border:1px solid rgba(127,214,127,.27)}
+.sb-ebomi{background:rgba(232,240,254,.13);color:#90b0f0;border:1px solid rgba(144,176,240,.27)}
+.sb-iao{background:rgba(240,230,255,.13);color:#c090f0;border:1px solid rgba(192,144,240,.27)}
+.sb-abiao{background:rgba(255,249,230,.13);color:#e0c040;border:1px solid rgba(224,192,64,.27)}
+.sb-inativo{background:rgba(51,51,51,.13);color:#888;border:1px solid rgba(136,136,136,.27)}
+.sb-oga{background:rgba(253,236,234,.13);color:#f0a080;border:1px solid rgba(240,160,128,.27)}
+.sb-suspenso{background:rgba(253,236,234,.13);color:#f08080;border:1px solid rgba(240,128,128,.27)}
+.cal-card-adm{background:var(--card);border:1px solid var(--borda);border-radius:10px;padding:14px 16px}
+.cal-data-adm{font-size:10px;color:var(--ouro);font-weight:600;margin-bottom:3px}
+.cal-titulo-adm{font-size:13px;font-weight:600}
+.cal-desc-adm{font-size:11px;color:#bbb;margin-top:4px;line-height:1.5}
+.log-item{background:rgba(0,0,0,.3);border:1px solid var(--borda);border-radius:8px;padding:10px 12px;margin-bottom:6px;font-size:11px;line-height:1.7}
+.log-data{color:var(--cinza);font-size:10px}
+.log-acao{color:var(--ouro);font-weight:600}
 .faq-item{margin-bottom:7px;background:var(--card);border:1px solid var(--borda);border-radius:10px;overflow:hidden}
 .faq-q{padding:12px 14px;font-size:12px;font-weight:600;color:var(--ouro-lt);cursor:pointer;display:flex;justify-content:space-between;gap:8px;user-select:none}
 .faq-q:hover{background:var(--card2)}
@@ -129,11 +97,12 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 .faq-a{display:none;padding:0 14px 12px;font-size:12px;color:#ccc;line-height:1.7}
 .faq-a.aberto{display:block}
 .faq-a code{background:rgba(255,255,255,.08);padding:1px 5px;border-radius:4px;font-size:11px}
-
+.lista-pontual-item{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--borda);font-size:12px}
+.lista-pontual-item:last-child{border:none}
+.lst-del{background:none;border:none;color:#f08080;cursor:pointer;font-size:16px;padding:2px 6px;font-family:var(--fb)}
 #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:#111;border:1px solid var(--ouro);border-radius:99px;color:var(--ouro-lt);padding:8px 18px;font-size:12px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:999;white-space:nowrap}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 #toast.erro{border-color:#f08080;color:#f08080}
-
 @media(max-width:600px){.btn-grid{grid-template-columns:1fr}.fin-bar{grid-template-columns:1fr 1fr}.admin-body{padding:16px}}
 </style>
 </head>
@@ -143,16 +112,16 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 <div id="tela-primeiro">
   <div class="acesso-wrap">
     <h1>&#10022; Ile Ase Vodun Ogum Ayres &#10022;</h1>
-    <p>Primeiro acesso -- crie a conta do Pai / Mãe de Santo</p>
+    <p>Primeiro acesso -- crie a conta do Pai / Mae de Santo</p>
     <div class="acesso-box">
       <label class="field-lbl">Seu nome</label>
       <input class="field-inp" type="text" id="p-nome" placeholder="Ex: Maria das Dores" autocomplete="off"/>
       <label class="field-lbl">E-mail</label>
-      <input class="field-inp" type="email" id="p-email" placeholder="seu@email.com" inputmode="email" autocomplete="off"/>
-      <label class="field-lbl">Senha (mín. 6 caracteres)</label>
-      <input class="field-inp" type="password" id="p-senha" placeholder="********" autocomplete="new-password"/>
+      <input class="field-inp" type="email" id="p-email" placeholder="seu@email.com" autocomplete="off"/>
+      <label class="field-lbl">Senha (min. 6 caracteres)</label>
+      <input class="field-inp" type="password" id="p-senha" placeholder="..." autocomplete="new-password"/>
       <label class="field-lbl">Confirmar senha</label>
-      <input class="field-inp" type="password" id="p-conf" placeholder="********" autocomplete="new-password" onkeydown="if(event.key==='Enter')criarPrimeiro()"/>
+      <input class="field-inp" type="password" id="p-conf" placeholder="..." autocomplete="new-password"/>
       <div class="acesso-err" id="p-err"></div>
       <button class="btn-acesso" onclick="criarPrimeiro()">Criar conta</button>
     </div>
@@ -164,12 +133,12 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 <div id="tela-login">
   <div class="acesso-wrap">
     <h1>&#10022; Ile Ase Vodun Ogum Ayres &#10022;</h1>
-    <p>&#128274; Área da liderança</p>
+    <p>&#128274; Area da lideranca</p>
     <div class="acesso-box">
       <label class="field-lbl">E-mail</label>
-      <input class="field-inp" type="email" id="l-email" placeholder="seu@email.com" inputmode="email" autocomplete="off"/>
+      <input class="field-inp" type="email" id="l-email" placeholder="seu@email.com" autocomplete="off"/>
       <label class="field-lbl">Senha</label>
-      <input class="field-inp" type="password" id="l-senha" placeholder="********" autocomplete="off" onkeydown="if(event.key==='Enter')entrar()"/>
+      <input class="field-inp" type="password" id="l-senha" placeholder="..." autocomplete="off"/>
       <div class="acesso-err" id="l-err"></div>
       <button class="btn-acesso" id="btn-entrar" onclick="entrar()">Entrar</button>
     </div>
@@ -177,18 +146,18 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
   </div>
 </div>
 
-<!-- TELA 3: TROCAR SENHA (obrigatório no primeiro acesso de novo usuário) -->
+<!-- TELA 3: TROCAR SENHA -->
 <div id="tela-trocar">
   <div class="acesso-wrap">
     <h1>&#10022; Ile Ase Vodun Ogum Ayres &#10022;</h1>
     <p>&#128273; Crie sua senha pessoal</p>
     <div class="acesso-box">
-      <label class="field-lbl">Senha atual (provisória)</label>
-      <input class="field-inp" type="password" id="t-atual" placeholder="********" autocomplete="off"/>
-      <label class="field-lbl">Nova senha (mín. 6 caracteres)</label>
-      <input class="field-inp" type="password" id="t-nova" placeholder="********" autocomplete="new-password"/>
+      <label class="field-lbl">Senha atual (provisoria)</label>
+      <input class="field-inp" type="password" id="t-atual" placeholder="..." autocomplete="off"/>
+      <label class="field-lbl">Nova senha (min. 6 caracteres)</label>
+      <input class="field-inp" type="password" id="t-nova" placeholder="..." autocomplete="new-password"/>
       <label class="field-lbl">Confirmar nova senha</label>
-      <input class="field-inp" type="password" id="t-conf" placeholder="********" autocomplete="new-password" onkeydown="if(event.key==='Enter')trocarSenhaObrig()"/>
+      <input class="field-inp" type="password" id="t-conf" placeholder="..." autocomplete="new-password"/>
       <div class="acesso-err" id="t-err"></div>
       <button class="btn-acesso" onclick="trocarSenhaObrig()">Definir senha e entrar</button>
     </div>
@@ -199,7 +168,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 <div id="tela-admin">
   <div class="admin-top">
     <div>
-      <h1>&#127963;&#65039; Painel da Liderança</h1>
+      <h1>&#127963; Painel da Lideranca</h1>
       <div class="admin-sub" id="admin-sub"></div>
     </div>
     <div class="top-nav">
@@ -214,9 +183,9 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
     <!-- Financeiro resumo topo -->
     <div id="sec-fin-bar" style="display:none">
       <div class="fin-bar">
-        <div class="fc ent"><div class="num" id="f-ent">--</div><div class="rot">&#8593; Entradas mês</div></div>
-        <div class="fc sai"><div class="num" id="f-sai">--</div><div class="rot">&#8595; Saídas mês</div></div>
-        <div class="fc sal"><div class="num" id="f-sal">--</div><div class="rot">= Saldo total</div></div>
+        <div class="fc ent"><div class="num" id="f-ent">--</div><div class="rot">Entradas mes</div></div>
+        <div class="fc sai"><div class="num" id="f-sai">--</div><div class="rot">Saidas mes</div></div>
+        <div class="fc sal"><div class="num" id="f-sal">--</div><div class="rot">Saldo total</div></div>
       </div>
     </div>
 
@@ -224,48 +193,49 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
     <div id="sec-estoque" style="display:none">
       <div class="sec-titulo">&#128305; Estoque</div>
       <div class="btn-grid" style="margin-bottom:12px">
-        <button class="btn-adm" onclick="listaComprasMes()"><span class="ic">&#128722;</span><span class="lb">Compras do mês</span><span class="dc">Itens a repor com base no estoque atual</span></button>
-        <button class="btn-adm" onclick="statusEstoque()"><span class="ic">&#128202;</span><span class="lb">Status do estoque</span><span class="dc">Visão por categoria e nível</span></button>
-        <button class="btn-adm" onclick="verListaPontual();toggleForm('form-lista')"><span class="ic">&#128221;</span><span class="lb">Compras pontuais</span><span class="dc">Itens avulsos para compra específica</span></button>
+        <button class="btn-adm" onclick="listaComprasMes()"><span class="ic">&#128722;</span><span class="lb">Compras do mes</span><span class="dc">Itens a repor com base no estoque</span></button>
+        <button class="btn-adm" onclick="statusEstoque()"><span class="ic">&#128202;</span><span class="lb">Status do estoque</span><span class="dc">Visao por categoria e nivel</span></button>
+        <button class="btn-adm" onclick="abrirListaPontual()"><span class="ic">&#128221;</span><span class="lb">Compras pontuais</span><span class="dc">Itens avulsos para compra especifica</span></button>
       </div>
       <div class="resultado" id="resultado-estoque"></div>
-
-      <!-- Lista de compras pontuais -->
-      <div class="inner-form" id="form-lista" style="margin-top:12px">
+      <div class="inner-form" id="form-lista">
         <div class="sec-titulo" style="margin-top:0">&#128221; Compras Pontuais</div>
-        <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+        <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
           <input class="field-inp" type="text" id="lst-item" placeholder="Item" style="flex:2;margin-bottom:0" autocomplete="off"/>
           <input class="field-inp" type="number" id="lst-qtd" placeholder="Qtd" style="flex:.5;margin-bottom:0" min="1" value="1"/>
           <input class="field-inp" type="text" id="lst-unid" placeholder="Unidade" style="flex:.8;margin-bottom:0" autocomplete="off"/>
-          <button class="btn-sm primary" onclick="adicionarLista()" style="flex-shrink:0">Adicionar</button>
+          <button class="btn-sm primary" onclick="adicionarLista()" style="flex-shrink:0;align-self:flex-start;margin-top:0">+ Add</button>
         </div>
-        <input class="field-inp" type="text" id="lst-obs" placeholder="Observação (opcional)" style="margin-bottom:10px" autocomplete="off"/>
-        <div id="lista-pontual-items" style="margin-bottom:10px"></div>
-        <button class="btn-sm primary" onclick="gerarListaCompleta()" style="width:100%">&#128247; Gerar lista completa (estoque + pontuais)</button>
+        <input class="field-inp" type="text" id="lst-obs" placeholder="Observacao (opcional)" autocomplete="off"/>
+        <div id="lista-pontual-items" style="margin:8px 0"></div>
+        <button class="btn-sm primary" onclick="gerarListaCompleta()" style="width:100%;margin-top:8px">Gerar lista completa</button>
       </div>
       <div class="resultado" id="resultado-lista-completa" style="margin-top:10px"></div>
     </div>
 
-    <!-- Calendário -->
+    <!-- Calendario -->
     <div id="sec-calendario" style="display:none">
-      <div class="sec-titulo">&#128197; Calendário do Terreiro</div>
+      <div class="sec-titulo">&#128197; Calendario do Terreiro</div>
       <div class="btn-grid" style="margin-bottom:12px">
-        <button class="btn-adm" onclick="listarCalendario()"><span class="ic">&#128197;</span><span class="lb">Ver eventos</span><span class="dc">Giras, festas e reuniões</span></button>
-        <button class="btn-adm" onclick="toggleForm('form-cal')"><span class="ic">&#10133;</span><span class="lb">Novo evento</span><span class="dc">Adicionar ao calendário</span></button>
+        <button class="btn-adm" onclick="listarCalendario()"><span class="ic">&#128197;</span><span class="lb">Ver eventos</span><span class="dc">Giras, festas e reunioes</span></button>
+        <button class="btn-adm" onclick="toggleForm('form-cal')"><span class="ic">+</span><span class="lb">Novo evento</span><span class="dc">Adicionar ao calendario</span></button>
       </div>
       <div class="inner-form" id="form-cal">
-        <label class="field-lbl">Título *</label>
+        <label class="field-lbl">Titulo *</label>
         <input class="field-inp" type="text" id="cal-titulo" placeholder="Ex: Gira de Oxum" autocomplete="off"/>
         <label class="field-lbl">Data *</label>
         <input class="field-inp" type="date" id="cal-data" style="color-scheme:dark"/>
         <label class="field-lbl">Tipo</label>
         <select class="field-inp" id="cal-tipo" style="-webkit-appearance:none">
-          <option value="Consulta / Búzios">Consulta / Búzios</option>
+          <option value="Consulta / Buzios">Consulta / Buzios</option>
           <option value="Consulta / Tarot">Consulta / Tarot</option>
-          <option value="Festa">Festa</option><option value="Gira">Gira</option>
-          <option value="Obrigação">Obrigação</option><option value="Reunião">Reunião</option><option value="Outro">Outro</option>
+          <option value="Festa">Festa</option>
+          <option value="Gira">Gira</option>
+          <option value="Obrigacao">Obrigacao</option>
+          <option value="Reuniao">Reuniao</option>
+          <option value="Outro">Outro</option>
         </select>
-        <label class="field-lbl">Descrição</label>
+        <label class="field-lbl">Descricao</label>
         <input class="field-inp" type="text" id="cal-desc" placeholder="Detalhes do evento" autocomplete="off"/>
         <div id="cal-err" style="font-size:12px;color:#f08080;margin-bottom:8px;min-height:16px"></div>
         <div class="btn-row">
@@ -281,58 +251,60 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
       <div class="sec-titulo">&#128101; Filhos de Santo</div>
       <div class="btn-grid" style="margin-bottom:12px">
         <button class="btn-adm" onclick="listarFilhos()"><span class="ic">&#128101;</span><span class="lb">Ver filhos</span><span class="dc">Lista completa do terreiro</span></button>
-        <button class="btn-adm" onclick="toggleForm('form-filho')"><span class="ic">&#10133;</span><span class="lb">Novo filho</span><span class="dc">Cadastrar membro</span></button>
-        <button class="btn-adm" onclick="obrigacoes()"><span class="ic">&#9888;&#65039;</span><span class="lb">Obrigações</span><span class="dc">Próximas nos dias definidos</span></button>
+        <button class="btn-adm" onclick="toggleForm('form-filho')"><span class="ic">+</span><span class="lb">Novo filho</span><span class="dc">Cadastrar membro</span></button>
+        <button class="btn-adm" onclick="verObrigacoes()"><span class="ic">!</span><span class="lb">Obrigacoes</span><span class="dc">Proximas nos dias definidos</span></button>
       </div>
-      <div class="prazo-box">Prazo: <input type="number" id="prazo" value="180" min="30" max="730"/> dias</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:12px;color:var(--cinza)">
+        Prazo: <input type="number" id="prazo" value="180" min="30" max="730" style="background:rgba(0,0,0,.4);border:1px solid var(--borda);border-radius:6px;color:var(--creme);font-size:12px;padding:4px 8px;width:65px;outline:none;text-align:center;font-family:var(--fb)"/> dias
+      </div>
       <div class="inner-form" id="form-filho">
-        <label class="field-lbl">Nome de Candomblé / Santo</label>
+        <label class="field-lbl">Nome de Candomble / Santo</label>
         <input class="field-inp" type="text" id="ff-nome" autocomplete="off"/>
         <label class="field-lbl">Nome Social</label>
         <input class="field-inp" type="text" id="ff-social" autocomplete="off"/>
         <label class="field-lbl">Contato (WhatsApp)</label>
         <input class="field-inp" type="tel" id="ff-contato" placeholder="(11) 99999-9999"/>
-        <label class="field-lbl">Orixá de Cabeça</label>
+        <label class="field-lbl">Orixa de Cabeca</label>
         <select class="field-inp" id="ff-orixa" style="-webkit-appearance:none">
           <option value="">--</option>
-          <option>Iansã</option><option>Iemanjá</option><option>Logun Edé</option>
-          <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
-          <option>Ogum</option><option>Oxaguiã / Oxalufã</option><option>Oxalá</option>
-          <option>Oxossi</option><option>Oxum</option><option>Oxumaré</option>
-          <option>Xangô</option><option>Outro</option>
+          <option>Iansa</option><option>Iemanja</option><option>Logun Ede</option>
+          <option>Nana</option><option>Oba</option><option>Obaluae / Omolu</option>
+          <option>Ogum</option><option>Oxaguia / Oxalufa</option><option>Oxala</option>
+          <option>Oxossi</option><option>Oxum</option><option>Oxumare</option>
+          <option>Xango</option><option>Outro</option>
         </select>
-        <label class="field-lbl">Adjuntó</label>
+        <label class="field-lbl">Adjunto</label>
         <select class="field-inp" id="ff-adjunto" style="-webkit-appearance:none">
           <option value="">--</option>
-          <option>Iansã</option><option>Iemanjá</option><option>Logun Edé</option>
-          <option>Nanã</option><option>Obá</option><option>Obaluaê / Omolu</option>
-          <option>Ogum</option><option>Oxaguiã / Oxalufã</option><option>Oxalá</option>
-          <option>Oxossi</option><option>Oxum</option><option>Oxumaré</option>
-          <option>Xangô</option><option>Outro</option>
+          <option>Iansa</option><option>Iemanja</option><option>Logun Ede</option>
+          <option>Nana</option><option>Oba</option><option>Obaluae / Omolu</option>
+          <option>Ogum</option><option>Oxaguia / Oxalufa</option><option>Oxala</option>
+          <option>Oxossi</option><option>Oxum</option><option>Oxumare</option>
+          <option>Xango</option><option>Outro</option>
         </select>
-        <label class="field-lbl">Nação</label>
+        <label class="field-lbl">Nacao</label>
         <select class="field-inp" id="ff-nacao" style="-webkit-appearance:none">
           <option value="">--</option>
-          <option>Angola</option><option>Efon</option><option>Ijexá</option>
-          <option>Jeje</option><option>Ketu</option><option>Nagô</option>
-          <option>Omolokô</option><option>Umbanda</option><option>Outra</option>
+          <option>Angola</option><option>Efon</option><option>Ijexa</option>
+          <option>Jeje</option><option>Ketu</option><option>Nago</option>
+          <option>Omoloko</option><option>Umbanda</option><option>Outra</option>
         </select>
         <label class="field-lbl">Status no Terreiro</label>
         <select class="field-inp" id="ff-status" style="-webkit-appearance:none">
-          <option value="Abiã">Abiã</option><option value="Ativo" selected>Ativo</option>
-          <option value="Ebomi">Ebomi</option><option value="Iaô">Iaô</option>
-          <option value="Inativo">Inativo</option><option value="Ogã / Ekedi">Ogã / Ekedi</option>
+          <option value="Abiao">Abiao</option><option value="Ativo" selected>Ativo</option>
+          <option value="Ebomi">Ebomi</option><option value="Iao">Iao</option>
+          <option value="Inativo">Inativo</option><option value="Oga / Ekedi">Oga / Ekedi</option>
           <option value="Suspenso">Suspenso</option>
         </select>
-        <label class="field-lbl">Data de Aniversário</label>
+        <label class="field-lbl">Data de Aniversario</label>
         <input class="field-inp" type="date" id="ff-aniv" style="color-scheme:dark"/>
         <label class="field-lbl">Data de Feitura</label>
         <input class="field-inp" type="date" id="ff-feitura" style="color-scheme:dark"/>
-        <label class="field-lbl">Próxima Obrigação</label>
+        <label class="field-lbl">Proxima Obrigacao</label>
         <input class="field-inp" type="date" id="ff-obrig" style="color-scheme:dark"/>
-        <label class="field-lbl">Obrigações Realizadas</label>
+        <label class="field-lbl">Obrigacoes Realizadas</label>
         <input class="field-inp" type="text" id="ff-obrigrealiz" placeholder="Ex: Feitura 2020, 1 ano 2021" autocomplete="off"/>
-        <label class="field-lbl">Observações</label>
+        <label class="field-lbl">Observacoes</label>
         <input class="field-inp" type="text" id="ff-obs" autocomplete="off"/>
         <div id="ff-err" style="font-size:12px;color:#f08080;margin-bottom:8px;min-height:16px"></div>
         <div class="btn-row">
@@ -348,36 +320,36 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
     <div id="sec-financeiro" style="display:none">
       <div class="sec-titulo">&#128176; Financeiro</div>
       <div class="btn-grid" style="margin-bottom:12px">
-        <button class="btn-adm" onclick="resumoFin()"><span class="ic">&#128200;</span><span class="lb">Resumo completo</span><span class="dc">Entradas, saídas e breakdown por categoria</span></button>
-        <button class="btn-adm" onclick="toggleForm('form-fin')"><span class="ic">&#10133;</span><span class="lb">Nova entrada / saída</span><span class="dc">Registrar lançamento financeiro</span></button>
+        <button class="btn-adm" onclick="resumoFin()"><span class="ic">&#128200;</span><span class="lb">Resumo completo</span><span class="dc">Entradas, saidas e breakdown por categoria</span></button>
+        <button class="btn-adm" onclick="toggleForm('form-fin')"><span class="ic">+</span><span class="lb">Nova entrada / saida</span><span class="dc">Registrar lancamento financeiro</span></button>
       </div>
       <div class="inner-form" id="form-fin">
         <label class="field-lbl">Tipo *</label>
-        <select class="field-inp" id="fin-tipo" style="-webkit-appearance:none" onchange="atualizarCatFin()">
+        <select class="field-inp" id="fin-tipo" style="-webkit-appearance:none">
           <option value="Entrada">Entrada</option>
-          <option value="Saída">Saída</option>
+          <option value="Saida">Saida</option>
         </select>
         <label class="field-lbl">Categoria *</label>
         <select class="field-inp" id="fin-cat" style="-webkit-appearance:none">
           <option value="Consulta / Atendimento">Consulta / Atendimento</option>
-          <option value="Consumíveis">Consumíveis</option>
-          <option value="Dízimo / Doação">Dízimo / Doação</option>
+          <option value="Consumiveis">Consumiveis</option>
+          <option value="Dizimo / Doacao">Dizimo / Doacao</option>
           <option value="Evento / Gira">Evento / Gira</option>
-          <option value="Indumentária / Acervo">Indumentária / Acervo</option>
-          <option value="Manutenção">Manutenção</option>
+          <option value="Indumentaria / Acervo">Indumentaria / Acervo</option>
+          <option value="Manutencao">Manutencao</option>
           <option value="Ritual / Oferenda">Ritual / Oferenda</option>
           <option value="Venda">Venda</option>
           <option value="Outros">Outros</option>
         </select>
-        <label class="field-lbl">Descrição</label>
-        <input class="field-inp" type="text" id="fin-desc" placeholder="Ex: Consulta de búzios -- Maria" autocomplete="off"/>
+        <label class="field-lbl">Descricao</label>
+        <input class="field-inp" type="text" id="fin-desc" placeholder="Ex: Consulta de buzios -- Maria" autocomplete="off"/>
         <label class="field-lbl">Valor (R$) *</label>
         <input class="field-inp" type="number" id="fin-valor" step="0.01" min="0" placeholder="0,00"/>
         <label class="field-lbl">Data</label>
         <input class="field-inp" type="date" id="fin-data" style="color-scheme:dark"/>
-        <label class="field-lbl">Responsável</label>
-        <input class="field-inp" type="text" id="fin-resp" placeholder="Nome do responsável" autocomplete="off"/>
-        <label class="field-lbl">Observações</label>
+        <label class="field-lbl">Responsavel</label>
+        <input class="field-inp" type="text" id="fin-resp" placeholder="Nome do responsavel" autocomplete="off"/>
+        <label class="field-lbl">Observacoes</label>
         <input class="field-inp" type="text" id="fin-obs" autocomplete="off"/>
         <div id="fin-err" style="font-size:12px;color:#f08080;margin-bottom:8px;min-height:16px"></div>
         <div class="btn-row">
@@ -388,42 +360,40 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
       <div class="resultado" id="resultado-fin"></div>
     </div>
 
-    <!-- Usuários -->
+    <!-- Usuarios -->
     <div id="sec-usuarios" style="display:none">
-      <div class="sec-titulo">&#128100; Usuários</div>
+      <div class="sec-titulo">&#128100; Usuarios</div>
       <div class="btn-grid" style="margin-bottom:12px">
-        <button class="btn-adm" onclick="listarAdmins()"><span class="ic">&#128101;</span><span class="lb">Ver usuários</span><span class="dc">Status e permissões</span></button>
-        <button class="btn-adm" onclick="toggleForm('form-novo-admin')"><span class="ic">&#10133;</span><span class="lb">Novo usuário</span><span class="dc">Criar acesso para membro da liderança</span></button>
+        <button class="btn-adm" onclick="listarAdmins()"><span class="ic">&#128101;</span><span class="lb">Ver usuarios</span><span class="dc">Status e permissoes</span></button>
+        <button class="btn-adm" onclick="toggleForm('form-novo-admin')"><span class="ic">+</span><span class="lb">Novo usuario</span><span class="dc">Criar acesso para membro da lideranca</span></button>
         <button class="btn-adm" onclick="toggleForm('form-senha')"><span class="ic">&#128273;</span><span class="lb">Trocar minha senha</span><span class="dc">Altere sua senha de acesso</span></button>
       </div>
-
       <div class="inner-form" id="form-novo-admin">
         <label class="field-lbl">Nome</label>
         <input class="field-inp" type="text" id="na-nome" placeholder="Nome completo" autocomplete="off"/>
         <label class="field-lbl">E-mail</label>
-        <input class="field-inp" type="email" id="na-email" placeholder="email@exemplo.com" inputmode="email" autocomplete="off"/>
-        <label class="field-lbl">Senha provisória (usuário deverá trocar no primeiro acesso)</label>
-        <input class="field-inp" type="text" id="na-senha" placeholder="Mín. 6 caracteres" autocomplete="off"/>
-        <label class="field-lbl">Permissões</label>
+        <input class="field-inp" type="email" id="na-email" placeholder="email@exemplo.com" autocomplete="off"/>
+        <label class="field-lbl">Senha provisoria (usuario devera trocar no primeiro acesso)</label>
+        <input class="field-inp" type="text" id="na-senha" placeholder="Min. 6 caracteres" autocomplete="off"/>
+        <label class="field-lbl">Permissoes</label>
         <div class="perms-grid">
           <label class="perm-cb"><input type="checkbox" value="acervo_edit"/> Editar Acervo</label>
-          <label class="perm-cb"><input type="checkbox" value="consumiveis_edit"/> Editar Consumíveis</label>
+          <label class="perm-cb"><input type="checkbox" value="consumiveis_edit"/> Editar Consumiveis</label>
           <label class="perm-cb"><input type="checkbox" value="entidades_edit"/> Editar Entidades</label>
-          <label class="perm-cb"><input type="checkbox" value="calendario_edit"/> Editar Calendário</label>
+          <label class="perm-cb"><input type="checkbox" value="calendario_edit"/> Editar Calendario</label>
           <label class="perm-cb"><input type="checkbox" value="filhos_view"/> Ver Filhos de Santo</label>
           <label class="perm-cb"><input type="checkbox" value="filhos_edit"/> Editar Filhos de Santo</label>
           <label class="perm-cb"><input type="checkbox" value="financeiro"/> Financeiro</label>
-          <label class="perm-cb"><input type="checkbox" value="usuarios"/> Usuários</label>
-          <label class="perm-cb"><input type="checkbox" value="configuracoes"/> Configurações</label>
+          <label class="perm-cb"><input type="checkbox" value="usuarios"/> Usuarios</label>
+          <label class="perm-cb"><input type="checkbox" value="configuracoes"/> Configuracoes</label>
           <label class="perm-cb"><input type="checkbox" value="log"/> Log</label>
         </div>
         <div id="na-err" style="font-size:12px;color:#f08080;margin-bottom:8px;min-height:16px"></div>
         <div class="btn-row">
           <button class="btn-sm" onclick="toggleForm('form-novo-admin')">Cancelar</button>
-          <button class="btn-sm primary" onclick="criarAdmin()">Criar usuário</button>
+          <button class="btn-sm primary" onclick="criarAdmin()">Criar usuario</button>
         </div>
       </div>
-
       <div class="inner-form" id="form-senha">
         <label class="field-lbl">Senha atual</label>
         <input class="field-inp" type="password" id="s-atual" autocomplete="off"/>
@@ -437,7 +407,6 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
           <button class="btn-sm primary" onclick="trocarSenha()">Salvar</button>
         </div>
       </div>
-
       <div class="lista-grid" id="admins-lista"></div>
     </div>
 
@@ -445,473 +414,746 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
     <div id="sec-log" style="display:none">
       <div class="sec-titulo">&#128203; Log de Atividades</div>
       <button class="btn-adm" style="width:100%;margin-bottom:12px" onclick="carregarLog()">
-        <span class="ic">&#128203;</span><span class="lb">Carregar log</span><span class="dc">Histórico de todas as alterações</span>
+        <span class="ic">&#128203;</span><span class="lb">Carregar log</span><span class="dc">Historico de todas as alteracoes</span>
       </button>
       <div id="log-lista"></div>
     </div>
 
     <!-- Suporte -->
-    <div class="sec-titulo" style="margin-top:28px">&#128295; Suporte técnico</div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">"Sessão expirada" ao usar o painel <span class="arrow">&#9660;</span></div><div class="faq-a">A sessão dura 8h ou 30 min sem uso. Basta fazer login novamente.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">"Ação desconhecida" ao gravar <span class="arrow">&#9660;</span></div><div class="faq-a">Reimplante o Apps Script: <code>Implantar -> Gerenciar implantações -> ✏ -> Nova versão -> Implantar</code></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Permissões disponíveis <span class="arrow">&#9660;</span></div><div class="faq-a"><code>acervo_view</code> · <code>acervo_edit</code> · <code>consumiveis_view</code> · <code>consumiveis_edit</code> · <code>entidades_view</code> · <code>entidades_edit</code> · <code>filhos_view</code> · <code>filhos_edit</code> · <code>financeiro</code> · <code>calendario_view</code> · <code>calendario_edit</code> · <code>usuarios</code> · <code>configuracoes</code> · <code>log</code></div></div>
+    <div class="sec-titulo" style="margin-top:28px">&#128295; Suporte</div>
+    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Sessao expirada ao usar o painel <span class="arrow">v</span></div><div class="faq-a">A sessao dura 8h ou 30 min sem uso. Basta fazer login novamente.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Acao desconhecida ao gravar <span class="arrow">v</span></div><div class="faq-a">Reimplante o Apps Script: <code>Implantar > Gerenciar implantacoes > editar > Nova versao > Implantar</code></div></div>
+
   </div>
 </div>
 
 <div id="toast"></div>
 
 <script>
-var URL_GS='https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAfyjHqC_mvDwvKDCFieibGTvp7u7Fyls9OcmCc2aDvlvsVwAW706SlWw/exec';
+var GS = 'https://script.google.com/macros/s/AKfycbz8XRp-FTZ-laAfyjHqC_mvDwvKDCFieibGTvp7u7Fyls9OcmCc2aDvlvsVwAW706SlWw/exec';
+var DEV_KEY = 'ile_ase_dev_2024_falsp';
 
-// Token só em memória -- sem localStorage/sessionStorage de credencial
-var TOKEN=null, PERMS=[], NOME_ADMIN='', EMAIL_ADMIN='';
-var _inactTimer=null;
-var INACT_MS=30*60*1000; // 30 minutos
+var TOKEN = null;
+var PERMS = [];
+var NOME_ADMIN = '';
+var EMAIL_ADMIN = '';
+var _listaPontual = [];
+var _inactTimer = null;
+var INACT_MS = 30 * 60 * 1000;
 
-function _resetInact(){
+function _resetInact() {
   clearTimeout(_inactTimer);
-  _inactTimer=setTimeout(function(){
-    toast('Sessão encerrada por inatividade.',false);
-    setTimeout(sair,1500);
-  },INACT_MS);
+  _inactTimer = setTimeout(function() {
+    toast('Sessao encerrada por inatividade.', false);
+    setTimeout(sair, 1500);
+  }, INACT_MS);
 }
-['click','keydown','scroll','touchstart'].forEach(function(ev){
-  document.addEventListener(ev,_resetInact,true);
+['click','keydown','scroll','touchstart'].forEach(function(ev) {
+  document.addEventListener(ev, _resetInact, true);
 });
 
-function toast(msg,ok){var t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok===false?' erro':'');clearTimeout(t._t);t._t=setTimeout(function(){t.className='';},3200);}
-function fmtBRL(v){return'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2});}
-function fmtData(s){if(!s||s==='--')return'--';try{if(String(s).includes('/'))return s;return new Date(s).toLocaleDateString('pt-BR');}catch(e){return s;}}
-function faqT(el){el.classList.toggle('aberto');el.nextElementSibling.classList.toggle('aberto');}
-function toggleForm(id){var f=document.getElementById(id);f.style.display=f.style.display==='block'?'none':'block';}
+function toast(msg, ok) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show' + (ok === false ? ' erro' : '');
+  clearTimeout(t._t);
+  t._t = setTimeout(function() { t.className = ''; }, 3200);
+}
 
-window.addEventListener('DOMContentLoaded',function(){
-  // Acesso dev via URL: admin.html?dev=<devkey>
-  var urlParams = new URLSearchParams(window.location.search);
-  var devkey = urlParams.get('dev');
-  if(devkey){
-    // Validar devkey localmente -- sem round-trip ao GS
-    var DEV_KEY_VALIDA='ile_ase_dev_2024_falsp';
-    if(devkey===DEV_KEY_VALIDA){
-      TOKEN='dev_'+devkey;
-      PERMS=['acervo_view','acervo_edit','consumiveis_view','consumiveis_edit',
+function fmtBRL(v) {
+  return 'R$ ' + Number(v || 0).toLocaleString('pt-BR', {minimumFractionDigits: 2});
+}
+
+function fmtData(s) {
+  if (!s || s === '--') return '--';
+  try {
+    if (String(s).includes('/')) return s;
+    return new Date(s).toLocaleDateString('pt-BR');
+  } catch(e) { return s; }
+}
+
+function hoje() {
+  var d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+function faqT(el) {
+  el.classList.toggle('aberto');
+  el.nextElementSibling.classList.toggle('aberto');
+}
+
+function toggleForm(id) {
+  var f = document.getElementById(id);
+  f.style.display = f.style.display === 'block' ? 'none' : 'block';
+}
+
+function tem(p) {
+  return PERMS.includes(p);
+}
+
+function mostrar(elId, txt) {
+  var el = document.getElementById(elId);
+  el.style.display = 'block';
+  el.textContent = txt;
+  el.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+}
+
+// INIT
+window.addEventListener('DOMContentLoaded', function() {
+  var params = new URLSearchParams(window.location.search);
+  var devkey = params.get('dev');
+  if (devkey && devkey === DEV_KEY) {
+    TOKEN = 'dev_' + devkey;
+    PERMS = ['acervo_view','acervo_edit','consumiveis_view','consumiveis_edit',
              'entidades_view','entidades_edit','filhos_view','filhos_edit',
              'financeiro','calendario_view','calendario_edit',
              'usuarios','configuracoes','log'];
-      NOME_ADMIN='Dev (falsp)';
-      EMAIL_ADMIN='dev@ile-ase';
-      document.getElementById('tela-primeiro').style.display='none';
-      mostrarAdmin();
-      window.history.replaceState({},'',window.location.pathname);
-    }else{
-      document.getElementById('tela-primeiro').style.display='none';
-      document.getElementById('tela-login').classList.add('ativa');
-    }
+    NOME_ADMIN = 'Dev (falsp)';
+    EMAIL_ADMIN = 'dev@ile-ase';
+    document.getElementById('tela-primeiro').style.display = 'none';
+    window.history.replaceState({}, '', window.location.pathname);
+    mostrarAdmin();
     return;
   }
-
-  // Fluxo normal
-  fetch(URL_GS+'?acao=admins-vazio').then(function(r){return r.json();}).then(function(j){
-    if(j.ok&&j.vazio){
-      document.getElementById('tela-primeiro').style.display='flex';
-    }else{
-      document.getElementById('tela-primeiro').style.display='none';
+  fetch(GS + '?acao=admins-vazio')
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (j.ok && j.vazio) {
+        document.getElementById('tela-primeiro').style.display = 'flex';
+      } else {
+        document.getElementById('tela-primeiro').style.display = 'none';
+        document.getElementById('tela-login').classList.add('ativa');
+        document.getElementById('l-email').focus();
+      }
+    })
+    .catch(function() {
+      document.getElementById('tela-primeiro').style.display = 'none';
       document.getElementById('tela-login').classList.add('ativa');
-      document.getElementById('l-email').focus();
-    }
-  }).catch(function(){
-    document.getElementById('tela-primeiro').style.display='none';
-    document.getElementById('tela-login').classList.add('ativa');
-  });
+    });
 });
 
-function criarPrimeiro(){
-  var nome=document.getElementById('p-nome').value.trim();
-  var email=document.getElementById('p-email').value.trim();
-  var senha=document.getElementById('p-senha').value;
-  var conf=document.getElementById('p-conf').value;
-  var err=document.getElementById('p-err');
-  if(!nome){err.textContent='Informe seu nome.';return;}
-  if(!email.includes('@')){err.textContent='E-mail inválido.';return;}
-  if(senha.length<6){err.textContent='A senha precisa ter pelo menos 6 caracteres.';return;}
-  if(senha!==conf){err.textContent='As senhas não coincidem.';return;}
-  err.textContent='Criando...';
-  fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'primeiro-admin',email:email,senha:senha,nome:nome})})
-    .then(function(r){return r.json();}).then(function(j){
-      if(j.ok){_salvarSessao(j);document.getElementById('tela-primeiro').style.display='none';mostrarAdmin();}
-      else err.textContent=j.erro||'Erro ao criar conta.';
-    }).catch(function(){err.textContent='Erro de conexão.';});
+// AUTH
+function criarPrimeiro() {
+  var nome = document.getElementById('p-nome').value.trim();
+  var email = document.getElementById('p-email').value.trim();
+  var senha = document.getElementById('p-senha').value;
+  var conf = document.getElementById('p-conf').value;
+  var err = document.getElementById('p-err');
+  if (!nome) { err.textContent = 'Informe seu nome.'; return; }
+  if (!email.includes('@')) { err.textContent = 'E-mail invalido.'; return; }
+  if (senha.length < 6) { err.textContent = 'Senha muito curta.'; return; }
+  if (senha !== conf) { err.textContent = 'As senhas nao coincidem.'; return; }
+  err.textContent = 'Criando...';
+  fetch(GS, {method: 'POST', body: JSON.stringify({acao: 'primeiro-admin', email: email, senha: senha, nome: nome})})
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (j.ok) {
+        TOKEN = j.token; PERMS = j.permissoes || []; NOME_ADMIN = j.nome || ''; EMAIL_ADMIN = email;
+        document.getElementById('tela-primeiro').style.display = 'none';
+        mostrarAdmin();
+      } else { err.textContent = j.erro || 'Erro ao criar conta.'; }
+    })
+    .catch(function() { err.textContent = 'Erro de conexao.'; });
 }
 
-function entrar(){
-  var email=document.getElementById('l-email').value.trim();
-  var senha=document.getElementById('l-senha').value;
-  var err=document.getElementById('l-err');
-  var btn=document.getElementById('btn-entrar');
-  if(!email||!senha){err.textContent='Preencha e-mail e senha.';return;}
-  err.textContent='Verificando...';btn.disabled=true;
-  fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'login',email:email,senha:senha})})
-    .then(function(r){return r.json();}).then(function(j){
-      if(j.ok){
-        _salvarSessao(j);
+function entrar() {
+  var email = document.getElementById('l-email').value.trim();
+  var senha = document.getElementById('l-senha').value;
+  var err = document.getElementById('l-err');
+  var btn = document.getElementById('btn-entrar');
+  if (!email || !senha) { err.textContent = 'Preencha e-mail e senha.'; return; }
+  err.textContent = 'Verificando...'; btn.disabled = true;
+  fetch(GS, {method: 'POST', body: JSON.stringify({acao: 'login', email: email, senha: senha})})
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (j.ok) {
+        TOKEN = j.token; PERMS = j.permissoes || []; NOME_ADMIN = j.nome || ''; EMAIL_ADMIN = email;
         document.getElementById('tela-login').classList.remove('ativa');
-        document.getElementById('l-senha').value='';
-        if(j.trocaSenha){
-          // Senha provisória -- obriga troca
+        document.getElementById('l-senha').value = '';
+        if (j.trocaSenha) {
           document.getElementById('tela-trocar').classList.add('ativa');
           document.getElementById('t-atual').focus();
-        }else{
+        } else {
           mostrarAdmin();
         }
-      }else{
-        err.textContent=j.erro||'Erro no login.';
-        document.getElementById('l-senha').value='';
-        document.getElementById('l-senha').focus();
+      } else {
+        err.textContent = j.erro || 'Erro no login.';
+        document.getElementById('l-senha').value = '';
       }
-    }).catch(function(){err.textContent='Erro de conexão.';})
-    .finally(function(){btn.disabled=false;});
+    })
+    .catch(function() { err.textContent = 'Erro de conexao.'; })
+    .finally(function() { btn.disabled = false; });
 }
 
-function trocarSenhaObrig(){
-  var atual=document.getElementById('t-atual').value;
-  var nova=document.getElementById('t-nova').value;
-  var conf=document.getElementById('t-conf').value;
-  var err=document.getElementById('t-err');
-  if(!atual||!nova||!conf){err.textContent='Preencha todos os campos.';return;}
-  if(nova.length<6){err.textContent='Mín. 6 caracteres.';return;}
-  if(nova!==conf){err.textContent='As senhas não coincidem.';return;}
-  err.textContent='Salvando...';
-  _post({acao:'trocar-senha',senhaAtual:atual,senhaNova:nova}).then(function(j){
-    if(j.ok){
-      document.getElementById('tela-trocar').classList.remove('ativa');
-      ['t-atual','t-nova','t-conf'].forEach(function(id){document.getElementById(id).value='';});
-      mostrarAdmin();
-      toast('Senha definida com sucesso!');
-    }else{err.textContent=j.erro||'Erro.';}
-  }).catch(function(){err.textContent='Erro de conexão.';});
+function trocarSenhaObrig() {
+  var atual = document.getElementById('t-atual').value;
+  var nova = document.getElementById('t-nova').value;
+  var conf = document.getElementById('t-conf').value;
+  var err = document.getElementById('t-err');
+  if (!atual || !nova || !conf) { err.textContent = 'Preencha todos os campos.'; return; }
+  if (nova.length < 6) { err.textContent = 'Min. 6 caracteres.'; return; }
+  if (nova !== conf) { err.textContent = 'As senhas nao coincidem.'; return; }
+  err.textContent = 'Salvando...';
+  _post({acao: 'trocar-senha', senhaAtual: atual, senhaNova: nova})
+    .then(function(j) {
+      if (j.ok) {
+        document.getElementById('tela-trocar').classList.remove('ativa');
+        ['t-atual','t-nova','t-conf'].forEach(function(id) { document.getElementById(id).value = ''; });
+        mostrarAdmin();
+        toast('Senha definida com sucesso!');
+      } else { err.textContent = j.erro || 'Erro.'; }
+    })
+    .catch(function() { err.textContent = 'Erro de conexao.'; });
 }
 
-function sair(){
+function sair() {
   clearTimeout(_inactTimer);
-  if(TOKEN)fetch(URL_GS,{method:'POST',body:JSON.stringify({acao:'logout',token:TOKEN})}).catch(function(){});
-  TOKEN=null;PERMS=[];NOME_ADMIN='';EMAIL_ADMIN='';
+  if (TOKEN) fetch(GS, {method: 'POST', body: JSON.stringify({acao: 'logout', token: TOKEN})}).catch(function(){});
+  TOKEN = null; PERMS = []; NOME_ADMIN = ''; EMAIL_ADMIN = '';
   document.getElementById('tela-admin').classList.remove('ativa');
-  document.getElementById('l-senha').value='';
-  document.getElementById('l-err').textContent='';
+  document.getElementById('l-senha').value = '';
+  document.getElementById('l-err').textContent = '';
   document.getElementById('tela-login').classList.add('ativa');
 }
 
-function _salvarSessao(j){
-  TOKEN=j.token;PERMS=j.permissoes||[];
-  NOME_ADMIN=j.nome||'';EMAIL_ADMIN=j.email||'';
-}
-function tem(p){return PERMS.includes(p);}
-
-function mostrarAdmin(){
+function mostrarAdmin() {
   _resetInact();
   document.getElementById('tela-admin').classList.add('ativa');
-  document.getElementById('admin-sub').textContent=NOME_ADMIN;
-  if(tem('financeiro')){document.getElementById('sec-fin-bar').style.display='block';document.getElementById('sec-financeiro').style.display='block';carregarFinBar();}
-  if(tem('consumiveis_view')||tem('consumiveis_edit'))document.getElementById('sec-estoque').style.display='block';
-  if(tem('calendario_view')||tem('calendario_edit'))document.getElementById('sec-calendario').style.display='block';
-  if(tem('filhos_view')||tem('filhos_edit'))document.getElementById('sec-filhos').style.display='block';
-  if(tem('usuarios')||tem('configuracoes'))document.getElementById('sec-usuarios').style.display='block';
-  if(tem('log'))document.getElementById('sec-log').style.display='block';
+  document.getElementById('admin-sub').textContent = NOME_ADMIN;
+  if (tem('financeiro')) {
+    document.getElementById('sec-fin-bar').style.display = 'block';
+    document.getElementById('sec-financeiro').style.display = 'block';
+    carregarFinBar();
+  }
+  if (tem('consumiveis_view') || tem('consumiveis_edit')) document.getElementById('sec-estoque').style.display = 'block';
+  if (tem('calendario_view') || tem('calendario_edit')) document.getElementById('sec-calendario').style.display = 'block';
+  if (tem('filhos_view') || tem('filhos_edit')) document.getElementById('sec-filhos').style.display = 'block';
+  if (tem('usuarios') || tem('configuracoes')) document.getElementById('sec-usuarios').style.display = 'block';
+  if (tem('log')) document.getElementById('sec-log').style.display = 'block';
 }
 
-var _DEV_KEY = null;
-function _isDev(){return TOKEN&&TOKEN.startsWith('dev_');}
-function _get(acao,extra){
-  var params='?acao='+acao+'&token='+(TOKEN||'');
-  if(extra)Object.keys(extra).forEach(function(k){params+='&'+k+'='+encodeURIComponent(extra[k]);});
-  return fetch(URL_GS+params).then(function(r){return r.json();});
+function _get(acao, extra) {
+  var params = '?acao=' + acao + '&token=' + (TOKEN || '');
+  if (extra) Object.keys(extra).forEach(function(k) { params += '&' + k + '=' + encodeURIComponent(extra[k]); });
+  return fetch(GS + params).then(function(r) { return r.json(); });
 }
-function _post(body){
-  var t=TOKEN&&TOKEN.startsWith('dev_')?'DEV_BYPASS':TOKEN;
-  return fetch(URL_GS,{method:'POST',body:JSON.stringify(Object.assign({},body,{token:t}))}).then(function(r){return r.json();});
+
+function _post(body) {
+  var t = (TOKEN && TOKEN.startsWith('dev_')) ? 'DEV_BYPASS' : TOKEN;
+  return fetch(GS, {method: 'POST', body: JSON.stringify(Object.assign({}, body, {token: t}))})
+    .then(function(r) { return r.json(); });
 }
-function mostrar(elId,txt){var el=document.getElementById(elId);el.style.display='block';el.textContent=txt;el.scrollIntoView({behavior:'smooth',block:'nearest'});}
 
 // FINANCEIRO
-function carregarFinBar(){
-  _get('financeiro-resumo').then(function(j){
-    if(j.ok){document.getElementById('f-ent').textContent=fmtBRL(j.entradasMes);document.getElementById('f-sai').textContent=fmtBRL(j.saidasMes);document.getElementById('f-sal').textContent=fmtBRL(j.saldo);}
-  }).catch(function(){});
+function carregarFinBar() {
+  _get('financeiro-resumo')
+    .then(function(j) {
+      if (j.ok) {
+        document.getElementById('f-ent').textContent = fmtBRL(j.entradasMes);
+        document.getElementById('f-sai').textContent = fmtBRL(j.saidasMes);
+        document.getElementById('f-sal').textContent = fmtBRL(j.saldo);
+      }
+    }).catch(function(){});
 }
-function resumoFin(){
+
+function resumoFin() {
   toast('Carregando...');
-  _get('financeiro-resumo').then(function(j){
-    if(!j.ok){toast(j.erro||'Erro.',false);return;}
-    var txt='RESUMO FINANCEIRO\n'+'='.repeat(28)+'\n';
-    txt+='Entradas do mês:  '+fmtBRL(j.entradasMes)+'\nSaídas do mês:    '+fmtBRL(j.saidasMes)+'\nSaldo do mês:     '+fmtBRL(j.saldoMes)+'\n\n';
-    txt+='Total entradas: '+fmtBRL(j.totalEntradas)+'\nTotal saídas:   '+fmtBRL(j.totalSaidas)+'\nSaldo geral:    '+fmtBRL(j.saldo)+'\n';
-    if(j.porCategoria&&Object.keys(j.porCategoria).length){txt+='\nSAÍDAS POR CATEGORIA\n'+'='.repeat(28)+'\n';Object.entries(j.porCategoria).sort(function(a,b){return b[1]-a[1];}).forEach(function(p){txt+='  '+p[0]+': '+fmtBRL(p[1])+'\n';});}
-    mostrar('resultado-fin',txt);toast('Carregado!');
-  }).catch(function(){toast('Erro.',false);});
+  _get('financeiro-resumo')
+    .then(function(j) {
+      if (!j.ok) { toast(j.erro || 'Erro.', false); return; }
+      var txt = 'RESUMO FINANCEIRO\n' + '='.repeat(28) + '\n';
+      txt += 'Entradas do mes: ' + fmtBRL(j.entradasMes) + '\n';
+      txt += 'Saidas do mes:   ' + fmtBRL(j.saidasMes) + '\n';
+      txt += 'Saldo do mes:    ' + fmtBRL(j.saldoMes) + '\n\n';
+      txt += 'Total entradas: ' + fmtBRL(j.totalEntradas) + '\n';
+      txt += 'Total saidas:   ' + fmtBRL(j.totalSaidas) + '\n';
+      txt += 'Saldo geral:    ' + fmtBRL(j.saldo) + '\n';
+      if (j.porCategoria && Object.keys(j.porCategoria).length) {
+        txt += '\nSAIDAS POR CATEGORIA\n' + '='.repeat(28) + '\n';
+        Object.entries(j.porCategoria).sort(function(a,b){return b[1]-a[1];})
+          .forEach(function(p) { txt += '  ' + p[0] + ': ' + fmtBRL(p[1]) + '\n'; });
+      }
+      mostrar('resultado-fin', txt);
+      toast('Carregado!');
+    }).catch(function() { toast('Erro.', false); });
+}
+
+function salvarFinanceiro() {
+  var tipo = document.getElementById('fin-tipo').value;
+  var cat = document.getElementById('fin-cat').value;
+  var valor = document.getElementById('fin-valor').value;
+  var err = document.getElementById('fin-err');
+  if (!valor || Number(valor) <= 0) { err.textContent = 'Informe o valor.'; return; }
+  err.textContent = 'Registrando...';
+  _post({acao: 'financeiro-inserir', tipo: tipo, categoria: cat,
+    descricao: document.getElementById('fin-desc').value,
+    valor: valor,
+    data: document.getElementById('fin-data').value || hoje(),
+    responsavel: document.getElementById('fin-resp').value || NOME_ADMIN,
+    observacoes: document.getElementById('fin-obs').value})
+    .then(function(j) {
+      if (j.ok) {
+        toast('Lancamento registrado! ID: ' + j.id);
+        toggleForm('form-fin');
+        err.textContent = '';
+        ['fin-desc','fin-valor','fin-data','fin-resp','fin-obs'].forEach(function(id) {
+          document.getElementById(id).value = '';
+        });
+        carregarFinBar();
+      } else { err.textContent = j.erro || 'Erro.'; }
+    }).catch(function() { err.textContent = 'Erro de conexao.'; });
 }
 
 // ESTOQUE
-function listaCompras(){
+function listaComprasMes() {
   toast('Gerando...');
-  _get('consumiveis-listar').then(function(j){
-    if(!j.ok){toast('Erro.',false);return;}
-    var ns=function(n){var nl=(n||'').toLowerCase();if(nl.includes('urgente')||nl.includes('zero'))return 0;if(nl.includes('alerta'))return 1;if(nl.includes('repor'))return 2;return 3;};
-    var nok=j.itens.filter(function(i){return!String(i.nivel).toLowerCase().includes('ok')&&!String(i.nivel).includes('mínimo');}).sort(function(a,b){return ns(a.nivel)-ns(b.nivel);});
-    if(!nok.length){mostrar('resultado-estoque','Nenhum item precisa ser reposto!');toast('Tudo em dia!');return;}
-    var txt='LISTA DE COMPRAS\n'+'='.repeat(28)+'\n',nAt='';
-    nok.forEach(function(i){
-      if(i.nivel!==nAt){txt+='\n'+i.nivel+':\n';nAt=i.nivel;}
-      var f=Math.max(0,(Number(i.minimo)||0)-(Number(i.atual)||0));
-      txt+='  * '+i.nome+' -- faltam '+f+' '+(i.unidade||'');
-      if(i.fornecedor)txt+=' | '+i.fornecedor;
-      txt+='\n';
-    });
-    mostrar('resultado-estoque',txt);toast('Lista gerada!');
-  }).catch(function(){toast('Erro.',false);});
-}
-function statusEstoque(){
-  toast('Verificando...');
-  _get('consumiveis-listar').then(function(j){
-    if(!j.ok){toast('Erro.',false);return;}
-    var ns=function(n){var nl=(n||'').toLowerCase();if(nl.includes('urgente')||nl.includes('zero'))return'urgente';if(nl.includes('alerta'))return'alerta';if(nl.includes('repor'))return'repor';return'ok';};
-    var cats={};
-    j.itens.forEach(function(i){if(!cats[i.categoria])cats[i.categoria]={ok:0,repor:0,alerta:0,urgente:0};cats[i.categoria][ns(i.nivel)]++;});
-    var txt='STATUS DO ESTOQUE\n'+'='.repeat(28)+'\n';
-    Object.entries(cats).forEach(function(e){var c=e[1];txt+='\n'+e[0]+':\n';if(c.urgente)txt+='  Urgente: '+c.urgente+'\n';if(c.alerta)txt+='  Alerta:  '+c.alerta+'\n';if(c.repor)txt+='  ! Repor:   '+c.repor+'\n';if(c.ok)txt+='  OK OK:      '+c.ok+'\n';});
-    mostrar('resultado-estoque',txt);toast('Verificado!');
-  }).catch(function(){toast('Erro.',false);});
+  _get('consumiveis-listar')
+    .then(function(j) {
+      if (!j.ok) { toast('Erro.', false); return; }
+      var ord = function(n) {
+        var nl = (n || '').toLowerCase();
+        if (nl.includes('urgente') || nl.includes('zero')) return 0;
+        if (nl.includes('alerta')) return 1;
+        if (nl.includes('repor')) return 2;
+        return 3;
+      };
+      var nok = (j.itens || []).filter(function(i) {
+        return !String(i.nivel).toLowerCase().includes('ok') && !String(i.nivel).includes('minimo');
+      }).sort(function(a,b) { return ord(a.nivel) - ord(b.nivel); });
+      if (!nok.length) { mostrar('resultado-estoque', 'Nenhum item precisa ser reposto!'); toast('Tudo em dia!'); return; }
+      var txt = 'COMPRAS DO MES\n' + '='.repeat(24) + '\n';
+      var nAt = '';
+      nok.forEach(function(i) {
+        if (i.nivel !== nAt) { txt += '\n' + i.nivel + ':\n'; nAt = i.nivel; }
+        var f = Math.max(0, (Number(i.minimo) || 0) - (Number(i.atual) || 0));
+        txt += '  * ' + i.nome + ' -- faltam ' + f + ' ' + (i.unidade || '');
+        if (i.fornecedor) txt += ' | ' + i.fornecedor;
+        txt += '\n';
+      });
+      mostrar('resultado-estoque', txt);
+      toast('Lista gerada!');
+    }).catch(function() { toast('Erro.', false); });
 }
 
-// CALENDÁRIO
-function listarCalendario(){
-  toast('Carregando...');
-  _get('calendario-listar').then(function(j){
-    if(!j.ok){toast(j.erro||'Erro.',false);return;}
-    var el=document.getElementById('cal-lista');
-    if(!j.eventos||!j.eventos.length){el.innerHTML='<div style="font-size:12px;color:var(--cinza);padding:10px">Nenhum evento cadastrado.</div>';toast('Carregado!');return;}
-    el.innerHTML=j.eventos.map(function(e){return'<div class="cal-card-adm"><div class="cal-data-adm">'+e.data+' · '+e.tipo+'</div><div class="cal-titulo-adm">'+(e.titulo||'--')+'</div>'+(e.descricao?'<div class="cal-desc-adm">'+e.descricao+'</div>':'')+(e.responsavel?'<div style="font-size:10px;color:var(--cinza);margin-top:4px">Responsável: '+e.responsavel+'</div>':'')+'</div>';}).join('');
-    toast('Carregado!');
-  }).catch(function(){toast('Erro.',false);});
+function statusEstoque() {
+  toast('Verificando...');
+  _get('consumiveis-listar')
+    .then(function(j) {
+      if (!j.ok) { toast('Erro.', false); return; }
+      var ns = function(n) {
+        var nl = (n || '').toLowerCase();
+        if (nl.includes('urgente') || nl.includes('zero')) return 'urgente';
+        if (nl.includes('alerta')) return 'alerta';
+        if (nl.includes('repor')) return 'repor';
+        return 'ok';
+      };
+      var cats = {};
+      (j.itens || []).forEach(function(i) {
+        if (!cats[i.categoria]) cats[i.categoria] = {ok:0,repor:0,alerta:0,urgente:0};
+        cats[i.categoria][ns(i.nivel)]++;
+      });
+      var txt = 'STATUS DO ESTOQUE\n' + '='.repeat(28) + '\n';
+      Object.entries(cats).forEach(function(e) {
+        var c = e[1];
+        txt += '\n' + e[0] + ':\n';
+        if (c.urgente) txt += '  Urgente: ' + c.urgente + '\n';
+        if (c.alerta)  txt += '  Alerta:  ' + c.alerta  + '\n';
+        if (c.repor)   txt += '  Repor:   ' + c.repor   + '\n';
+        if (c.ok)      txt += '  OK:      ' + c.ok      + '\n';
+      });
+      mostrar('resultado-estoque', txt);
+      toast('Verificado!');
+    }).catch(function() { toast('Erro.', false); });
 }
-function salvarCalendario(){
-  var titulo=document.getElementById('cal-titulo').value.trim();
-  var data=document.getElementById('cal-data').value;
-  var err=document.getElementById('cal-err');
-  if(!titulo){err.textContent='Informe o título.';return;}
-  if(!data){err.textContent='Informe a data.';return;}
-  err.textContent='Salvando...';
-  _post({acao:'calendario-inserir',titulo:titulo,data:data,tipo:document.getElementById('cal-tipo').value,descricao:document.getElementById('cal-desc').value}).then(function(j){
-    if(j.ok){toast('Evento salvo!');toggleForm('form-cal');err.textContent='';['cal-titulo','cal-data','cal-desc'].forEach(function(id){document.getElementById(id).value='';});listarCalendario();}
-    else err.textContent=j.erro||'Erro.';
-  }).catch(function(){err.textContent='Erro de conexão.';});
+
+// LISTA PONTUAL
+function abrirListaPontual() {
+  toggleForm('form-lista');
+  carregarListaPontual();
+}
+
+function carregarListaPontual() {
+  _get('lista-listar')
+    .then(function(j) {
+      if (j.ok) { _listaPontual = j.itens || []; renderListaPontual(); }
+    }).catch(function(){});
+}
+
+function renderListaPontual() {
+  var el = document.getElementById('lista-pontual-items');
+  el.innerHTML = '';
+  if (!_listaPontual.length) {
+    el.style.display = 'none';
+    return;
+  }
+  el.style.display = 'block';
+  _listaPontual.forEach(function(item) {
+    var row = document.createElement('div');
+    row.className = 'lista-pontual-item';
+    var txt = document.createElement('span');
+    txt.textContent = item.qtd + ' ' + item.unidade + ' -- ' + item.item + (item.obs ? ' (' + item.obs + ')' : '');
+    var btn = document.createElement('button');
+    btn.className = 'lst-del';
+    btn.textContent = 'X';
+    (function(id) {
+      btn.onclick = function() { removerLista(id); };
+    })(item.id);
+    row.appendChild(txt);
+    row.appendChild(btn);
+    el.appendChild(row);
+  });
+}
+
+function adicionarLista() {
+  var item = document.getElementById('lst-item').value.trim();
+  if (!item) { toast('Informe o item.', false); return; }
+  _post({acao: 'lista-inserir', item: item,
+    qtd: document.getElementById('lst-qtd').value || 1,
+    unidade: document.getElementById('lst-unid').value || 'unidade',
+    obs: document.getElementById('lst-obs').value})
+    .then(function(j) {
+      if (j.ok) {
+        toast('Item adicionado!');
+        document.getElementById('lst-item').value = '';
+        document.getElementById('lst-obs').value = '';
+        document.getElementById('lst-qtd').value = 1;
+        carregarListaPontual();
+      } else { toast(j.erro || 'Erro.', false); }
+    }).catch(function() { toast('Erro.', false); });
+}
+
+function removerLista(id) {
+  _post({acao: 'lista-deletar', id: id})
+    .then(function(j) {
+      if (j.ok) { toast('Removido!'); carregarListaPontual(); }
+      else { toast(j.erro || 'Erro.', false); }
+    }).catch(function() { toast('Erro.', false); });
+}
+
+function gerarListaCompleta() {
+  toast('Gerando lista completa...');
+  Promise.all([_get('consumiveis-listar'), _get('lista-listar')])
+    .then(function(rs) {
+      var jCsm = rs[0]; var jLst = rs[1];
+      var txt = 'LISTA COMPLETA DE COMPRAS\n' + '='.repeat(24) + '\n';
+      if (jCsm.ok) {
+        var ord = function(n) {
+          var nl = (n || '').toLowerCase();
+          if (nl.includes('urgente') || nl.includes('zero')) return 0;
+          if (nl.includes('alerta')) return 1;
+          if (nl.includes('repor')) return 2;
+          return 3;
+        };
+        var nok = (jCsm.itens || []).filter(function(i) {
+          return !String(i.nivel).toLowerCase().includes('ok') && !String(i.nivel).includes('minimo');
+        }).sort(function(a,b) { return ord(a.nivel) - ord(b.nivel); });
+        if (nok.length) {
+          txt += '\nREPOSICAO DE ESTOQUE:\n';
+          var nAt = '';
+          nok.forEach(function(i) {
+            if (i.nivel !== nAt) { txt += '  [' + i.nivel + ']\n'; nAt = i.nivel; }
+            var f = Math.max(0, (Number(i.minimo)||0) - (Number(i.atual)||0));
+            txt += '    * ' + i.nome + ' -- ' + f + ' ' + (i.unidade||'') + '\n';
+          });
+        }
+      }
+      if (jLst.ok && jLst.itens && jLst.itens.length) {
+        txt += '\nCOMPRAS PONTUAIS:\n';
+        jLst.itens.forEach(function(i) {
+          txt += '  * ' + i.qtd + ' ' + i.unidade + ' de ' + i.item + (i.obs ? ' -- ' + i.obs : '') + '\n';
+        });
+      }
+      document.getElementById('resultado-lista-completa').style.display = 'block';
+      document.getElementById('resultado-lista-completa').textContent = txt;
+      toast('Lista completa gerada!');
+    }).catch(function() { toast('Erro.', false); });
+}
+
+// CALENDARIO
+function listarCalendario() {
+  toast('Carregando...');
+  _get('calendario-listar')
+    .then(function(j) {
+      if (!j.ok) { toast(j.erro || 'Erro.', false); return; }
+      var el = document.getElementById('cal-lista');
+      if (!j.eventos || !j.eventos.length) {
+        el.innerHTML = '';
+        var msg = document.createElement('div');
+        msg.style.cssText = 'font-size:12px;color:var(--cinza);padding:10px';
+        msg.textContent = 'Nenhum evento cadastrado.';
+        el.appendChild(msg);
+        toast('Carregado!');
+        return;
+      }
+      el.innerHTML = '';
+      j.eventos.forEach(function(e) {
+        var card = document.createElement('div');
+        card.className = 'cal-card-adm';
+        card.innerHTML = '';
+        var data = document.createElement('div');
+        data.className = 'cal-data-adm';
+        data.textContent = e.data + ' - ' + e.tipo;
+        var titulo = document.createElement('div');
+        titulo.className = 'cal-titulo-adm';
+        titulo.textContent = e.titulo || '--';
+        card.appendChild(data);
+        card.appendChild(titulo);
+        if (e.descricao) {
+          var desc = document.createElement('div');
+          desc.className = 'cal-desc-adm';
+          desc.textContent = e.descricao;
+          card.appendChild(desc);
+        }
+        el.appendChild(card);
+      });
+      toast('Carregado!');
+    }).catch(function() { toast('Erro.', false); });
+}
+
+function salvarCalendario() {
+  var titulo = document.getElementById('cal-titulo').value.trim();
+  var data = document.getElementById('cal-data').value;
+  var err = document.getElementById('cal-err');
+  if (!titulo) { err.textContent = 'Informe o titulo.'; return; }
+  if (!data) { err.textContent = 'Informe a data.'; return; }
+  err.textContent = 'Salvando...';
+  _post({acao: 'calendario-inserir', titulo: titulo, data: data,
+    tipo: document.getElementById('cal-tipo').value,
+    descricao: document.getElementById('cal-desc').value})
+    .then(function(j) {
+      if (j.ok) {
+        toast('Evento salvo!');
+        toggleForm('form-cal');
+        err.textContent = '';
+        ['cal-titulo','cal-data','cal-desc'].forEach(function(id) { document.getElementById(id).value = ''; });
+        listarCalendario();
+      } else { err.textContent = j.erro || 'Erro.'; }
+    }).catch(function() { err.textContent = 'Erro de conexao.'; });
 }
 
 // FILHOS
-function listarFilhos(){
+function listarFilhos() {
   toast('Carregando...');
-  _get('filhos-listar').then(function(j){
-    if(!j.ok){toast(j.erro||'Erro.',false);return;}
-    var el=document.getElementById('filhos-lista');
-    if(!j.itens||!j.itens.length){el.innerHTML='<div style="font-size:12px;color:var(--cinza);padding:10px">Nenhum filho cadastrado.</div>';toast('Carregado!');return;}
-    var sbMap={Abiã:'sb-abiao',Ativo:'sb-ativo',Ebomi:'sb-ebomi',Iaô:'sb-iao',Inativo:'sb-inativo','Ogã / Ekedi':'sb-oga',Suspenso:'sb-suspenso'};
-    el.innerHTML=j.itens.map(function(i){
-      return'<div class="card-item"><div class="filho-nome">'+(i.nomeSanto||i.nomeSocial||'--')+'</div>'+'<div class="filho-info">'+(i.orixa?'Orixá: '+i.orixa:'')+(i.nacao?' · '+i.nacao:'')+(i.contato?'<br>Contato: '+i.contato:'')+(i.feitura&&i.feitura!=='--'?'<br>Feitura: '+i.feitura:'')+(i.proximaObrigacao&&i.proximaObrigacao!=='--'?'<br>Próx. Obrigação: '+i.proximaObrigacao:'')+'</div>'+(i.statusTerreiro?'<span class="sbadge '+(sbMap[i.statusTerreiro]||'sb-ativo')+'">'+i.statusTerreiro+'</span>':'')+'</div>';
-    }).join('');
-    toast('Carregado!');
-  }).catch(function(){toast('Erro.',false);});
+  _get('filhos-listar')
+    .then(function(j) {
+      if (!j.ok) { toast(j.erro || 'Erro.', false); return; }
+      var el = document.getElementById('filhos-lista');
+      el.innerHTML = '';
+      if (!j.itens || !j.itens.length) {
+        var msg = document.createElement('div');
+        msg.style.cssText = 'font-size:12px;color:var(--cinza);padding:10px';
+        msg.textContent = 'Nenhum filho cadastrado.';
+        el.appendChild(msg);
+        toast('Carregado!');
+        return;
+      }
+      var sbMap = {Abiao:'sb-abiao',Ativo:'sb-ativo',Ebomi:'sb-ebomi',Iao:'sb-iao',Inativo:'sb-inativo','Oga / Ekedi':'sb-oga',Suspenso:'sb-suspenso'};
+      j.itens.forEach(function(i) {
+        var card = document.createElement('div');
+        card.className = 'card-item';
+        var nome = document.createElement('div');
+        nome.className = 'filho-nome';
+        nome.textContent = i.nomeSanto || i.nomeSocial || '--';
+        var info = document.createElement('div');
+        info.className = 'filho-info';
+        var infoTxt = '';
+        if (i.orixa) infoTxt += 'Orixa: ' + i.orixa;
+        if (i.nacao) infoTxt += ' - ' + i.nacao;
+        if (i.contato) infoTxt += '\nContato: ' + i.contato;
+        if (i.feitura && i.feitura !== '--') infoTxt += '\nFeitura: ' + i.feitura;
+        if (i.proximaObrigacao && i.proximaObrigacao !== '--') infoTxt += '\nProx. Obrigacao: ' + i.proximaObrigacao;
+        info.textContent = infoTxt;
+        card.appendChild(nome);
+        card.appendChild(info);
+        if (i.statusTerreiro) {
+          var badge = document.createElement('span');
+          badge.className = 'sbadge ' + (sbMap[i.statusTerreiro] || 'sb-ativo');
+          badge.textContent = i.statusTerreiro;
+          card.appendChild(badge);
+        }
+        el.appendChild(card);
+      });
+      toast('Carregado!');
+    }).catch(function() { toast('Erro.', false); });
 }
-function salvarFilho(){
-  var err=document.getElementById('ff-err');
-  err.textContent='Gravando...';
-  _post({acao:'filho-inserir',nomeSanto:document.getElementById('ff-nome').value,nomeSocial:document.getElementById('ff-social').value,contato:document.getElementById('ff-contato').value,orixa:document.getElementById('ff-orixa').value,adjunto:document.getElementById('ff-adjunto').value,nacao:document.getElementById('ff-nacao').value,statusTerreiro:document.getElementById('ff-status').value,aniversario:document.getElementById('ff-aniv').value,feitura:document.getElementById('ff-feitura').value,proximaObrigacao:document.getElementById('ff-obrig').value,obrigacoesRealizadas:document.getElementById('ff-obrigrealiz').value,observacoes:document.getElementById('ff-obs').value})
-  .then(function(j){
-    if(j.ok){toast('Filho gravado!');toggleForm('form-filho');err.textContent='';['ff-nome','ff-social','ff-contato','ff-aniv','ff-feitura','ff-obrig','ff-obrigrealiz','ff-obs'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('ff-status').value='Ativo';listarFilhos();}
-    else err.textContent=j.erro||'Erro.';
-  }).catch(function(){err.textContent='Erro de conexão.';});
+
+function salvarFilho() {
+  var err = document.getElementById('ff-err');
+  err.textContent = 'Gravando...';
+  _post({acao: 'filho-inserir',
+    nomeSanto: document.getElementById('ff-nome').value,
+    nomeSocial: document.getElementById('ff-social').value,
+    contato: document.getElementById('ff-contato').value,
+    orixa: document.getElementById('ff-orixa').value,
+    adjunto: document.getElementById('ff-adjunto').value,
+    nacao: document.getElementById('ff-nacao').value,
+    statusTerreiro: document.getElementById('ff-status').value,
+    aniversario: document.getElementById('ff-aniv').value,
+    feitura: document.getElementById('ff-feitura').value,
+    proximaObrigacao: document.getElementById('ff-obrig').value,
+    obrigacoesRealizadas: document.getElementById('ff-obrigrealiz').value,
+    observacoes: document.getElementById('ff-obs').value})
+    .then(function(j) {
+      if (j.ok) {
+        toast('Filho gravado!');
+        toggleForm('form-filho');
+        err.textContent = '';
+        ['ff-nome','ff-social','ff-contato','ff-aniv','ff-feitura','ff-obrig','ff-obrigrealiz','ff-obs']
+          .forEach(function(id) { document.getElementById(id).value = ''; });
+        document.getElementById('ff-status').value = 'Ativo';
+        listarFilhos();
+      } else { err.textContent = j.erro || 'Erro.'; }
+    }).catch(function() { err.textContent = 'Erro de conexao.'; });
 }
-function obrigacoes(){
-  var dias=parseInt(document.getElementById('prazo').value)||180;
+
+function verObrigacoes() {
+  var dias = parseInt(document.getElementById('prazo').value) || 180;
   toast('Verificando...');
-  _get('filhos-listar').then(function(j){
-    if(!j.ok){toast('Erro.',false);return;}
-    var hoje=new Date(),lim=new Date(hoje);lim.setDate(lim.getDate()+dias);
-    var prox=j.itens.filter(function(i){
-      if(!i.proximaObrigacao||i.proximaObrigacao==='--')return false;
-      try{var p=i.proximaObrigacao.split('/');var d=new Date(parseInt(p[2]),parseInt(p[1])-1,parseInt(p[0]));return d>=hoje&&d<=lim;}catch(e){return false;}
-    });
-    var txt='OBRIGAÇÕES -- '+dias+' DIAS\n'+'='.repeat(28)+'\n';
-    if(!prox.length)txt+='\nNenhuma obrigação neste período.';
-    else prox.forEach(function(i){txt+='  * '+i.proximaObrigacao+' -- '+(i.nomeSanto||i.nomeSocial||'Filho de '+(i.orixa||'--'))+' ('+( i.statusTerreiro||'Ativo')+')\n';});
-    mostrar('resultado-obrig',txt);toast(prox.length?prox.length+' encontrada(s).':'Nenhuma.');
-  }).catch(function(){toast('Erro.',false);});
-}
-
-// USUÁRIOS / ADMINS
-function listarAdmins(){
-  toast('Carregando...');
-  _get('admins-listar').then(function(j){
-    if(!j.ok){toast(j.erro||'Erro.',false);return;}
-    document.getElementById('admins-lista').innerHTML=j.admins.map(function(a){
-      var badges='';
-      if(a.bloqueado)badges+='<span class="badge-bloq">Bloqueado até '+a.bloqAte+'</span>';
-      if(a.trocaSenha)badges+='<span class="badge-troca">Senha provisória</span>';
-      var acoes='';
-      if(a.bloqueado)acoes+='<button class="btn-sm-adm" onclick="desbloquear(\''+a.email+'\')">Liberar</button>';
-      return'<div class="card-item"><div class="adm-nome">'+a.nome+'</div><div class="adm-email">'+a.email+'</div><div style="font-size:10px;color:var(--cinza);margin-top:2px">Último acesso: '+(a.ultimoAcesso||'--')+'</div><div class="adm-perms">'+(a.permissoes.join(' · ')||'Sem permissões')+'</div>'+(badges?'<div class="adm-acoes">'+badges+'</div>':'')+(acoes?'<div class="adm-acoes">'+acoes+'</div>':'')+'</div>';
-    }).join('');
-    toast('Carregado!');
-  }).catch(function(){toast('Erro.',false);});
-}
-function desbloquear(email){
-  toast('Desbloqueando...');
-  _post({acao:'admin-desbloquear',email:email}).then(function(j){
-    if(j.ok){toast('Desbloqueado!');listarAdmins();}else toast(j.erro||'Erro.',false);
-  }).catch(function(){toast('Erro.',false);});
-}
-function criarAdmin(){
-  var nome=document.getElementById('na-nome').value.trim();
-  var email=document.getElementById('na-email').value.trim();
-  var senha=document.getElementById('na-senha').value.trim();
-  var perms=[].slice.call(document.querySelectorAll('.perms-grid input:checked')).map(function(cb){return cb.value;});
-  var err=document.getElementById('na-err');
-  if(!nome){err.textContent='Informe o nome.';return;}
-  if(!email.includes('@')){err.textContent='E-mail inválido.';return;}
-  if(senha.length<6){err.textContent='Senha muito curta (mín. 6 caracteres).';return;}
-  err.textContent='Criando...';
-  _post({acao:'admin-criar',nome:nome,email:email,senha:senha,permissoes:perms}).then(function(j){
-    if(j.ok){toast('Usuário criado!');toggleForm('form-novo-admin');err.textContent='';document.querySelectorAll('.perms-grid input').forEach(function(cb){cb.checked=false;});['na-nome','na-email','na-senha'].forEach(function(id){document.getElementById(id).value='';});listarAdmins();}
-    else err.textContent=j.erro||'Erro.';
-  }).catch(function(){err.textContent='Erro de conexão.';});
-}
-function trocarSenha(){
-  var atual=document.getElementById('s-atual').value;
-  var nova=document.getElementById('s-nova').value;
-  var conf=document.getElementById('s-conf').value;
-  var err=document.getElementById('s-err');
-  if(!atual||!nova||!conf){err.textContent='Preencha todos os campos.';return;}
-  if(nova!==conf){err.textContent='As senhas novas não coincidem.';return;}
-  if(nova.length<6){err.textContent='Mín. 6 caracteres.';return;}
-  err.textContent='Salvando...';
-  _post({acao:'trocar-senha',senhaAtual:atual,senhaNova:nova}).then(function(j){
-    if(j.ok){toast('Senha alterada!');toggleForm('form-senha');err.textContent='';['s-atual','s-nova','s-conf'].forEach(function(id){document.getElementById(id).value='';});}
-    else err.textContent=j.erro||'Erro.';
-  }).catch(function(){err.textContent='Erro de conexão.';});
-}
-
-// FINANCEIRO -- LANÇAMENTO
-function salvarFinanceiro(){
-  var tipo=document.getElementById('fin-tipo').value;
-  var cat=document.getElementById('fin-cat').value;
-  var valor=document.getElementById('fin-valor').value;
-  var err=document.getElementById('fin-err');
-  if(!valor||Number(valor)<=0){err.textContent='Informe o valor.';return;}
-  err.textContent='Registrando...';
-  var data=document.getElementById('fin-data').value||_hoje();
-  _post({acao:'financeiro-inserir',tipo:tipo,categoria:cat,descricao:document.getElementById('fin-desc').value,valor:valor,data:data,responsavel:document.getElementById('fin-resp').value||NOME_ADMIN,observacoes:document.getElementById('fin-obs').value}).then(function(j){
-    if(j.ok){toast('Lançamento registrado! ID: '+j.id);toggleForm('form-fin');err.textContent='';['fin-desc','fin-valor','fin-data','fin-resp','fin-obs'].forEach(function(id){document.getElementById(id).value='';});carregarFinBar();}
-    else err.textContent=j.erro||'Erro.';
-  }).catch(function(){err.textContent='Erro de conexão.';});
-}
-function _hoje(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
-
-// LISTA DE COMPRAS DUPLA
-var _listaPontual=[];
-
-function listaComprasMes(){
-  toast('Gerando...');
-  _get('consumiveis-listar').then(function(j){
-    if(!j.ok){toast('Erro.',false);return;}
-    var ns=function(n){var nl=(n||'').toLowerCase();if(nl.includes('urgente')||nl.includes('zero'))return 0;if(nl.includes('alerta'))return 1;if(nl.includes('repor'))return 2;return 3;};
-    var nok=j.itens.filter(function(i){return!String(i.nivel).toLowerCase().includes('ok')&&!String(i.nivel).includes('minimo');}).sort(function(a,b){return ns(a.nivel)-ns(b.nivel);});
-    if(!nok.length){mostrar('resultado-estoque','Nenhum item precisa ser reposto!');toast('Tudo em dia!');return;}
-    var txt='COMPRAS DO MES\n'+'='.repeat(24)+'\n',nAt='';
-    nok.forEach(function(i){
-      if(i.nivel!==nAt){txt+='\n'+i.nivel+':\n';nAt=i.nivel;}
-      var f=Math.max(0,(Number(i.minimo)||0)-(Number(i.atual)||0));
-      txt+='  * '+i.nome+' -- faltam '+f+' '+(i.unidade||'');
-      if(i.fornecedor)txt+=' | '+i.fornecedor;
-      txt+='\n';
-    });
-    mostrar('resultado-estoque',txt);toast('Lista gerada!');
-  }).catch(function(){toast('Erro.',false);});
-}
-
-
-function verListaPontual(){
-  _get('lista-listar').then(function(j){
-    if(!j.ok)return;
-    _listaPontual=j.itens||[];
-    renderListaPontual();
-  }).catch(function(){});
-}
-
-function renderListaPontual(){
-  var el=document.getElementById('lista-pontual-items');
-  if(!_listaPontual.length){el.innerHTML='<div style="font-size:12px;color:var(--cinza);margin-bottom:6px">Nenhum item pontual cadastrado.</div>';return;}
-  el.innerHTML=_listaPontual.map(function(i){
-    return'<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--borda);font-size:12px"><span>'+i.qtd+' '+i.unidade+' -- '+i.item+(i.obs?' ('+i.obs+')':'')+'</span><button onclick="removerLista(''+i.id+'')" style="background:none;border:none;color:#f08080;cursor:pointer;font-size:14px">&#10005;</button></div>';
-  }).join('');
-}
-
-function adicionarLista(){
-  var item=document.getElementById('lst-item').value.trim();
-  if(!item){toast('Informe o item.',false);return;}
-  _post({acao:'lista-inserir',item:item,qtd:document.getElementById('lst-qtd').value||1,unidade:document.getElementById('lst-unid').value||'unidade',obs:document.getElementById('lst-obs').value}).then(function(j){
-    if(j.ok){toast('Item adicionado!');['lst-item','lst-obs'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('lst-qtd').value=1;verListaPontual();}
-    else toast(j.erro||'Erro.',false);
-  }).catch(function(){toast('Erro.',false);});
-}
-
-function removerLista(id){
-  _post({acao:'lista-deletar',id:id}).then(function(j){
-    if(j.ok){toast('Removido!');verListaPontual();}
-    else toast(j.erro||'Erro.',false);
-  }).catch(function(){toast('Erro.',false);});
-}
-
-function gerarListaCompleta(){
-  toast('Gerando lista completa...');
-  Promise.all([_get('consumiveis-listar'),_get('lista-listar')]).then(function(rs){
-    var jCsm=rs[0],jLst=rs[1];
-    var txt='LISTA COMPLETA DE COMPRAS\n'+'='.repeat(24)+'\n';
-    if(jCsm.ok){
-      var ns=function(n){var nl=(n||'').toLowerCase();if(nl.includes('urgente')||nl.includes('zero'))return 0;if(nl.includes('alerta'))return 1;if(nl.includes('repor'))return 2;return 3;};
-      var nok=(jCsm.itens||[]).filter(function(i){return!String(i.nivel).toLowerCase().includes('ok')&&!String(i.nivel).includes('minimo');}).sort(function(a,b){return ns(a.nivel)-ns(b.nivel);});
-      if(nok.length){
-        txt+='\nREPOSICAO DE ESTOQUE:\n';
-        var nAt='';
-        nok.forEach(function(i){
-          if(i.nivel!==nAt){txt+='  ['+i.nivel+']\n';nAt=i.nivel;}
-          var f=Math.max(0,(Number(i.minimo)||0)-(Number(i.atual)||0));
-          txt+='    * '+i.nome+' -- '+f+' '+(i.unidade||'')+'\n';
+  _get('filhos-listar')
+    .then(function(j) {
+      if (!j.ok) { toast('Erro.', false); return; }
+      var hoje_d = new Date();
+      var lim = new Date(hoje_d); lim.setDate(lim.getDate() + dias);
+      var prox = (j.itens || []).filter(function(i) {
+        if (!i.proximaObrigacao || i.proximaObrigacao === '--') return false;
+        try {
+          var p = i.proximaObrigacao.split('/');
+          var d = new Date(parseInt(p[2]), parseInt(p[1])-1, parseInt(p[0]));
+          return d >= hoje_d && d <= lim;
+        } catch(e) { return false; }
+      });
+      var txt = 'OBRIGACOES -- ' + dias + ' DIAS\n' + '='.repeat(28) + '\n';
+      if (!prox.length) { txt += '\nNenhuma obrigacao neste periodo.'; }
+      else {
+        prox.forEach(function(i) {
+          txt += '  * ' + i.proximaObrigacao + ' -- ' + (i.nomeSanto || i.nomeSocial || 'Filho de ' + (i.orixa || '--')) + ' (' + (i.statusTerreiro || 'Ativo') + ')\n';
         });
       }
-    }
-    if(jLst.ok&&jLst.itens&&jLst.itens.length){
-      txt+='\nCOMPRAS PONTUAIS:\n';
-      jLst.itens.forEach(function(i){txt+='  * '+i.qtd+' '+i.unidade+' de '+i.item+(i.obs?' -- '+i.obs:'')+'\n';});
-    }
-    document.getElementById('resultado-lista-completa').style.display='block';
-    document.getElementById('resultado-lista-completa').textContent=txt;
-    toast('Lista completa gerada!');
-  }).catch(function(){toast('Erro.',false);});
+      mostrar('resultado-obrig', txt);
+      toast(prox.length ? prox.length + ' encontrada(s).' : 'Nenhuma.');
+    }).catch(function() { toast('Erro.', false); });
 }
 
+// USUARIOS
+function listarAdmins() {
+  toast('Carregando...');
+  _get('admins-listar')
+    .then(function(j) {
+      if (!j.ok) { toast(j.erro || 'Erro.', false); return; }
+      var el = document.getElementById('admins-lista');
+      el.innerHTML = '';
+      (j.admins || []).forEach(function(a) {
+        var card = document.createElement('div');
+        card.className = 'card-item';
+        var nome = document.createElement('div'); nome.className = 'adm-nome'; nome.textContent = a.nome;
+        var email = document.createElement('div'); email.className = 'adm-email'; email.textContent = a.email;
+        var ul = document.createElement('div'); ul.style.cssText = 'font-size:10px;color:var(--cinza);margin-top:2px';
+        ul.textContent = 'Ultimo acesso: ' + (a.ultimoAcesso || '--');
+        var perms = document.createElement('div'); perms.className = 'adm-perms';
+        perms.textContent = (a.permissoes || []).join(' - ') || 'Sem permissoes';
+        card.appendChild(nome); card.appendChild(email); card.appendChild(ul); card.appendChild(perms);
+        if (a.trocaSenha) {
+          var b = document.createElement('span'); b.className = 'badge-troca'; b.textContent = 'Senha provisoria';
+          var acoes = document.createElement('div'); acoes.className = 'adm-acoes'; acoes.appendChild(b);
+          card.appendChild(acoes);
+        }
+        if (a.bloqueado) {
+          var bb = document.createElement('span'); bb.className = 'badge-bloq'; bb.textContent = 'Bloqueado ate ' + a.bloqAte;
+          var btn = document.createElement('button'); btn.className = 'btn-sm-adm'; btn.textContent = 'Liberar';
+          (function(email) { btn.onclick = function() { desbloquear(email); }; })(a.email);
+          var acoes2 = document.createElement('div'); acoes2.className = 'adm-acoes';
+          acoes2.appendChild(bb); acoes2.appendChild(btn);
+          card.appendChild(acoes2);
+        }
+        el.appendChild(card);
+      });
+      toast('Carregado!');
+    }).catch(function() { toast('Erro.', false); });
+}
+
+function desbloquear(email) {
+  toast('Desbloqueando...');
+  _post({acao: 'admin-desbloquear', email: email})
+    .then(function(j) {
+      if (j.ok) { toast('Desbloqueado!'); listarAdmins(); }
+      else { toast(j.erro || 'Erro.', false); }
+    }).catch(function() { toast('Erro.', false); });
+}
+
+function criarAdmin() {
+  var nome = document.getElementById('na-nome').value.trim();
+  var email = document.getElementById('na-email').value.trim();
+  var senha = document.getElementById('na-senha').value.trim();
+  var perms = Array.from(document.querySelectorAll('.perms-grid input:checked')).map(function(cb) { return cb.value; });
+  var err = document.getElementById('na-err');
+  if (!nome) { err.textContent = 'Informe o nome.'; return; }
+  if (!email.includes('@')) { err.textContent = 'E-mail invalido.'; return; }
+  if (senha.length < 6) { err.textContent = 'Senha muito curta (min. 6 caracteres).'; return; }
+  err.textContent = 'Criando...';
+  _post({acao: 'admin-criar', nome: nome, email: email, senha: senha, permissoes: perms})
+    .then(function(j) {
+      if (j.ok) {
+        toast('Usuario criado!');
+        toggleForm('form-novo-admin');
+        err.textContent = '';
+        document.querySelectorAll('.perms-grid input').forEach(function(cb) { cb.checked = false; });
+        ['na-nome','na-email','na-senha'].forEach(function(id) { document.getElementById(id).value = ''; });
+        listarAdmins();
+      } else { err.textContent = j.erro || 'Erro.'; }
+    }).catch(function() { err.textContent = 'Erro de conexao.'; });
+}
+
+function trocarSenha() {
+  var atual = document.getElementById('s-atual').value;
+  var nova = document.getElementById('s-nova').value;
+  var conf = document.getElementById('s-conf').value;
+  var err = document.getElementById('s-err');
+  if (!atual || !nova || !conf) { err.textContent = 'Preencha todos os campos.'; return; }
+  if (nova !== conf) { err.textContent = 'As senhas novas nao coincidem.'; return; }
+  if (nova.length < 6) { err.textContent = 'Min. 6 caracteres.'; return; }
+  err.textContent = 'Salvando...';
+  _post({acao: 'trocar-senha', senhaAtual: atual, senhaNova: nova})
+    .then(function(j) {
+      if (j.ok) {
+        toast('Senha alterada!');
+        toggleForm('form-senha');
+        err.textContent = '';
+        ['s-atual','s-nova','s-conf'].forEach(function(id) { document.getElementById(id).value = ''; });
+      } else { err.textContent = j.erro || 'Erro.'; }
+    }).catch(function() { err.textContent = 'Erro de conexao.'; });
+}
 
 // LOG
-function carregarLog(){
+function carregarLog() {
   toast('Carregando...');
-  _get('log-listar').then(function(j){
-    if(!j.ok){toast(j.erro||'Erro.',false);return;}
-    var el=document.getElementById('log-lista');
-    if(!j.registros||!j.registros.length){el.innerHTML='<div style="font-size:12px;color:var(--cinza)">Nenhum registro.</div>';toast('Carregado!');return;}
-    // Mostra os 100 mais recentes
-    var recentes=j.registros.slice(-100).reverse();
-    el.innerHTML=recentes.map(function(r){
-      return'<div class="log-item"><span class="log-data">'+r.dataHora+'</span> · <span class="log-acao">'+r.acao+'</span> · '+r.usuario+' · <strong>'+r.aba+'</strong>'+(r.idItem?' ['+r.idItem+']':'')+(r.campo&&r.campo!=='-'?' · '+r.campo+': '+r.anterior+' -> '+r.novo:'')+'</div>';
-    }).join('');
-    toast('Carregado!');
-  }).catch(function(){toast('Erro.',false);});
+  _get('log-listar')
+    .then(function(j) {
+      if (!j.ok) { toast(j.erro || 'Erro.', false); return; }
+      var el = document.getElementById('log-lista');
+      el.innerHTML = '';
+      if (!j.registros || !j.registros.length) {
+        var msg = document.createElement('div');
+        msg.style.cssText = 'font-size:12px;color:var(--cinza)';
+        msg.textContent = 'Nenhum registro.';
+        el.appendChild(msg);
+        toast('Carregado!');
+        return;
+      }
+      var recentes = j.registros.slice(-100).reverse();
+      recentes.forEach(function(r) {
+        var item = document.createElement('div');
+        item.className = 'log-item';
+        var linha = r.dataHora + ' -- ';
+        linha += r.acao + ' -- ';
+        linha += r.usuario + ' -- ';
+        linha += r.aba;
+        if (r.idItem) linha += ' [' + r.idItem + ']';
+        if (r.campo && r.campo !== '-') linha += ' -- ' + r.campo + ': ' + r.anterior + ' -> ' + r.novo;
+        item.textContent = linha;
+        el.appendChild(item);
+      });
+      toast('Carregado!');
+    }).catch(function() { toast('Erro.', false); });
 }
 </script>
 </body>
