@@ -1,5 +1,5 @@
 // ================================================================
-//  GESTÃO DO TERREIRO — Ile Ase Vodun Ogum Ayres — Apps Script v16
+//  GESTÃO DO TERREIRO — Ile Ase Vodun Ogum Ayres — Apps Script v16.1
 //  Reescrito do zero — 01/08/2026
 //
 //  ABAS:
@@ -230,19 +230,27 @@ function _criarEntidades(ss) {
   _cab(aba, cols, '#1a2a1a', '#c8f0c8');
   aba.getRange('C2:C50').setNumberFormat('dd/MM');
   var dados = [
-    ['Exu','Todas','','Segunda','Preto e vermelho','Pimenta, dendê, farofa, cachaça','Cachaça, vinho tinto','Ogó, tridentes, sete chaves','Laroyê Exu!','Guardião das encruzilhadas'],
-    ['Ogum','Ketu / Angola','23/04','Terça','Verde e preto','Feijão preto, carne, dendê','Cerveja preta, vinho tinto','Espada, ferramentas de ferro','Ogum Yê!','Orixá do ferro e da guerra'],
-    ['Oxossi','Ketu','','Quinta','Azul e verde','Milho branco, inhame, mel','Mel, água de coco','Arco e flecha','Okê Arô!','Caçador, orixá da fartura'],
-    ['Xangô','Ketu','04/12','Quarta','Vermelho e branco','Acarajé, vatapá, azeite','Vinho tinto, cerveja','Machado duplo (oxé)','Kaô Kabiesilê!','Senhor da justiça'],
-    ['Oxum','Ketu','08/12','Sábado','Amarelo e dourado','Mel, acarajé, milho amarelo','Mel, champanhe, laranja','Abebê, espelho, leque','Ora Iê Iê Ô!','Orixá do amor e das águas doces'],
-    ['Iemanjá','Ketu','02/02','Sábado','Azul e branco','Melão, uva branca, arroz','Champanhe, água, leite','Abebê de prata','Odoyá!','Rainha do mar'],
-    ['Oxalá','Ketu','','Sexta','Branco','Inhame, arroz, canjica branca','Água, leite','Opaxorô, pano da costa branco','Êpa Babá!','Pai criador, orixá da paz'],
-    ['Iansã','Ketu','04/12','Terça','Vermelho e marrom','Acarajé, abará','Vinho tinto, cerveja','Espada, eruexim','Eparrêi Iansã!','Orixá dos ventos e dos raios'],
-    ['Nanã','Ketu','26/07','Segunda','Roxo e branco','Inhame, milho, canjica','Água, leite','Ibiri (vassoura de palha)','Salúbà Nanã!','Mais antiga dos orixás, orixá da lama'],
-    ['Obaluaê / Omolu','Ketu','','Segunda','Preto, branco e vermelho','Pipoca, milho, coco','Vinho tinto, dendê','Xaxará','Atotô Obaluaê!','Orixá da saúde e das doenças'],
-    ['Preto-Velho','Umbanda','13/05','Segunda','Branco e preto','Fumo, cachaça, mel','Cachaça, mel','Cachimbo, bengala','Ave, meu filho!','Espírito de sabedoria e cura'],
-    ['Caboclo','Umbanda','','Terça','Verde e amarelo','Mel, frutas, charuto','Cerveja, cachaça','Arco e flecha, cocar','Okê Caboclo!','Espírito da natureza'],
-    ['Exu / Pombagira','Umbanda','','Segunda e sexta','Vermelho e preto','Rosa vermelha, champanhe','Champanhe, vinho tinto','Rosas, tridentes','Laroyê!','Guardião(ã) das encruzilhadas']
+    // ── ORIXÁS ──────────────────────────────────────────────────────────────
+    ['Exu','Todas','','Segunda','Preto e vermelho','Pimenta, dendê, farofa, cachaça','Cachaça, vinho tinto','Ogó, tridentes, sete chaves','Laroyê Exu!','Guardião dos caminhos, mensageiro entre os homens e os deuses'],
+    ['Ogum','Ketu / Angola','23/04','Terça','Verde e preto','Feijão preto, carne, dendê','Cerveja preta, vinho tinto','Espada, ferramentas de ferro','Ogum Yê!','Orixá do ferro, da guerra e dos caminhos abertos'],
+    ['Oxossi','Ketu','','Quinta','Azul e verde','Milho branco, inhame, mel','Mel, água de coco','Arco e flecha','Okê Arô!','Orixá da caça, da fartura e das matas'],
+    ['Xangô','Ketu','04/12','Quarta','Vermelho e branco','Acarajé, vatapá, azeite','Vinho tinto, cerveja','Machado duplo (oxé)','Kaô Kabiesilê!','Orixá da justiça, do fogo e dos trovões'],
+    ['Oxum','Ketu','08/12','Sábado','Amarelo e dourado','Mel, acarajé, milho amarelo','Mel, champanhe, laranja','Abebê, espelho, leque','Ora Iê Iê Ô!','Rainha da água doce, do amor e da fertilidade'],
+    ['Iemanjá','Ketu','02/02','Sábado','Azul e branco','Melão, uva branca, arroz','Champanhe, água, leite','Abebê de prata','Odoyá!','Rainha do mar, mãe protetora e geradora de vida'],
+    ['Oxalá','Ketu','','Sexta','Branco','Inhame, arroz, canjica branca','Água, leite','Opaxorô, pano da costa branco','Êpa Babá!','Orixá maior, criador, símbolo de paz e sabedoria'],
+    ['Iansã (Oyá)','Ketu','04/12','Terça','Vermelho e marrom','Acarajé, abará','Vinho tinto, cerveja','Espada, eruexim','Eparrêi Iansã!','Orixá dos ventos, tempestades e mudanças repentinas'],
+    ['Nanã','Ketu','26/07','Segunda','Roxo e branco','Inhame, milho, canjica','Água, leite','Ibiri (vassoura de palha)','Salúbà Nanã!','A mais velha das deusas das águas, ligada à lama e à ancestralidade'],
+    ['Obaluaê / Omolu','Ketu','','Segunda','Preto, branco e vermelho','Pipoca, milho, coco','Vinho tinto, dendê','Xaxará','Atotô Obaluaê!','Orixá da cura, da saúde e das doenças'],
+    ['Oxumarê','Ketu','','Quinta','Verde e amarelo','Milho, inhame, azeite','Mel, cerveja','Arco-íris, cobra','Arrôbô Oxumarê!','Orixá da renovação, representado pelo arco-íris e a serpente'],
+    ['Ossãe','Ketu','','Quinta','Verde e branco','Folhas sagradas, ervas','Água, mel','Folhas, ervas medicinais','Ewé Ó!','Orixá das folhas sagradas, da medicina e das plantas'],
+    // ── ENTIDADES / LINHAS DE TRABALHO ──────────────────────────────────────
+    ['Caboclos','Umbanda','','Terça','Verde e amarelo','Mel, frutas, charuto','Cerveja, cachaça','Arco e flecha, cocar','Okê Caboclo!','Espíritos de indígenas ligados às matas, à cura e à coragem'],
+    ['Pretos-Velhos','Umbanda','13/05','Segunda','Branco e preto','Fumo, cachaça, mel','Cachaça, mel','Cachimbo, bengala','Ave, meu filho!','Espíritos de africanos escravizados, símbolos de paciência e sabedoria'],
+    ['Exus e Pombagiras','Umbanda','','Segunda e sexta','Vermelho e preto','Rosa vermelha, pimenta, champanhe','Champanhe, vinho tinto','Rosas, tridentes, ogó','Laroyê!','Guardiões dos caminhos, trabalham na limpeza de energias densas'],
+    ['Erês (Crianças)','Umbanda','','Domingo','Branco e azul claro','Doces, refrigerante, bala','Refrigerante, guaraná','Brinquedos, balão','Viva o Erê!','Espíritos infantis que trazem alegria, pureza e renovação de energias'],
+    ['Boiadeiros','Umbanda','','Sábado','Vermelho e marrom','Fumo de corda, cachaça, rapadura','Cachaça, leite','Laço, chapéu de couro','Boa noite seu Boiadeiro!','Espíritos do campo, focados em desmanchar demandas e fortes descargas'],
+    ['Marinheiros','Umbanda','','Segunda','Azul e branco','Peixe, camarão, frutas do mar','Cachaça, vinho','Âncora, remo, redes','Salve o Marinheiro!','Espíritos do mar, conhecidos pelos passes de cura emocional'],
+    ['Ciganos','Umbanda','','Sexta','Vermelho, laranja e dourado','Vinho, frutas, flores','Vinho, champanhe','Baralho, véu, pandeiro','Salve os Ciganos!','Entidades da alegria, da leitura de energias e da prosperidade']
   ];
   aba.getRange(2,1,dados.length,10).setValues(dados);
   _fechar(aba, cols.length, dados.length+1);
@@ -542,7 +550,13 @@ function _listarEntidades() {
   var aba=SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ABA.ENTIDADES);
   if(!aba)return{ok:false,erro:'Aba não encontrada.'};
   var rows=aba.getDataRange().getValues().slice(1);
-  return{ok:true,itens:rows.filter(function(l){return l[0]!=='';}).map(function(l){return{entidade:l[0],nacao:l[1],dataFesta:l[2],diaSemana:l[3],cores:l[4],oferendas:l[5],bebidas:l[6],itensAcervo:l[7],saudacao:l[8],observacoes:l[9]};})};
+  return{ok:true,itens:rows.filter(function(l){return l[0]!=='';}).map(function(l){
+    var df=l[2];
+    // formatar data de festa como dd/MM
+    if(df instanceof Date){df=Utilities.formatDate(df,Session.getScriptTimeZone(),'dd/MM');}
+    else if(df&&String(df).includes('-')){try{df=Utilities.formatDate(new Date(df),Session.getScriptTimeZone(),'dd/MM');}catch(e){df='';}}
+    return{entidade:l[0],nacao:l[1],dataFesta:df||'',diaSemana:l[3],cores:l[4],oferendas:l[5],bebidas:l[6],itensAcervo:l[7],saudacao:l[8],observacoes:l[9]};
+  })};
 }
 
 function _listarCalendario() {
