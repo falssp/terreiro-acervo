@@ -330,20 +330,13 @@ function filtrarNivel(nivel){
   renderConsumiveis();
   navTo('consumiveis',document.querySelectorAll('.nav-btn')[2]);
 }
-function atualizarSubcat(){
-  var cat=document.getElementById('c-cat').value,sel=document.getElementById('c-subcat');
-  sel.innerHTML='<option value="">—</option>';
-  (SUBCATS[cat]||[]).forEach(function(s){var o=document.createElement('option');o.textContent=s;sel.appendChild(o);});
-}
 function abrirForm(id){
-  document.getElementById('cad-cards').style.display='none';
-  ['acervo','consumivel','ml'].forEach(function(f){document.getElementById('form-'+f).style.display=f===id?'block':'none';});
-  document.querySelector('.content').scrollTo(0,0);
+  ['acervo','consumivel','ml'].forEach(function(f){var el=document.getElementById('form-'+f);if(el)el.style.display=f===id?'block':'none';});
+  window.scrollTo(0,0);
 }
 function fecharForm(){
-  document.getElementById('cad-cards').style.display='grid';
-  ['acervo','consumivel','ml'].forEach(function(f){document.getElementById('form-'+f).style.display='none';});
-  document.querySelector('.content').scrollTo(0,0);
+  ['acervo','consumivel','ml'].forEach(function(f){var el=document.getElementById('form-'+f);if(el)el.style.display='none';});
+  window.scrollTo(0,0);
 }
 function fecharModal(e){if(!e||e.target.id==='modal-overlay'||e.currentTarget&&e.currentTarget.className==='modal-fechar')document.getElementById('modal-overlay').classList.remove('open');}
 
@@ -394,8 +387,6 @@ async function carregarConsumiveis(){
   try{
     var r=await fetch(GS+'?acao=consumiveis-listar'),j=await r.json();
     if(j.ok){
-      var dl=document.getElementById('csm-list');
-      if(dl){dl.innerHTML='';(j.itens||[]).forEach(function(i){var o=document.createElement('option');o.value=i.nome;dl.appendChild(o);});}
       consumiveis=(j.itens||[]).sort(function(a,b){return(a.nome||'').localeCompare((b.nome||''),'pt-BR');});
       renderConsumiveis();
       var counts={ok:0,repor:0,alerta:0,urgente:0};
@@ -489,23 +480,6 @@ function renderEntidades(){
 }
 
 // ML
-async function buscarML(){
-  var q=document.getElementById('ml-q').value.trim();if(!q){toast('Digite o que deseja buscar.',false);return;}
-  var el=document.getElementById('ml-resultado');el.innerHTML='<div class="empty">Buscando...</div>';
-  try{
-    var r=await fetch(GS+'?acao=ml-buscar&q='+encodeURIComponent(q)),j=await r.json();
-    if(!j.ok||!j.resultados||!j.resultados.length){el.innerHTML='<div class="empty">Nenhum resultado.</div>';return;}
-    el.innerHTML=j.resultados.map(function(x){return'<div class="ml-item"><img class="ml-thumb" src="'+x.thumbnail+'" onerror="this.style.display=\'none\'"/><div class="ml-info"><div class="ml-nome">'+x.titulo+'</div><div class="ml-preco">'+fmtBRL(x.preco)+'</div></div><button class="btn-ml-usar" onclick="usarML(\''+encodeURIComponent(x.titulo)+'\','+x.preco+',\''+encodeURIComponent(x.link||'')+'\')">Usar</button></div>';}).join('');
-  }catch(e){el.innerHTML='<div class="empty">Erro na busca.</div>';}
-}
-function usarML(titulo,preco,link){
-  document.getElementById('cu-nome').value=decodeURIComponent(titulo);
-  document.getElementById('cu-preco').value=preco;
-  document.getElementById('cu-link').value=decodeURIComponent(link);
-  navTo('cadastro',document.querySelectorAll('.nav-btn')[1]);
-  abrirForm('consumivel');
-  toast('✓ Dados preenchidos!');
-}
 </script>
 </body>
 </html>
