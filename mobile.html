@@ -15,8 +15,8 @@
   --fd:'Cinzel',serif;--fb:'Inter',sans-serif;
   --bottom:64px;
 }
-html,body{height:100%}
-body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;flex-direction:column;min-height:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;flex-direction:column}
 
 .topo{background:linear-gradient(135deg,#1a0e06,#0a0a0a);border-bottom:1px solid var(--borda);padding:12px 16px 8px;text-align:center;flex-shrink:0}
 .topo h1{font-family:var(--fd);font-size:.95rem;color:var(--ouro-lt);letter-spacing:.05em}
@@ -24,13 +24,13 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);display:flex;
 .topo p a{color:var(--cinza);text-decoration:none;font-size:9px}
 .topo p a:hover{color:var(--ouro)}
 
-.content{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--bottom)+80px)}
+.content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:180px}
 
 .skeleton{background:linear-gradient(90deg,rgba(201,168,76,.08) 25%,rgba(201,168,76,.18) 50%,rgba(201,168,76,.08) 75%);background-size:200% 100%;animation:skel 1.4s infinite;border-radius:6px}
 @keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .skel-num{height:1.3rem;width:60px;margin:0 auto 3px}
 
-.page{display:none;padding:14px 14px calc(var(--bottom)+50px)}
+.page{display:none;padding:14px}
 .page.active{display:block}
 
 /* INÍCIO */
