@@ -1,6 +1,6 @@
 // ================================================================
-//  GESTÃO DO TERREIRO — Ile Ase Vodun Ogum Ayres — Apps Script v16.2
-//  Reescrito do zero — 01/08/2026
+//  GESTÃO DO TERREIRO -- Ile Ase Vodun Ogum Ayres -- Apps Script v16.2
+//  Reescrito do zero -- 01/08/2026
 //
 //  ABAS:
 //  Públicas:  Acervo | Consumíveis | Entidades e Orixás | Calendário
@@ -67,7 +67,7 @@ const LISTA = {
   CAT_ACERVO: ['Alimentos e Oferendas','Ervas e Plantas','Ferramentas e Objetos Rituais','Roupas e Indumentárias','Outro'],
   STATUS_ACERVO: ['Danificado','Disponível','Em Uso','Necessita Reposição','N/A'],
   CAT_CONSUMIVEL: ['Alimentos','Bebidas','Ervas e Defumação','Flores e Naturais','Fumo','Velas','Outro'],
-  NIVEL: ['— Sem mínimo','✅ OK','⚠️ Repor','🔴 Alerta','🚨 Urgente / Zero'],
+  NIVEL: ['-- Sem mínimo','✅ OK','⚠️ Repor','🔴 Alerta','🚨 Urgente / Zero'],
   CAT_FINANCEIRO: ['Consulta / Atendimento','Consumíveis','Dízimo / Doação','Evento / Gira','Indumentária / Acervo','Manutenção','Ritual / Oferenda','Venda','Outros'],
   TIPO_CALENDARIO: ['Consulta / Búzios','Consulta / Tarot','Festa','Gira','Obrigação','Reunião','Outro']
 };
@@ -106,20 +106,20 @@ function setup() {
   ABAS_CONFIG.forEach(function(cfg) {
     var aba = ss.getSheetByName(cfg.nome);
     if (!aba) {
-      // Aba não existe — criar do zero
+      // Aba não existe -- criar do zero
       cfg.criar(ss);
       criadas.push(cfg.nome);
     } else {
-      // Aba existe — verificar se estrutura de colunas bate
+      // Aba existe -- verificar se estrutura de colunas bate
       var colsAtual = aba.getLastColumn();
       if (colsAtual > 0 && colsAtual !== cfg.cols) {
-        // Estrutura diferente — renomear para backup e recriar vazia
+        // Estrutura diferente -- renomear para backup e recriar vazia
         var backup = cfg.nome + '_backup_' + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyyMMdd_HHmm');
         aba.setName(backup);
         cfg.criar(ss);
         criadas.push(cfg.nome + ' (backup: ' + backup + ')');
       }
-      // Se colunas batem, não toca na aba — dados preservados
+      // Se colunas batem, não toca na aba -- dados preservados
     }
   });
 
@@ -366,8 +366,8 @@ function _hash(txt) {
 }
 function _hoje() { return Utilities.formatDate(new Date(),Session.getScriptTimeZone(),'dd/MM/yyyy'); }
 function _agora() { return Utilities.formatDate(new Date(),Session.getScriptTimeZone(),'dd/MM/yyyy HH:mm:ss'); }
-function _fmt(d) { if(!d)return'—'; try{return Utilities.formatDate(new Date(d),Session.getScriptTimeZone(),'dd/MM/yyyy');}catch(e){return'—';} }
-function _nivel(a,m) { if(!m)return{label:'— Sem mínimo',pct:0}; var pct=Math.round((a/m)*100); if(pct>=75)return{label:'✅ OK',pct}; if(pct>=25)return{label:'⚠️ Repor',pct}; if(pct>=5)return{label:'🔴 Alerta',pct}; return{label:'🚨 Urgente / Zero',pct}; }
+function _fmt(d) { if(!d)return'--'; try{return Utilities.formatDate(new Date(d),Session.getScriptTimeZone(),'dd/MM/yyyy');}catch(e){return'--';} }
+function _nivel(a,m) { if(!m)return{label:'-- Sem mínimo',pct:0}; var pct=Math.round((a/m)*100); if(pct>=75)return{label:'✅ OK',pct}; if(pct>=25)return{label:'⚠️ Repor',pct}; if(pct>=5)return{label:'🔴 Alerta',pct}; return{label:'🚨 Urgente / Zero',pct}; }
 function _uuid(p) { return p+'-'+Utilities.getUuid().substring(0,6).toUpperCase(); }
 function _tem(s,p) { return s&&s.permissoes&&s.permissoes.includes(p); }
 
@@ -495,7 +495,7 @@ function _gerarToken(email, permissoes, nome) {
 
 function _validarToken(token) {
   if (!token) return null;
-  // Token dev — acesso total sem expiração
+  // Token dev -- acesso total sem expiração
   if (token === 'DEV_BYPASS' || (typeof token === 'string' && token.indexOf('dev_') === 0)) {
     return {email:'dev@ile-ase', nome:'Dev (falsp)', permissoes: Object.values(PERM)};
   }
@@ -518,7 +518,7 @@ function doPost(e) {
     if (d.acao==='login')          return _saida(_autenticar(d.email,d.senha));
     if (d.acao==='logout')         { _revogarToken(d.token); return _saida({ok:true}); }
     if (d.acao==='primeiro-admin') return _saida(_criarPrimeirAdmin(d.email,d.senha,d.nome));
-    // Acesso dev via token DEV_BYPASS — valida devkey embutida
+    // Acesso dev via token DEV_BYPASS -- valida devkey embutida
     var sessao;
     if (d.token === 'DEV_BYPASS') {
       sessao = {email:'dev@ile-ase', nome:'Dev (falsp)', permissoes: Object.values(PERM)};
@@ -580,7 +580,7 @@ function doGet(e) {
       if (!_tem(sessao,'log')) return _saida({ok:false,erro:'Sem permissão.',code:403});
       return _saida(_listarLog());
     }
-    return _saida({ok:true,msg:'Gestão do Terreiro — Ile Ase Vodun Ogum Ayres — v16'});
+    return _saida({ok:true,msg:'Gestão do Terreiro -- Ile Ase Vodun Ogum Ayres -- v16'});
   } catch(err) { return _saida({ok:false,erro:err.message}); }
 }
 
@@ -850,17 +850,17 @@ function gerarListaCompras() {
   var nok=aba.getDataRange().getValues().slice(1).filter(function(r){return r[0]!==''&&!String(r[7]).includes('OK');});
   if(!nok.length){SpreadsheetApp.getUi().alert('✅ Nenhum item precisa ser reposto!');return;}
   var msg='🛒 LISTA DE COMPRAS\n'+'─'.repeat(28)+'\n';
-  ['Urgente','Alerta','Repor'].forEach(function(t){var g=nok.filter(function(r){return String(r[7]).includes(t);});if(g.length){msg+='\n'+(t==='Urgente'?'🚨':t==='Alerta'?'🔴':'⚠️')+' '+t+':\n';g.forEach(function(r){msg+='  • '+r[2]+' — faltam '+Math.max(0,r[5]-r[4])+' '+r[3]+'\n';});}});
+  ['Urgente','Alerta','Repor'].forEach(function(t){var g=nok.filter(function(r){return String(r[7]).includes(t);});if(g.length){msg+='\n'+(t==='Urgente'?'🚨':t==='Alerta'?'🔴':'⚠️')+' '+t+':\n';g.forEach(function(r){msg+='  • '+r[2]+' -- faltam '+Math.max(0,r[5]-r[4])+' '+r[3]+'\n';});}});
   SpreadsheetApp.getUi().alert(msg);
 }
 
 function verDatasMes() {
   var r=_datasDoMes(),hoje=new Date();
   var msg='📅 '+Utilities.formatDate(hoje,Session.getScriptTimeZone(),'MMMM/yyyy').toUpperCase()+'\n'+'─'.repeat(28)+'\n';
-  if(r.aniversariantes.length){msg+='\n🎂 Aniversariantes:\n';r.aniversariantes.forEach(function(a){msg+='  • '+a.data+' — '+a.nome+'\n';});}
-  if(r.festas.length){msg+='\n🥁 Festas:\n';r.festas.forEach(function(f){msg+='  • '+f.data+' — '+f.entidade+'\n';});}
-  if(r.eventos.length){msg+='\n📅 Eventos:\n';r.eventos.forEach(function(ev){msg+='  • '+ev.data+' — '+ev.titulo+' ('+ev.tipo+')\n';});}
-  if(r.obrigacoes.length){msg+='\n⚠️ Obrigações:\n';r.obrigacoes.forEach(function(o){msg+='  • '+o.data+' — '+o.nome+'\n';});}
+  if(r.aniversariantes.length){msg+='\n🎂 Aniversariantes:\n';r.aniversariantes.forEach(function(a){msg+='  • '+a.data+' -- '+a.nome+'\n';});}
+  if(r.festas.length){msg+='\n🥁 Festas:\n';r.festas.forEach(function(f){msg+='  • '+f.data+' -- '+f.entidade+'\n';});}
+  if(r.eventos.length){msg+='\n📅 Eventos:\n';r.eventos.forEach(function(ev){msg+='  • '+ev.data+' -- '+ev.titulo+' ('+ev.tipo+')\n';});}
+  if(r.obrigacoes.length){msg+='\n⚠️ Obrigações:\n';r.obrigacoes.forEach(function(o){msg+='  • '+o.data+' -- '+o.nome+'\n';});}
   SpreadsheetApp.getUi().alert(msg);
 }
 
@@ -870,9 +870,9 @@ function verObrigacoes() {
   var hoje=new Date(),lim=new Date(hoje);lim.setDate(lim.getDate()+180);
   var prox=aba.getDataRange().getValues().slice(1).filter(function(r){if(!r[9])return false;try{var d=new Date(r[9]);return d>=hoje&&d<=lim;}catch(e){return false;}});
   if(!prox.length){SpreadsheetApp.getUi().alert('✅ Nenhuma obrigação nos próximos 180 dias.');return;}
-  var msg='⚠️ OBRIGAÇÕES — 180 DIAS\n'+'─'.repeat(28)+'\n';
+  var msg='⚠️ OBRIGAÇÕES -- 180 DIAS\n'+'─'.repeat(28)+'\n';
   prox.sort(function(a,b){return new Date(a[9])-new Date(b[9]);});
-  prox.forEach(function(r){var dias=Math.round((new Date(r[9])-hoje)/(864e5));msg+='  • '+(r[1]||r[2])+' — '+_fmt(r[9])+' (em '+dias+' dias)\n';});
+  prox.forEach(function(r){var dias=Math.round((new Date(r[9])-hoje)/(864e5));msg+='  • '+(r[1]||r[2])+' -- '+_fmt(r[9])+' (em '+dias+' dias)\n';});
   SpreadsheetApp.getUi().alert(msg);
 }
 

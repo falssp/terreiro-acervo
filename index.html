@@ -301,7 +301,7 @@ window.addEventListener('DOMContentLoaded',function(){
 function toast(msg,ok){var t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok===false?' erro':'');clearTimeout(t._t);t._t=setTimeout(function(){t.className='';},3200);}
 function prog(p){document.getElementById('prog').style.width=p+'%';}
 function fmtBRL(v){return'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2});}
-function fmtData(s){if(!s||s==='—')return'—';try{if(String(s).includes('/'))return s;return new Date(s).toLocaleDateString('pt-BR');}catch(e){return s;}}
+function fmtData(s){if(!s||s==='--')return'--';try{if(String(s).includes('/'))return s;return new Date(s).toLocaleDateString('pt-BR');}catch(e){return s;}}
 function fillNum(id,val){var el=document.getElementById(id);if(!el)return;el.classList.remove('skeleton','skel-num');el.textContent=val;}
 
 function irPara(id,el){
@@ -381,7 +381,7 @@ async function carregarHome(){
     }
     if(j.festas&&j.festas.length){
       html+='<div class="home-card"><div class="home-card-titulo">&#129345; Festas de Orixás</div>';
-      j.festas.forEach(function(f){html+='<div class="home-item"><span>'+f.entidade+(f.saudacao?' — '+f.saudacao:'')+'</span><span class="data">'+f.data+'</span></div>';});
+      j.festas.forEach(function(f){html+='<div class="home-item"><span>'+f.entidade+(f.saudacao?' -- '+f.saudacao:'')+'</span><span class="data">'+f.data+'</span></div>';});
       html+='</div>';
     }
     if(!html)html='<div class="home-card"><div style="color:var(--cinza);font-size:12px;font-style:italic">Nenhum evento este mês.</div></div>';

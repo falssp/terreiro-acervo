@@ -278,7 +278,7 @@ html{height:100%}body{font-family:var(--fb);background:var(--bg);color:var(--cre
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="fecharModal(event)">
   <div class="modal">
-    <div class="modal-titulo"><span id="modal-nome">—</span><span class="modal-fechar" onclick="fecharModal()">&#x2715;</span></div>
+    <div class="modal-titulo"><span id="modal-nome">--</span><span class="modal-fechar" onclick="fecharModal()">&#x2715;</span></div>
     <div id="modal-corpo"></div>
   </div>
 </div>
@@ -309,7 +309,7 @@ function installPwa(){if(!deferredPrompt)return;deferredPrompt.prompt();deferred
 
 function toast(msg,ok){var t=document.getElementById('toast');t.textContent=msg;t.className='show'+(ok===false?' erro':'');clearTimeout(t._t);t._t=setTimeout(function(){t.className='';},3200);}
 function fmtBRL(v){return'R$\u00a0'+Number(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2});}
-function fmtData(s){if(!s||s==='—')return'—';try{if(String(s).includes('/'))return s;return new Date(s).toLocaleDateString('pt-BR');}catch(e){return s;}}
+function fmtData(s){if(!s||s==='--')return'--';try{if(String(s).includes('/'))return s;return new Date(s).toLocaleDateString('pt-BR');}catch(e){return s;}}
 function _fillNum(id,val){var el=document.getElementById(id);if(!el)return;el.classList.remove('skeleton','skel-num');el.textContent=val;}
 function fmtFesta(d){
   if(!d)return'';
@@ -368,17 +368,17 @@ function renderAcervo(){
   document.getElementById('a-count').textContent=f.length+' item(s)';
   if(!f.length){document.getElementById('acervo-lista').innerHTML='<div class="empty">Nenhum item encontrado.</div>';return;}
   document.getElementById('acervo-lista').innerHTML=f.map(function(i){
-    return'<div class="item-card" onclick="abrirModalAcervo(\''+i.id+'\')">'+'<div class="item-nome">'+(i.nome||'—')+'</div>'+'<div class="item-cat">'+(i.categoria||'')+(i.subcategoria?' › '+i.subcategoria:'')+'</div>'+(i.status?'<span class="item-badge">'+i.status+'</span>':'')+'</div>';
+    return'<div class="item-card" onclick="abrirModalAcervo(\''+i.id+'\')">'+'<div class="item-nome">'+(i.nome||'--')+'</div>'+'<div class="item-cat">'+(i.categoria||'')+(i.subcategoria?' › '+i.subcategoria:'')+'</div>'+(i.status?'<span class="item-badge">'+i.status+'</span>':'')+'</div>';
   }).join('');
 }
 function abrirModalAcervo(id){
   var i=acervo.find(function(x){return x.id===id;});if(!i)return;
-  document.getElementById('modal-nome').textContent=i.nome||'—';
+  document.getElementById('modal-nome').textContent=i.nome||'--';
   document.getElementById('modal-corpo').innerHTML=[
     ['Categoria',(i.categoria||'')+(i.subcategoria?' › '+i.subcategoria:'')],
-    ['Orixá / Entidade',(i.orixa||'—')+(i.entidade?' · '+i.entidade:'')],
-    ['Status',i.status||'—'],['Localização',i.local||'—'],
-    ['Quantidade',i.quantidade||'—'],['Cadastrado em',fmtData(i.dataCadastro)]
+    ['Orixá / Entidade',(i.orixa||'--')+(i.entidade?' · '+i.entidade:'')],
+    ['Status',i.status||'--'],['Localização',i.local||'--'],
+    ['Quantidade',i.quantidade||'--'],['Cadastrado em',fmtData(i.dataCadastro)]
   ].map(function(p){return'<div class="modal-row"><span class="modal-rot">'+p[0]+'</span><span>'+p[1]+'</span></div>';}).join('')+(i.foto?'<img src="'+i.foto+'" style="width:100%;border-radius:8px;margin-top:10px" onerror="this.style.display=\'none\'"/>':'');
   document.getElementById('modal-overlay').classList.add('open');
 }
@@ -407,18 +407,18 @@ function renderConsumiveis(){
   document.getElementById('csm-lista').innerHTML=f.map(function(i){
     var a=Number(i.atual)||0,m=Number(i.minimo)||0,pct=m>0?Math.min(100,Math.round(a/m*100)):100;
     var sl=nslug(i.nivel),cor=sl==='ok'?'#7fd67f':sl==='repor'?'#e0c040':sl==='alerta'?'#f08080':'#ff6060';
-    return'<div class="csm-card" onclick="abrirModalCsm(\''+i.id+'\')">'+'<div class="csm-top"><div><div class="csm-nome">'+(CAT_IC[i.categoria]||'')+'  '+i.nome+'</div><div class="csm-cat">'+i.categoria+'</div></div><span class="nivel-badge nivel-'+sl+'">'+(i.nivel||'—')+'</span></div>'+'<div class="csm-bar-wrap"><div class="csm-bar" style="width:'+pct+'%;background:'+cor+'"></div></div>'+'<div class="csm-info"><span>'+a+' / '+m+' '+(i.unidade||'')+'</span><span>'+pct+'%</span></div></div>';
+    return'<div class="csm-card" onclick="abrirModalCsm(\''+i.id+'\')">'+'<div class="csm-top"><div><div class="csm-nome">'+(CAT_IC[i.categoria]||'')+'  '+i.nome+'</div><div class="csm-cat">'+i.categoria+'</div></div><span class="nivel-badge nivel-'+sl+'">'+(i.nivel||'--')+'</span></div>'+'<div class="csm-bar-wrap"><div class="csm-bar" style="width:'+pct+'%;background:'+cor+'"></div></div>'+'<div class="csm-info"><span>'+a+' / '+m+' '+(i.unidade||'')+'</span><span>'+pct+'%</span></div></div>';
   }).join('');
 }
 function abrirModalCsm(id){
   var i=consumiveis.find(function(x){return x.id===id;});if(!i)return;
-  document.getElementById('modal-nome').textContent=i.nome||'—';
+  document.getElementById('modal-nome').textContent=i.nome||'--';
   document.getElementById('modal-corpo').innerHTML=[
-    ['Categoria',i.categoria||'—'],['Nível',i.nivel||'—'],
+    ['Categoria',i.categoria||'--'],['Nível',i.nivel||'--'],
     ['Estoque',(i.atual||0)+' / '+(i.minimo||0)+' '+(i.unidade||'')],
-    ['Fornecedor',i.fornecedor||'—'],
-    ['Preço unit.',i.precoUnit?fmtBRL(i.precoUnit):'—'],
-    ['Qtd/Pacote',i.qtdPacote||'—'],
+    ['Fornecedor',i.fornecedor||'--'],
+    ['Preço unit.',i.precoUnit?fmtBRL(i.precoUnit):'--'],
+    ['Qtd/Pacote',i.qtdPacote||'--'],
     ['Atualizado',fmtData(i.atualizado)]
   ].map(function(p){return'<div class="modal-row"><span class="modal-rot">'+p[0]+'</span><span>'+p[1]+'</span></div>';}).join('')+(i.link?'<div style="margin-top:10px;text-align:center"><a href="'+i.link+'" target="_blank" style="color:var(--ouro);font-size:12px">&#128279; Link de compra</a></div>':'');
   document.getElementById('modal-overlay').classList.add('open');
@@ -440,7 +440,7 @@ function renderCalendario(){
   var TIPO_IC={Festa:'&#129345;',Gira:'&#127949;&#65039;',Obrigação:'&#9888;&#65039;',Reunião:'&#128101;','Consulta / Búzios':'&#127775;','Consulta / Tarot':'&#127183;',Outro:'&#128197;'};
   document.getElementById('cal-lista').innerHTML=f.map(function(e){
     var ic=TIPO_IC[e.tipo]||'&#128197;';
-    return'<div class="cal-card"><div class="cal-data">'+e.data+'<span class="tipo-badge tipo-'+e.tipo+'">'+e.tipo+'</span></div><div class="cal-titulo">'+ic+' '+(e.titulo||'—')+'</div>'+(e.descricao?'<div class="cal-desc">'+e.descricao+'</div>':'')+'</div>';
+    return'<div class="cal-card"><div class="cal-data">'+e.data+'<span class="tipo-badge tipo-'+e.tipo+'">'+e.tipo+'</span></div><div class="cal-titulo">'+ic+' '+(e.titulo||'--')+'</div>'+(e.descricao?'<div class="cal-desc">'+e.descricao+'</div>':'')+'</div>';
   }).join('');
 }
 
@@ -468,7 +468,7 @@ function renderEntidades(){
   }
   function renderCard(i){
     var festa=fmtFesta(i.dataFesta);
-    return'<div class="ent-card"><div class="ent-nome">'+(i.entidade||'—')+'</div><div class="ent-nacao">'+(i.nacao||'')+(i.diaSemana?' · '+i.diaSemana:'')+(festa?'<span style="margin-left:6px;font-size:10px;color:var(--ouro)">Festa: '+festa+'</span>':'')+'</div>'+
+    return'<div class="ent-card"><div class="ent-nome">'+(i.entidade||'--')+'</div><div class="ent-nacao">'+(i.nacao||'')+(i.diaSemana?' · '+i.diaSemana:'')+(festa?'<span style="margin-left:6px;font-size:10px;color:var(--ouro)">Festa: '+festa+'</span>':'')+'</div>'+
     (i.cores?'<div class="ent-row"><span class="ent-rot">Cores</span><span>'+i.cores+'</span></div>':'')+
     (i.oferendas?'<div class="ent-row"><span class="ent-rot">Oferendas</span><span>'+i.oferendas+'</span></div>':'')+
     (i.bebidas?'<div class="ent-row"><span class="ent-rot">Bebidas</span><span>'+i.bebidas+'</span></div>':'')+
