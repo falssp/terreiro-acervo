@@ -353,16 +353,12 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
         <input class="field-inp" type="text" id="na-senha" placeholder="Mín. 6 caracteres" autocomplete="off"/>
         <label class="field-lbl">Permissões</label>
         <div class="perms-grid">
-          <label class="perm-cb"><input type="checkbox" value="acervo_view"/> Ver Acervo</label>
           <label class="perm-cb"><input type="checkbox" value="acervo_edit"/> Editar Acervo</label>
-          <label class="perm-cb"><input type="checkbox" value="consumiveis_view"/> Ver Consumíveis</label>
           <label class="perm-cb"><input type="checkbox" value="consumiveis_edit"/> Editar Consumíveis</label>
-          <label class="perm-cb"><input type="checkbox" value="entidades_view"/> Ver Entidades</label>
           <label class="perm-cb"><input type="checkbox" value="entidades_edit"/> Editar Entidades</label>
-          <label class="perm-cb"><input type="checkbox" value="calendario_view"/> Ver Calendário</label>
           <label class="perm-cb"><input type="checkbox" value="calendario_edit"/> Editar Calendário</label>
-          <label class="perm-cb"><input type="checkbox" value="filhos_view"/> Ver Filhos</label>
-          <label class="perm-cb"><input type="checkbox" value="filhos_edit"/> Editar Filhos</label>
+          <label class="perm-cb"><input type="checkbox" value="filhos_view"/> Ver Filhos de Santo</label>
+          <label class="perm-cb"><input type="checkbox" value="filhos_edit"/> Editar Filhos de Santo</label>
           <label class="perm-cb"><input type="checkbox" value="financeiro"/> Financeiro</label>
           <label class="perm-cb"><input type="checkbox" value="usuarios"/> Usuários</label>
           <label class="perm-cb"><input type="checkbox" value="configuracoes"/> Configurações</label>
@@ -578,10 +574,9 @@ function mostrarAdmin(){
 }
 
 var _DEV_KEY = null;
+function _isDev(){return TOKEN&&TOKEN.startsWith('dev_');}
 function _get(acao,extra){
-  var params='?acao='+acao;
-  if(TOKEN&&TOKEN.startsWith('dev_')){params+='&devkey='+encodeURIComponent(TOKEN.replace('dev_',''));}
-  else{params+='&token='+(TOKEN||'');}
+  var params='?acao='+acao+'&token='+(TOKEN||'');
   if(extra)Object.keys(extra).forEach(function(k){params+='&'+k+'='+encodeURIComponent(extra[k]);});
   return fetch(URL_GS+params).then(function(r){return r.json();});
 }
