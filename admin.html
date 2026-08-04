@@ -1140,6 +1140,7 @@ function carregarLog() {
         return;
       }
       var recentes = j.registros.slice(-100).reverse();
+      var isDev = TOKEN && TOKEN.startsWith('dev_');
       recentes.forEach(function(r) {
         var item = document.createElement('div');
         item.className = 'log-item';
@@ -1148,7 +1149,10 @@ function carregarLog() {
         linha += r.usuario + ' -- ';
         linha += r.aba;
         if (r.idItem) linha += ' [' + r.idItem + ']';
-        if (r.campo && r.campo !== '-') linha += ' -- ' + r.campo + ': ' + r.anterior + ' -> ' + r.novo;
+        // Dev ve valores anterior/novo; admin ve versao simplificada
+        if (isDev && r.campo && r.campo !== '-') {
+          linha += ' -- ' + r.campo + ': ' + r.anterior + ' -> ' + r.novo;
+        }
         item.textContent = linha;
         el.appendChild(item);
       });
