@@ -544,16 +544,35 @@ function criarPrimeiro() {
   if (senha.length < 6) { err.textContent = 'Senha muito curta.'; return; }
   if (senha !== conf) { err.textContent = 'As senhas nao coincidem.'; return; }
   err.textContent = 'Criando...';
+  var timeout = setTimeout(function() {
+    err.style.color = '#e0c040';
+    err.textContent = 'Aguarde, isso pode levar alguns segundos...';
+  }, 4000);
   fetch(GS, {method: 'POST', body: JSON.stringify({acao: 'primeiro-admin', email: email, senha: senha, nome: nome})})
     .then(function(r) { return r.json(); })
     .then(function(j) {
+      clearTimeout(timeout);
       if (j.ok) {
-        TOKEN = j.token; PERMS = j.permissoes || []; NOME_ADMIN = j.nome || ''; EMAIL_ADMIN = email;
-        document.getElementById('tela-primeiro').style.display = 'none';
-        mostrarAdmin();
-      } else { err.textContent = j.erro || 'Erro ao criar conta.'; }
+        err.style.color = '#7fd67f';
+        err.textContent = 'Conta criada com sucesso!';
+        setTimeout(function() {
+          document.getElementById('tela-primeiro').style.display = 'none';
+          document.getElementById('tela-login').classList.add('ativa');
+          document.getElementById('l-email').value = email;
+          document.getElementById('l-email').focus();
+        }, 1200);
+      } else { err.style.color = '#f08080'; err.textContent = j.erro || 'Erro ao criar conta.'; }
     })
-    .catch(function() { err.textContent = 'Erro de conexao.'; });
+    .catch(function() {
+      clearTimeout(timeout);
+      err.style.color = '#e0c040';
+      err.textContent = 'Pode ter funcionado -- tente fazer login.';
+      setTimeout(function() {
+        document.getElementById('tela-primeiro').style.display = 'none';
+        document.getElementById('tela-login').classList.add('ativa');
+        document.getElementById('l-email').value = email;
+      }, 2500);
+    });
 }
 
 function entrar() {
