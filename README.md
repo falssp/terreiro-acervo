@@ -1,57 +1,49 @@
 # ✦ Ile Ase Vodun Ogum Ayres
 
-Sistema de gestão para terreiro de Umbanda — consumíveis, acervo, filhos de santo, calendário, entidades/orixás e financeiro.
+Sistema de gestão para terreiro de Umbanda — consumíveis, acervo, filhos de santo, calendário, entidades/orixás, financeiro e consultas espirituais.
 
 🌐 **Desktop:** [falssp.github.io/terreiro-gestao](https://falssp.github.io/terreiro-gestao)
 📱 **Celular:** [falssp.github.io/terreiro-gestao/mobile.html](https://falssp.github.io/terreiro-gestao/mobile.html)
 🔐 **Admin:** [falssp.github.io/terreiro-gestao/admin.html](https://falssp.github.io/terreiro-gestao/admin.html)
 ❓ **Ajuda:** [falssp.github.io/terreiro-gestao/faq.html](https://falssp.github.io/terreiro-gestao/faq.html)
 
+> Acesso dev: ver `dev.md` (privado, nunca commitado).
+
 ---
 
 ## Funcionalidades
 
 ### 🏠 Início (público)
-
-Painel do mês com eventos do calendário e festas de orixás. Cards clicáveis de estoque (OK / Repor / Alerta / Urgente) levam direto para os consumíveis filtrados.
+Cards de estoque (OK / Repor / Alerta / Urgente) + eventos do mês + card informativo sobre consultas espirituais (búzios e tarot).
 
 ### 📦 Acervo (público — só view)
+Roupas, ferramentas e objetos rituais com orixá, entidade, status e localização. Cadastro apenas pelo admin.
 
-Cadastro de roupas, indumentárias, ferramentas e objetos rituais com orixá de cabeça, entidade / linha, status, localização e foto. Cadastro via app (requer token).
-
-### 🕯️ Consumíveis (público — view; login para editar)
-
-Controle de estoque com 4 níveis de alerta. Clique no card → modal com dados → botão "Atualizar estoque".
-
-Níveis:
-- ✅ **OK** — ≥ 75% do mínimo
-- ⚠️ **Repor** — 25 a 74%
-- 🔴 **Alerta** — 5 a 24%
-- 🚨 **Urgente / Zero** — menos de 5%
-
-Categorias: Alimentos · Bebidas · Ervas e Defumação · Flores e Naturais · Fumo · Velas · Outro
-
-Busca de preços no **Mercado Livre** direto do app.
+### 🕯️ Consumíveis (público — só view)
+Estoque com 4 níveis de alerta. Busca de preços no Mercado Livre integrada ao painel admin.
 
 ### 📅 Calendário (público)
+Giras, Festas, Obrigações, Reuniões, **Consultas de Búzios e Tarot**. Cadastro pelo admin.
 
-Eventos do terreiro: Giras, Festas, Obrigações, Reuniões. Cadastro pelo painel admin.
+### ✦ Orixás & Entidades (público)
+**Orixás:** Exu, Ogum, Oxossi, Xangô, Oxum, Iemanjá, Oxalá, Iansã (Oyá), Nanã, Obaluaê/Omolu, Oxumarê, Ossãe
 
-### ✦ Orixás e Entidades (público)
+**Entidades / Linhas:** Caboclos, Pretos-Velhos, Exus e Pombagiras, Erês (Crianças), Boiadeiros, Marinheiros, Ciganos
 
-Referência com orixás/entidades pré-cadastrados: oferendas, cores, saudações e datas de festa.
+### 👥 Filhos de Santo (privado)
+Orixá de cabeça, adjuntó, nação, feitura, aniversário e obrigações. Dados sensíveis -- sem acesso público.
 
-### 👥 Filhos de Santo (privado — login obrigatório)
+### 💰 Financeiro (privado -- admin)
+Lançamento de entradas/saídas com categorias incluindo **Consulta / Atendimento**. Resumo com breakdown por categoria.
 
-Cadastro com orixá de cabeça, adjuntó, nação, data de feitura, aniversário e controle de obrigações. Dados sensíveis — sem acesso público.
+### 🛒 Lista de Compras (privado -- admin)
+Duas listas separadas:
+- **Compras do mês** -- automática pelo nível de estoque
+- **Compras pontuais** -- itens avulsos adicionados manualmente
+- **Lista completa** -- junta as duas em um só documento
 
-### 💰 Financeiro (privado — admin)
-
-Lançamento de entradas e saídas com categorias. Painel de saldo acessível apenas para admins com permissão `financeiro`.
-
-### 📋 Log de Atividades (privado — admin)
-
-Toda operação de escrita grava automaticamente: quem fez, quando, em qual aba, campo alterado, valor anterior e novo.
+### 📋 Log de Atividades (privado -- admin)
+Toda operação de escrita grava: quem fez, quando, aba, campo, valor anterior e novo.
 
 ---
 
@@ -59,83 +51,85 @@ Toda operação de escrita grava automaticamente: quem fez, quando, em qual aba,
 
 | Arquivo | O que é |
 |---|---|
-| `index.html` | App desktop — responsivo, tabs no topo |
-| `mobile.html` | App celular — bottom nav, otimizado para toque |
-| `admin.html` | Painel da liderança — acesso por login |
+| `index.html` | App desktop |
+| `mobile.html` | App celular -- bottom nav |
+| `admin.html` | Painel da liderança |
 | `faq.html` | Ajuda pública |
 | `manifest.json` | Configuração PWA |
 | `sw.js` | Cache offline |
-| `Terreiro_AppsScript.gs` | Backend Google Apps Script v16 |
+| `Terreiro_AppsScript.gs` | Backend Google Apps Script v16.2 |
+| `dev.md` | Acesso dev (privado, no .gitignore) |
 
 ---
 
-## Acesso e perfis
+## Perfis de acesso
 
 ### Público (sem login)
-Acervo, Consumíveis, Calendário, Orixás/Entidades — somente visualização.
+Acervo, Consumíveis, Calendário, Orixás/Entidades -- somente visualização.
 
 ### Filho de Santo (login)
-Edita consumíveis e acervo. Vê e edita o próprio perfil em Filhos de Santo. Toda ação é registrada no Log.
+Edita consumíveis e acervo. Vê e edita o próprio perfil. Toda ação registrada no Log.
 
-### Admin — Pai / Mãe de Santo (login)
-Acesso total. Cria usuários com permissões granulares e senha provisória (obriga troca no primeiro acesso).
+### Admin -- Pai / Mãe de Santo (login)
+Acesso total. Cria usuários com permissões granulares e senha provisória.
 
 ### Dev
-Acesso via `devkey` na URL — sem cadastro na planilha.
+Acesso via URL com devkey -- ver `dev.md`.
 
 ---
 
 ## Permissões disponíveis
 
-`acervo_view` · `acervo_edit` · `consumiveis_view` · `consumiveis_edit` · `entidades_view` · `entidades_edit` · `filhos_view` · `filhos_edit` · `financeiro` · `calendario_view` · `calendario_edit` · `usuarios` · `configuracoes` · `log`
+`acervo_edit` · `consumiveis_edit` · `entidades_edit` · `filhos_view` · `filhos_edit` · `financeiro` · `calendario_edit` · `usuarios` · `configuracoes` · `log`
+
+> Permissões de view (acervo, consumíveis, entidades, calendário) são públicas e não precisam ser configuradas por usuário.
 
 ---
 
 ## Segurança
 
-- Login por **e-mail + senha individual**
-- Senha armazenada como **SHA-256 + salt** — nunca em texto puro
-- **Senha provisória** no cadastro de novo usuário → troca obrigatória no primeiro acesso
-- **3 tentativas** erradas → bloqueio automático de 30 minutos
-- Desbloqueio pelo painel (sem editar a planilha)
-- Token de sessão em memória apenas (sem localStorage/sessionStorage) — expira em 8h
-- **Logout automático por inatividade** após 30 minutos sem interação
+- Senha **SHA-256 + salt** -- nunca em texto puro
+- **Senha provisória** obriga troca no primeiro acesso
+- **3 tentativas** erradas -- bloqueio de 30 minutos
+- Token de sessão **em memória apenas** (sem localStorage/sessionStorage) -- expira em 8h
+- **Logout automático** por inatividade após 30 minutos
+- Acesso dev via URL **não deixa rastro** -- token apenas em memória, URL limpa após entrada
 
 ---
 
-## Planilha
+## Abas da planilha
 
-→ [Gestão do Terreiro](https://docs.google.com/spreadsheets/d/1zzP0TgsT85omd2MyIGLU-B2ONRMwI6aQkgQO4DroIFc/edit)
+**Públicas (via app):** Acervo · Consumíveis · Entidades e Orixás · Calendário
 
-Abas: **Acervo · Consumíveis · Entidades e Orixás · Calendário · Filhos de Santo · Financeiro · Log · Admins**
+**Privadas:** Filhos de Santo · Financeiro · Lista de Compras · Log · Admins
 
-> A planilha é banco de dados puro. Toda gestão é feita pelo app — não edite a planilha diretamente.
-
-Menu **🏛️ Gestão do Terreiro** na planilha: recalcular estoque, lista de compras, datas do mês, obrigações próximas.
+> A planilha é banco de dados puro. Toda gestão é feita pelo app.
 
 ---
 
 ## Setup inicial
 
 1. Colar `Terreiro_AppsScript.gs` no Apps Script → rodar `setup()`
-2. Reimplantar como Web App — Executar como: **Eu mesmo** · Acesso: **Qualquer pessoa**
-3. Acessar `admin.html` → tela de criação do Pai / Mãe de Santo
-4. Pai de Santo cria usuários adicionais pelo painel com permissões granulares
+2. Reimplantar como Web App -- Executar como: **Eu mesmo** · Acesso: **Qualquer pessoa**
+3. Acessar `admin.html` → criar conta do Pai / Mãe de Santo
+4. Pai de Santo cria usuários adicionais com permissões granulares
+
+> `setup()` nunca apaga dados existentes. Se a estrutura de uma aba mudar, renomeia a antiga para backup e cria nova vazia.
 
 ---
 
-## Instalar no celular (PWA)
+## PWA -- Instalar no celular
 
-**Android (Chrome):** banner aparece automaticamente → "Instalar". Se não: 3 pontos → Adicionar à tela inicial.
+**Android (Chrome):** banner automático → "Instalar"
 
-**iPhone (Safari):** botão compartilhar 📤 → Adicionar à Tela de Início. Funciona apenas no Safari.
+**iPhone (Safari):** botão compartilhar 📤 → Adicionar à Tela de Início
 
 ---
 
 ## Tecnologias
 
-HTML · CSS · JavaScript — sem frameworks · Google Apps Script · Google Sheets · PWA · Mercado Livre API
+HTML · CSS · JavaScript (sem frameworks) · Google Apps Script · Google Sheets · PWA · Mercado Livre API
 
 ---
 
-*v16 — 01/08/2026 · Desenvolvido para uso interno do terreiro.*
+*v16.2 -- 01/08/2026*
