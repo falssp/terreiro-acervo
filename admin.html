@@ -112,13 +112,13 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 <div id="tela-primeiro">
   <div class="acesso-wrap">
     <h1>&#10022; Ile Ase Vodun Ogum Ayres &#10022;</h1>
-    <p>Primeiro acesso -- crie a conta do Pai / Mae de Santo</p>
+    <p>Primeiro acesso &mdash; crie a conta do Pai / M&atilde;e de Santo</p>
     <div class="acesso-box">
       <label class="field-lbl">Seu nome</label>
       <input class="field-inp" type="text" id="p-nome" placeholder="Ex: Maria das Dores" autocomplete="off"/>
       <label class="field-lbl">E-mail</label>
       <input class="field-inp" type="email" id="p-email" placeholder="seu@email.com" autocomplete="off"/>
-      <label class="field-lbl">Senha (min. 6 caracteres)</label>
+      <label class="field-lbl">Senha (m&iacute;n. 6 caracteres)</label>
       <input class="field-inp" type="password" id="p-senha" placeholder="..." autocomplete="new-password"/>
       <label class="field-lbl">Confirmar senha</label>
       <input class="field-inp" type="password" id="p-conf" placeholder="..." autocomplete="new-password"/>
@@ -133,7 +133,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 <div id="tela-login">
   <div class="acesso-wrap">
     <h1>&#10022; Ile Ase Vodun Ogum Ayres &#10022;</h1>
-    <p>&#128274; Area da lideranca</p>
+    <p>&#128274; &Aacute;rea da Lideran&ccedil;a</p>
     <div class="acesso-box">
       <label class="field-lbl">E-mail</label>
       <input class="field-inp" type="email" id="l-email" placeholder="seu@email.com" autocomplete="off"/>
@@ -152,9 +152,9 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
     <h1>&#10022; Ile Ase Vodun Ogum Ayres &#10022;</h1>
     <p>&#128273; Crie sua senha pessoal</p>
     <div class="acesso-box">
-      <label class="field-lbl">Senha atual (provisoria)</label>
+      <label class="field-lbl">Senha atual (provis&oacute;ria)</label>
       <input class="field-inp" type="password" id="t-atual" placeholder="..." autocomplete="off"/>
-      <label class="field-lbl">Nova senha (min. 6 caracteres)</label>
+      <label class="field-lbl">Nova senha (m&iacute;n. 6 caracteres)</label>
       <input class="field-inp" type="password" id="t-nova" placeholder="..." autocomplete="new-password"/>
       <label class="field-lbl">Confirmar nova senha</label>
       <input class="field-inp" type="password" id="t-conf" placeholder="..." autocomplete="new-password"/>
@@ -168,7 +168,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 <div id="tela-admin">
   <div class="admin-top">
     <div>
-      <h1>&#127963; Painel da Lideranca</h1>
+      <h1>&#127963; Painel da Lideran&ccedil;a</h1>
       <div class="admin-sub" id="admin-sub"></div>
     </div>
     <div class="top-nav">
@@ -193,9 +193,9 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
     <div id="sec-estoque" style="display:none">
       <div class="sec-titulo">&#128305; Estoque</div>
       <div class="btn-grid" style="margin-bottom:12px">
-        <button class="btn-adm" onclick="listaComprasMes()"><span class="ic">&#128722;</span><span class="lb">Compras do mes</span><span class="dc">Itens a repor com base no estoque</span></button>
+        <button class="btn-adm" onclick="listaComprasMes()"><span class="ic">&#128722;</span><span class="lb">Compras do m&ecirc;s</span><span class="dc">Itens a repor com base no estoque</span></button>
         <button class="btn-adm" onclick="statusEstoque()"><span class="ic">&#128202;</span><span class="lb">Status do estoque</span><span class="dc">Visao por categoria e nivel</span></button>
-        <button class="btn-adm" onclick="abrirListaPontual()"><span class="ic">&#128221;</span><span class="lb">Compras pontuais</span><span class="dc">Itens avulsos para compra especifica</span></button>
+        <button class="btn-adm" onclick="abrirListaPontual()"><span class="ic">&#128221;</span><span class="lb">Compras pontuais</span><span class="dc">Itens avulsos para compra espec&iacute;fica</span></button>
       </div>
       <div class="resultado" id="resultado-estoque"></div>
       <div class="inner-form" id="form-lista">
@@ -215,13 +215,13 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
 
     <!-- Calendario -->
     <div id="sec-calendario" style="display:none">
-      <div class="sec-titulo">&#128197; Calendario do Terreiro</div>
+      <div class="sec-titulo">&#128197; Calend&aacute;rio do Terreiro</div>
       <div class="btn-grid" style="margin-bottom:12px">
-        <button class="btn-adm" onclick="listarCalendario()"><span class="ic">&#128197;</span><span class="lb">Ver eventos</span><span class="dc">Giras, festas e reunioes</span></button>
-        <button class="btn-adm" onclick="toggleForm('form-cal')"><span class="ic">+</span><span class="lb">Novo evento</span><span class="dc">Adicionar ao calendario</span></button>
+        <button class="btn-adm" onclick="listarCalendario()"><span class="ic">&#128197;</span><span class="lb">Ver eventos</span><span class="dc">Giras, festas e reuni&otilde;es</span></button>
+        <button class="btn-adm" onclick="toggleForm('form-cal')"><span class="ic">+</span><span class="lb">Novo evento</span><span class="dc">Adicionar ao calend&aacute;rio</span></button>
       </div>
       <div class="inner-form" id="form-cal">
-        <label class="field-lbl">Titulo *</label>
+        <label class="field-lbl">T&iacute;tulo *</label>
         <input class="field-inp" type="text" id="cal-titulo" placeholder="Ex: Gira de Oxum" autocomplete="off"/>
         <label class="field-lbl">Data *</label>
         <input class="field-inp" type="date" id="cal-data" style="color-scheme:dark"/>
@@ -231,11 +231,11 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
           <option value="Consulta / Tarot">Consulta / Tarot</option>
           <option value="Festa">Festa</option>
           <option value="Gira">Gira</option>
-          <option value="Obrigacao">Obrigacao</option>
-          <option value="Reuniao">Reuniao</option>
+          <option value="Obriga&ccedil;&atilde;o">Obriga&ccedil;&atilde;o</option>
+          <option value="Reuni&atilde;o">Reuni&atilde;o</option>
           <option value="Outro">Outro</option>
         </select>
-        <label class="field-lbl">Descricao</label>
+        <label class="field-lbl">Descri&ccedil;&atilde;o</label>
         <input class="field-inp" type="text" id="cal-desc" placeholder="Detalhes do evento" autocomplete="off"/>
         <div id="cal-err" style="font-size:12px;color:#f08080;margin-bottom:8px;min-height:16px"></div>
         <div class="btn-row">
@@ -252,19 +252,19 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
       <div class="btn-grid" style="margin-bottom:12px">
         <button class="btn-adm" onclick="listarFilhos()"><span class="ic">&#128101;</span><span class="lb">Ver filhos</span><span class="dc">Lista completa do terreiro</span></button>
         <button class="btn-adm" onclick="toggleForm('form-filho')"><span class="ic">+</span><span class="lb">Novo filho</span><span class="dc">Cadastrar membro</span></button>
-        <button class="btn-adm" onclick="verObrigacoes()"><span class="ic">!</span><span class="lb">Obrigacoes</span><span class="dc">Proximas nos dias definidos</span></button>
+        <button class="btn-adm" onclick="verObrigacoes()"><span class="ic">!</span><span class="lb">Obrigacoes</span><span class="dc">Pr&oacute;ximas nos dias definidos</span></button>
       </div>
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:12px;color:var(--cinza)">
         Prazo: <input type="number" id="prazo" value="180" min="30" max="730" style="background:rgba(0,0,0,.4);border:1px solid var(--borda);border-radius:6px;color:var(--creme);font-size:12px;padding:4px 8px;width:65px;outline:none;text-align:center;font-family:var(--fb)"/> dias
       </div>
       <div class="inner-form" id="form-filho">
-        <label class="field-lbl">Nome de Candomble / Santo</label>
+        <label class="field-lbl">Nome de Candombl&eacute; / Santo</label>
         <input class="field-inp" type="text" id="ff-nome" autocomplete="off"/>
         <label class="field-lbl">Nome Social</label>
         <input class="field-inp" type="text" id="ff-social" autocomplete="off"/>
         <label class="field-lbl">Contato (WhatsApp)</label>
         <input class="field-inp" type="tel" id="ff-contato" placeholder="(11) 99999-9999"/>
-        <label class="field-lbl">Orixa de Cabeca</label>
+        <label class="field-lbl">Orix&aacute; de Cabe&ccedil;a</label>
         <select class="field-inp" id="ff-orixa" style="-webkit-appearance:none">
           <option value="">--</option>
           <option>Iansa</option><option>Iemanja</option><option>Logun Ede</option>
@@ -273,7 +273,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
           <option>Oxossi</option><option>Oxum</option><option>Oxumare</option>
           <option>Xango</option><option>Outro</option>
         </select>
-        <label class="field-lbl">Adjunto</label>
+        <label class="field-lbl">Adjunt&oacute;</label>
         <select class="field-inp" id="ff-adjunto" style="-webkit-appearance:none">
           <option value="">--</option>
           <option>Iansa</option><option>Iemanja</option><option>Logun Ede</option>
@@ -282,7 +282,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
           <option>Oxossi</option><option>Oxum</option><option>Oxumare</option>
           <option>Xango</option><option>Outro</option>
         </select>
-        <label class="field-lbl">Nacao</label>
+        <label class="field-lbl">Na&ccedil;&atilde;o</label>
         <select class="field-inp" id="ff-nacao" style="-webkit-appearance:none">
           <option value="">--</option>
           <option>Angola</option><option>Efon</option><option>Ijexa</option>
@@ -296,15 +296,15 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
           <option value="Inativo">Inativo</option><option value="Oga / Ekedi">Oga / Ekedi</option>
           <option value="Suspenso">Suspenso</option>
         </select>
-        <label class="field-lbl">Data de Aniversario</label>
+        <label class="field-lbl">Data de Anivers&aacute;rio</label>
         <input class="field-inp" type="date" id="ff-aniv" style="color-scheme:dark"/>
         <label class="field-lbl">Data de Feitura</label>
         <input class="field-inp" type="date" id="ff-feitura" style="color-scheme:dark"/>
-        <label class="field-lbl">Proxima Obrigacao</label>
+        <label class="field-lbl">Proxima Obriga&ccedil;&atilde;o</label>
         <input class="field-inp" type="date" id="ff-obrig" style="color-scheme:dark"/>
-        <label class="field-lbl">Obrigacoes Realizadas</label>
+        <label class="field-lbl">Obriga&ccedil;&otilde;es Realizadas</label>
         <input class="field-inp" type="text" id="ff-obrigrealiz" placeholder="Ex: Feitura 2020, 1 ano 2021" autocomplete="off"/>
-        <label class="field-lbl">Observacoes</label>
+        <label class="field-lbl">Observa&ccedil;&otilde;es</label>
         <input class="field-inp" type="text" id="ff-obs" autocomplete="off"/>
         <div id="ff-err" style="font-size:12px;color:#f08080;margin-bottom:8px;min-height:16px"></div>
         <div class="btn-row">
@@ -321,7 +321,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
       <div class="sec-titulo">&#128176; Financeiro</div>
       <div class="btn-grid" style="margin-bottom:12px">
         <button class="btn-adm" onclick="resumoFin()"><span class="ic">&#128200;</span><span class="lb">Resumo completo</span><span class="dc">Entradas, saidas e breakdown por categoria</span></button>
-        <button class="btn-adm" onclick="toggleForm('form-fin')"><span class="ic">+</span><span class="lb">Nova entrada / saida</span><span class="dc">Registrar lancamento financeiro</span></button>
+        <button class="btn-adm" onclick="toggleForm('form-fin')"><span class="ic">+</span><span class="lb">Nova entrada / sa&iacute;da</span><span class="dc">Registrar lan&ccedil;amento financeiro</span></button>
       </div>
       <div class="inner-form" id="form-fin">
         <label class="field-lbl">Tipo *</label>
@@ -333,23 +333,23 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
         <select class="field-inp" id="fin-cat" style="-webkit-appearance:none">
           <option value="Consulta / Atendimento">Consulta / Atendimento</option>
           <option value="Consumiveis">Consumiveis</option>
-          <option value="Dizimo / Doacao">Dizimo / Doacao</option>
+          <option value="D&iacute;zimo / Doa&ccedil;&atilde;o">D&iacute;zimo / Doa&ccedil;&atilde;o</option>
           <option value="Evento / Gira">Evento / Gira</option>
-          <option value="Indumentaria / Acervo">Indumentaria / Acervo</option>
-          <option value="Manutencao">Manutencao</option>
+          <option value="Indument&aacute;ria / Acervo">Indument&aacute;ria / Acervo</option>
+          <option value="Manuten&ccedil;&atilde;o">Manuten&ccedil;&atilde;o</option>
           <option value="Ritual / Oferenda">Ritual / Oferenda</option>
           <option value="Venda">Venda</option>
           <option value="Outros">Outros</option>
         </select>
-        <label class="field-lbl">Descricao</label>
-        <input class="field-inp" type="text" id="fin-desc" placeholder="Ex: Consulta de buzios -- Maria" autocomplete="off"/>
+        <label class="field-lbl">Descri&ccedil;&atilde;o</label>
+        <input class="field-inp" type="text" id="fin-desc" placeholder="Ex: Consulta de b&uacute;zios &mdash; Maria" autocomplete="off"/>
         <label class="field-lbl">Valor (R$) *</label>
         <input class="field-inp" type="number" id="fin-valor" step="0.01" min="0" placeholder="0,00"/>
         <label class="field-lbl">Data</label>
         <input class="field-inp" type="date" id="fin-data" style="color-scheme:dark"/>
         <label class="field-lbl">Responsavel</label>
-        <input class="field-inp" type="text" id="fin-resp" placeholder="Nome do responsavel" autocomplete="off"/>
-        <label class="field-lbl">Observacoes</label>
+        <input class="field-inp" type="text" id="fin-resp" placeholder="Nome do respons&aacute;vel" autocomplete="off"/>
+        <label class="field-lbl">Observa&ccedil;&otilde;es</label>
         <input class="field-inp" type="text" id="fin-obs" autocomplete="off"/>
         <div id="fin-err" style="font-size:12px;color:#f08080;margin-bottom:8px;min-height:16px"></div>
         <div class="btn-row">
@@ -360,12 +360,12 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
       <div class="resultado" id="resultado-fin"></div>
     </div>
 
-    <!-- Usuarios -->
+    <!-- Usu&aacute;rios -->
     <div id="sec-usuarios" style="display:none">
-      <div class="sec-titulo">&#128100; Usuarios</div>
+      <div class="sec-titulo">&#128100; Usu&aacute;rios</div>
       <div class="btn-grid" style="margin-bottom:12px">
-        <button class="btn-adm" onclick="listarAdmins()"><span class="ic">&#128101;</span><span class="lb">Ver usuarios</span><span class="dc">Status e permissoes</span></button>
-        <button class="btn-adm" onclick="toggleForm('form-novo-admin')"><span class="ic">+</span><span class="lb">Novo usuario</span><span class="dc">Criar acesso para membro da lideranca</span></button>
+        <button class="btn-adm" onclick="listarAdmins()"><span class="ic">&#128101;</span><span class="lb">Ver usuarios</span><span class="dc">Status e permiss&otilde;es</span></button>
+        <button class="btn-adm" onclick="toggleForm('form-novo-admin')"><span class="ic">+</span><span class="lb">Novo usuario</span><span class="dc">Criar acesso para membro da lideran&ccedil;a</span></button>
         <button class="btn-adm" onclick="toggleForm('form-senha')"><span class="ic">&#128273;</span><span class="lb">Trocar minha senha</span><span class="dc">Altere sua senha de acesso</span></button>
       </div>
       <div class="inner-form" id="form-novo-admin">
@@ -373,25 +373,25 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
         <input class="field-inp" type="text" id="na-nome" placeholder="Nome completo" autocomplete="off"/>
         <label class="field-lbl">E-mail</label>
         <input class="field-inp" type="email" id="na-email" placeholder="email@exemplo.com" autocomplete="off"/>
-        <label class="field-lbl">Senha provisoria (usuario devera trocar no primeiro acesso)</label>
+        <label class="field-lbl">Senha provis&oacute;ria (usu&aacute;rio dever&aacute; trocar no primeiro acesso)</label>
         <input class="field-inp" type="text" id="na-senha" placeholder="Min. 6 caracteres" autocomplete="off"/>
         <label class="field-lbl">Permissoes</label>
         <div class="perms-grid">
           <label class="perm-cb"><input type="checkbox" value="acervo_edit"/> Editar Acervo</label>
           <label class="perm-cb"><input type="checkbox" value="consumiveis_edit"/> Editar Consumiveis</label>
           <label class="perm-cb"><input type="checkbox" value="entidades_edit"/> Editar Entidades</label>
-          <label class="perm-cb"><input type="checkbox" value="calendario_edit"/> Editar Calendario</label>
+          <label class="perm-cb"><input type="checkbox" value="calendario_edit"/> Editar Calend&aacute;rio</label>
           <label class="perm-cb"><input type="checkbox" value="filhos_view"/> Ver Filhos de Santo</label>
           <label class="perm-cb"><input type="checkbox" value="filhos_edit"/> Editar Filhos de Santo</label>
           <label class="perm-cb"><input type="checkbox" value="financeiro"/> Financeiro</label>
-          <label class="perm-cb"><input type="checkbox" value="usuarios"/> Usuarios</label>
-          <label class="perm-cb"><input type="checkbox" value="configuracoes"/> Configuracoes</label>
+          <label class="perm-cb"><input type="checkbox" value="usuarios"/> Usu&aacute;rios</label>
+          <label class="perm-cb"><input type="checkbox" value="configuracoes"/> Configura&ccedil;&otilde;es</label>
           <label class="perm-cb"><input type="checkbox" value="log"/> Log</label>
         </div>
         <div id="na-err" style="font-size:12px;color:#f08080;margin-bottom:8px;min-height:16px"></div>
         <div class="btn-row">
           <button class="btn-sm" onclick="toggleForm('form-novo-admin')">Cancelar</button>
-          <button class="btn-sm primary" onclick="criarAdmin()">Criar usuario</button>
+          <button class="btn-sm primary" onclick="criarAdmin()">Criar usu&aacute;rio</button>
         </div>
       </div>
       <div class="inner-form" id="form-senha">
@@ -414,15 +414,15 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
     <div id="sec-log" style="display:none">
       <div class="sec-titulo">&#128203; Log de Atividades</div>
       <button class="btn-adm" style="width:100%;margin-bottom:12px" onclick="carregarLog()">
-        <span class="ic">&#128203;</span><span class="lb">Carregar log</span><span class="dc">Historico de todas as alteracoes</span>
+        <span class="ic">&#128203;</span><span class="lb">Carregar log</span><span class="dc">Hist&oacute;rico de todas as altera&ccedil;&otilde;es</span>
       </button>
       <div id="log-lista"></div>
     </div>
 
-    <!-- Suporte -->
-    <div class="sec-titulo" style="margin-top:28px">&#128295; Suporte</div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Sessao expirada ao usar o painel <span class="arrow">v</span></div><div class="faq-a">A sessao dura 8h ou 30 min sem uso. Basta fazer login novamente.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Acao desconhecida ao gravar <span class="arrow">v</span></div><div class="faq-a">Reimplante o Apps Script: <code>Implantar > Gerenciar implantacoes > editar > Nova versao > Implantar</code></div></div>
+    <!-- Info -->
+    <div class="sec-titulo" style="margin-top:28px">&#128295; Informa&ccedil;&otilde;es</div>
+    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Sess&atilde;o expirada <span class="arrow">v</span></div><div class="faq-a">A sess&atilde;o dura 8h ou 30 min sem uso. Basta fazer login novamente.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Problemas t&eacute;cnicos <span class="arrow">v</span></div><div class="faq-a">Entre em contato com o administrador do sistema.</div></div>
 
   </div>
 </div>
