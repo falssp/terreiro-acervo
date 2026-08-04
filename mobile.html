@@ -294,8 +294,8 @@ const SUBCATS={
   'Ferramentas e Objetos Rituais':['Arco e Flecha','Atabaques / Instrumento','Espada / Ogó','Ferramenta de Orixá','Ibá / Sopera','Leque','Pemba / Efun','Xaxará'],
   'Roupas e Indumentárias':['Calçado','Capa / Manto','Capacete / Coroa','Guia / Colar','Ojá / Torço','Pulseira / Oxê','Saia','Vestido']
 };
-const CAT_IC={Velas:'🕯️',Bebidas:'🍶',Fumo:'🚬','Ervas e Defumação':'🌿',Alimentos:'🌽','Flores e Naturais':'🌸'};
-const NIVEL_SLUG={'✅ OK':'ok','⚠️ Repor':'repor','🔴 Alerta':'alerta','🚨 Urgente / Zero':'urgente'};
+const CAT_IC={Velas:'vela',Bebidas:'bebida',Fumo:'fumo','Ervas e Defumacao':'erva',Alimentos:'alim','Flores e Naturais':'flor'};
+const NIVEL_SLUG={'OK OK':'ok','! Repor':'repor','Alerta':'alerta','Urgente / Zero':'urgente'};
 
 let acervo=[],consumiveis=[],calendario=[],entidades=[];
 let deferredPrompt=null;
@@ -368,14 +368,14 @@ function renderAcervo(){
   document.getElementById('a-count').textContent=f.length+' item(s)';
   if(!f.length){document.getElementById('acervo-lista').innerHTML='<div class="empty">Nenhum item encontrado.</div>';return;}
   document.getElementById('acervo-lista').innerHTML=f.map(function(i){
-    return'<div class="item-card" onclick="abrirModalAcervo(\''+i.id+'\')">'+'<div class="item-nome">'+(i.nome||'--')+'</div>'+'<div class="item-cat">'+(i.categoria||'')+(i.subcategoria?' › '+i.subcategoria:'')+'</div>'+(i.status?'<span class="item-badge">'+i.status+'</span>':'')+'</div>';
+    return'<div class="item-card" onclick="abrirModalAcervo(\''+i.id+'\')">'+'<div class="item-nome">'+(i.nome||'--')+'</div>'+'<div class="item-cat">'+(i.categoria||'')+(i.subcategoria?' > '+i.subcategoria:'')+'</div>'+(i.status?'<span class="item-badge">'+i.status+'</span>':'')+'</div>';
   }).join('');
 }
 function abrirModalAcervo(id){
   var i=acervo.find(function(x){return x.id===id;});if(!i)return;
   document.getElementById('modal-nome').textContent=i.nome||'--';
   document.getElementById('modal-corpo').innerHTML=[
-    ['Categoria',(i.categoria||'')+(i.subcategoria?' › '+i.subcategoria:'')],
+    ['Categoria',(i.categoria||'')+(i.subcategoria?' > '+i.subcategoria:'')],
     ['Orixá / Entidade',(i.orixa||'--')+(i.entidade?' · '+i.entidade:'')],
     ['Status',i.status||'--'],['Localização',i.local||'--'],
     ['Quantidade',i.quantidade||'--'],['Cadastrado em',fmtData(i.dataCadastro)]

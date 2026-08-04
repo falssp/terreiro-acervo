@@ -7,14 +7,14 @@
 //  Privadas:  Filhos de Santo | Financeiro | Log | Admins
 //
 //  PERFIS:
-//  Dev        → devkey na URL, acesso total sem cadastro
-//  Admin      → Pai/Mãe de Santo, acesso total
-//  Filho      → acervo/consumíveis (edit) + próprio perfil
+//  Dev        -> devkey na URL, acesso total sem cadastro
+//  Admin      -> Pai/Mãe de Santo, acesso total
+//  Filho      -> acervo/consumíveis (edit) + próprio perfil
 //
 //  SEGURANÇA:
 //  - Senha SHA-256 + salt, nunca texto puro
 //  - Senha provisória obriga troca no primeiro acesso
-//  - 3 tentativas erradas → bloqueio 30 min
+//  - 3 tentativas erradas -> bloqueio 30 min
 //  - Token de sessão 8h no PropertiesService
 //  - Toda escrita grava log com usuário + data + valores
 // ================================================================
@@ -67,30 +67,30 @@ const LISTA = {
   CAT_ACERVO: ['Alimentos e Oferendas','Ervas e Plantas','Ferramentas e Objetos Rituais','Roupas e Indumentárias','Outro'],
   STATUS_ACERVO: ['Danificado','Disponível','Em Uso','Necessita Reposição','N/A'],
   CAT_CONSUMIVEL: ['Alimentos','Bebidas','Ervas e Defumação','Flores e Naturais','Fumo','Velas','Outro'],
-  NIVEL: ['-- Sem mínimo','✅ OK','⚠️ Repor','🔴 Alerta','🚨 Urgente / Zero'],
+  NIVEL: ['-- Sem mínimo','✅ OK','⚠ Repor','🔴 Alerta','🚨 Urgente / Zero'],
   CAT_FINANCEIRO: ['Consulta / Atendimento','Consumíveis','Dízimo / Doação','Evento / Gira','Indumentária / Acervo','Manutenção','Ritual / Oferenda','Venda','Outros'],
   TIPO_CALENDARIO: ['Consulta / Búzios','Consulta / Tarot','Festa','Gira','Obrigação','Reunião','Outro']
 };
 
-// ── MENU ─────────────────────────────────────────────────
+// == MENU =================================================
 function onOpen() {
   SpreadsheetApp.getUi()
-    .createMenu('🏛️ Gestão do Terreiro')
-    .addItem('⚙️ Configurar planilha', 'setup')
+    .createMenu('🏛 Gestão do Terreiro')
+    .addItem('⚙ Configurar planilha', 'setup')
     .addSeparator()
     .addItem('📅 Datas do mês atual', 'verDatasMes')
     .addItem('🛒 Lista de compras', 'gerarListaCompras')
-    .addItem('⚠️ Obrigações próximas (180 dias)', 'verObrigacoes')
+    .addItem('⚠ Obrigações próximas (180 dias)', 'verObrigacoes')
     .addItem('🔄 Recalcular níveis de estoque', 'recalcularEstoque')
     .addToUi();
 }
 
-// ── SETUP ────────────────────────────────────────────────
+// == SETUP ================================================
 function setup() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const criadas = [];
 
-  // Mapa: nome da aba → função de criação → colunas esperadas
+  // Mapa: nome da aba -> função de criação -> colunas esperadas
   const ABAS_CONFIG = [
     {nome: ABA.ACERVO,      criar: _criarAcervo,      cols: 12},
     {nome: ABA.CONSUMIVEIS, criar: _criarConsumiveis, cols: 14},
@@ -142,7 +142,7 @@ function setup() {
   );
 }
 
-// ── HELPERS DE ESTRUTURA ─────────────────────────────────
+// == HELPERS DE ESTRUTURA =================================
 function _cab(aba, cols, bg, fg) {
   aba.getRange(1,1,1,cols.length).setValues([cols])
     .setBackground(bg).setFontColor(fg)
@@ -181,7 +181,7 @@ function _fechar(aba, numCols, numLinhas) {
   }
 }
 
-// ── CRIAÇÃO DE ABAS ──────────────────────────────────────
+// == CRIAÇÃO DE ABAS ======================================
 function _criarAcervo(ss) {
   var aba = ss.insertSheet(ABA.ACERVO);
   var cols = ['ID','Nome','Categoria','Subcategoria','Orixá de Cabeça','Entidade / Linha','Status','Localização / Armário','Qtd','Foto (URL)','Observações','Data cadastro'];
@@ -207,7 +207,7 @@ function _criarConsumiveis(ss) {
   _val(aba,'H2:H200',LISTA.NIVEL);
   _cor(aba,'H2:H200',[
     {v:'✅ OK',bg:'#e6f4ea',f:'#1e6b3a'},
-    {v:'⚠️ Repor',bg:'#fef9e7',f:'#7d5c00'},
+    {v:'⚠ Repor',bg:'#fef9e7',f:'#7d5c00'},
     {v:'🔴 Alerta',bg:'#fdecea',f:'#8b0000'},
     {v:'🚨 Urgente / Zero',bg:'#f5c6cb',f:'#5c0000'}
   ]);
@@ -263,7 +263,7 @@ function _criarEntidades(ss) {
   _cab(aba, cols, '#1a2a1a', '#c8f0c8');
   aba.getRange('C2:C50').setNumberFormat('dd/MM');
   var dados = [
-    // ── ORIXÁS ──────────────────────────────────────────────────────────────
+    // == ORIXÁS ==============================================================
     ['Exu','Todas','','Segunda','Preto e vermelho','Pimenta, dendê, farofa, cachaça','Cachaça, vinho tinto','Ogó, tridentes, sete chaves','Laroyê Exu!','Guardião dos caminhos, mensageiro entre os homens e os deuses'],
     ['Ogum','Ketu / Angola','23/04','Terça','Verde e preto','Feijão preto, carne, dendê','Cerveja preta, vinho tinto','Espada, ferramentas de ferro','Ogum Yê!','Orixá do ferro, da guerra e dos caminhos abertos'],
     ['Oxossi','Ketu','','Quinta','Azul e verde','Milho branco, inhame, mel','Mel, água de coco','Arco e flecha','Okê Arô!','Orixá da caça, da fartura e das matas'],
@@ -276,7 +276,7 @@ function _criarEntidades(ss) {
     ['Obaluaê / Omolu','Ketu','','Segunda','Preto, branco e vermelho','Pipoca, milho, coco','Vinho tinto, dendê','Xaxará','Atotô Obaluaê!','Orixá da cura, da saúde e das doenças'],
     ['Oxumarê','Ketu','','Quinta','Verde e amarelo','Milho, inhame, azeite','Mel, cerveja','Arco-íris, cobra','Arrôbô Oxumarê!','Orixá da renovação, representado pelo arco-íris e a serpente'],
     ['Ossãe','Ketu','','Quinta','Verde e branco','Folhas sagradas, ervas','Água, mel','Folhas, ervas medicinais','Ewé Ó!','Orixá das folhas sagradas, da medicina e das plantas'],
-    // ── ENTIDADES / LINHAS DE TRABALHO ──────────────────────────────────────
+    // == ENTIDADES / LINHAS DE TRABALHO ======================================
     ['Caboclos','Umbanda','','Terça','Verde e amarelo','Mel, frutas, charuto','Cerveja, cachaça','Arco e flecha, cocar','Okê Caboclo!','Espíritos de indígenas ligados às matas, à cura e à coragem'],
     ['Pretos-Velhos','Umbanda','13/05','Segunda','Branco e preto','Fumo, cachaça, mel','Cachaça, mel','Cachimbo, bengala','Ave, meu filho!','Espíritos de africanos escravizados, símbolos de paciência e sabedoria'],
     ['Exus e Pombagiras','Umbanda','','Segunda e sexta','Vermelho e preto','Rosa vermelha, pimenta, champanhe','Champanhe, vinho tinto','Rosas, tridentes, ogó','Laroyê!','Guardiões dos caminhos, trabalham na limpeza de energias densas'],
@@ -359,7 +359,7 @@ function _criarAdmins(ss) {
   _fechar(aba, cols.length, 101);
 }
 
-// ── HELPERS ──────────────────────────────────────────────
+// == HELPERS ==============================================
 function _hash(txt) {
   var b = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, txt+SALT, Utilities.Charset.UTF_8);
   return b.map(function(x){return ('0'+(x&0xFF).toString(16)).slice(-2);}).join('');
@@ -367,7 +367,7 @@ function _hash(txt) {
 function _hoje() { return Utilities.formatDate(new Date(),Session.getScriptTimeZone(),'dd/MM/yyyy'); }
 function _agora() { return Utilities.formatDate(new Date(),Session.getScriptTimeZone(),'dd/MM/yyyy HH:mm:ss'); }
 function _fmt(d) { if(!d)return'--'; try{return Utilities.formatDate(new Date(d),Session.getScriptTimeZone(),'dd/MM/yyyy');}catch(e){return'--';} }
-function _nivel(a,m) { if(!m)return{label:'-- Sem mínimo',pct:0}; var pct=Math.round((a/m)*100); if(pct>=75)return{label:'✅ OK',pct}; if(pct>=25)return{label:'⚠️ Repor',pct}; if(pct>=5)return{label:'🔴 Alerta',pct}; return{label:'🚨 Urgente / Zero',pct}; }
+function _nivel(a,m) { if(!m)return{label:'-- Sem mínimo',pct:0}; var pct=Math.round((a/m)*100); if(pct>=75)return{label:'✅ OK',pct}; if(pct>=25)return{label:'⚠ Repor',pct}; if(pct>=5)return{label:'🔴 Alerta',pct}; return{label:'🚨 Urgente / Zero',pct}; }
 function _uuid(p) { return p+'-'+Utilities.getUuid().substring(0,6).toUpperCase(); }
 function _tem(s,p) { return s&&s.permissoes&&s.permissoes.includes(p); }
 
@@ -378,7 +378,7 @@ function _log(usuario, email, acao, aba, idItem, campo, anterior, novo) {
   } catch(e) {}
 }
 
-// ── AUTENTICAÇÃO ─────────────────────────────────────────
+// == AUTENTICAÇÃO =========================================
 function _adminsVazio() {
   var aba = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ABA.ADMINS);
   if (!aba) return true;
@@ -484,7 +484,7 @@ function _listarAdmins() {
   };})};
 }
 
-// ── TOKENS ───────────────────────────────────────────────
+// == TOKENS ===============================================
 function _gerarToken(email, permissoes, nome) {
   var token = Utilities.getUuid();
   var expira = new Date(); expira.setHours(expira.getHours()+8);
@@ -511,7 +511,7 @@ function _validarToken(token) {
 function _revogarToken(token) { if(token) PropertiesService.getScriptProperties().deleteProperty('tok_'+token); }
 function _isDev(k) { return k===DEV_KEY; }
 
-// ── POST ─────────────────────────────────────────────────
+// == POST =================================================
 function doPost(e) {
   try {
     var d = JSON.parse(e.postData.contents);
@@ -545,7 +545,7 @@ function doPost(e) {
   } catch(err) { return _saida({ok:false,erro:err.message}); }
 }
 
-// ── GET ──────────────────────────────────────────────────
+// == GET ==================================================
 function doGet(e) {
   try {
     var p = e.parameter||{};
@@ -584,7 +584,7 @@ function doGet(e) {
   } catch(err) { return _saida({ok:false,erro:err.message}); }
 }
 
-// ── LISTAGENS ────────────────────────────────────────────
+// == LISTAGENS ============================================
 function _listarAcervo() {
   var aba=SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ABA.ACERVO);
   if(!aba)return{ok:false,erro:'Aba não encontrada.'};
@@ -649,7 +649,7 @@ function _listarLog() {
   return{ok:true,registros:rows.filter(function(l){return l[0]!=='';}).map(function(l){return{dataHora:l[0],usuario:l[1],email:l[2],acao:l[3],aba:l[4],idItem:l[5],campo:l[6],anterior:l[7],novo:l[8]};})};
 }
 
-// ── INSERÇÕES / EDIÇÕES ──────────────────────────────────
+// == INSERÇÕES / EDIÇÕES ==================================
 function _inserirAcervo(d,s) {
   if(!_tem(s,'acervo_edit'))return{ok:false,erro:'Sem permissão.'};
   var aba=SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ABA.ACERVO);
@@ -813,7 +813,7 @@ function _inserirEntidade(d,s) {
   return{ok:true};
 }
 
-// ── DATAS DO MÊS ─────────────────────────────────────────
+// == DATAS DO MÊS =========================================
 function _datasDoMes() {
   var ss=SpreadsheetApp.getActiveSpreadsheet(),hoje=new Date(),mes=hoje.getMonth(),ano=hoje.getFullYear();
   var r={aniversariantes:[],festas:[],obrigacoes:[],eventos:[]};
@@ -835,7 +835,7 @@ function _buscarML(q) {
   }catch(e){return{ok:false,erro:e.message};}
 }
 
-// ── MENU ─────────────────────────────────────────────────
+// == MENU =================================================
 function recalcularEstoque() {
   var aba=SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ABA.CONSUMIVEIS);
   if(!aba){SpreadsheetApp.getUi().alert('Aba não encontrada.');return;}
@@ -849,18 +849,18 @@ function gerarListaCompras() {
   if(!aba){SpreadsheetApp.getUi().alert('Aba não encontrada.');return;}
   var nok=aba.getDataRange().getValues().slice(1).filter(function(r){return r[0]!==''&&!String(r[7]).includes('OK');});
   if(!nok.length){SpreadsheetApp.getUi().alert('✅ Nenhum item precisa ser reposto!');return;}
-  var msg='🛒 LISTA DE COMPRAS\n'+'─'.repeat(28)+'\n';
-  ['Urgente','Alerta','Repor'].forEach(function(t){var g=nok.filter(function(r){return String(r[7]).includes(t);});if(g.length){msg+='\n'+(t==='Urgente'?'🚨':t==='Alerta'?'🔴':'⚠️')+' '+t+':\n';g.forEach(function(r){msg+='  • '+r[2]+' -- faltam '+Math.max(0,r[5]-r[4])+' '+r[3]+'\n';});}});
+  var msg='🛒 LISTA DE COMPRAS\n'+'='.repeat(28)+'\n';
+  ['Urgente','Alerta','Repor'].forEach(function(t){var g=nok.filter(function(r){return String(r[7]).includes(t);});if(g.length){msg+='\n'+(t==='Urgente'?'🚨':t==='Alerta'?'🔴':'⚠')+' '+t+':\n';g.forEach(function(r){msg+='  * '+r[2]+' -- faltam '+Math.max(0,r[5]-r[4])+' '+r[3]+'\n';});}});
   SpreadsheetApp.getUi().alert(msg);
 }
 
 function verDatasMes() {
   var r=_datasDoMes(),hoje=new Date();
-  var msg='📅 '+Utilities.formatDate(hoje,Session.getScriptTimeZone(),'MMMM/yyyy').toUpperCase()+'\n'+'─'.repeat(28)+'\n';
-  if(r.aniversariantes.length){msg+='\n🎂 Aniversariantes:\n';r.aniversariantes.forEach(function(a){msg+='  • '+a.data+' -- '+a.nome+'\n';});}
-  if(r.festas.length){msg+='\n🥁 Festas:\n';r.festas.forEach(function(f){msg+='  • '+f.data+' -- '+f.entidade+'\n';});}
-  if(r.eventos.length){msg+='\n📅 Eventos:\n';r.eventos.forEach(function(ev){msg+='  • '+ev.data+' -- '+ev.titulo+' ('+ev.tipo+')\n';});}
-  if(r.obrigacoes.length){msg+='\n⚠️ Obrigações:\n';r.obrigacoes.forEach(function(o){msg+='  • '+o.data+' -- '+o.nome+'\n';});}
+  var msg='📅 '+Utilities.formatDate(hoje,Session.getScriptTimeZone(),'MMMM/yyyy').toUpperCase()+'\n'+'='.repeat(28)+'\n';
+  if(r.aniversariantes.length){msg+='\n🎂 Aniversariantes:\n';r.aniversariantes.forEach(function(a){msg+='  * '+a.data+' -- '+a.nome+'\n';});}
+  if(r.festas.length){msg+='\n🥁 Festas:\n';r.festas.forEach(function(f){msg+='  * '+f.data+' -- '+f.entidade+'\n';});}
+  if(r.eventos.length){msg+='\n📅 Eventos:\n';r.eventos.forEach(function(ev){msg+='  * '+ev.data+' -- '+ev.titulo+' ('+ev.tipo+')\n';});}
+  if(r.obrigacoes.length){msg+='\n⚠ Obrigações:\n';r.obrigacoes.forEach(function(o){msg+='  * '+o.data+' -- '+o.nome+'\n';});}
   SpreadsheetApp.getUi().alert(msg);
 }
 
@@ -870,9 +870,9 @@ function verObrigacoes() {
   var hoje=new Date(),lim=new Date(hoje);lim.setDate(lim.getDate()+180);
   var prox=aba.getDataRange().getValues().slice(1).filter(function(r){if(!r[9])return false;try{var d=new Date(r[9]);return d>=hoje&&d<=lim;}catch(e){return false;}});
   if(!prox.length){SpreadsheetApp.getUi().alert('✅ Nenhuma obrigação nos próximos 180 dias.');return;}
-  var msg='⚠️ OBRIGAÇÕES -- 180 DIAS\n'+'─'.repeat(28)+'\n';
+  var msg='⚠ OBRIGAÇÕES -- 180 DIAS\n'+'='.repeat(28)+'\n';
   prox.sort(function(a,b){return new Date(a[9])-new Date(b[9]);});
-  prox.forEach(function(r){var dias=Math.round((new Date(r[9])-hoje)/(864e5));msg+='  • '+(r[1]||r[2])+' -- '+_fmt(r[9])+' (em '+dias+' dias)\n';});
+  prox.forEach(function(r){var dias=Math.round((new Date(r[9])-hoje)/(864e5));msg+='  * '+(r[1]||r[2])+' -- '+_fmt(r[9])+' (em '+dias+' dias)\n';});
   SpreadsheetApp.getUi().alert(msg);
 }
 

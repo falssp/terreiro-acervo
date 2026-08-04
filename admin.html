@@ -150,9 +150,9 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
       <label class="field-lbl">E-mail</label>
       <input class="field-inp" type="email" id="p-email" placeholder="seu@email.com" inputmode="email" autocomplete="off"/>
       <label class="field-lbl">Senha (mín. 6 caracteres)</label>
-      <input class="field-inp" type="password" id="p-senha" placeholder="••••••••" autocomplete="new-password"/>
+      <input class="field-inp" type="password" id="p-senha" placeholder="********" autocomplete="new-password"/>
       <label class="field-lbl">Confirmar senha</label>
-      <input class="field-inp" type="password" id="p-conf" placeholder="••••••••" autocomplete="new-password" onkeydown="if(event.key==='Enter')criarPrimeiro()"/>
+      <input class="field-inp" type="password" id="p-conf" placeholder="********" autocomplete="new-password" onkeydown="if(event.key==='Enter')criarPrimeiro()"/>
       <div class="acesso-err" id="p-err"></div>
       <button class="btn-acesso" onclick="criarPrimeiro()">Criar conta</button>
     </div>
@@ -169,7 +169,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
       <label class="field-lbl">E-mail</label>
       <input class="field-inp" type="email" id="l-email" placeholder="seu@email.com" inputmode="email" autocomplete="off"/>
       <label class="field-lbl">Senha</label>
-      <input class="field-inp" type="password" id="l-senha" placeholder="••••••••" autocomplete="off" onkeydown="if(event.key==='Enter')entrar()"/>
+      <input class="field-inp" type="password" id="l-senha" placeholder="********" autocomplete="off" onkeydown="if(event.key==='Enter')entrar()"/>
       <div class="acesso-err" id="l-err"></div>
       <button class="btn-acesso" id="btn-entrar" onclick="entrar()">Entrar</button>
     </div>
@@ -184,11 +184,11 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
     <p>&#128273; Crie sua senha pessoal</p>
     <div class="acesso-box">
       <label class="field-lbl">Senha atual (provisória)</label>
-      <input class="field-inp" type="password" id="t-atual" placeholder="••••••••" autocomplete="off"/>
+      <input class="field-inp" type="password" id="t-atual" placeholder="********" autocomplete="off"/>
       <label class="field-lbl">Nova senha (mín. 6 caracteres)</label>
-      <input class="field-inp" type="password" id="t-nova" placeholder="••••••••" autocomplete="new-password"/>
+      <input class="field-inp" type="password" id="t-nova" placeholder="********" autocomplete="new-password"/>
       <label class="field-lbl">Confirmar nova senha</label>
-      <input class="field-inp" type="password" id="t-conf" placeholder="••••••••" autocomplete="new-password" onkeydown="if(event.key==='Enter')trocarSenhaObrig()"/>
+      <input class="field-inp" type="password" id="t-conf" placeholder="********" autocomplete="new-password" onkeydown="if(event.key==='Enter')trocarSenhaObrig()"/>
       <div class="acesso-err" id="t-err"></div>
       <button class="btn-acesso" onclick="trocarSenhaObrig()">Definir senha e entrar</button>
     </div>
@@ -453,7 +453,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--creme);min-height:10
     <!-- Suporte -->
     <div class="sec-titulo" style="margin-top:28px">&#128295; Suporte técnico</div>
     <div class="faq-item"><div class="faq-q" onclick="faqT(this)">"Sessão expirada" ao usar o painel <span class="arrow">&#9660;</span></div><div class="faq-a">A sessão dura 8h ou 30 min sem uso. Basta fazer login novamente.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">"Ação desconhecida" ao gravar <span class="arrow">&#9660;</span></div><div class="faq-a">Reimplante o Apps Script: <code>Implantar → Gerenciar implantações → ✏️ → Nova versão → Implantar</code></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="faqT(this)">"Ação desconhecida" ao gravar <span class="arrow">&#9660;</span></div><div class="faq-a">Reimplante o Apps Script: <code>Implantar -> Gerenciar implantações -> ✏ -> Nova versão -> Implantar</code></div></div>
     <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Permissões disponíveis <span class="arrow">&#9660;</span></div><div class="faq-a"><code>acervo_view</code> · <code>acervo_edit</code> · <code>consumiveis_view</code> · <code>consumiveis_edit</code> · <code>entidades_view</code> · <code>entidades_edit</code> · <code>filhos_view</code> · <code>filhos_edit</code> · <code>financeiro</code> · <code>calendario_view</code> · <code>calendario_edit</code> · <code>usuarios</code> · <code>configuracoes</code> · <code>log</code></div></div>
   </div>
 </div>
@@ -642,10 +642,10 @@ function resumoFin(){
   toast('Carregando...');
   _get('financeiro-resumo').then(function(j){
     if(!j.ok){toast(j.erro||'Erro.',false);return;}
-    var txt='RESUMO FINANCEIRO\n'+'─'.repeat(28)+'\n';
+    var txt='RESUMO FINANCEIRO\n'+'='.repeat(28)+'\n';
     txt+='Entradas do mês:  '+fmtBRL(j.entradasMes)+'\nSaídas do mês:    '+fmtBRL(j.saidasMes)+'\nSaldo do mês:     '+fmtBRL(j.saldoMes)+'\n\n';
     txt+='Total entradas: '+fmtBRL(j.totalEntradas)+'\nTotal saídas:   '+fmtBRL(j.totalSaidas)+'\nSaldo geral:    '+fmtBRL(j.saldo)+'\n';
-    if(j.porCategoria&&Object.keys(j.porCategoria).length){txt+='\nSAÍDAS POR CATEGORIA\n'+'─'.repeat(28)+'\n';Object.entries(j.porCategoria).sort(function(a,b){return b[1]-a[1];}).forEach(function(p){txt+='  '+p[0]+': '+fmtBRL(p[1])+'\n';});}
+    if(j.porCategoria&&Object.keys(j.porCategoria).length){txt+='\nSAÍDAS POR CATEGORIA\n'+'='.repeat(28)+'\n';Object.entries(j.porCategoria).sort(function(a,b){return b[1]-a[1];}).forEach(function(p){txt+='  '+p[0]+': '+fmtBRL(p[1])+'\n';});}
     mostrar('resultado-fin',txt);toast('Carregado!');
   }).catch(function(){toast('Erro.',false);});
 }
@@ -658,11 +658,11 @@ function listaCompras(){
     var ns=function(n){var nl=(n||'').toLowerCase();if(nl.includes('urgente')||nl.includes('zero'))return 0;if(nl.includes('alerta'))return 1;if(nl.includes('repor'))return 2;return 3;};
     var nok=j.itens.filter(function(i){return!String(i.nivel).toLowerCase().includes('ok')&&!String(i.nivel).includes('mínimo');}).sort(function(a,b){return ns(a.nivel)-ns(b.nivel);});
     if(!nok.length){mostrar('resultado-estoque','Nenhum item precisa ser reposto!');toast('Tudo em dia!');return;}
-    var txt='LISTA DE COMPRAS\n'+'─'.repeat(28)+'\n',nAt='';
+    var txt='LISTA DE COMPRAS\n'+'='.repeat(28)+'\n',nAt='';
     nok.forEach(function(i){
       if(i.nivel!==nAt){txt+='\n'+i.nivel+':\n';nAt=i.nivel;}
       var f=Math.max(0,(Number(i.minimo)||0)-(Number(i.atual)||0));
-      txt+='  • '+i.nome+' -- faltam '+f+' '+(i.unidade||'');
+      txt+='  * '+i.nome+' -- faltam '+f+' '+(i.unidade||'');
       if(i.fornecedor)txt+=' | '+i.fornecedor;
       txt+='\n';
     });
@@ -676,8 +676,8 @@ function statusEstoque(){
     var ns=function(n){var nl=(n||'').toLowerCase();if(nl.includes('urgente')||nl.includes('zero'))return'urgente';if(nl.includes('alerta'))return'alerta';if(nl.includes('repor'))return'repor';return'ok';};
     var cats={};
     j.itens.forEach(function(i){if(!cats[i.categoria])cats[i.categoria]={ok:0,repor:0,alerta:0,urgente:0};cats[i.categoria][ns(i.nivel)]++;});
-    var txt='STATUS DO ESTOQUE\n'+'─'.repeat(28)+'\n';
-    Object.entries(cats).forEach(function(e){var c=e[1];txt+='\n'+e[0]+':\n';if(c.urgente)txt+='  🚨 Urgente: '+c.urgente+'\n';if(c.alerta)txt+='  🔴 Alerta:  '+c.alerta+'\n';if(c.repor)txt+='  ⚠️ Repor:   '+c.repor+'\n';if(c.ok)txt+='  ✅ OK:      '+c.ok+'\n';});
+    var txt='STATUS DO ESTOQUE\n'+'='.repeat(28)+'\n';
+    Object.entries(cats).forEach(function(e){var c=e[1];txt+='\n'+e[0]+':\n';if(c.urgente)txt+='  Urgente: '+c.urgente+'\n';if(c.alerta)txt+='  Alerta:  '+c.alerta+'\n';if(c.repor)txt+='  ! Repor:   '+c.repor+'\n';if(c.ok)txt+='  OK OK:      '+c.ok+'\n';});
     mostrar('resultado-estoque',txt);toast('Verificado!');
   }).catch(function(){toast('Erro.',false);});
 }
@@ -739,9 +739,9 @@ function obrigacoes(){
       if(!i.proximaObrigacao||i.proximaObrigacao==='--')return false;
       try{var p=i.proximaObrigacao.split('/');var d=new Date(parseInt(p[2]),parseInt(p[1])-1,parseInt(p[0]));return d>=hoje&&d<=lim;}catch(e){return false;}
     });
-    var txt='OBRIGAÇÕES -- '+dias+' DIAS\n'+'─'.repeat(28)+'\n';
+    var txt='OBRIGAÇÕES -- '+dias+' DIAS\n'+'='.repeat(28)+'\n';
     if(!prox.length)txt+='\nNenhuma obrigação neste período.';
-    else prox.forEach(function(i){txt+='  • '+i.proximaObrigacao+' -- '+(i.nomeSanto||i.nomeSocial||'Filho de '+(i.orixa||'--'))+' ('+( i.statusTerreiro||'Ativo')+')\n';});
+    else prox.forEach(function(i){txt+='  * '+i.proximaObrigacao+' -- '+(i.nomeSanto||i.nomeSocial||'Filho de '+(i.orixa||'--'))+' ('+( i.statusTerreiro||'Ativo')+')\n';});
     mostrar('resultado-obrig',txt);toast(prox.length?prox.length+' encontrada(s).':'Nenhuma.');
   }).catch(function(){toast('Erro.',false);});
 }
@@ -822,24 +822,20 @@ function listaComprasMes(){
   _get('consumiveis-listar').then(function(j){
     if(!j.ok){toast('Erro.',false);return;}
     var ns=function(n){var nl=(n||'').toLowerCase();if(nl.includes('urgente')||nl.includes('zero'))return 0;if(nl.includes('alerta'))return 1;if(nl.includes('repor'))return 2;return 3;};
-    var nok=j.itens.filter(function(i){return!String(i.nivel).toLowerCase().includes('ok')&&!String(i.nivel).includes('mínimo');}).sort(function(a,b){return ns(a.nivel)-ns(b.nivel);});
-    if(!nok.length){mostrar('resultado-estoque','✅ Nenhum item precisa ser reposto!');toast('Tudo em dia!');return;}
-    var txt='🛒 COMPRAS DO MÊS -- ESTOQUE
-'+'─'.repeat(28)+'
-',nAt='';
+    var nok=j.itens.filter(function(i){return!String(i.nivel).toLowerCase().includes('ok')&&!String(i.nivel).includes('minimo');}).sort(function(a,b){return ns(a.nivel)-ns(b.nivel);});
+    if(!nok.length){mostrar('resultado-estoque','Nenhum item precisa ser reposto!');toast('Tudo em dia!');return;}
+    var txt='COMPRAS DO MES\n'+'='.repeat(24)+'\n',nAt='';
     nok.forEach(function(i){
-      if(i.nivel!==nAt){txt+='
-'+i.nivel+':
-';nAt=i.nivel;}
+      if(i.nivel!==nAt){txt+='\n'+i.nivel+':\n';nAt=i.nivel;}
       var f=Math.max(0,(Number(i.minimo)||0)-(Number(i.atual)||0));
-      txt+='  • '+i.nome+' -- faltam '+f+' '+(i.unidade||'');
+      txt+='  * '+i.nome+' -- faltam '+f+' '+(i.unidade||'');
       if(i.fornecedor)txt+=' | '+i.fornecedor;
-      txt+='
-';
+      txt+='\n';
     });
     mostrar('resultado-estoque',txt);toast('Lista gerada!');
   }).catch(function(){toast('Erro.',false);});
 }
+
 
 function verListaPontual(){
   _get('lista-listar').then(function(j){
@@ -875,45 +871,32 @@ function removerLista(id){
 
 function gerarListaCompleta(){
   toast('Gerando lista completa...');
-  Promise.all([
-    _get('consumiveis-listar'),
-    _get('lista-listar')
-  ]).then(function(rs){
+  Promise.all([_get('consumiveis-listar'),_get('lista-listar')]).then(function(rs){
     var jCsm=rs[0],jLst=rs[1];
-    var txt='📋 LISTA COMPLETA DE COMPRAS
-'+'─'.repeat(28)+'
-';
-    // Estoque
+    var txt='LISTA COMPLETA DE COMPRAS\n'+'='.repeat(24)+'\n';
     if(jCsm.ok){
       var ns=function(n){var nl=(n||'').toLowerCase();if(nl.includes('urgente')||nl.includes('zero'))return 0;if(nl.includes('alerta'))return 1;if(nl.includes('repor'))return 2;return 3;};
-      var nok=(jCsm.itens||[]).filter(function(i){return!String(i.nivel).toLowerCase().includes('ok')&&!String(i.nivel).includes('mínimo');}).sort(function(a,b){return ns(a.nivel)-ns(b.nivel);});
+      var nok=(jCsm.itens||[]).filter(function(i){return!String(i.nivel).toLowerCase().includes('ok')&&!String(i.nivel).includes('minimo');}).sort(function(a,b){return ns(a.nivel)-ns(b.nivel);});
       if(nok.length){
-        txt+='
-🛒 REPOSIÇÃO DE ESTOQUE:
-';
+        txt+='\nREPOSICAO DE ESTOQUE:\n';
         var nAt='';
         nok.forEach(function(i){
-          if(i.nivel!==nAt){txt+='  ['+i.nivel+']
-';nAt=i.nivel;}
+          if(i.nivel!==nAt){txt+='  ['+i.nivel+']\n';nAt=i.nivel;}
           var f=Math.max(0,(Number(i.minimo)||0)-(Number(i.atual)||0));
-          txt+='    • '+i.nome+' -- '+f+' '+(i.unidade||'')+'
-';
+          txt+='    * '+i.nome+' -- '+f+' '+(i.unidade||'')+'\n';
         });
       }
     }
-    // Pontuais
     if(jLst.ok&&jLst.itens&&jLst.itens.length){
-      txt+='
-📌 COMPRAS PONTUAIS:
-';
-      jLst.itens.forEach(function(i){txt+='  • '+i.qtd+' '+i.unidade+' de '+i.item+(i.obs?' -- '+i.obs:'')+'
-';});
+      txt+='\nCOMPRAS PONTUAIS:\n';
+      jLst.itens.forEach(function(i){txt+='  * '+i.qtd+' '+i.unidade+' de '+i.item+(i.obs?' -- '+i.obs:'')+'\n';});
     }
     document.getElementById('resultado-lista-completa').style.display='block';
     document.getElementById('resultado-lista-completa').textContent=txt;
     toast('Lista completa gerada!');
   }).catch(function(){toast('Erro.',false);});
 }
+
 
 // LOG
 function carregarLog(){
@@ -925,7 +908,7 @@ function carregarLog(){
     // Mostra os 100 mais recentes
     var recentes=j.registros.slice(-100).reverse();
     el.innerHTML=recentes.map(function(r){
-      return'<div class="log-item"><span class="log-data">'+r.dataHora+'</span> · <span class="log-acao">'+r.acao+'</span> · '+r.usuario+' · <strong>'+r.aba+'</strong>'+(r.idItem?' ['+r.idItem+']':'')+(r.campo&&r.campo!=='-'?' · '+r.campo+': '+r.anterior+' → '+r.novo:'')+'</div>';
+      return'<div class="log-item"><span class="log-data">'+r.dataHora+'</span> · <span class="log-acao">'+r.acao+'</span> · '+r.usuario+' · <strong>'+r.aba+'</strong>'+(r.idItem?' ['+r.idItem+']':'')+(r.campo&&r.campo!=='-'?' · '+r.campo+': '+r.anterior+' -> '+r.novo:'')+'</div>';
     }).join('');
     toast('Carregado!');
   }).catch(function(){toast('Erro.',false);});
