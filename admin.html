@@ -638,6 +638,18 @@ function _get(acao, extra) {
   return fetch(GS + params).then(function(r) { return r.json(); });
 }
 
+function _imprimir(titulo, conteudo) {
+  var w = window.open('', '_blank');
+  w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"/><title>' + titulo + '</title>');
+  w.document.write('<style>body{font-family:monospace;font-size:13px;padding:20px;white-space:pre-wrap}h2{font-family:serif;margin-bottom:16px}@media print{.no-print{display:none}}</style></head><body>');
+  w.document.write('<h2>' + titulo + '</h2>');
+  w.document.write('<pre>' + conteudo + '</pre>');
+  w.document.write('<div class="no-print" style="margin-top:20px"><button onclick="window.print()" style="padding:8px 20px;font-size:13px;cursor:pointer">Imprimir / Salvar PDF</button></div>');
+  w.document.write('</body></html>');
+  w.document.close();
+  w.focus();
+}
+
 function _post(body) {
   var t = (TOKEN && TOKEN.startsWith('dev_')) ? 'DEV_BYPASS' : TOKEN;
   return fetch(GS, {method: 'POST', body: JSON.stringify(Object.assign({}, body, {token: t}))})
@@ -674,6 +686,7 @@ function resumoFin() {
           .forEach(function(p) { txt += '  ' + p[0] + ': ' + fmtBRL(p[1]) + '\n'; });
       }
       mostrar('resultado-fin', txt);
+      _addBtnImprimir('resultado-fin', 'Resumo financeiro', txt);
       toast('Carregado!');
     }).catch(function() { toast('Erro.', false); });
 }
@@ -731,6 +744,7 @@ function listaComprasMes() {
         txt += '\n';
       });
       mostrar('resultado-estoque', txt);
+      _addBtnImprimir('resultado-estoque', 'Compras do mes', txt);
       toast('Lista gerada!');
     }).catch(function() { toast('Erro.', false); });
 }
@@ -762,6 +776,7 @@ function statusEstoque() {
         if (c.ok)      txt += '  OK:      ' + c.ok      + '\n';
       });
       mostrar('resultado-estoque', txt);
+      _addBtnImprimir('resultado-estoque', 'Status do estoque', txt);
       toast('Verificado!');
     }).catch(function() { toast('Erro.', false); });
 }
@@ -865,6 +880,7 @@ function gerarListaCompleta() {
       }
       document.getElementById('resultado-lista-completa').style.display = 'block';
       document.getElementById('resultado-lista-completa').textContent = txt;
+      _addBtnImprimir('resultado-lista-completa', 'Lista completa de compras', txt);
       toast('Lista completa gerada!');
     }).catch(function() { toast('Erro.', false); });
 }
@@ -1158,6 +1174,17 @@ function carregarLog() {
       });
       toast('Carregado!');
     }).catch(function() { toast('Erro.', false); });
+}
+function _addBtnImprimir(elId, titulo, conteudo) {
+  var el = document.getElementById(elId);
+  var existing = el.querySelector('.btn-imprimir');
+  if (existing) existing.remove();
+  var btn = document.createElement('button');
+  btn.className = 'btn-imprimir btn-sm primary';
+  btn.style.cssText = 'margin-top:10px;width:100%';
+  btn.textContent = 'Imprimir / Salvar PDF';
+  (function(t,c){ btn.onclick = function(){ _imprimir(t,c); }; })(titulo, conteudo);
+  el.appendChild(btn);
 }
 </script>
 </body>
